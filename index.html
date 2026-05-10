@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StateShift — Coffee Experiments, Field Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+body{
+  background:var(--espresso);
+  display:flex;flex-direction:column;
+  min-height:100vh;
+}
+
+/* Landing wrapper */
+.landing{
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:4rem 2rem 2rem;
+  position:relative;overflow:hidden;
+}
+
+/* Decorative coffee rings */
+.ring-1{width:320px;height:320px;top:-80px;right:-60px;opacity:0.6}
+.ring-2{width:180px;height:180px;bottom:80px;left:-40px;opacity:0.4}
+.ring-3{width:80px;height:80px;top:40%;left:8%;opacity:0.3}
+
+/* Main content — slightly off-center feel */
+.landing-inner{
+  max-width:520px;
+  text-align:center;
+  position:relative;
+  padding:0 1rem;
+}
+
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1.2rem;opacity:0.75;
+  display:block;
+}
+
+.landing-mark{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3rem,10vw,5.5rem);
+  color:var(--parchment);letter-spacing:-0.03em;
+  line-height:0.95;margin-bottom:1.4rem;
+}
+.landing-mark em{color:var(--amber);font-style:italic}
+
+/* Slightly imperfect divider */
+.hand-divider{
+  font-family:'Caveat',cursive;
+  font-size:1.4rem;color:rgba(200,146,42,0.25);
+  margin-bottom:1.8rem;letter-spacing:0.1em;
+}
+
+.landing-desc{
+  font-size:1rem;color:var(--fog);line-height:1.8;
+  margin-bottom:2.8rem;font-style:italic;
+  /* slightly imperfect width */
+  max-width:440px;margin-left:auto;margin-right:auto;
+}
+
+/* Nav buttons — not perfectly spaced */
+.landing-nav{
+  display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;
+  margin-bottom:4rem;
+}
+.landing-nav a{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--parchment);text-decoration:none;
+  border:1px solid rgba(200,146,42,0.35);
+  padding:0.85rem 2rem;
+  transition:all 0.25s;
+  position:relative;
+}
+.landing-nav a:hover{border-color:var(--amber);color:var(--amber)}
+.landing-nav a.primary{
+  background:rgba(200,146,42,0.1);
+  border-color:rgba(200,146,42,0.5);
+}
+.landing-nav a.soon-link{
+  color:rgba(107,100,96,0.45);
+  border-color:rgba(107,100,96,0.2);
+  font-size:0.62rem;pointer-events:none;
+}
+
+/* Why this exists — the most important section */
+.why-section{
+  max-width:900px;width:100%;
+  margin:0 auto;
+  padding:3rem 2rem 4rem;
+  border-top:1px solid rgba(200,146,42,0.12);
+  display:grid;
+  grid-template-columns:1fr 2fr;
+  gap:3rem;
+  align-items:start;
+}
+@media(max-width:600px){
+  .why-section{grid-template-columns:1fr;gap:1.5rem}
+}
+.why-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--gold);opacity:0.7;padding-top:0.2rem;
+}
+.why-text{
+  font-size:1rem;color:var(--fog);line-height:1.85;
+  font-style:italic;
+}
+.why-text p+p{margin-top:1rem}
+.why-note{
+  margin-top:1.4rem;
+  font-family:'Caveat',cursive;
+  font-size:1rem;color:rgba(200,146,42,0.4);
+}
+
+/* Photo inserts on landing — asymmetric */
+.photo-strip{
+  max-width:900px;width:100%;margin:0 auto;
+  padding:0 2rem 3rem;
+  display:grid;
+  grid-template-columns:2fr 1fr 1.5fr;
+  gap:0.75rem;
+  align-items:end;
+}
+@media(max-width:600px){.photo-strip{display:none}}
+.photo-insert:nth-child(1){height:140px;transform:rotate(-0.4deg)}
+.photo-insert:nth-child(2){height:100px;transform:rotate(0.6deg)}
+.photo-insert:nth-child(3){height:120px;transform:rotate(-0.3deg)}
+
+/* Footer */
+footer{
+  border-top:1px solid rgba(200,146,42,0.1);
+  padding:1.2rem 2rem;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:0.5rem;
+}
+.footer-mono{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(107,100,96,0.4);
+}
+.footer-hand{
+  font-family:'Caveat',cursive;
+  font-size:0.85rem;color:rgba(200,146,42,0.25);
+}
+</style>
+</head>
+<body>
+
+<main class="landing">
+  <!-- Decorative rings -->
+  <div class="coffee-ring ring-1"></div>
+  <div class="coffee-ring ring-2"></div>
+  <div class="coffee-ring ring-3"></div>
+
+  <div class="landing-inner">
+    <span class="eyebrow">North India · Est. 2025 · Experiment ongoing</span>
+
+    <h1 class="landing-mark">State<em>Shift</em></h1>
+
+    <div class="hand-divider">· · ·</div>
+
+    <p class="landing-desc">
+      A personal laboratory at the intersection of specialty coffee,
+      adaptogens, and the quiet science of how a morning ritual
+      changes what the rest of the day becomes.
+    </p>
+
+    <nav class="landing-nav">
+      <a href="lab.html" class="primary">/ Lab Notes</a>
+      <a href="states.html">/ Observations</a>
+      <a class="soon-link">/ Protocols (soon)</a>
+    </nav>
+  </div>
+</main>
+
+<!-- Photo strip -->
+<div class="photo-strip">
+  <div class="photo-insert">
+    <span class="photo-insert-label">moka pot · dawn kitchen</span>
+  </div>
+  <div class="photo-insert">
+    <span class="photo-insert-label">field log</span>
+  </div>
+  <div class="photo-insert">
+    <span class="photo-insert-label">ingredients · morning light</span>
+  </div>
+</div>
+
+<!-- Why this exists -->
+<section class="why-section">
+  <div class="why-label">Why this exists</div>
+  <div>
+    <div class="why-text">
+      <p>
+        This is not about productivity optimisation or biohacking
+        or any of those words that make wellness sound like engineering.
+      </p>
+      <p>
+        It is about paying attention. To how certain rituals shape attention,
+        calm, energy, and presence throughout a day. To what it feels like
+        when something shifts — and whether that shift can be
+        made deliberate, documented, and eventually shared.
+      </p>
+      <p>
+        The coffee is the medium. The state is the message.
+        Everything else is observation.
+      </p>
+    </div>
+    <div class="why-note">— still figuring this out, honestly</div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-mono">stateshift.in · field notes in progress</span>
+  <span class="footer-hand">eventually this becomes a library of rituals</span>
+</footer>
+
+</body>
+</html>

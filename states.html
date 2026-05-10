@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Observations — StateShift</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/shared.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+
+.page-wrap{max-width:860px;margin:0 auto;padding:3.5rem 2rem 5rem 2.4rem}
+
+/* Header */
+.page-eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:0.7rem;opacity:0.7;
+}
+.page-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,4vw,2.6rem);
+  color:var(--parchment);line-height:1.1;margin-bottom:0.5rem;
+}
+.page-title em{color:var(--amber);font-style:italic}
+.page-caveat{
+  font-family:'Caveat',cursive;
+  font-size:0.95rem;color:rgba(200,146,42,0.38);
+  margin-bottom:3rem;
+}
+
+/* KPI strip — less corporate, more lab */
+.kpi-row{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:1px;
+  background:rgba(200,146,42,0.1);
+  border:1px solid rgba(200,146,42,0.12);
+  margin-bottom:3rem;
+}
+.kpi{
+  background:rgba(45,26,13,0.55);
+  padding:1.3rem 1.1rem;
+}
+.kpi-key{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.56rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:0.5rem;
+}
+.kpi-val{
+  font-family:'Playfair Display',serif;
+  font-size:1.9rem;color:var(--parchment);line-height:1;
+}
+.kpi-val small{font-size:0.9rem;color:var(--sage);font-style:italic}
+.kpi-note{
+  font-family:'Caveat',cursive;
+  font-size:0.78rem;color:rgba(200,146,42,0.35);
+  margin-top:0.25rem;
+}
+
+/* Chart sections */
+.chart-section{margin-bottom:3rem}
+.chart-head{
+  display:flex;align-items:baseline;gap:1rem;margin-bottom:1.2rem;
+}
+.chart-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;
+  color:rgba(200,146,42,0.55);
+}
+.chart-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;color:var(--parchment);
+}
+.chart-frame{
+  background:rgba(45,26,13,0.4);
+  border:1px solid rgba(200,146,42,0.1);
+  padding:1.5rem;position:relative;overflow:hidden;
+}
+.chart-frame::before{
+  content:'';position:absolute;
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,146,42,0.03) 0%,transparent 70%);
+  top:-60px;right:-40px;pointer-events:none;
+}
+.chart-wrap{position:relative;height:220px}
+
+/* Side by side charts */
+.chart-pair{
+  display:grid;grid-template-columns:1.4fr 1fr;gap:1.5rem;
+  margin-bottom:3rem;
+}
+@media(max-width:620px){.chart-pair{grid-template-columns:1fr}}
+
+/* Interpretation section — the human part */
+.interpret-section{
+  border:1px solid rgba(200,146,42,0.15);
+  background:rgba(45,26,13,0.35);
+  padding:1.8rem;
+  margin-bottom:3rem;
+  position:relative;
+  transform:rotate(-0.15deg);
+}
+.interpret-section::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  opacity:0.3;
+}
+.interpret-header{
+  display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem;
+}
+.interpret-icon{
+  font-family:'Caveat',cursive;font-size:1.8rem;
+  color:rgba(200,146,42,0.35);line-height:1;
+}
+.interpret-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;
+  color:rgba(200,146,42,0.5);
+}
+.interpret-entries{display:flex;flex-direction:column;gap:1rem}
+.interpret-entry{}
+.interpret-date{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.58rem;color:rgba(200,146,42,0.4);
+  letter-spacing:0.08em;margin-bottom:0.3rem;
+}
+.interpret-text{
+  font-family:'Caveat',cursive;
+  font-size:1.05rem;color:rgba(232,226,217,0.75);
+  line-height:1.5;
+}
+.interpret-divider{
+  height:1px;
+  background:rgba(200,146,42,0.08);
+}
+
+/* Photo insert in dash */
+.dash-photo{
+  height:100px;
+  background:rgba(45,26,13,0.5);
+  border:1px solid rgba(200,146,42,0.1);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:3rem;
+  transform:rotate(0.2deg);
+}
+.dash-photo span{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:rgba(200,146,42,0.15);
+}
+
+/* Caveat note at bottom */
+.bottom-note{
+  margin-top:2rem;
+  font-family:'Caveat',cursive;
+  font-size:0.95rem;color:rgba(200,146,42,0.3);
+  text-align:center;
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a href="index.html" class="site-logo">State<span>Shift</span></a>
+  <nav class="site-nav">
+    <a href="lab.html">/ Lab</a>
+    <a href="states.html" class="active">/ Observations</a>
+    <a class="soon">/ Protocols (soon)</a>
+  </nav>
+</header>
+
+<div class="page-wrap">
+  <div class="page-eyebrow">State Tracking · Field Observations</div>
+  <h1 class="page-title">What the <em>data</em> says</h1>
+  <div class="page-caveat">early experiment. small sample. honest.</div>
+
+  <!-- KPIs -->
+  <div class="kpi-row" id="kpiRow">
+    <div class="kpi">
+      <div class="kpi-key">Sessions logged</div>
+      <div class="kpi-val" id="k-sessions">8</div>
+      <div class="kpi-note">and counting</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-key">Avg focus lift</div>
+      <div class="kpi-val">+<span id="k-focus">2.1</span><small>/10</small></div>
+      <div class="kpi-note">post vs pre</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-key">Anxiety shift</div>
+      <div class="kpi-val">-<span id="k-anxiety">1.8</span><small>pts</small></div>
+      <div class="kpi-note">avg per session</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-key">Experiment day</div>
+      <div class="kpi-val" id="k-days">10</div>
+      <div class="kpi-note">since first cup</div>
+    </div>
+  </div>
+
+  <!-- Chart pair -->
+  <div class="chart-pair">
+    <div class="chart-section">
+      <div class="chart-head">
+        <span class="chart-label">Trend</span>
+        <span class="chart-title">Focus — before and after</span>
+      </div>
+      <div class="chart-frame">
+        <div class="chart-wrap"><canvas id="focusChart"></canvas></div>
+      </div>
+    </div>
+    <div class="chart-section">
+      <div class="chart-head">
+        <span class="chart-label">Anxiety</span>
+        <span class="chart-title">Daily reduction</span>
+      </div>
+      <div class="chart-frame">
+        <div class="chart-wrap"><canvas id="anxChart"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Photo insert -->
+  <div class="dash-photo">
+    <span>grinder · wooden table · morning light — image coming</span>
+  </div>
+
+  <!-- Human interpretation section -->
+  <div class="interpret-section">
+    <div class="interpret-header">
+      <div class="interpret-icon">✍</div>
+      <div class="interpret-label">What I actually think is happening</div>
+    </div>
+    <div class="interpret-entries" id="interpretEntries">
+      <!-- Built by JS -->
+    </div>
+  </div>
+
+  <div class="bottom-note">
+    this is day 10. the real patterns emerge around day 30.
+  </div>
+</div>
+
+<script>
+const C = {
+  text: '#b8a898',
+  grid: 'rgba(255,255,255,0.05)',
+  font: "'IBM Plex Mono', monospace",
+  gold: 'rgba(200,146,42,',
+  sage: 'rgba(122,140,110,'
+};
+
+Chart.defaults.color = C.text;
+Chart.defaults.font.family = C.font;
+Chart.defaults.font.size = 10;
+
+const daily = [
+  {date:'Jun 02',fp:5,fpo:7,ap:6,apo:5,blend:'Baseline'},
+  {date:'Jun 03',fp:5,fpo:8,ap:6,apo:4,blend:'Focus trial'},
+  {date:'Jun 04',fp:5,fpo:7,ap:7,apo:4,blend:'Ashwagandha'},
+  {date:'Jun 05',fp:5,fpo:3,ap:5,apo:6,blend:'Failed'},
+  {date:'Jun 06',fp:6,fpo:8,ap:5,apo:3,blend:'Focus'},
+  {date:'Jun 07',fp:5,fpo:9,ap:6,apo:3,blend:'Full protocol'},
+  {date:'Jun 08',fp:4,fpo:7,ap:5,apo:4,blend:'Midday rhodiola'},
+  {date:'Jun 09',fp:4,fpo:3,ap:5,apo:2,blend:'Calm evening'},
+];
+
+const labels = daily.map(d => d.date);
+
+// Focus chart
+new Chart(document.getElementById('focusChart'), {
+  type: 'line',
+  data: {
+    labels,
+    datasets: [
+      {
+        label: 'before',
+        data: daily.map(d => d.fp),
+        borderColor: C.gold + '0.3)',
+        borderDash: [3,4],
+        pointRadius: 2,
+        pointBackgroundColor: C.gold + '0.3)',
+        tension: 0.4, fill: false, borderWidth: 1
+      },
+      {
+        label: 'after',
+        data: daily.map(d => d.fpo),
+        borderColor: C.gold + '0.85)',
+        pointRadius: 3,
+        pointBackgroundColor: C.gold + '0.85)',
+        tension: 0.4, fill: false, borderWidth: 1.5
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: true, labels: { color: C.text, boxWidth: 10, font: { family: C.font, size: 9 } } },
+      tooltip: {
+        backgroundColor: 'rgba(45,26,13,0.95)',
+        borderColor: C.gold + '0.3)', borderWidth: 1,
+        titleFont: { family: C.font, size: 9 }, bodyFont: { family: C.font, size: 9 },
+        titleColor: '#d4a853', bodyColor: '#b8a898', padding: 8,
+        callbacks: { afterBody: (items) => [`session: ${daily[items[0].dataIndex].blend}`] }
+      }
+    },
+    scales: {
+      x: { grid: { color: C.grid }, ticks: { color: C.text, maxRotation: 0, font: { size: 9 } } },
+      y: { grid: { color: C.grid }, ticks: { color: C.text }, min: 0, max: 10 }
+    }
+  }
+});
+
+// Anxiety chart
+const anxDeltas = daily.map(d => d.ap - d.apo);
+const anxColors = anxDeltas.map(d => d > 0 ? C.sage + '0.7)' : 'rgba(170,70,30,0.6)');
+new Chart(document.getElementById('anxChart'), {
+  type: 'bar',
+  data: {
+    labels,
+    datasets: [{
+      label: 'reduction',
+      data: anxDeltas,
+      backgroundColor: anxColors,
+      borderWidth: 0
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: 'rgba(45,26,13,0.95)',
+        borderColor: C.gold + '0.3)', borderWidth: 1,
+        titleFont: { family: C.font, size: 9 }, bodyFont: { family: C.font, size: 9 },
+        titleColor: '#d4a853', bodyColor: '#b8a898', padding: 8,
+        callbacks: { label: (item) => `reduced by ${item.raw} point${item.raw !== 1 ? 's' : ''}` }
+      }
+    },
+    scales: {
+      x: { grid: { color: C.grid }, ticks: { color: C.text, maxRotation: 0, font: { size: 9 } } },
+      y: { grid: { color: C.grid }, ticks: { color: C.text }, min: -2, max: 5,
+           title: { display: true, text: '↑ reduced', color: C.text, font: { family: C.font, size: 9 } } }
+    }
+  }
+});
+
+// Update KPIs from real data
+const focusDeltas = daily.map(d => d.fpo - d.fp);
+const avgFocus = (focusDeltas.reduce((a,b)=>a+b,0)/focusDeltas.length).toFixed(1);
+const avgAnx = (anxDeltas.reduce((a,b)=>a+b,0)/anxDeltas.length).toFixed(1);
+document.getElementById('k-focus').textContent = avgFocus;
+document.getElementById('k-anxiety').textContent = Math.abs(avgAnx);
+
+// Handwritten interpretations
+const interpretations = [
+  { date: 'Jun 03', text: 'The L-theanine is doing something. The caffeine is the same caffeine but it has corners now. And the corners are gone.' },
+  { date: 'Jun 07', text: 'The protocol worked today. I know because I forgot to check whether it was working.' },
+  { date: 'Jun 09', text: 'The evening cup is a different experiment entirely. Less about performance and more about permission to stop.' },
+  { date: 'ongoing', text: 'The failed sessions are the most useful ones. They tell me where the ceiling is.' },
+];
+
+document.getElementById('interpretEntries').innerHTML = interpretations.map((item, i) =>
+  `<div class="interpret-entry">
+    <div class="interpret-date">${item.date}</div>
+    <div class="interpret-text">${item.text}</div>
+  </div>
+  ${i < interpretations.length - 1 ? '<div class="interpret-divider"></div>' : ''}`
+).join('');
+</script>
+</body>
+</html>

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab Notes — StateShift</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+
+/* Page header — slightly asymmetric */
+.lab-top{
+  max-width:860px;margin:0 auto;
+  padding:3.5rem 2rem 0.5rem 2.4rem;
+  display:flex;align-items:flex-end;justify-content:space-between;
+  flex-wrap:wrap;gap:1.5rem;
+}
+.lab-eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:0.7rem;opacity:0.7;
+}
+.lab-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,4vw,2.6rem);
+  color:var(--parchment);line-height:1.1;
+}
+.lab-title em{color:var(--amber);font-style:italic}
+.lab-handnote{
+  font-family:'Caveat',cursive;
+  font-size:0.95rem;color:rgba(200,146,42,0.4);
+  margin-top:0.5rem;
+}
+.new-entry-btn{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--espresso);background:var(--gold);
+  border:none;padding:0.75rem 1.5rem;cursor:pointer;
+  transition:background 0.2s;align-self:flex-end;
+}
+.new-entry-btn:hover{background:var(--amber)}
+
+/* Filter row */
+.filter-row{
+  max-width:860px;margin:0 auto;
+  padding:1.8rem 2rem 1.8rem 2.4rem;
+  display:flex;gap:0.45rem;flex-wrap:wrap;align-items:center;
+}
+.filter-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:rgba(107,100,96,0.5);margin-right:0.4rem;
+}
+
+/* Entries container */
+.entries{
+  max-width:860px;margin:0 auto;
+  padding:0 2rem 5rem 2.4rem;
+}
+
+/* Entry card — slight imperfections */
+.entry{
+  border:1px solid rgba(200,146,42,0.13);
+  margin-bottom:1.4rem;
+  background:rgba(45,26,13,0.38);
+  position:relative;overflow:hidden;
+  transition:border-color 0.2s;
+}
+.entry:hover{border-color:rgba(200,146,42,0.3)}
+.entry.hidden{display:none}
+
+/* Subtle coffee stain per entry */
+.entry::before{
+  content:'';position:absolute;
+  width:160px;height:160px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,146,42,0.035) 0%,transparent 65%);
+  top:-50px;right:-30px;pointer-events:none;z-index:0;
+}
+
+/* Slight rotation on note cards — not all of them */
+.entry:nth-child(3n+2){transform:rotate(-0.25deg)}
+.entry:nth-child(4n+3){transform:rotate(0.2deg)}
+
+.entry.breakthrough{
+  border-color:rgba(200,146,42,0.35);
+  background:rgba(45,26,13,0.5);
+}
+.entry.failed{
+  border-color:rgba(130,50,20,0.3);
+  background:rgba(40,15,8,0.4);
+}
+
+/* Entry header */
+.entry-header{
+  padding:1.3rem 1.5rem 0.9rem;
+  cursor:pointer;
+  display:grid;
+  grid-template-columns:2.5rem 1fr auto;
+  gap:0.8rem;align-items:start;
+  position:relative;z-index:1;
+}
+.entry-num{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.58rem;color:rgba(200,146,42,0.45);
+  letter-spacing:0.08em;padding-top:0.25rem;
+}
+.entry-meta{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.58rem;color:var(--muted);letter-spacing:0.06em;
+  margin-bottom:0.4rem;
+  display:flex;gap:1rem;flex-wrap:wrap;
+}
+.entry-time-val{color:rgba(200,146,42,0.6)}
+.entry-title{
+  font-family:'Playfair Display',serif;
+  font-size:1rem;color:var(--parchment);
+  line-height:1.35;font-weight:400;
+}
+.entry.breakthrough .entry-title{color:var(--amber)}
+.entry.failed .entry-title{color:rgba(200,160,140,0.75)}
+
+.entry-tags{display:flex;gap:0.35rem;flex-wrap:wrap;margin-top:0.55rem}
+.entry-tag{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.56rem;letter-spacing:0.1em;text-transform:uppercase;
+  padding:0.15rem 0.55rem;border:1px solid rgba(107,100,96,0.28);
+  color:rgba(107,100,96,0.7);cursor:default;
+}
+.entry-toggle{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.6rem;color:rgba(107,100,96,0.45);
+  padding-top:0.25rem;white-space:nowrap;transition:color 0.18s;
+}
+.entry-header:hover .entry-toggle{color:var(--amber)}
+
+/* Status badge */
+.status-badge{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.52rem;letter-spacing:0.1em;text-transform:uppercase;
+  padding:0.15rem 0.5rem;margin-left:0.4rem;
+  display:inline-block;vertical-align:middle;
+}
+.status-breakthrough{color:var(--amber);border:1px solid rgba(200,146,42,0.3)}
+.status-failed{color:#b06040;border:1px solid rgba(150,50,20,0.3)}
+.status-logged{color:rgba(107,100,96,0.5);border:1px solid rgba(107,100,96,0.2)}
+
+/* Entry body */
+.entry-body{
+  display:none;
+  border-top:1px solid rgba(200,146,42,0.08);
+  padding:1.3rem 1.5rem 1.5rem;
+  position:relative;z-index:1;
+}
+.entry-body.open{display:block}
+
+.entry-prose{
+  font-size:0.96rem;line-height:1.85;
+  color:var(--fog);font-style:italic;
+  margin-bottom:1.3rem;
+}
+
+/* Two column layout for obs + metrics */
+.entry-columns{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;
+  margin-top:1rem;
+}
+@media(max-width:560px){.entry-columns{grid-template-columns:1fr}}
+
+.block-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.57rem;letter-spacing:0.16em;text-transform:uppercase;
+  color:rgba(200,146,42,0.55);margin-bottom:0.65rem;
+  border-bottom:1px solid rgba(200,146,42,0.12);padding-bottom:0.35rem;
+}
+.obs-list{list-style:none}
+.obs-list li{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.7rem;color:rgba(200,180,150,0.65);line-height:1.7;
+  padding-left:1rem;position:relative;
+}
+.obs-list li::before{
+  content:'—';position:absolute;left:0;
+  color:rgba(200,146,42,0.3);
+}
+
+/* Metric bars — simpler, less corporate */
+.metric-item{margin-bottom:0.75rem}
+.metric-row{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:0.25rem;
+}
+.metric-key{
+  font-family:'IBM Plex Mono',monospace;font-size:0.62rem;
+  color:var(--muted);letter-spacing:0.06em;
+}
+.metric-delta{
+  font-family:'IBM Plex Mono',monospace;font-size:0.62rem;
+}
+.delta-up{color:var(--sage)}
+.delta-down{color:#c06040}
+.delta-flat{color:rgba(107,100,96,0.5)}
+.metric-track{
+  height:3px;background:rgba(255,255,255,0.06);
+  display:flex;gap:1px;
+}
+.metric-fill-pre{height:100%;background:rgba(200,146,42,0.2)}
+.metric-fill-post{height:100%;background:rgba(200,146,42,0.75)}
+
+/* Field note */
+.field-note{
+  margin-top:1.3rem;
+  padding:0.9rem 1.1rem;
+  border-left:2px solid rgba(200,146,42,0.4);
+  background:rgba(200,146,42,0.04);
+}
+.field-note-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:rgba(200,146,42,0.45);margin-bottom:0.35rem;
+}
+.field-note-text{
+  font-family:'Caveat',cursive;
+  font-size:1.05rem;color:rgba(200,146,42,0.65);line-height:1.5;
+}
+
+/* Photo insert in entries — editorial asymmetry */
+.entry-photo{
+  margin-top:1.2rem;
+  display:flex;gap:0.6rem;align-items:flex-end;
+}
+.entry-photo-block{
+  background:rgba(45,26,13,0.7);
+  border:1px solid rgba(200,146,42,0.1);
+  display:flex;align-items:center;justify-content:center;
+}
+.entry-photo-block span{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:rgba(200,146,42,0.2);
+}
+
+/* Horizontal photo strip between some entries */
+.photo-between{
+  margin:0 0 1.4rem;
+  height:80px;overflow:hidden;
+  display:flex;gap:0.6rem;
+  transform:rotate(-0.2deg);
+}
+.photo-between-block{
+  flex:1;background:rgba(45,26,13,0.5);
+  border:1px solid rgba(200,146,42,0.1);
+  display:flex;align-items:center;justify-content:center;
+}
+.photo-between-block span{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.5rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(200,146,42,0.15);
+}
+
+/* === NEW ENTRY MODAL === */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(8,3,1,0.93);
+  z-index:1000;display:none;align-items:center;justify-content:center;padding:1rem;
+}
+.modal-overlay.open{display:flex}
+.modal{
+  background:var(--roast);border:1px solid rgba(200,146,42,0.25);
+  width:100%;max-width:620px;max-height:90vh;overflow-y:auto;padding:2rem;
+}
+.modal-title{
+  font-family:'Playfair Display',serif;font-size:1.3rem;
+  color:var(--parchment);margin-bottom:0.25rem;
+}
+.modal-sub{
+  font-family:'IBM Plex Mono',monospace;font-size:0.6rem;
+  color:rgba(200,146,42,0.55);letter-spacing:0.12em;text-transform:uppercase;
+  margin-bottom:1.8rem;
+}
+.form-group{margin-bottom:1.1rem}
+.form-label{
+  display:block;font-family:'IBM Plex Mono',monospace;
+  font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:0.45rem;
+}
+.form-input,.form-textarea{
+  width:100%;background:rgba(255,255,255,0.04);
+  border:1px solid rgba(200,146,42,0.18);
+  color:var(--parchment);font-family:'Lora',serif;font-size:0.9rem;
+  padding:0.65rem 0.85rem;outline:none;
+  transition:border-color 0.18s;
+}
+.form-input:focus,.form-textarea:focus{border-color:rgba(200,146,42,0.45)}
+.form-textarea{min-height:90px;resize:vertical}
+.tag-checks{display:flex;gap:0.45rem;flex-wrap:wrap}
+.tag-cb{display:none}
+.tag-cb-label{
+  font-family:'IBM Plex Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.08em;text-transform:uppercase;
+  padding:0.28rem 0.75rem;border:1px solid rgba(200,146,42,0.2);
+  color:var(--muted);cursor:pointer;transition:all 0.18s;
+}
+.tag-cb:checked+.tag-cb-label{background:var(--gold);color:var(--espresso);border-color:var(--gold)}
+.metrics-4{display:grid;grid-template-columns:repeat(4,1fr);gap:0.45rem}
+.mi label{
+  display:block;font-family:'IBM Plex Mono',monospace;
+  font-size:0.54rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(107,100,96,0.6);margin-bottom:0.28rem;text-align:center;
+}
+.mi input{
+  width:100%;background:rgba(255,255,255,0.04);
+  border:1px solid rgba(200,146,42,0.18);
+  color:var(--parchment);font-family:'IBM Plex Mono',monospace;
+  font-size:0.85rem;padding:0.45rem;text-align:center;outline:none;
+}
+.form-actions{display:flex;gap:0.8rem;margin-top:1.4rem;justify-content:flex-end}
+.btn-cancel{
+  font-family:'IBM Plex Mono',monospace;font-size:0.62rem;
+  letter-spacing:0.1em;text-transform:uppercase;
+  background:transparent;border:1px solid rgba(107,100,96,0.3);
+  color:var(--muted);padding:0.65rem 1.3rem;cursor:pointer;transition:all 0.18s;
+}
+.btn-cancel:hover{color:var(--parchment)}
+.btn-save{
+  font-family:'IBM Plex Mono',monospace;font-size:0.62rem;
+  letter-spacing:0.1em;text-transform:uppercase;
+  background:var(--gold);border:none;
+  color:var(--espresso);padding:0.65rem 1.3rem;cursor:pointer;transition:background 0.18s;
+}
+.btn-save:hover{background:var(--amber)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a href="index.html" class="site-logo">State<span>Shift</span></a>
+  <nav class="site-nav">
+    <a href="lab.html" class="active">/ Lab</a>
+    <a href="states.html">/ Observations</a>
+    <a class="soon">/ Protocols (soon)</a>
+  </nav>
+</header>
+
+<div class="lab-top">
+  <div>
+    <div class="lab-eyebrow">Field Notes · Experiment Log</div>
+    <h1 class="lab-title">The <em>Lab</em></h1>
+    <div class="lab-handnote" id="entryCount">loading...</div>
+  </div>
+  <button class="new-entry-btn" onclick="openModal()">+ New Entry</button>
+</div>
+
+<div class="filter-row">
+  <span class="filter-label">Show:</span>
+  <button class="tag active" data-filter="all">All</button>
+  <button class="tag" data-filter="Focus">Focus</button>
+  <button class="tag" data-filter="Calm">Calm</button>
+  <button class="tag" data-filter="Energy">Energy</button>
+  <button class="tag" data-filter="Social">Social</button>
+  <button class="tag" data-filter="Brewing">Brewing</button>
+  <button class="tag" data-filter="Ingredients">Ingredients</button>
+  <button class="tag" data-filter="Failed">Failed</button>
+</div>
+
+<div class="entries" id="entriesContainer"></div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeOut(event)">
+  <div class="modal">
+    <div class="modal-title">New observation</div>
+    <div class="modal-sub">Write what you noticed</div>
+    <div class="form-group">
+      <label class="form-label">Title</label>
+      <input type="text" class="form-input" id="f-title" placeholder="What happened this session?">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Tags</label>
+      <div class="tag-checks">
+        <input type="checkbox" class="tag-cb" id="tc-focus" value="Focus"><label class="tag-cb-label" for="tc-focus">Focus</label>
+        <input type="checkbox" class="tag-cb" id="tc-calm" value="Calm"><label class="tag-cb-label" for="tc-calm">Calm</label>
+        <input type="checkbox" class="tag-cb" id="tc-energy" value="Energy"><label class="tag-cb-label" for="tc-energy">Energy</label>
+        <input type="checkbox" class="tag-cb" id="tc-social" value="Social"><label class="tag-cb-label" for="tc-social">Social</label>
+        <input type="checkbox" class="tag-cb" id="tc-brew" value="Brewing"><label class="tag-cb-label" for="tc-brew">Brewing</label>
+        <input type="checkbox" class="tag-cb" id="tc-ing" value="Ingredients"><label class="tag-cb-label" for="tc-ing">Ingredients</label>
+        <input type="checkbox" class="tag-cb" id="tc-fail" value="Failed"><label class="tag-cb-label" for="tc-fail">Failed</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">What you observed</label>
+      <textarea class="form-textarea" id="f-body" placeholder="Describe what happened. Be specific. Uncertainty is fine."></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Before (1–10) — Energy · Focus · Anxiety · Mood</label>
+      <div class="metrics-4">
+        <div class="mi"><label>Energy</label><input type="number" min="1" max="10" id="pre-e"></div>
+        <div class="mi"><label>Focus</label><input type="number" min="1" max="10" id="pre-f"></div>
+        <div class="mi"><label>Anxiety</label><input type="number" min="1" max="10" id="pre-a"></div>
+        <div class="mi"><label>Mood</label><input type="number" min="1" max="10" id="pre-m"></div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">After 60 min</label>
+      <div class="metrics-4">
+        <div class="mi"><label>Energy</label><input type="number" min="1" max="10" id="post-e"></div>
+        <div class="mi"><label>Focus</label><input type="number" min="1" max="10" id="post-f"></div>
+        <div class="mi"><label>Anxiety</label><input type="number" min="1" max="10" id="post-a"></div>
+        <div class="mi"><label>Mood</label><input type="number" min="1" max="10" id="post-m"></div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Field note — one honest sentence</label>
+      <input type="text" class="form-input" id="f-note" placeholder="What shifted?">
+    </div>
+    <div class="form-actions">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-save" onclick="saveEntry()">Save to lab</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let all = [];
+let filter = 'all';
+
+async function init() {
+  try {
+    const r = await fetch('data/lab.json');
+    all = await r.json();
+  } catch(e) { all = []; }
+  const local = JSON.parse(localStorage.getItem('ss_entries') || '[]');
+  all = [...local, ...all];
+  render();
+}
+
+function render() {
+  const list = filter === 'all' ? all : all.filter(e => e.tags && e.tags.includes(filter));
+  document.getElementById('entryCount').textContent =
+    `${list.length} session${list.length !== 1 ? 's' : ''} documented`;
+
+  const container = document.getElementById('entriesContainer');
+  let html = '';
+  list.forEach((e, i) => {
+    // Insert a photo strip between some entries
+    if (i === 2) {
+      html += `<div class="photo-between">
+        <div class="photo-between-block"><span>moka pot · morning</span></div>
+        <div class="photo-between-block"><span>notebook</span></div>
+        <div class="photo-between-block"><span>capsules · scale</span></div>
+      </div>`;
+    }
+    html += buildEntry(e);
+  });
+  container.innerHTML = html;
+
+  // Stagger fade in
+  container.querySelectorAll('.entry').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform += ' translateY(8px)';
+    setTimeout(() => {
+      el.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+      el.style.opacity = '1';
+      el.style.transform = el.style.transform.replace(' translateY(8px)', '');
+    }, i * 50);
+  });
+}
+
+function buildEntry(e) {
+  const statusCls = {breakthrough:'status-breakthrough', failed:'status-failed', logged:'status-logged'};
+  const statusLbl = {breakthrough:'breakthrough', failed:'failed', logged:'logged'};
+  const tags = (e.tags||[]).map(t =>
+    `<span class="entry-tag">${t}</span>`).join('');
+
+  const obs = (e.observations||[]).length
+    ? `<div>
+        <div class="block-label">Observations</div>
+        <ul class="obs-list">${(e.observations||[]).map(o=>`<li>${o}</li>`).join('')}</ul>
+       </div>` : '';
+
+  const metrics = e.metrics && e.metrics_after ? buildMetrics(e.metrics, e.metrics_after) : '';
+  const columns = (obs || metrics)
+    ? `<div class="entry-columns">${obs}${metrics}</div>` : '';
+
+  const note = e.note
+    ? `<div class="field-note">
+        <div class="field-note-label">Field note</div>
+        <div class="field-note-text">"${e.note}"</div>
+       </div>` : '';
+
+  const date = e.date ? new Date(e.date).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) : '';
+
+  return `<div class="entry ${e.status||''}" id="e-${e.id}">
+    <div class="entry-header" onclick="toggle('${e.id}')">
+      <div class="entry-num">#${e.id}</div>
+      <div>
+        <div class="entry-meta">
+          <span>${date}</span>
+          <span class="entry-time-val">${e.time||''}</span>
+          <span class="status-badge ${statusCls[e.status]||''}">${statusLbl[e.status]||''}</span>
+        </div>
+        <div class="entry-title">${e.title}</div>
+        <div class="entry-tags">${tags}</div>
+      </div>
+      <div class="entry-toggle" id="tog-${e.id}">expand ↓</div>
+    </div>
+    <div class="entry-body" id="b-${e.id}">
+      <p class="entry-prose">${e.body}</p>
+      ${columns}
+      ${note}
+    </div>
+  </div>`;
+}
+
+function buildMetrics(pre, post) {
+  const keys = ['energy','focus','anxiety','mood'];
+  const bars = keys.map(k => {
+    const pv = pre[k]||0, pov = post[k]||0;
+    const d = pov - pv;
+    const cls = d > 0 ? 'delta-up' : d < 0 ? 'delta-down' : 'delta-flat';
+    const sign = d > 0 ? '+' : '';
+    return `<div class="metric-item">
+      <div class="metric-row">
+        <span class="metric-key">${k}</span>
+        <span class="metric-delta ${cls}">${sign}${d}</span>
+      </div>
+      <div class="metric-track">
+        <div class="metric-fill-pre" style="width:${pv*10}%"></div>
+        <div class="metric-fill-post" style="width:${pov*10}%;margin-left:2px"></div>
+      </div>
+    </div>`;
+  }).join('');
+  return `<div>
+    <div class="block-label">State — before / after</div>
+    ${bars}
+  </div>`;
+}
+
+function toggle(id) {
+  const body = document.getElementById(`b-${id}`);
+  const tog = document.getElementById(`tog-${id}`);
+  const open = body.classList.toggle('open');
+  tog.textContent = open ? 'collapse ↑' : 'expand ↓';
+}
+
+// Filter buttons
+document.querySelectorAll('.tag[data-filter]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tag[data-filter]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filter = btn.dataset.filter;
+    render();
+  });
+});
+
+// Modal
+function openModal() { document.getElementById('modalOverlay').classList.add('open'); }
+function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+function closeOut(e) { if(e.target.id==='modalOverlay') closeModal(); }
+
+function saveEntry() {
+  const title = document.getElementById('f-title').value.trim();
+  const body = document.getElementById('f-body').value.trim();
+  if(!title||!body) return;
+  const tags = Array.from(document.querySelectorAll('.tag-cb:checked')).map(c=>c.value);
+  const note = document.getElementById('f-note').value.trim();
+  const pre = {
+    energy:parseInt(document.getElementById('pre-e').value)||null,
+    focus:parseInt(document.getElementById('pre-f').value)||null,
+    anxiety:parseInt(document.getElementById('pre-a').value)||null,
+    mood:parseInt(document.getElementById('pre-m').value)||null,
+  };
+  const post = {
+    energy:parseInt(document.getElementById('post-e').value)||null,
+    focus:parseInt(document.getElementById('post-f').value)||null,
+    anxiety:parseInt(document.getElementById('post-a').value)||null,
+    mood:parseInt(document.getElementById('post-m').value)||null,
+  };
+  const hasM = Object.values(pre).some(v=>v!==null);
+  const entry = {
+    id: String(Date.now()).slice(-4),
+    date: new Date().toISOString().split('T')[0],
+    time: new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:false}),
+    title, tags, body, note: note||null,
+    metrics: hasM?pre:null, metrics_after: hasM?post:null,
+    status: tags.includes('Failed')?'failed':'logged',
+    observations:[]
+  };
+  const saved = JSON.parse(localStorage.getItem('ss_entries')||'[]');
+  saved.unshift(entry);
+  localStorage.setItem('ss_entries', JSON.stringify(saved));
+  all.unshift(entry);
+  closeModal();
+  render();
+  ['f-title','f-body','f-note'].forEach(id=>document.getElementById(id).value='');
+  document.querySelectorAll('.tag-cb').forEach(c=>c.checked=false);
+  ['pre-e','pre-f','pre-a','pre-m','post-e','post-f','post-a','post-m'].forEach(id=>document.getElementById(id).value='');
+}
+
+init();
+</script>
+</body>
+</html>
