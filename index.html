@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StateShift — Coffee Experiments, Field Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--espresso:#1a0f08;--roast:#2d1a0d;--gold:#c8922a;--amber:#d4a853;--parchment:#f5f0e8;--fog:#e8e2d9;--muted:#6b6560}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:'Lora',Georgia,serif;background-color:#1a0f08;color:#f5f0e8;min-height:100vh;display:flex;flex-direction:column}
+h1,h2,h3{font-family:'Playfair Display',serif;font-weight:400;line-height:1.2}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#2d1a0d}::-webkit-scrollbar-thumb{background:rgba(200,146,42,0.35)}
+.site-header{border-bottom:1px solid rgba(200,146,42,0.18);padding:1.1rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(26,15,8,0.97);position:sticky;top:0;z-index:100}
+.site-logo{font-family:'Playfair Display',serif;font-size:1.25rem;color:#f5f0e8;text-decoration:none;letter-spacing:-0.01em}
+.site-logo span{color:#d4a853;font-style:italic}
+.site-nav{display:flex;gap:0.2rem;align-items:center}
+.site-nav a{font-family:'IBM Plex Mono',monospace;font-size:0.67rem;letter-spacing:0.1em;text-transform:uppercase;color:#6b6560;text-decoration:none;padding:0.45rem 0.9rem;border:1px solid transparent;transition:color 0.2s,border-color 0.2s}
+.site-nav a:hover{color:#d4a853;border-color:rgba(200,146,42,0.25)}
+.site-nav a.soon{color:rgba(107,100,96,0.4);font-size:0.6rem;pointer-events:none}
+.landing{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5rem 2rem 2rem;position:relative;overflow:hidden;min-height:75vh}
+.landing-inner{max-width:520px;text-align:center;position:relative;z-index:1;padding:0 1rem}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:#c8922a;margin-bottom:1.2rem;opacity:0.75;display:block}
+.landing-mark{font-family:'Playfair Display',serif;font-size:clamp(3rem,10vw,5.5rem);color:#f5f0e8;letter-spacing:-0.03em;line-height:0.95;margin-bottom:1.4rem}
+.landing-mark em{color:#d4a853;font-style:italic}
+.divider{font-family:'Caveat',cursive;font-size:1.4rem;color:rgba(200,146,42,0.25);margin-bottom:1.8rem;letter-spacing:0.1em}
+.desc{font-size:1rem;color:#e8e2d9;line-height:1.8;margin-bottom:2.8rem;font-style:italic}
+.nav-links{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-bottom:3rem}
+.nav-links a{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:#f5f0e8;text-decoration:none;border:1px solid rgba(200,146,42,0.35);padding:0.85rem 2rem;transition:all 0.25s}
+.nav-links a:hover{border-color:#d4a853;color:#d4a853}
+.nav-links a.primary{background:rgba(200,146,42,0.1);border-color:rgba(200,146,42,0.5)}
+.nav-links a.soon{color:rgba(107,100,96,0.4);border-color:rgba(107,100,96,0.2);font-size:0.62rem;pointer-events:none}
+
+.why{max-width:860px;width:100%;margin:0 auto;padding:3rem 2rem 4rem;border-top:1px solid rgba(200,146,42,0.12);display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start}
+@media(max-width:600px){.why{grid-template-columns:1fr;gap:1.5rem}}
+.why-label{font-family:'IBM Plex Mono',monospace;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:#c8922a;opacity:0.7}
+.why-text{font-size:1rem;color:#e8e2d9;line-height:1.85;font-style:italic}
+.why-text p+p{margin-top:1rem}
+.why-note{margin-top:1.4rem;font-family:'Caveat',cursive;font-size:1rem;color:rgba(200,146,42,0.4)}
+footer{border-top:1px solid rgba(200,146,42,0.1);padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem}
+.f1{font-family:'IBM Plex Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(107,100,96,0.4)}
+.f2{font-family:'Caveat',cursive;font-size:0.85rem;color:rgba(200,146,42,0.25)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a href="/" class="site-logo">State<span>Shift</span></a>
+  <nav class="site-nav">
+    <a href="/lab">/ Lab</a>
+    <a href="/states">/ Observations</a>
+    <a class="soon">/ Protocols (soon)</a>
+  </nav>
+</header>
+<main class="landing">
+  <div class="landing-inner">
+    <span class="eyebrow">North India · Est. 2025 · Experiment ongoing</span>
+    <h1 class="landing-mark">State<em>Shift</em></h1>
+    <div class="divider">· · ·</div>
+    <p class="desc">A personal laboratory at the intersection of specialty coffee, adaptogens, and the quiet science of how a morning ritual changes what the rest of the day becomes.</p>
+    <nav class="nav-links">
+      <a href="/lab" class="primary">/ Lab Notes</a>
+      <a href="/states">/ Observations</a>
+      <a class="soon">/ Protocols (soon)</a>
+    </nav>
+  </div>
+</main>
+
+<section class="why">
+  <div class="why-label">Why this exists</div>
+  <div>
+    <div class="why-text">
+      <p>This is not about productivity optimisation or biohacking or any of those words that make wellness sound like engineering.</p>
+      <p>It is about paying attention. To how certain rituals shape attention, calm, energy, and presence throughout a day. To what it feels like when something shifts — and whether that shift can be made deliberate, documented, and eventually shared.</p>
+      <p>The coffee is the medium. The state is the message. Everything else is observation.</p>
+    </div>
+    <div class="why-note">— still figuring this out, honestly</div>
+  </div>
+</section>
+<footer>
+  <span class="f1">stateshift.in · field notes in progress</span>
+  <span class="f2">eventually this becomes a library of rituals</span>
+</footer>
+</body>
+</html>
