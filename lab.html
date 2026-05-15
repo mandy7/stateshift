@@ -6,7 +6,131 @@
 <title>Lab Notes — StateShift</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/shared.css">
+<style>
+/* StateShift — shared.css — v2 */
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --espresso:#1a0f08;
+  --roast:#2d1a0d;
+  --walnut:#3d2314;
+  --ochre:#6b4423;
+  --gold:#c8922a;
+  --amber:#d4a853;
+  --parchment:#f5f0e8;
+  --cream:#faf7f2;
+  --fog:#e8e2d9;
+  --olive:#5a5a3a;
+  --sage:#7a8c6e;
+  --ink:#1c1c1a;
+  --muted:#6b6560;
+  --paper:#ede6d4;
+}
+
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  font-family:'Lora',Georgia,serif;
+  background:#221408;
+  color:#ede8df;
+  min-height:100vh;
+}
+
+/* Grain — subtle, not aggressive */
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;opacity:0.7;
+}
+
+/* Typography */
+h1,h2,h3{font-family:'Playfair Display',serif;font-weight:400;line-height:1.2}
+.mono{font-family:'IBM Plex Mono',monospace}
+.hand{font-family:'Caveat',cursive}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--roast)}
+::-webkit-scrollbar-thumb{background:rgba(200,146,42,0.35)}
+
+/* Header — slightly asymmetric padding */
+.site-header{
+  border-bottom:1px solid rgba(200,146,42,0.18);
+  padding:1.1rem 2rem 1.1rem 2.2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(26,15,8,0.97);
+  position:sticky;top:0;z-index:100;
+}
+.site-logo{
+  font-family:'Playfair Display',serif;
+  font-size:1.25rem;color:#ede8df;
+  text-decoration:none;letter-spacing:-0.01em;
+}
+.site-logo span{color:var(--amber);font-style:italic}
+.site-nav{display:flex;gap:0.2rem;align-items:center}
+.site-nav a{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.67rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;
+  padding:0.45rem 0.9rem;
+  border:1px solid transparent;
+  transition:color 0.2s,border-color 0.2s;
+}
+.site-nav a:hover{color:var(--amber);border-color:rgba(200,146,42,0.25)}
+.site-nav a.active{color:var(--amber);border-color:rgba(200,146,42,0.35)}
+.site-nav a.soon{
+  color:rgba(107,100,96,0.5);font-size:0.6rem;
+  pointer-events:none;letter-spacing:0.08em;
+}
+
+/* Dividers — slightly imperfect via gradient shift */
+.rule{
+  height:1px;border:none;
+  background:linear-gradient(90deg,transparent 0%,rgba(200,146,42,0.25) 30%,rgba(200,146,42,0.4) 55%,rgba(200,146,42,0.15) 85%,transparent 100%);
+  margin:2rem 0;
+}
+.rule-sm{
+  height:1px;border:none;
+  background:linear-gradient(90deg,rgba(200,146,42,0.3) 0%,transparent 100%);
+  margin:1.2rem 0;width:3rem;
+}
+
+/* Coffee ring — decorative, not intrusive */
+.coffee-ring{
+  position:absolute;border-radius:50%;
+  border:1px solid rgba(200,146,42,0.08);
+  pointer-events:none;
+}
+
+/* Photo placeholder blocks */
+.photo-insert{
+  background:rgba(45,26,13,0.6);
+  border:1px solid rgba(200,146,42,0.12);
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.photo-insert::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(200,146,42,0.04) 0%,transparent 60%);
+}
+.photo-insert-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:rgba(200,146,42,0.25);text-align:center;
+}
+
+/* Tag pills */
+.tag{
+  display:inline-block;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;
+  padding:0.22rem 0.65rem;border:1px solid rgba(107,100,96,0.3);
+  cursor:pointer;transition:all 0.18s;
+  background:transparent;color:var(--muted);
+}
+.tag:hover{color:var(--amber);border-color:rgba(200,146,42,0.35)}
+.tag.active{color:var(--espresso);background:var(--gold);border-color:var(--gold)}
+
+</style>
 <style>
 
 /* Page header — slightly asymmetric */
@@ -24,7 +148,7 @@
 .lab-title{
   font-family:'Playfair Display',serif;
   font-size:clamp(1.8rem,4vw,2.6rem);
-  color:var(--parchment);line-height:1.1;
+  color:#ede8df;line-height:1.1;
 }
 .lab-title em{color:var(--amber);font-style:italic}
 .lab-handnote{
@@ -114,7 +238,7 @@
 .entry-time-val{color:rgba(200,146,42,0.6)}
 .entry-title{
   font-family:'Playfair Display',serif;
-  font-size:1rem;color:var(--parchment);
+  font-size:1rem;color:#ede8df;
   line-height:1.35;font-weight:400;
 }
 .entry.breakthrough .entry-title{color:var(--amber)}
@@ -156,7 +280,7 @@
 
 .entry-prose{
   font-size:0.96rem;line-height:1.85;
-  color:var(--fog);font-style:italic;
+  color:#ccc4b8;font-style:italic;
   margin-bottom:1.3rem;
 }
 
@@ -270,7 +394,7 @@
 }
 .modal-title{
   font-family:'Playfair Display',serif;font-size:1.3rem;
-  color:var(--parchment);margin-bottom:0.25rem;
+  color:#ede8df;margin-bottom:0.25rem;
 }
 .modal-sub{
   font-family:'IBM Plex Mono',monospace;font-size:0.6rem;
@@ -286,7 +410,7 @@
 .form-input,.form-textarea{
   width:100%;background:rgba(255,255,255,0.04);
   border:1px solid rgba(200,146,42,0.18);
-  color:var(--parchment);font-family:'Lora',serif;font-size:0.9rem;
+  color:#ede8df;font-family:'Lora',serif;font-size:0.9rem;
   padding:0.65rem 0.85rem;outline:none;
   transition:border-color 0.18s;
 }
@@ -310,7 +434,7 @@
 .mi input{
   width:100%;background:rgba(255,255,255,0.04);
   border:1px solid rgba(200,146,42,0.18);
-  color:var(--parchment);font-family:'IBM Plex Mono',monospace;
+  color:#ede8df;font-family:'IBM Plex Mono',monospace;
   font-size:0.85rem;padding:0.45rem;text-align:center;outline:none;
 }
 .form-actions{display:flex;gap:0.8rem;margin-top:1.4rem;justify-content:flex-end}
@@ -332,10 +456,10 @@
 </head>
 <body>
 <header class="site-header">
-  <a href="index.html" class="site-logo">State<span>Shift</span></a>
+  <a href="/" class="site-logo">State<span>Shift</span></a>
   <nav class="site-nav">
-    <a href="lab.html" class="active">/ Lab</a>
-    <a href="states.html">/ Observations</a>
+    <a href="/lab" class="active">/ Lab</a>
+    <a href="/states">/ Observations</a>
     <a class="soon">/ Protocols (soon)</a>
   </nav>
 </header>
@@ -421,13 +545,10 @@
 let all = [];
 let filter = 'all';
 
-async function init() {
-  try {
-    const r = await fetch('lab.json');
-    all = await r.json();
-  } catch(e) { all = []; }
-  const local = JSON.parse(localStorage.getItem('ss_entries') || '[]');
-  all = [...local, ...all];
+function init() {
+  // Data embedded directly — no fetch needed
+  const embedded = [{"id": "001", "date": "2025-05-11", "time": "10:05", "title": "Baseline — plain Cothas in milk. The cup that disappeared.", "tags": ["Baseline", "Brewing", "RUKH"], "body": "First structured baseline session. 2g the base coffee in warm milk, just off boiling. Stirred 20 seconds. Smelled it before drinking — mostly milk. Nothing assertive. Drank two sips before food, a few more with poha, finished the rest 15 minutes later. Throughout: smooth, flat, not unpleasant. The chicory softened everything but also erased everything. Towards the end I could faintly detect the chicory itself — slightly bitter, slightly woody. That was the only distinctive moment in the entire cup. Compared to Mocha Farms, which gives me a physical jolt within minutes, this gave nothing I could name. Functionally: slight wakefulness, marginally better focus, but I had already been thinking about the experiment before drinking, so psychological contamination likely. This cup did not fail. It showed me what base coffee needs around it to become alive.", "observations": ["2g Cothas Royal Blend, 125ml milk just off boiling", "Aroma: almost entirely milk — no coffee presence", "Taste: smooth, flat, chicory detectable only at the end", "Body: 5/10 — medium-light, not uncomfortable", "Aftertaste: 5–10 seconds, then gone", "No acidity, no bitterness, no distinctive character", "Better than Nescafe instant — but not by much on its own"], "metrics": {"energy": 4, "focus": 4, "anxiety": 4, "mood": 5}, "metrics_after": {"energy": 5, "focus": 5, "anxiety": 3, "mood": 5}, "note": "The cup disappeared into the milk. Cothas alone cannot carry a ritual.", "status": "logged", "sku": "RUKH"}, {"id": "002", "date": "2025-05-12", "time": "09:50", "title": "RUKH v2 — the cup stopped feeling flat.", "tags": ["Brewing", "Ingredients", "RUKH"], "body": "Changed three variables from yesterday: increased coffee to measured coffee, reduced milk to reduced milk, dissolved coffee in hot water hot water first before adding milk. Added measured pre-ground cardamom — full pod including green shell. As I brought the cup to my mouth, the aroma felt like cardamom tea. But when I drank it, it resolved into coffee. That contrast was confusing at first, then interesting. The cup had shape now. Texture was noticeably thicker despite adding water — better extraction architecture explains this. Bitterness softened. Chicory integrated rather than sitting separately. Cardamom overpowered the coffee aromatically and partially in taste. But instead of making the drink worse, it created a stronger sensory identity. The drink felt warmer, fuller, more alive. Functionally cleaner than yesterday — alertness increased within minutes, sleepiness reduced, mood lifted slightly. Alert window extended to approximately 90 minutes before any decline. Most important shift: this no longer felt like instant coffee with milk. It felt like an intentional beverage.", "observations": ["Cothas 2.5g, water 38ml first, then 80ml milk at warm-hot", "Cardamom 0.2g full pod powder", "Aroma: cardamom tea on nose, coffee on palate — memorable contrast", "Texture: noticeably thicker than yesterday despite more liquid", "Body: 7/10 — significant improvement", "Cardamom currently overpowering", "Alert window: ~90 min vs earlier decline yesterday", "Woke 5AM, 6hrs sleep, 1.5hrs deep work before cup — context was better"], "metrics": {"energy": 4, "focus": 5, "anxiety": 3, "mood": 5}, "metrics_after": {"energy": 6, "focus": 7, "anxiety": 2, "mood": 6}, "note": "It smelled like cardamom chai, but drank like coffee. That contrast is not a flaw — it is identity.", "status": "breakthrough", "sku": "RUKH"}, {"id": "003", "date": "2025-05-13", "time": "10:30", "title": "RUKH v3 — cinnamon took the steering wheel.", "tags": ["Ingredients", "RUKH", "Failed"], "body": "Broke my own rule today. Introduced cinnamon 0.25g the same day I was supposed to only refine the cardamom. Also used freshly powdered cardamom seeds only at measured — which was an improvement in form, though the quantity was still high. Cinnamon completely dominated the aroma. Coffee was barely detectable before milk. After milk, aroma went flat again with cinnamon still present. The drink felt relaxing rather than activating — a warm, grounded quality that was pleasant but wrong for a midday focus cup. Functional scores improved minimally: 0.5 points across most metrics. Yesterday's 2-point alertness uplift did not happen today. Unclear whether this is the cinnamon's calming properties or 4 hours of sleep from a difficult night with my daughter — most likely the sleep. One important discovery: cardamom powder left sediment at the bottom that concentrated into a strong cardamom finish at the end. The last two sips were almost entirely cardamom. This is a preparation problem — coarser crush needed. Or water infusion method. Lesson relearned: one variable per day. I already knew this. Now I have felt the cost of ignoring it.", "observations": ["Cothas 2.5g, cardamom seeds only 0.2g, cinnamon 0.25g", "Woke 3:30AM after 4hrs sleep — high confounder day", "Cinnamon dominated aroma completely before and after milk", "Emotional direction: warm, grounded, slower — opposite of activation", "Cardamom sediment accumulated at bottom — final sips were only cardamom", "Functional uplift minimal: 0.5 pts across metrics", "Cinnamon appears to create relaxing rather than activating direction"], "metrics": {"energy": 4, "focus": 5, "anxiety": 4, "mood": 5}, "metrics_after": {"energy": 5, "focus": 6, "anxiety": 3, "mood": 6}, "note": "Cinnamon took the steering wheel. One variable per day. I knew this. Now I have felt the cost.", "status": "failed", "sku": "RUKH"}, {"id": "004", "date": "2025-05-11", "time": "20:00", "title": "KISSE v1 — too many things shouting at once.", "tags": ["Brewing", "Social", "KISSE", "Failed"], "body": "First attempt at the evening ritual cup. Prepared for my brother-in-law arriving post-swim on a rainy evening. the base coffee 2.6g, cardamom measured full pod powder, cinnamon 0.5g, cacao generous, coconut jaggery 1g, black pepper pinch. 100ml hot water, stirred 30 seconds, 20ml warm milk. He found it immediately bitter. Cardamom and cinnamon overpowering. He was having it with an avocado sandwich which amplified the bitterness further. Did not finish the cup. The problem was clear in hindsight: five competing flavour systems at full intensity simultaneously. Cacao, coffee, cardamom, cinnamon, pepper — all asserting themselves, none yielding. Nothing had hierarchy. Made a second cup immediately — the ritual base instead of base coffee, cardamom reduced to 0.1g, cinnamon to 0.generous, cacao increased to heavy. He and I shared it. This version was different. Cacao took control. Coffee became structural rather than dominant. I found it close to the hot cacao drink I had in Mexico. He found it significantly more drinkable. I would have this as a conversational drink.", "observations": ["Version 1", "Version 2", "Levista integrates better than Cothas", "Avocado sandwich amplified bitterness significantly — KISSE needs standalone moment", "Cacao at 3–3.5g restructures the drink entirely — coffee becomes background", "Mexico hot cacao comparison emerged naturally", "Brother-in-law trajectory: difficult → improved across the session"], "metrics": null, "metrics_after": null, "note": "KISSE is not a coffee-first drink. It is a cacao ritual that uses coffee structurally.", "status": "logged", "sku": "KISSE"}, {"id": "005", "date": "2025-05-12", "time": "20:30", "title": "KISSE v2 — warmer, slower, closer.", "tags": ["Brewing", "Social", "KISSE"], "body": "Revised recipe based on yesterday's learning. the ritual base confirmed as the base. Reduced all spices dramatically. Cacao held at generous. Added coconut sugar as bitterness buffer. Preparation sequence refined: warm cup first, dry ingredients in order starting with cacao, hot water at 85°C, 35-second stir, 25-second rest, 20ml warm milk with one gentle stir only. Served to brother-in-law again — same tester, which means I now have a progression across three sessions with the same palate as reference. His feedback: cinnamon and cardamom impact noticeably less than yesterday. Not bitter. Can slightly sense the jaggery. Yesterday was difficult to drink, today significantly easier. Thickness appropriate for a conversational cup. His friend tasted it for the first time — guessed hazelnut initially, then said it felt like kadha. The hazelnut association comes from Maillard compounds in dark coffee combining with cacao. Sophisticated palate. The kadha association is interesting — both a risk and a signal. Functionally: no adaptogen in this SKU, so I was not measuring state change. Felt relaxed, conversational, unhurried. The cup encouraged slower pace.", "observations": ["Levista 80/20 2.2g confirmed as correct base", "Spices dramatically reduced from v1", "Coconut sugar 1.2g", "Brother-in-law progression: difficult → improved → significantly better", "Friend: hazelnut first guess (sophisticated), kadha second (ritual association)", "Post-swim, rainy evening", "Drink slows the pace naturally — satiety effect from cacao noted"], "metrics": null, "metrics_after": null, "note": "It could keep me in that mood. That is not a flavour note. That is positioning.", "status": "logged", "sku": "KISSE"}, {"id": "006", "date": "2025-05-13", "time": "20:00", "title": "KISSE v3 — the preparation ritual matters as much as the drink.", "tags": ["Brewing", "Social", "KISSE"], "body": "Third iteration. Same ritual base coffee base, same cacao quantity, refined preparation sequence. Two testers this time — brother-in-law and his friend, same friend who mentioned kadha yesterday. They were in a hurry — 10 minutes before leaving for somewhere. This matters because KISSE is explicitly a slow drink and rushed testers produce unreliable data. Still, the feedback trajectory continued upward. Compared to yesterday: cardamom and cinnamon impact even more controlled, no bitterness, jaggery detectable, thickness described as appropriate for conversation purpose. The same friend who said kadha yesterday did not say it again today — which suggests the spice reduction moved it out of medicinal territory. Still not fully where it needs to be, but the direction is right.", "observations": ["Testers in a hurry — 10-minute feedback window, data quality lower than ideal", "Cinnamon and cardamom noticeably less dominant than v2", "No bitterness reported", "Jaggery now detectable — sweetness integrated", "Thickness confirmed as appropriate for conversational format", "Kadha association not repeated by friend — moved out of medicinal territory", "Preparation ritual: warming cup first, layered dry ingredients, 35s stir, rest, milk"], "metrics": null, "metrics_after": null, "note": "Three sessions, same tester. The trajectory from difficult to drinkable to appropriate is real data.", "status": "logged", "sku": "KISSE"}, {"id": "007", "date": "2025-05-13", "time": "21:30", "title": "KISSE v4 — removed cardamom, found the cafe mocha.", "tags": ["Ingredients", "KISSE"], "body": "Personal iteration after the guest session. Wanted to understand what KISSE becomes without cardamom and pepper. the ritual base 2.6g, cacao 2.25g (reduced), cinnamon 0.25g, coconut jaggery 1.25g. No cardamom. No black pepper. 100ml hot water, 30 second stir, 20 second rest, 20ml milk. Result: aroma shifted entirely to hot chocolate. Lost the Indian identity immediately. Taste was surprisingly more bitter than v3 despite reduced cacao — possibly because cardamom was providing a bitterness-buffering function I had not accounted for. Cacao did not dissolve fully — powdery texture in the mouth. Feels like cafe mocha. More internationally familiar, less distinctly Indian. Good drink. Not KISSE. The lesson: cardamom is not optional. It is not just a flavour — it is the ingredient that marks this as Indian rather than generically cacao. Remove it and the drink loses its cultural coordinates. The dissolution problem needs solving with Dutch-processed cacao for this SKU.", "observations": ["No cardamom, no black pepper — lost Indian identity immediately", "Aroma: hot chocolate — internationally familiar, not distinctive", "Taste: surprisingly more bitter than v3 despite less cacao", "Cacao undissolved — powdery texture in mouth throughout", "Cafe mocha comparison accurate — not what KISSE should be", "Cardamom appears to buffer bitterness as well as provide aroma", "Dutch-processed cacao needed for dissolution — order separately", "Ate dry fruits and fox nuts before — felt full halfway through cup"], "metrics": null, "metrics_after": null, "note": "Removed cardamom and found a cafe mocha. Cardamom is what makes this Indian. It is not optional.", "status": "logged", "sku": "KISSE"}];
+  all = embedded;
   render();
 }
 
