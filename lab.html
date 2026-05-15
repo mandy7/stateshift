@@ -423,7 +423,7 @@ let filter = 'all';
 
 async function init() {
   try {
-    const r = await fetch('data/lab.json');
+    const r = await fetch('lab.json');
     all = await r.json();
   } catch(e) { all = []; }
   const local = JSON.parse(localStorage.getItem('ss_entries') || '[]');
