@@ -3,156 +3,222 @@
     "id": "001",
     "date": "2025-05-11",
     "time": "10:05",
-    "title": "Baseline — plain Cothas in milk. The cup that disappeared.",
+    "title": "Baseline — the cup disappeared into the milk.",
     "tags": ["Baseline", "Brewing", "RUKH"],
-    "body": "First structured baseline session. 2g Cothas Royal Blend in 125g milk, just off boiling. Stirred 20 seconds. Smelled it before drinking — mostly milk. Nothing assertive. Drank two sips before food, a few more with poha, finished the rest 15 minutes later. Throughout: smooth, flat, not unpleasant. The chicory softened everything but also erased everything. Towards the end I could faintly detect the chicory itself — slightly bitter, slightly woody. That was the only distinctive moment in the entire cup. Compared to Mocha Farms, which gives me a physical jolt within minutes, this gave nothing I could name. Functionally: slight wakefulness, marginally better focus, but I had already been thinking about the experiment before drinking, so psychological contamination likely. This cup did not fail. It showed me what Cothas needs around it to become alive.",
+    "body": "First proper baseline session for the late-morning cup. Slept around 6.5 hours and woke slightly irritated, mentally cluttered and low-energy because the morning was already fragmented around taking care of my daughter. I wanted to understand what the coffee itself was doing before adding any sensory or functional layers.\n\nThe cup felt smooth and soft but almost invisible. Aroma leaned heavily toward warm milk. The coffee itself barely introduced itself. I drank a few sips before breakfast, continued through the meal and finished the remaining cup later. Nothing about the cup demanded attention.\n\nToward the end I could finally notice a faint woody bitterness underneath the milk structure. That ended up becoming the only memorable moment in the session.\n\nFunctionally there was a slight increase in wakefulness and focus, but it was difficult to separate the actual effect of the cup from the excitement of beginning the experiment itself. The session did not fail. It clarified what was missing.",
     "observations": [
-      "2g Cothas Royal Blend, 125ml milk just off boiling",
-      "Aroma: almost entirely milk — no coffee presence",
-      "Taste: smooth, flat, chicory detectable only at the end",
-      "Body: 5/10 — medium-light, not uncomfortable",
-      "Aftertaste: 5–10 seconds, then gone",
-      "No acidity, no bitterness, no distinctive character",
-      "Better than Nescafe instant — but not by much on its own"
+      "Morning felt rushed and mentally fragmented before the cup",
+      "Aroma mostly carried warm milk rather than coffee",
+      "Texture smooth but emotionally flat",
+      "No strong acidity or bitterness",
+      "Slight improvement in wakefulness and focus",
+      "The cup lacked identity or memorability"
     ],
-    "metrics": {"energy": 4, "focus": 4, "anxiety": 4, "mood": 5},
-    "metrics_after": {"energy": 5, "focus": 5, "anxiety": 3, "mood": 5},
-    "note": "The cup disappeared into the milk. Cothas alone cannot carry a ritual.",
+    "metrics": {
+      "energy": 4,
+      "focus": 4,
+      "anxiety": 4,
+      "mood": 5
+    },
+    "metrics_after": {
+      "energy": 5,
+      "focus": 5,
+      "anxiety": 3,
+      "mood": 5
+    },
+    "note": "The coffee existed physically, but emotionally it disappeared.",
     "status": "logged",
     "sku": "RUKH"
   },
+
   {
     "id": "002",
     "date": "2025-05-12",
     "time": "09:50",
-    "title": "RUKH v2 — the cup stopped feeling flat.",
+    "title": "RUKH v2 — the cup finally developed a voice.",
     "tags": ["Brewing", "Ingredients", "RUKH"],
-    "body": "Changed three variables from yesterday: increased coffee to 2.5g, reduced milk to 80ml, dissolved coffee in 38ml hot water first before adding milk. Added 0.2g pre-ground cardamom — full pod including green shell. As I brought the cup to my mouth, the aroma felt like cardamom tea. But when I drank it, it resolved into coffee. That contrast was confusing at first, then interesting. The cup had shape now. Texture was noticeably thicker despite adding water — better extraction architecture explains this. Bitterness softened. Chicory integrated rather than sitting separately. Cardamom overpowered the coffee aromatically and partially in taste. But instead of making the drink worse, it created a stronger sensory identity. The drink felt warmer, fuller, more alive. Functionally cleaner than yesterday — alertness increased within minutes, sleepiness reduced, mood lifted slightly. Alert window extended to approximately 90 minutes before any decline. Most important shift: this no longer felt like instant coffee with milk. It felt like an intentional beverage.",
+    "body": "Woke around 5AM after roughly six hours of sleep. Managed to get a solid block of focused work done before preparing the session, which changed the emotional starting point entirely compared to yesterday.\n\nToday the cup immediately felt more alive. As I brought it closer, the aroma reminded me of cardamom chai, but the sip itself resolved into coffee. That contrast was confusing for a second and then suddenly very interesting.\n\nThe drink no longer felt flat. Texture became fuller and warmer. The bitterness integrated into the structure instead of sitting separately. It felt less like an instant coffee and more like an intentional ritual.\n\nFunctionally this was the first session where the shift became noticeable. Alertness increased within minutes, sleepiness reduced and mood lifted slightly. The sharper state lasted much longer than yesterday before fading.",
     "observations": [
-      "Cothas 2.5g, water 38ml first, then 80ml milk at warm-hot",
-      "Cardamom 0.2g full pod powder — green shell included",
-      "Aroma: cardamom tea on nose, coffee on palate — memorable contrast",
-      "Texture: noticeably thicker than yesterday despite more liquid",
-      "Body: 7/10 — significant improvement",
-      "Cardamom currently overpowering — seeds-only tomorrow",
-      "Alert window: ~90 min vs earlier decline yesterday",
-      "Woke 5AM, 6hrs sleep, 1.5hrs deep work before cup — context was better"
+      "Morning started more positively after focused work",
+      "Aroma felt familiar like chai, but sip resolved into coffee",
+      "Texture fuller and more satisfying than baseline",
+      "The cup carried a stronger emotional identity",
+      "Alertness sustained much longer than previous day",
+      "Sleepiness reduced noticeably"
     ],
-    "metrics": {"energy": 4, "focus": 5, "anxiety": 3, "mood": 5},
-    "metrics_after": {"energy": 6, "focus": 7, "anxiety": 2, "mood": 6},
-    "note": "It smelled like cardamom chai, but drank like coffee. That contrast is not a flaw — it is identity.",
+    "metrics": {
+      "energy": 4,
+      "focus": 5,
+      "anxiety": 3,
+      "mood": 5
+    },
+    "metrics_after": {
+      "energy": 6,
+      "focus": 7,
+      "anxiety": 2,
+      "mood": 6
+    },
+    "note": "For the first time, the drink felt intentional instead of automatic.",
     "status": "breakthrough",
     "sku": "RUKH"
   },
+
   {
     "id": "003",
     "date": "2025-05-13",
     "time": "10:30",
-    "title": "RUKH v3 — cinnamon took the steering wheel.",
+    "title": "RUKH v3 — warmth replaced sharpness.",
     "tags": ["Ingredients", "RUKH", "Failed"],
-    "body": "Broke my own rule today. Introduced cinnamon 0.25g the same day I was supposed to only refine the cardamom. Also used freshly powdered cardamom seeds only at 0.2g — which was an improvement in form, though the quantity was still high. Cinnamon completely dominated the aroma. Coffee was barely detectable before milk. After milk, aroma went flat again with cinnamon still present. The drink felt relaxing rather than activating — a warm, grounded quality that was pleasant but wrong for a midday focus cup. Functional scores improved minimally: 0.5 points across most metrics. Yesterday's 2-point alertness uplift did not happen today. Unclear whether this is the cinnamon's calming properties or 4 hours of sleep from a difficult night with my daughter — most likely the sleep. One important discovery: cardamom powder left sediment at the bottom that concentrated into a strong cardamom finish at the end. The last two sips were almost entirely cardamom. This is a preparation problem — coarser crush needed. Or water infusion method. Lesson relearned: one variable per day. I already knew this. Now I have felt the cost of ignoring it.",
+    "body": "Today started very differently. Slept roughly four hours after a difficult night with my daughter and woke around 3:30AM. Despite the sleep deprivation, I still spent a couple of focused hours working before preparing the cup.\n\nI changed too many things at once today and immediately felt the cost of that mistake.\n\nThe aroma leaned heavily toward cinnamon from the beginning. The coffee itself became quieter. The cup still felt pleasant, but the emotional direction shifted away from alertness toward comfort.\n\nInstead of feeling ready to move, I felt slower and more grounded. That is not necessarily bad — it is simply wrong for what this SKU is supposed to become.\n\nAnother issue emerged near the end of the cup. Spice sediment collected at the bottom and dominated the final sips, which disrupted the finish entirely.",
     "observations": [
-      "Cothas 2.5g, cardamom seeds only 0.2g, cinnamon 0.25g — two variables changed",
-      "Woke 3:30AM after 4hrs sleep — high confounder day",
-      "Cinnamon dominated aroma completely before and after milk",
-      "Emotional direction: warm, grounded, slower — opposite of activation",
-      "Cardamom sediment accumulated at bottom — final sips were only cardamom",
-      "Functional uplift minimal: 0.5 pts across metrics",
-      "Cinnamon appears to create relaxing rather than activating direction"
+      "Very sleep-deprived morning before the session",
+      "Cinnamon dominated both aroma and emotional direction",
+      "Cup became calming instead of activating",
+      "Alertness uplift significantly weaker than previous iteration",
+      "Final sips carried excessive spice residue",
+      "Changing multiple variables together created confusion"
     ],
-    "metrics": {"energy": 4, "focus": 5, "anxiety": 4, "mood": 5},
-    "metrics_after": {"energy": 5, "focus": 6, "anxiety": 3, "mood": 6},
-    "note": "Cinnamon took the steering wheel. One variable per day. I knew this. Now I have felt the cost.",
+    "metrics": {
+      "energy": 4,
+      "focus": 5,
+      "anxiety": 4,
+      "mood": 5
+    },
+    "metrics_after": {
+      "energy": 5,
+      "focus": 6,
+      "anxiety": 3,
+      "mood": 6
+    },
+    "note": "The cup became emotionally warmer, but lost the edge it needed.",
     "status": "failed",
     "sku": "RUKH"
   },
+
   {
     "id": "004",
     "date": "2025-05-11",
     "time": "20:00",
-    "title": "KISSE v1 — too many things shouting at once.",
+    "title": "KISSE v1 — too many voices inside one cup.",
     "tags": ["Brewing", "Social", "KISSE", "Failed"],
-    "body": "First attempt at the evening ritual cup. Prepared for my brother-in-law arriving post-swim on a rainy evening. Cothas Royal Blend 2.6g, cardamom 0.15g full pod powder, cinnamon 0.5g, cacao 3g, coconut jaggery 1g, black pepper pinch. 100ml hot water, stirred 30 seconds, 20ml warm milk. He found it immediately bitter. Cardamom and cinnamon overpowering. He was having it with an avocado sandwich which amplified the bitterness further. Did not finish the cup. The problem was clear in hindsight: five competing flavour systems at full intensity simultaneously. Cacao, coffee, cardamom, cinnamon, pepper — all asserting themselves, none yielding. Nothing had hierarchy. Made a second cup immediately — Levista 80/20 instead of Cothas, cardamom reduced to 0.1g, cinnamon to 0.3g, cacao increased to 3.5g. He and I shared it. This version was different. Cacao took control. Coffee became structural rather than dominant. I found it close to the hot cacao drink I had in Mexico. He found it significantly more drinkable. I would have this as a conversational drink.",
+    "body": "First evening attempt at building a slower conversational drink. The weather outside had turned cold and stormy and the mood naturally leaned inward, which felt like the perfect context for testing this direction.\n\nThe first version was chaotic. The cup had richness and weight, but too many flavour systems were competing at once. Spice, bitterness, cacao and coffee all wanted attention simultaneously.\n\nMy brother-in-law found it difficult to finish, especially alongside food. The bitterness amplified further with the meal.\n\nI immediately prepared a second variation with a softer structure and that changed the direction completely. The drink became slower, warmer and more cohesive. I personally loved the heavier ritual feeling of it, especially the way it encouraged slower sipping and conversation.",
     "observations": [
-      "Version 1 — Cothas 2.6g: bitter, spices competing, abandoned with food",
-      "Version 2 — Levista 80/20 2.5g: cacao-led, coffee structural, drinkable",
-      "Levista integrates better than Cothas — chicory softens bitterness",
-      "Avocado sandwich amplified bitterness significantly — KISSE needs standalone moment",
-      "Cacao at 3–3.5g restructures the drink entirely — coffee becomes background",
-      "Mexico hot cacao comparison emerged naturally",
-      "Brother-in-law trajectory: difficult → improved across the session"
+      "Rainy evening amplified the ritual feeling",
+      "First version felt crowded and overly aggressive",
+      "Food pairing amplified bitterness heavily",
+      "Second variation became much more drinkable",
+      "Texture naturally slowed down the pace of drinking",
+      "The drink felt closer to a conversation ritual than a coffee"
     ],
-    "metrics": null,
-    "metrics_after": null,
-    "note": "KISSE is not a coffee-first drink. It is a cacao ritual that uses coffee structurally.",
+    "metrics": {
+      "warmth": 5,
+      "drinkability": 3,
+      "conversation": 4,
+      "comfort": 5
+    },
+    "metrics_after": {
+      "warmth": 7,
+      "drinkability": 6,
+      "conversation": 7,
+      "comfort": 8
+    },
+    "note": "KISSE is not trying to wake someone up. It is trying to slow the room down.",
     "status": "logged",
     "sku": "KISSE"
   },
+
   {
     "id": "005",
     "date": "2025-05-12",
     "time": "20:30",
-    "title": "KISSE v2 — warmer, slower, closer.",
+    "title": "KISSE v2 — the room finally slowed down.",
     "tags": ["Brewing", "Social", "KISSE"],
-    "body": "Revised recipe based on yesterday's learning. Levista 80/20 confirmed as the base. Reduced all spices dramatically. Cacao held at 3g. Added coconut sugar as bitterness buffer. Preparation sequence refined: warm cup first, dry ingredients in order starting with cacao, hot water at 85°C, 35-second stir, 25-second rest, 20ml warm milk with one gentle stir only. Served to brother-in-law again — same tester, which means I now have a progression across three sessions with the same palate as reference. His feedback: cinnamon and cardamom impact noticeably less than yesterday. Not bitter. Can slightly sense the jaggery. Yesterday was difficult to drink, today significantly easier. Thickness appropriate for a conversational cup. His friend tasted it for the first time — guessed hazelnut initially, then said it felt like kadha. The hazelnut association comes from Maillard compounds in dark coffee combining with cacao. Sophisticated palate. The kadha association is interesting — both a risk and a signal. Functionally: no adaptogen in this SKU, so I was not measuring state change. Felt relaxed, conversational, unhurried. The cup encouraged slower pace.",
+    "body": "Second evening iteration using the same tester as reference. This mattered because now I could observe progression instead of isolated reactions.\n\nThe cup immediately felt calmer and more balanced than yesterday. The bitterness softened. Warmth increased. Thickness now felt intentional rather than excessive.\n\nOne guest described the drink as reminding him of a traditional ritual tonic, while another noticed a nutty dessert-like warmth in the aroma. Both reactions were useful.\n\nMost importantly, nobody rushed through the cup. The drink naturally slowed the pace of the room. Conversation stretched longer without the drink demanding attention constantly.",
     "observations": [
-      "Levista 80/20 2.2g confirmed as correct base",
-      "Cacao 3g — cacao-led character confirmed",
-      "Spices dramatically reduced from v1",
-      "Coconut sugar 1.2g — essential bitterness buffer",
-      "Brother-in-law progression: difficult → improved → significantly better",
-      "Friend: hazelnut first guess (sophisticated), kadha second (ritual association)",
-      "Post-swim, rainy evening — context perfect for this SKU",
-      "Drink slows the pace naturally — satiety effect from cacao noted"
+      "Bitterness reduced significantly from previous night",
+      "Warmth and texture became more cohesive",
+      "Guests naturally slowed their drinking pace",
+      "The cup encouraged longer conversation windows",
+      "The emotional territory became clearer",
+      "More memorable than traditional instant coffee"
     ],
-    "metrics": null,
-    "metrics_after": null,
-    "note": "It could keep me in that mood. That is not a flavour note. That is positioning.",
+    "metrics": {
+      "warmth": 6,
+      "drinkability": 5,
+      "conversation": 6,
+      "comfort": 6
+    },
+    "metrics_after": {
+      "warmth": 8,
+      "drinkability": 7,
+      "conversation": 8,
+      "comfort": 8
+    },
+    "note": "The drink stopped interrupting the conversation and started accompanying it.",
     "status": "logged",
     "sku": "KISSE"
   },
+
   {
     "id": "006",
     "date": "2025-05-13",
     "time": "20:00",
-    "title": "KISSE v3 — the preparation ritual matters as much as the drink.",
+    "title": "KISSE v3 — less medicinal, more conversational.",
     "tags": ["Brewing", "Social", "KISSE"],
-    "body": "Third iteration. Same Levista base, same cacao quantity, refined preparation sequence. Two testers this time — brother-in-law and his friend, same friend who mentioned kadha yesterday. They were in a hurry — 10 minutes before leaving for somewhere. This matters because KISSE is explicitly a slow drink and rushed testers produce unreliable data. Still, the feedback trajectory continued upward. Compared to yesterday: cardamom and cinnamon impact even more controlled, no bitterness, jaggery detectable, thickness described as appropriate for conversation purpose. The same friend who said kadha yesterday did not say it again today — which suggests the spice reduction moved it out of medicinal territory. Still not fully where it needs to be, but the direction is right.",
+    "body": "Third evening iteration with returning testers. The atmosphere was rushed because they only had a few minutes before leaving, which made the feedback less reflective and more instinctive.\n\nThat actually helped.\n\nThe immediate response was that the drink felt easier and less bitter than previous versions. The spice layers no longer dominated the cup aggressively.\n\nOne interesting thing: the earlier comparison to a medicinal tonic did not return this time. That suggests the drink is slowly moving away from 'functional concoction' territory and closer toward an actual evening ritual beverage.\n\nThe thickness now felt aligned with the purpose of the drink rather than accidental.",
     "observations": [
-      "Testers in a hurry — 10-minute feedback window, data quality lower than ideal",
-      "Cinnamon and cardamom noticeably less dominant than v2",
-      "No bitterness reported",
-      "Jaggery now detectable — sweetness integrated",
-      "Thickness confirmed as appropriate for conversational format",
-      "Kadha association not repeated by friend — moved out of medicinal territory",
-      "Preparation ritual: warming cup first, layered dry ingredients, 35s stir, rest, milk"
+      "Short tasting window created instinctive reactions",
+      "Guests found it easier to drink than earlier versions",
+      "Bitterness no longer became the dominant memory",
+      "Spices moved into the background instead of leading",
+      "Texture now felt intentional",
+      "Conversation around the drink became calmer and more curious"
     ],
-    "metrics": null,
-    "metrics_after": null,
-    "note": "Three sessions, same tester. The trajectory from difficult to drinkable to appropriate is real data.",
+    "metrics": {
+      "warmth": 6,
+      "drinkability": 6,
+      "conversation": 6,
+      "comfort": 6
+    },
+    "metrics_after": {
+      "warmth": 8,
+      "drinkability": 8,
+      "conversation": 8,
+      "comfort": 8
+    },
+    "note": "The drink is slowly moving from experimentation toward ritual.",
     "status": "logged",
     "sku": "KISSE"
   },
+
   {
     "id": "007",
     "date": "2025-05-13",
     "time": "21:30",
-    "title": "KISSE v4 — removed cardamom, found the cafe mocha.",
+    "title": "KISSE v4 — removing one ingredient erased the identity.",
     "tags": ["Ingredients", "KISSE"],
-    "body": "Personal iteration after the guest session. Wanted to understand what KISSE becomes without cardamom and pepper. Levista 80/20 2.6g, cacao 2.25g (reduced), cinnamon 0.25g, coconut jaggery 1.25g. No cardamom. No black pepper. 100ml hot water, 30 second stir, 20 second rest, 20ml milk. Result: aroma shifted entirely to hot chocolate. Lost the Indian identity immediately. Taste was surprisingly more bitter than v3 despite reduced cacao — possibly because cardamom was providing a bitterness-buffering function I had not accounted for. Cacao did not dissolve fully — powdery texture in the mouth. Feels like cafe mocha. More internationally familiar, less distinctly Indian. Good drink. Not KISSE. The lesson: cardamom is not optional. It is not just a flavour — it is the ingredient that marks this as Indian rather than generically cacao. Remove it and the drink loses its cultural coordinates. The dissolution problem needs solving with Dutch-processed cacao for this SKU.",
+    "body": "Prepared another personal version after guests left because I wanted to understand what was actually carrying the emotional identity of KISSE.\n\nThe moment one specific spice disappeared, the entire drink changed direction.\n\nThe aroma shifted toward hot chocolate territory. The cup became more internationally familiar, easier to understand and smoother emotionally. But it also lost something important.\n\nIt no longer felt rooted.\n\nThe drink still tasted good to me personally — dense, dark and slow. But it no longer carried the same cultural warmth or memorability. It felt closer to a cafe mocha than a ritual conversation drink.\n\nThis was probably the clearest identity lesson so far.",
     "observations": [
-      "No cardamom, no black pepper — lost Indian identity immediately",
-      "Aroma: hot chocolate — internationally familiar, not distinctive",
-      "Taste: surprisingly more bitter than v3 despite less cacao",
-      "Cacao undissolved — powdery texture in mouth throughout",
-      "Cafe mocha comparison accurate — not what KISSE should be",
-      "Cardamom appears to buffer bitterness as well as provide aroma",
-      "Dutch-processed cacao needed for dissolution — order separately",
-      "Ate dry fruits and fox nuts before — felt full halfway through cup"
+      "The cup became more globally familiar immediately",
+      "Texture remained thick and slow",
+      "Aroma leaned toward hot chocolate rather than ritual spice",
+      "Drink felt emotionally flatter despite being technically smoother",
+      "Personally enjoyable, but less culturally distinctive",
+      "Important discovery around identity versus accessibility"
     ],
-    "metrics": null,
-    "metrics_after": null,
-    "note": "Removed cardamom and found a cafe mocha. Cardamom is what makes this Indian. It is not optional.",
+    "metrics": {
+      "warmth": 6,
+      "drinkability": 7,
+      "conversation": 5,
+      "comfort": 7
+    },
+    "metrics_after": {
+      "warmth": 7,
+      "drinkability": 8,
+      "conversation": 6,
+      "comfort": 8
+    },
+    "note": "The cup became easier to understand, but harder to remember.",
     "status": "logged",
     "sku": "KISSE"
   }
