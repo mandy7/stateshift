@@ -1,646 +1,257 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Observations — StateShift</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
-
-<style>
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-html{
-  font-size:16px;
-  scroll-behavior:smooth;
-}
-
-body{
-  font-family:'Lora',Georgia,serif;
-  background-color:#221408;
-  color:#ede8df;
-  min-height:100vh;
-}
-
-h1,h2,h3{
-  font-family:'Playfair Display',serif;
-  font-weight:400;
-  line-height:1.2;
-}
-
-.site-header{
-  border-bottom:1px solid rgba(200,146,42,0.2);
-  padding:1.1rem 2rem;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  background:rgba(20,10,3,0.98);
-  position:sticky;
-  top:0;
-  z-index:100;
-}
-
-.site-logo{
-  font-family:'Playfair Display',serif;
-  font-size:1.25rem;
-  color:#f0ebe0;
-  text-decoration:none;
-}
-
-.site-logo span{
-  color:#d4a853;
-  font-style:italic;
-}
-
-.site-nav{
-  display:flex;
-  gap:0.2rem;
-  align-items:center;
-}
-
-.site-nav a{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.67rem;
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-  color:#9a9088;
-  text-decoration:none;
-  padding:0.45rem 0.9rem;
-  border:1px solid transparent;
-}
-
-.site-nav a.active{
-  color:#d4a853;
-  border-color:rgba(200,146,42,0.4);
-}
-
-.page-wrap{
-  max-width:860px;
-  margin:0 auto;
-  padding:3.5rem 2rem 5rem 2.4rem;
-}
-
-.page-eyebrow{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.62rem;
-  letter-spacing:0.2em;
-  text-transform:uppercase;
-  color:#c8922a;
-  margin-bottom:0.7rem;
-}
-
-.page-title{
-  font-size:clamp(1.8rem,4vw,2.6rem);
-  color:#f0ebe0;
-  margin-bottom:0.5rem;
-}
-
-.page-title em{
-  color:#d4a853;
-  font-style:italic;
-}
-
-.page-caveat{
-  font-family:'Caveat',cursive;
-  font-size:1rem;
-  color:rgba(200,146,42,0.5);
-  margin-bottom:3rem;
-}
-
-.kpi-row{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
-  gap:1px;
-  background:rgba(200,146,42,0.12);
-  border:1px solid rgba(200,146,42,0.15);
-  margin-bottom:3rem;
-}
-
-.kpi{
-  background:rgba(40,22,8,0.7);
-  padding:1.2rem 1rem;
-}
-
-.kpi-key{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.58rem;
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-  color:#9a9088;
-  margin-bottom:0.5rem;
-}
-
-.kpi-val{
-  font-family:'Playfair Display',serif;
-  font-size:1.8rem;
-  color:#f0ebe0;
-}
-
-.kpi-note{
-  font-family:'Caveat',cursive;
-  font-size:0.75rem;
-  color:rgba(200,146,42,0.4);
-  margin-top:0.3rem;
-}
-
-.chart-pair{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:1.5rem;
-  margin-bottom:2.5rem;
-}
-
-@media(max-width:620px){
-  .chart-pair{
-    grid-template-columns:1fr;
-  }
-}
-
-.chart-head{
-  display:flex;
-  align-items:baseline;
-  gap:1rem;
-  margin-bottom:1rem;
-}
-
-.chart-label{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.58rem;
-  letter-spacing:0.14em;
-  text-transform:uppercase;
-  color:rgba(200,146,42,0.6);
-}
-
-.chart-title{
-  font-size:1rem;
-}
-
-.chart-frame{
-  background:rgba(35,18,6,0.6);
-  border:1px solid rgba(200,146,42,0.12);
-  padding:1.4rem;
-}
-
-.chart-wrap{
-  position:relative;
-  height:220px;
-}
-
-.sku-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:1rem;
-  margin-bottom:3rem;
-}
-
-.sku-card{
-  background:rgba(40,22,8,0.6);
-  border:1px solid rgba(200,146,42,0.18);
-  padding:1.2rem;
-}
-
-.sku-name{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.65rem;
-  letter-spacing:0.15em;
-  text-transform:uppercase;
-  color:#c8922a;
-  margin-bottom:0.5rem;
-}
-
-.sku-taste{
-  font-size:1.6rem;
-  margin-bottom:0.6rem;
-}
-
-.sku-stat{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.62rem;
-  color:#8a8278;
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:0.25rem;
-}
-
-.sku-status-note{
-  font-family:'Caveat',cursive;
-  font-size:0.9rem;
-  margin-top:0.7rem;
-  color:rgba(200,146,42,0.45);
-}
-
-.interpret-section{
-  border:1px solid rgba(200,146,42,0.18);
-  background:rgba(35,18,6,0.5);
-  padding:1.8rem;
-}
-
-.interpret-header{
-  display:flex;
-  gap:1rem;
-  margin-bottom:1rem;
-}
-
-.interpret-label{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.58rem;
-  letter-spacing:0.14em;
-  text-transform:uppercase;
-  color:rgba(200,146,42,0.55);
-}
-
-.interpret-entry{
-  padding:0.6rem 0;
-}
-
-.interpret-date{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.58rem;
-  color:rgba(200,146,42,0.45);
-  margin-bottom:0.35rem;
-}
-
-.interpret-text{
-  font-family:'Caveat',cursive;
-  font-size:1.05rem;
-  line-height:1.55;
-}
-
-.interpret-divider{
-  height:1px;
-  background:rgba(200,146,42,0.1);
-}
-
-.bottom-note{
-  margin-top:2rem;
-  font-family:'Caveat',cursive;
-  font-size:0.95rem;
-  color:rgba(200,146,42,0.35);
-  text-align:center;
-}
-
-</style>
-</head>
-
-<body>
-
-<header class="site-header">
-
-  <a href="/" class="site-logo">
-    State<span>Shift</span>
-  </a>
-
-  <nav class="site-nav">
-    <a href="/lab">/ Lab</a>
-    <a href="/states" class="active">/ Observations</a>
-  </nav>
-
-</header>
-
-<div class="page-wrap">
-
-  <div class="page-eyebrow">
-    State Tracking · Field Observations
-  </div>
-
-  <h1 class="page-title">
-    What the <em>data</em> says
-  </h1>
-
-  <div class="page-caveat" id="pageCaveat">
-    loading observations...
-  </div>
-
-  <div class="kpi-row">
-
-    <div class="kpi">
-      <div class="kpi-key">Sessions logged</div>
-      <div class="kpi-val" id="k-sessions">—</div>
-      <div class="kpi-note">and counting</div>
-    </div>
-
-    <div class="kpi">
-      <div class="kpi-key">Experiment days</div>
-      <div class="kpi-val" id="k-days">—</div>
-      <div class="kpi-note">since first cup</div>
-    </div>
-
-    <div class="kpi">
-      <div class="kpi-key">Avg focus lift</div>
-      <div class="kpi-val">+<span id="k-focus">—</span></div>
-      <div class="kpi-note">post vs pre</div>
-    </div>
-
-    <div class="kpi">
-      <div class="kpi-key">Anxiety shift</div>
-      <div class="kpi-val">−<span id="k-anxiety">—</span></div>
-      <div class="kpi-note">avg per session</div>
-    </div>
-
-    <div class="kpi">
-      <div class="kpi-key">Avg energy lift</div>
-      <div class="kpi-val">+<span id="k-energy">—</span></div>
-      <div class="kpi-note">post vs pre</div>
-    </div>
-
-    <div class="kpi">
-      <div class="kpi-key">Avg mood lift</div>
-      <div class="kpi-val">+<span id="k-mood">—</span></div>
-      <div class="kpi-note">post vs pre</div>
-    </div>
-
-  </div>
-
-  <div class="chart-pair">
-
-    <div>
-      <div class="chart-head">
-        <span class="chart-label">Focus</span>
-        <span class="chart-title">Before and after</span>
-      </div>
-
-      <div class="chart-frame">
-        <div class="chart-wrap">
-          <canvas id="focusChart"></canvas>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <div class="chart-head">
-        <span class="chart-label">Anxiety</span>
-        <span class="chart-title">Reduction per session</span>
-      </div>
-
-      <div class="chart-frame">
-        <div class="chart-wrap">
-          <canvas id="anxChart"></canvas>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="chart-pair">
-
-    <div>
-      <div class="chart-head">
-        <span class="chart-label">Energy</span>
-        <span class="chart-title">Before and after</span>
-      </div>
-
-      <div class="chart-frame">
-        <div class="chart-wrap">
-          <canvas id="energyChart"></canvas>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <div class="chart-head">
-        <span class="chart-label">Mood</span>
-        <span class="chart-title">Lift across sessions</span>
-      </div>
-
-      <div class="chart-frame">
-        <div class="chart-wrap">
-          <canvas id="moodChart"></canvas>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="chart-head">
-    <span class="chart-label">SKUs</span>
-    <span class="chart-title">Current formulation status</span>
-  </div>
-
-  <div class="sku-grid" id="skuGrid"></div>
-
-  <div class="interpret-section">
-
-    <div class="interpret-header">
-      <div class="interpret-label">
-        What I actually think is happening
-      </div>
-    </div>
-
-    <div id="interpretEntries"></div>
-
-  </div>
-
-  <div class="bottom-note" id="bottomNote">
-    the real patterns emerge around day 30
-  </div>
-
-</div>
-
-<script>
-
-const C = {
-  text:'#b8a898',
-  grid:'rgba(255,255,255,0.06)',
-  font:"'IBM Plex Mono',monospace",
-  gold:'rgba(200,146,42,',
-  sage:'rgba(122,140,110,'
-};
-
-Chart.defaults.color = C.text;
-Chart.defaults.font.family = C.font;
-
-async function loadStates() {
-
-  try {
-
-    const response =
-      await fetch('./states.json?v=' + new Date().getTime());
-
-    const data = await response.json();
-
-    init(data);
-
-  } catch(err) {
-
-    console.error(err);
-
-  }
-
-}
-
-function init(data) {
-
-  const daily = data.daily || [];
-  const meta = data.meta || {};
-
-  document.getElementById('k-sessions').textContent =
-    meta.total_logs || daily.length;
-
-  document.getElementById('k-days').textContent =
-    meta.experiment_days || '—';
-
-  const avg = arr =>
-    (arr.reduce((a,b)=>a+b,0)/arr.length).toFixed(1);
-
-  if(daily.length){
-
-    document.getElementById('k-focus').textContent =
-      avg(daily.map(d=>d.fpo-d.fp));
-
-    document.getElementById('k-anxiety').textContent =
-      avg(daily.map(d=>d.ap-d.apo));
-
-    document.getElementById('k-energy').textContent =
-      avg(daily.map(d=>d.epo-d.ep));
-
-    document.getElementById('k-mood').textContent =
-      avg(daily.map(d=>d.mpo-d.mp));
-
-  }
-
-  document.getElementById('pageCaveat').textContent =
-    `day ${meta.experiment_days} · ${(meta.active_skus || []).join(' · ').toLowerCase()} · small sample · honest`;
-
-  const labels = daily.map(d=>d.date);
-
-  function createLineChart(id,beforeKey,afterKey,color){
-
-    new Chart(document.getElementById(id),{
-      type:'line',
-      data:{
-        labels,
-        datasets:[
-          {
-            label:'before',
-            data:daily.map(d=>d[beforeKey]),
-            borderColor:color+'0.35)',
-            borderDash:[3,4],
-            tension:0.4,
-            borderWidth:1
-          },
-          {
-            label:'after',
-            data:daily.map(d=>d[afterKey]),
-            borderColor:color+'0.9)',
-            tension:0.4,
-            borderWidth:1.5
-          }
-        ]
-      },
-      options:{
-        responsive:true,
-        maintainAspectRatio:false,
-        scales:{
-          y:{
-            min:0,
-            max:5
-          }
-        }
-      }
-    });
-
-  }
-
-  createLineChart('focusChart','fp','fpo',C.gold);
-  createLineChart('energyChart','ep','epo',C.sage);
-  createLineChart('moodChart','mp','mpo',C.gold);
-
-  new Chart(document.getElementById('anxChart'),{
-    type:'bar',
-    data:{
-      labels,
-      datasets:[
-        {
-          data:daily.map(d=>d.ap-d.apo),
-          backgroundColor:C.sage+'0.7)'
-        }
-      ]
+[
+  {
+    "id": "001",
+    "date": "2025-05-11",
+    "time": "10:05",
+    "title": "Morning Blend v1 — the cup disappeared into the milk.",
+    "tags": ["Baseline", "Brewing", "Morning"],
+    "body": "First proper baseline session for the late-morning cup. Slept around 6.5 hours and woke slightly irritated, mentally cluttered and low-energy because the morning was already fragmented around taking care of my daughter. I wanted to understand what the coffee itself was doing before adding any sensory or functional layers.\n\nThe cup felt smooth and soft but almost invisible. Aroma leaned heavily toward warm milk. The coffee itself barely introduced itself. I drank a few sips before breakfast, continued through the meal and finished the remaining cup later. Nothing about the cup demanded attention.\n\nToward the end I could finally notice a faint woody bitterness underneath the milk structure. That ended up becoming the only memorable moment in the session.\n\nFunctionally there was a slight increase in wakefulness and focus, but it was difficult to separate the actual effect of the cup from the excitement of beginning the experiment itself. The session did not fail. It clarified what was missing.",
+    "observations": [
+      "Morning felt rushed and mentally fragmented before the cup",
+      "Aroma mostly carried warm milk rather than coffee",
+      "Texture smooth but emotionally flat",
+      "No strong acidity or bitterness",
+      "Slight improvement in wakefulness and focus",
+      "The cup lacked identity or memorability"
+    ],
+    "metrics": {
+      "energy": 2,
+      "focus": 2,
+      "anxiety": 2,
+      "mood": 3
     },
-    options:{
-      responsive:true,
-      maintainAspectRatio:false,
-      scales:{
-        y:{
-          min:-2,
-          max:5
-        }
-      }
-    }
-  });
+    "metrics_after": {
+      "energy": 3,
+      "focus": 3,
+      "anxiety": 1,
+      "mood": 3
+    },
+    "note": "The coffee existed physically, but emotionally it disappeared.",
+    "status": "logged",
+    "sku": "Morning Blend"
+  },
 
-  document.getElementById('skuGrid').innerHTML = '';
+  {
+    "id": "002",
+    "date": "2025-05-12",
+    "time": "09:50",
+    "title": "Morning Blend v2 — the cup finally developed a voice.",
+    "tags": ["Brewing", "Ingredients", "Morning"],
+    "body": "Woke around 5AM after roughly six hours of sleep. Managed to get a solid block of focused work done before preparing the session, which changed the emotional starting point entirely compared to yesterday.\n\nToday the cup immediately felt more alive. As I brought it closer, the aroma reminded me of spiced chai, but the sip itself resolved into coffee. That contrast was confusing for a second and then suddenly very interesting.\n\nThe drink no longer felt flat. Texture became fuller and warmer. The bitterness integrated into the structure instead of sitting separately. It felt less like an instant coffee and more like an intentional ritual.\n\nFunctionally this was the first session where the shift became noticeable. Alertness increased within minutes, sleepiness reduced and mood lifted slightly. The sharper state lasted much longer than yesterday before fading.",
+    "observations": [
+      "Morning started more positively after focused work",
+      "Aroma felt familiar like chai, but sip resolved into coffee",
+      "Texture fuller and more satisfying than baseline",
+      "The cup carried a stronger emotional identity",
+      "Alertness sustained much longer than previous day",
+      "Sleepiness reduced noticeably"
+    ],
+    "metrics": {
+      "energy": 2,
+      "focus": 3,
+      "anxiety": 2,
+      "mood": 3
+    },
+    "metrics_after": {
+      "energy": 4,
+      "focus": 5,
+      "anxiety": 1,
+      "mood": 4
+    },
+    "note": "For the first time, the drink felt intentional instead of automatic.",
+    "status": "breakthrough",
+    "sku": "Morning Blend"
+  },
 
-  (data.skus || []).forEach(sku=>{
+  {
+    "id": "003",
+    "date": "2025-05-13",
+    "time": "10:30",
+    "title": "Morning Blend v3 — warmth replaced sharpness.",
+    "tags": ["Ingredients", "Morning", "Failed"],
+    "body": "Today started very differently. Slept roughly four hours after a difficult night with my daughter and woke around 3:30AM. Despite the sleep deprivation, I still spent a couple of focused hours working before preparing the cup.\n\nI changed too many things at once today and immediately felt the cost of that mistake.\n\nThe aroma leaned heavily toward cinnamon from the beginning. The coffee itself became quieter. The cup still felt pleasant, but the emotional direction shifted away from alertness toward comfort.\n\nInstead of feeling ready to move, I felt slower and more grounded. That is not necessarily bad — it is simply wrong for what this SKU is supposed to become.\n\nAnother issue emerged near the end of the cup. Spice sediment collected at the bottom and dominated the final sips, which disrupted the finish entirely.",
+    "observations": [
+      "Very sleep-deprived morning before the session",
+      "Cinnamon dominated both aroma and emotional direction",
+      "Cup became calming instead of activating",
+      "Alertness uplift significantly weaker than previous iteration",
+      "Final sips carried excessive spice residue",
+      "Changing multiple variables together created confusion"
+    ],
+    "metrics": {
+      "energy": 2,
+      "focus": 3,
+      "anxiety": 2,
+      "mood": 3
+    },
+    "metrics_after": {
+      "energy": 3,
+      "focus": 4,
+      "anxiety": 1,
+      "mood": 4
+    },
+    "note": "The cup became emotionally warmer, but lost the edge it needed.",
+    "status": "failed",
+    "sku": "Morning Blend"
+  },
 
-    const card = document.createElement('div');
+  {
+    "id": "004",
+    "date": "2025-05-14",
+    "time": "10:15",
+    "title": "Morning Blend v4 — closer to balance, but physically sleepy.",
+    "tags": ["Brewing", "Morning", "Iteration"],
+    "body": "Woke around 5:45AM after roughly six to six-and-a-half hours of sleep. The morning felt calmer than yesterday but less sharp than the strongest earlier session. Spent some relaxed time with my daughter before preparing the cup.\n\nToday the spice felt much more controlled. The aroma entered first through the nose but no longer interrupted the coffee completely. For the first time, the top half of the cup felt directionally balanced.\n\nThere was an interesting split in the experience. The beginning of the cup felt cleaner and fresher, while the bottom half slowly drifted back toward spice-heavy territory because residue settled near the end.\n\nFunctionally the session created alertness and willingness to work, but physically I still felt sleepy underneath. Even fifteen minutes later while sitting quietly in an AC room, my eyes still wanted to close. The mental shift was clearer than the physical shift.",
+    "observations": [
+      "Fresh preparation softened the spice dominance",
+      "Top half of the cup felt more balanced than previous sessions",
+      "Residue still disrupted the final sips",
+      "Coffee appeared briefly in the middle of the sip",
+      "Mental alertness improved more than physical energy",
+      "The drink felt closer to its intended direction"
+    ],
+    "metrics": {
+      "energy": 2,
+      "focus": 2,
+      "anxiety": 2,
+      "mood": 2
+    },
+    "metrics_after": {
+      "energy": 3,
+      "focus": 4,
+      "anxiety": 1,
+      "mood": 3
+    },
+    "note": "The mind woke up before the body did.",
+    "status": "logged",
+    "sku": "Morning Blend"
+  },
 
-    card.className = 'sku-card';
+  {
+    "id": "005",
+    "date": "2025-05-11",
+    "time": "20:00",
+    "title": "Evening Blend v1 — too many voices inside one cup.",
+    "tags": ["Brewing", "Social", "Evening", "Failed"],
+    "body": "First evening attempt at building a slower conversational drink. The weather outside had turned cold and stormy and the mood naturally leaned inward, which felt like the perfect context for testing this direction.\n\nThe first version was chaotic. The cup had richness and weight, but too many flavour systems were competing at once. Spice, bitterness, cacao and coffee all wanted attention simultaneously.\n\nMy brother-in-law found it difficult to finish, especially alongside food. The bitterness amplified further with the meal.\n\nI immediately prepared a second variation with a softer structure and that changed the direction completely. The drink became slower, warmer and more cohesive. I personally loved the heavier ritual feeling of it, especially the way it encouraged slower sipping and conversation.",
+    "observations": [
+      "Rainy evening amplified the ritual feeling",
+      "First version felt crowded and overly aggressive",
+      "Food pairing amplified bitterness heavily",
+      "Second variation became much more drinkable",
+      "Texture naturally slowed down the pace of drinking",
+      "The drink felt closer to a conversation ritual than a coffee"
+    ],
+    "metrics": {
+      "warmth": 3,
+      "drinkability": 2,
+      "conversation_flow": 2,
+      "linger": 3
+    },
+    "metrics_after": {
+      "warmth": 4,
+      "drinkability": 3,
+      "conversation_flow": 4,
+      "linger": 5
+    },
+    "note": "This drink was not trying to wake anyone up. It was trying to slow the room down.",
+    "status": "logged",
+    "sku": "Evening Blend"
+  },
 
-    card.innerHTML = `
-      <div class="sku-name">${sku.name}</div>
+  {
+    "id": "006",
+    "date": "2025-05-12",
+    "time": "20:30",
+    "title": "Evening Blend v2 — the room finally slowed down.",
+    "tags": ["Brewing", "Social", "Evening"],
+    "body": "Second evening iteration using the same tester as reference. This mattered because now I could observe progression instead of isolated reactions.\n\nThe cup immediately felt calmer and more balanced than yesterday. The bitterness softened. Warmth increased. Thickness now felt intentional rather than excessive.\n\nOne guest described the drink as reminding him of a traditional ritual tonic, while another noticed a nutty dessert-like warmth in the aroma. Both reactions were useful.\n\nMost importantly, nobody rushed through the cup. The drink naturally slowed the pace of the room. Conversation stretched longer without the drink demanding attention constantly.",
+    "observations": [
+      "Bitterness reduced significantly from previous night",
+      "Warmth and texture became more cohesive",
+      "Guests naturally slowed their drinking pace",
+      "The cup encouraged longer conversation windows",
+      "The emotional territory became clearer",
+      "More memorable than traditional instant coffee"
+    ],
+    "metrics": {
+      "warmth": 3,
+      "drinkability": 3,
+      "conversation_flow": 3,
+      "linger": 3
+    },
+    "metrics_after": {
+      "warmth": 5,
+      "drinkability": 4,
+      "conversation_flow": 5,
+      "linger": 5
+    },
+    "note": "The drink stopped interrupting the conversation and started accompanying it.",
+    "status": "logged",
+    "sku": "Evening Blend"
+  },
 
-      <div class="sku-taste">
-        ${sku.taste}/5
-      </div>
+  {
+    "id": "007",
+    "date": "2025-05-13",
+    "time": "20:00",
+    "title": "Evening Blend v3 — less medicinal, more conversational.",
+    "tags": ["Brewing", "Social", "Evening"],
+    "body": "Third evening iteration with returning testers. The atmosphere was rushed because they only had a few minutes before leaving, which made the feedback less reflective and more instinctive.\n\nThat actually helped.\n\nThe immediate response was that the drink felt easier and less bitter than previous versions. The spice layers no longer dominated the cup aggressively.\n\nOne interesting thing: the earlier comparison to a medicinal tonic did not return this time. That suggests the drink is slowly moving away from 'functional concoction' territory and closer toward an actual evening ritual beverage.\n\nThe thickness now felt aligned with the purpose of the drink rather than accidental.",
+    "observations": [
+      "Short tasting window created instinctive reactions",
+      "Guests found it easier to drink than earlier versions",
+      "Bitterness no longer became the dominant memory",
+      "Spices moved into the background instead of leading",
+      "Texture now felt intentional",
+      "Conversation around the drink became calmer and more curious"
+    ],
+    "metrics": {
+      "warmth": 3,
+      "drinkability": 3,
+      "conversation_flow": 3,
+      "linger": 3
+    },
+    "metrics_after": {
+      "warmth": 5,
+      "drinkability": 4,
+      "conversation_flow": 5,
+      "linger": 5
+    },
+    "note": "The drink is slowly moving from experimentation toward ritual.",
+    "status": "logged",
+    "sku": "Evening Blend"
+  },
 
-      <div class="sku-stat">
-        <span>Focus Δ</span>
-        <strong>+${sku.avg_focus_delta}</strong>
-      </div>
-
-      <div class="sku-stat">
-        <span>Energy Δ</span>
-        <strong>+${sku.avg_energy_delta}</strong>
-      </div>
-
-      <div class="sku-stat">
-        <span>Mood Δ</span>
-        <strong>+${sku.avg_mood_delta}</strong>
-      </div>
-
-      <div class="sku-stat">
-        <span>Anxiety ↓</span>
-        <strong>${Math.abs(sku.avg_anxiety_delta)}</strong>
-      </div>
-
-      <div class="sku-stat">
-        <span>Sessions</span>
-        <strong>${sku.tests}</strong>
-      </div>
-
-      <div class="sku-status-note">
-        ${sku.status || ''}
-      </div>
-    `;
-
-    document.getElementById('skuGrid').appendChild(card);
-
-  });
-
-  const notes = daily.map(d => `
-    <div class="interpret-entry">
-      <div class="interpret-date">${d.date}</div>
-      <div class="interpret-text">${d.note || d.blend}</div>
-    </div>
-    <div class="interpret-divider"></div>
-  `).join('');
-
-  document.getElementById('interpretEntries').innerHTML = notes;
-
-}
-
-loadStates();
-
-</script>
-
-</body>
-</html>
+  {
+    "id": "008",
+    "date": "2025-05-14",
+    "time": "19:25",
+    "title": "Evening Blend v4 — cleaner mechanics, weaker identity.",
+    "tags": ["Ingredients", "Social", "Evening"],
+    "body": "Tonight's session was prepared more carefully to solve the sediment and unevenness issues from previous iterations. The cup became technically cleaner, but emotionally less distinct.\n\nThe aroma leaned strongly toward cinnamon and warm spice again, while the coffee itself almost disappeared. My wife immediately associated the aroma with kahwa rather than coffee.\n\nThe texture became lighter than previous versions and the cup visually resembled a spiced herbal drink in the glass. Bitterness from the cacao stayed present while the emotional warmth reduced.\n\nInstead of encouraging conversation naturally, the session became more analytical. I kept evaluating the drink while drinking it. That itself felt like a signal that the emotional direction is still unresolved.",
+    "observations": [
+      "Cleaner preparation removed sediment problems",
+      "Coffee identity weakened further behind spice and cacao",
+      "The cup visually resembled kahwa in a glass cup",
+      "Bitterness remained while emotional warmth reduced",
+      "The drink became easier to analyse than enjoy",
+      "Important lesson around identity versus technical smoothness"
+    ],
+    "metrics": {
+      "warmth": 3,
+      "drinkability": 3,
+      "conversation_flow": 2,
+      "linger": 3
+    },
+    "metrics_after": {
+      "warmth": 3,
+      "drinkability": 3,
+      "conversation_flow": 2,
+      "linger": 2
+    },
+    "note": "Cleaning up the mechanics exposed that the emotional identity itself is still unresolved.",
+    "status": "logged",
+    "sku": "Evening Blend"
+  }
+]
