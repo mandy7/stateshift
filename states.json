@@ -1,257 +1,100 @@
-[
-  {
-    "id": "001",
-    "date": "2025-05-11",
-    "time": "10:05",
-    "title": "Morning Blend v1 — the cup disappeared into the milk.",
-    "tags": ["Baseline", "Brewing", "Morning"],
-    "body": "First proper baseline session for the late-morning cup. Slept around 6.5 hours and woke slightly irritated, mentally cluttered and low-energy because the morning was already fragmented around taking care of my daughter. I wanted to understand what the coffee itself was doing before adding any sensory or functional layers.\n\nThe cup felt smooth and soft but almost invisible. Aroma leaned heavily toward warm milk. The coffee itself barely introduced itself. I drank a few sips before breakfast, continued through the meal and finished the remaining cup later. Nothing about the cup demanded attention.\n\nToward the end I could finally notice a faint woody bitterness underneath the milk structure. That ended up becoming the only memorable moment in the session.\n\nFunctionally there was a slight increase in wakefulness and focus, but it was difficult to separate the actual effect of the cup from the excitement of beginning the experiment itself. The session did not fail. It clarified what was missing.",
-    "observations": [
-      "Morning felt rushed and mentally fragmented before the cup",
-      "Aroma mostly carried warm milk rather than coffee",
-      "Texture smooth but emotionally flat",
-      "No strong acidity or bitterness",
-      "Slight improvement in wakefulness and focus",
-      "The cup lacked identity or memorability"
-    ],
-    "metrics": {
-      "energy": 2,
-      "focus": 2,
-      "anxiety": 2,
-      "mood": 3
-    },
-    "metrics_after": {
-      "energy": 3,
-      "focus": 3,
-      "anxiety": 1,
-      "mood": 3
-    },
-    "note": "The coffee existed physically, but emotionally it disappeared.",
-    "status": "logged",
-    "sku": "Morning Blend"
+{
+  "meta": {
+    "start_date": "2025-05-11",
+    "experiment_days": 4,
+    "total_logs": 4,
+    "active_skus": ["Morning Blend", "Evening Blend"]
   },
 
-  {
-    "id": "002",
-    "date": "2025-05-12",
-    "time": "09:50",
-    "title": "Morning Blend v2 — the cup finally developed a voice.",
-    "tags": ["Brewing", "Ingredients", "Morning"],
-    "body": "Woke around 5AM after roughly six hours of sleep. Managed to get a solid block of focused work done before preparing the session, which changed the emotional starting point entirely compared to yesterday.\n\nToday the cup immediately felt more alive. As I brought it closer, the aroma reminded me of spiced chai, but the sip itself resolved into coffee. That contrast was confusing for a second and then suddenly very interesting.\n\nThe drink no longer felt flat. Texture became fuller and warmer. The bitterness integrated into the structure instead of sitting separately. It felt less like an instant coffee and more like an intentional ritual.\n\nFunctionally this was the first session where the shift became noticeable. Alertness increased within minutes, sleepiness reduced and mood lifted slightly. The sharper state lasted much longer than yesterday before fading.",
-    "observations": [
-      "Morning started more positively after focused work",
-      "Aroma felt familiar like chai, but sip resolved into coffee",
-      "Texture fuller and more satisfying than baseline",
-      "The cup carried a stronger emotional identity",
-      "Alertness sustained much longer than previous day",
-      "Sleepiness reduced noticeably"
-    ],
-    "metrics": {
-      "energy": 2,
-      "focus": 3,
-      "anxiety": 2,
-      "mood": 3
+  "daily": [
+    {
+      "date":"May 11",
+      "fp":2,"fpo":3,
+      "ap":2,"apo":1,
+      "ep":2,"epo":3,
+      "mp":3,"mpo":3,
+      "blend":"Morning Blend v1 — baseline"
     },
-    "metrics_after": {
-      "energy": 4,
-      "focus": 5,
-      "anxiety": 1,
-      "mood": 4
-    },
-    "note": "For the first time, the drink felt intentional instead of automatic.",
-    "status": "breakthrough",
-    "sku": "Morning Blend"
-  },
 
-  {
-    "id": "003",
-    "date": "2025-05-13",
-    "time": "10:30",
-    "title": "Morning Blend v3 — warmth replaced sharpness.",
-    "tags": ["Ingredients", "Morning", "Failed"],
-    "body": "Today started very differently. Slept roughly four hours after a difficult night with my daughter and woke around 3:30AM. Despite the sleep deprivation, I still spent a couple of focused hours working before preparing the cup.\n\nI changed too many things at once today and immediately felt the cost of that mistake.\n\nThe aroma leaned heavily toward cinnamon from the beginning. The coffee itself became quieter. The cup still felt pleasant, but the emotional direction shifted away from alertness toward comfort.\n\nInstead of feeling ready to move, I felt slower and more grounded. That is not necessarily bad — it is simply wrong for what this SKU is supposed to become.\n\nAnother issue emerged near the end of the cup. Spice sediment collected at the bottom and dominated the final sips, which disrupted the finish entirely.",
-    "observations": [
-      "Very sleep-deprived morning before the session",
-      "Cinnamon dominated both aroma and emotional direction",
-      "Cup became calming instead of activating",
-      "Alertness uplift significantly weaker than previous iteration",
-      "Final sips carried excessive spice residue",
-      "Changing multiple variables together created confusion"
-    ],
-    "metrics": {
-      "energy": 2,
-      "focus": 3,
-      "anxiety": 2,
-      "mood": 3
+    {
+      "date":"May 12",
+      "fp":3,"fpo":5,
+      "ap":2,"apo":1,
+      "ep":2,"epo":4,
+      "mp":3,"mpo":4,
+      "blend":"Morning Blend v2 — stronger sensory identity"
     },
-    "metrics_after": {
-      "energy": 3,
-      "focus": 4,
-      "anxiety": 1,
-      "mood": 4
-    },
-    "note": "The cup became emotionally warmer, but lost the edge it needed.",
-    "status": "failed",
-    "sku": "Morning Blend"
-  },
 
-  {
-    "id": "004",
-    "date": "2025-05-14",
-    "time": "10:15",
-    "title": "Morning Blend v4 — closer to balance, but physically sleepy.",
-    "tags": ["Brewing", "Morning", "Iteration"],
-    "body": "Woke around 5:45AM after roughly six to six-and-a-half hours of sleep. The morning felt calmer than yesterday but less sharp than the strongest earlier session. Spent some relaxed time with my daughter before preparing the cup.\n\nToday the spice felt much more controlled. The aroma entered first through the nose but no longer interrupted the coffee completely. For the first time, the top half of the cup felt directionally balanced.\n\nThere was an interesting split in the experience. The beginning of the cup felt cleaner and fresher, while the bottom half slowly drifted back toward spice-heavy territory because residue settled near the end.\n\nFunctionally the session created alertness and willingness to work, but physically I still felt sleepy underneath. Even fifteen minutes later while sitting quietly in an AC room, my eyes still wanted to close. The mental shift was clearer than the physical shift.",
-    "observations": [
-      "Fresh preparation softened the spice dominance",
-      "Top half of the cup felt more balanced than previous sessions",
-      "Residue still disrupted the final sips",
-      "Coffee appeared briefly in the middle of the sip",
-      "Mental alertness improved more than physical energy",
-      "The drink felt closer to its intended direction"
-    ],
-    "metrics": {
-      "energy": 2,
-      "focus": 2,
-      "anxiety": 2,
-      "mood": 2
+    {
+      "date":"May 13",
+      "fp":3,"fpo":4,
+      "ap":2,"apo":1,
+      "ep":2,"epo":3,
+      "mp":3,"mpo":4,
+      "blend":"Morning Blend v3 — warmth overtook sharpness"
     },
-    "metrics_after": {
-      "energy": 3,
-      "focus": 4,
-      "anxiety": 1,
-      "mood": 3
-    },
-    "note": "The mind woke up before the body did.",
-    "status": "logged",
-    "sku": "Morning Blend"
-  },
 
-  {
-    "id": "005",
-    "date": "2025-05-11",
-    "time": "20:00",
-    "title": "Evening Blend v1 — too many voices inside one cup.",
-    "tags": ["Brewing", "Social", "Evening", "Failed"],
-    "body": "First evening attempt at building a slower conversational drink. The weather outside had turned cold and stormy and the mood naturally leaned inward, which felt like the perfect context for testing this direction.\n\nThe first version was chaotic. The cup had richness and weight, but too many flavour systems were competing at once. Spice, bitterness, cacao and coffee all wanted attention simultaneously.\n\nMy brother-in-law found it difficult to finish, especially alongside food. The bitterness amplified further with the meal.\n\nI immediately prepared a second variation with a softer structure and that changed the direction completely. The drink became slower, warmer and more cohesive. I personally loved the heavier ritual feeling of it, especially the way it encouraged slower sipping and conversation.",
-    "observations": [
-      "Rainy evening amplified the ritual feeling",
-      "First version felt crowded and overly aggressive",
-      "Food pairing amplified bitterness heavily",
-      "Second variation became much more drinkable",
-      "Texture naturally slowed down the pace of drinking",
-      "The drink felt closer to a conversation ritual than a coffee"
-    ],
-    "metrics": {
-      "warmth": 3,
-      "drinkability": 2,
-      "conversation_flow": 2,
-      "linger": 3
-    },
-    "metrics_after": {
-      "warmth": 4,
-      "drinkability": 3,
-      "conversation_flow": 4,
-      "linger": 5
-    },
-    "note": "This drink was not trying to wake anyone up. It was trying to slow the room down.",
-    "status": "logged",
-    "sku": "Evening Blend"
-  },
+    {
+      "date":"May 14",
+      "fp":2,"fpo":4,
+      "ap":2,"apo":1,
+      "ep":2,"epo":3,
+      "mp":2,"mpo":3,
+      "blend":"Morning Blend v4 — mentally sharper, physically sleepy"
+    }
+  ],
 
-  {
-    "id": "006",
-    "date": "2025-05-12",
-    "time": "20:30",
-    "title": "Evening Blend v2 — the room finally slowed down.",
-    "tags": ["Brewing", "Social", "Evening"],
-    "body": "Second evening iteration using the same tester as reference. This mattered because now I could observe progression instead of isolated reactions.\n\nThe cup immediately felt calmer and more balanced than yesterday. The bitterness softened. Warmth increased. Thickness now felt intentional rather than excessive.\n\nOne guest described the drink as reminding him of a traditional ritual tonic, while another noticed a nutty dessert-like warmth in the aroma. Both reactions were useful.\n\nMost importantly, nobody rushed through the cup. The drink naturally slowed the pace of the room. Conversation stretched longer without the drink demanding attention constantly.",
-    "observations": [
-      "Bitterness reduced significantly from previous night",
-      "Warmth and texture became more cohesive",
-      "Guests naturally slowed their drinking pace",
-      "The cup encouraged longer conversation windows",
-      "The emotional territory became clearer",
-      "More memorable than traditional instant coffee"
-    ],
-    "metrics": {
-      "warmth": 3,
-      "drinkability": 3,
-      "conversation_flow": 3,
-      "linger": 3
+  "social_daily": [
+    {
+      "date":"May 11",
+      "warmth_before":3,
+      "warmth_after":4,
+      "conversation_before":2,
+      "conversation_after":4,
+      "linger_before":3,
+      "linger_after":5,
+      "drinkability_before":2,
+      "drinkability_after":3,
+      "blend":"Evening Blend v1"
     },
-    "metrics_after": {
-      "warmth": 5,
-      "drinkability": 4,
-      "conversation_flow": 5,
-      "linger": 5
-    },
-    "note": "The drink stopped interrupting the conversation and started accompanying it.",
-    "status": "logged",
-    "sku": "Evening Blend"
-  },
 
-  {
-    "id": "007",
-    "date": "2025-05-13",
-    "time": "20:00",
-    "title": "Evening Blend v3 — less medicinal, more conversational.",
-    "tags": ["Brewing", "Social", "Evening"],
-    "body": "Third evening iteration with returning testers. The atmosphere was rushed because they only had a few minutes before leaving, which made the feedback less reflective and more instinctive.\n\nThat actually helped.\n\nThe immediate response was that the drink felt easier and less bitter than previous versions. The spice layers no longer dominated the cup aggressively.\n\nOne interesting thing: the earlier comparison to a medicinal tonic did not return this time. That suggests the drink is slowly moving away from 'functional concoction' territory and closer toward an actual evening ritual beverage.\n\nThe thickness now felt aligned with the purpose of the drink rather than accidental.",
-    "observations": [
-      "Short tasting window created instinctive reactions",
-      "Guests found it easier to drink than earlier versions",
-      "Bitterness no longer became the dominant memory",
-      "Spices moved into the background instead of leading",
-      "Texture now felt intentional",
-      "Conversation around the drink became calmer and more curious"
-    ],
-    "metrics": {
-      "warmth": 3,
-      "drinkability": 3,
-      "conversation_flow": 3,
-      "linger": 3
+    {
+      "date":"May 12",
+      "warmth_before":3,
+      "warmth_after":5,
+      "conversation_before":3,
+      "conversation_after":5,
+      "linger_before":3,
+      "linger_after":5,
+      "drinkability_before":3,
+      "drinkability_after":4,
+      "blend":"Evening Blend v2"
     },
-    "metrics_after": {
-      "warmth": 5,
-      "drinkability": 4,
-      "conversation_flow": 5,
-      "linger": 5
-    },
-    "note": "The drink is slowly moving from experimentation toward ritual.",
-    "status": "logged",
-    "sku": "Evening Blend"
-  },
 
-  {
-    "id": "008",
-    "date": "2025-05-14",
-    "time": "19:25",
-    "title": "Evening Blend v4 — cleaner mechanics, weaker identity.",
-    "tags": ["Ingredients", "Social", "Evening"],
-    "body": "Tonight's session was prepared more carefully to solve the sediment and unevenness issues from previous iterations. The cup became technically cleaner, but emotionally less distinct.\n\nThe aroma leaned strongly toward cinnamon and warm spice again, while the coffee itself almost disappeared. My wife immediately associated the aroma with kahwa rather than coffee.\n\nThe texture became lighter than previous versions and the cup visually resembled a spiced herbal drink in the glass. Bitterness from the cacao stayed present while the emotional warmth reduced.\n\nInstead of encouraging conversation naturally, the session became more analytical. I kept evaluating the drink while drinking it. That itself felt like a signal that the emotional direction is still unresolved.",
-    "observations": [
-      "Cleaner preparation removed sediment problems",
-      "Coffee identity weakened further behind spice and cacao",
-      "The cup visually resembled kahwa in a glass cup",
-      "Bitterness remained while emotional warmth reduced",
-      "The drink became easier to analyse than enjoy",
-      "Important lesson around identity versus technical smoothness"
-    ],
-    "metrics": {
-      "warmth": 3,
-      "drinkability": 3,
-      "conversation_flow": 2,
-      "linger": 3
+    {
+      "date":"May 13",
+      "warmth_before":3,
+      "warmth_after":5,
+      "conversation_before":3,
+      "conversation_after":5,
+      "linger_before":3,
+      "linger_after":5,
+      "drinkability_before":3,
+      "drinkability_after":4,
+      "blend":"Evening Blend v3"
     },
-    "metrics_after": {
-      "warmth": 3,
-      "drinkability": 3,
-      "conversation_flow": 2,
-      "linger": 2
-    },
-    "note": "Cleaning up the mechanics exposed that the emotional identity itself is still unresolved.",
-    "status": "logged",
-    "sku": "Evening Blend"
-  }
-]
+
+    {
+      "date":"May 14",
+      "warmth_before":3,
+      "warmth_after":3,
+      "conversation_before":2,
+      "conversation_after":2,
+      "linger_before":3,
+      "linger_after":2,
+      "drinkability_before":3,
+      "drinkability_after":3,
+      "blend":"Evening Blend v4 — cleaner but emotionally flatter"
+    }
+  ]
+}
