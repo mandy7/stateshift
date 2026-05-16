@@ -10,144 +10,193 @@
 
 <style>
 
+:root{
+  --bg:#120a07;
+  --panel:#1b100b;
+  --border:rgba(224,166,59,.14);
+  --text:#f5efe6;
+  --muted:#8f6e4d;
+  --gold:#e0a63b;
+}
+
+*{
+  box-sizing:border-box;
+}
+
 body{
   margin:0;
-  background:#120b08;
-  color:#f6efe7;
+  background:var(--bg);
+  color:var(--text);
   font-family:Georgia, serif;
   -webkit-font-smoothing:antialiased;
 }
 
 .container{
-  width:1100px;
+  width:1240px;
   max-width:92%;
   margin:auto;
-  padding:48px 0 90px;
+  padding:60px 0 90px;
 }
 
-h1{
-  font-size:68px;
-  margin-bottom:10px;
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  margin-bottom:55px;
+}
+
+.brand{
+  font-size:66px;
+  line-height:1;
+  letter-spacing:-1.5px;
   font-weight:400;
-  letter-spacing:-1px;
 }
 
-h1 span{
-  color:#e0a63b;
+.brand span{
+  color:var(--gold);
   font-style:italic;
 }
 
 .sub{
-  color:#9f7e5d;
-  margin-bottom:48px;
-  letter-spacing:.5px;
-  font-size:15px;
-  line-height:1.7;
+  margin-top:12px;
+  color:var(--muted);
+  font-size:14px;
+  letter-spacing:.3px;
+}
+
+.nav{
+  color:#6f543c;
+  font-size:12px;
+  letter-spacing:1px;
+  text-transform:uppercase;
 }
 
 .section{
-  margin-bottom:78px;
+  margin-bottom:90px;
+}
+
+.section-header{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  margin-bottom:26px;
 }
 
 .section-title{
-  font-size:30px;
-  margin-bottom:28px;
-  color:#f3e8d9;
+  font-size:34px;
   font-weight:400;
 }
 
-.summary{
+.section-note{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.summary-grid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
-  margin-bottom:38px;
+  grid-template-columns:220px repeat(3,1fr);
+  gap:18px;
+  margin-bottom:26px;
 }
 
-.card{
-  border:1px solid rgba(224,166,59,.18);
-  background:rgba(255,255,255,.018);
-  padding:18px 18px 16px;
-  backdrop-filter:blur(4px);
+.metric-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  padding:22px;
+  min-height:122px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
 }
 
-.label{
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:1.2px;
+.metric-label{
   color:#9c7b58;
-  margin-bottom:10px;
-}
-
-.value{
-  font-size:24px;
-  color:#f7f1e7;
-  line-height:1;
-  font-weight:400;
-}
-
-.note{
-  margin-top:6px;
-  color:#806448;
   font-size:11px;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+  line-height:1.5;
 }
 
-.charts{
+.metric-value{
+  font-size:42px;
+  line-height:1;
+  color:#f9f3eb;
+  margin-top:10px;
+}
+
+.metric-small{
+  font-size:13px;
+  color:#7b6146;
+  margin-top:8px;
+}
+
+.metric-uplift{
+  font-size:46px;
+  line-height:1;
+  margin-top:18px;
+  color:#f5f0e8;
+}
+
+.metric-caption{
+  margin-top:8px;
+  color:#87684a;
+  font-size:12px;
+}
+
+.charts-grid{
   display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:24px;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
 }
 
 .chart-card{
-  border:1px solid rgba(224,166,59,.12);
-  background:rgba(255,255,255,.012);
-  padding:22px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  padding:24px;
 }
 
 .chart-title{
-  margin-bottom:18px;
-  color:#eadfce;
-  font-size:17px;
-  letter-spacing:.2px;
+  font-size:18px;
+  margin-bottom:20px;
+  color:#efe4d6;
 }
 
 canvas{
-  height:280px !important;
+  height:290px !important;
 }
 
-.scale-note{
-  margin-top:50px;
-  color:#8c6d4f;
+.footer{
+  margin-top:20px;
+  color:#755b42;
   font-size:13px;
-  line-height:1.7;
+  line-height:1.8;
 }
 
-.footer-note{
-  margin-top:14px;
-  color:#6e563f;
-  font-size:12px;
-  line-height:1.7;
-}
+@media(max-width:1100px){
 
-@media(max-width:950px){
-
-  .summary{
+  .summary-grid{
     grid-template-columns:1fr 1fr;
   }
 
-  .charts{
+  .charts-grid{
     grid-template-columns:1fr;
-  }
-
-  h1{
-    font-size:46px;
   }
 
 }
 
-@media(max-width:600px){
+@media(max-width:700px){
 
-  .summary{
+  .topbar{
+    flex-direction:column;
+    gap:24px;
+  }
+
+  .summary-grid{
     grid-template-columns:1fr;
+  }
+
+  .brand{
+    font-size:48px;
   }
 
 }
@@ -159,21 +208,37 @@ canvas{
 
 <div class="container">
 
-<h1>What the <span>data</span> says</h1>
+<div class="topbar">
+
+<div>
+<div class="brand">What the <span>data</span> says</div>
 
 <div class="sub">
-small sample · honest logging · emotional & functional tracking through repeated drink experimentation
+small sample · repeated sessions · emotional + functional tracking
+</div>
 </div>
 
-<!-- MORNING BLEND -->
+<div class="nav">
+/ lab &nbsp;&nbsp;&nbsp; / observations
+</div>
+
+</div>
+
+<!-- MORNING -->
 
 <div class="section">
 
+<div class="section-header">
 <div class="section-title">Morning Blend</div>
 
-<div class="summary" id="morningSummary"></div>
+<div class="section-note">
+focus · energy · mood
+</div>
+</div>
 
-<div class="charts">
+<div class="summary-grid" id="morningSummary"></div>
+
+<div class="charts-grid">
 
 <div class="chart-card">
 <div class="chart-title">Focus uplift</div>
@@ -194,15 +259,21 @@ small sample · honest logging · emotional & functional tracking through repeat
 
 </div>
 
-<!-- EVENING BLEND -->
+<!-- EVENING -->
 
 <div class="section">
 
+<div class="section-header">
 <div class="section-title">Evening Blend</div>
 
-<div class="summary" id="eveningSummary"></div>
+<div class="section-note">
+warmth · conversation · memorability
+</div>
+</div>
 
-<div class="charts">
+<div class="summary-grid" id="eveningSummary"></div>
+
+<div class="charts-grid">
 
 <div class="chart-card">
 <div class="chart-title">Emotional warmth</div>
@@ -223,12 +294,9 @@ small sample · honest logging · emotional & functional tracking through repeat
 
 </div>
 
-<div class="scale-note">
-Scale reference → 1 = low state · 3 = balanced baseline · 5 = unusually elevated state
-</div>
-
-<div class="footer-note">
-These are subjective observations, not scientific claims. The goal is to understand whether aroma, texture, temperature and ingredients influence emotional or functional states over repeated sessions.
+<div class="footer">
+Scale reference → 1 = low state · 3 = balanced baseline · 5 = unusually elevated state.<br/>
+The goal is not scientific precision. The goal is noticing patterns across repeated rituals.
 </div>
 
 </div>
@@ -242,111 +310,141 @@ fetch('states.json')
 const morning = data.filter(x => x.blend === "Morning Blend");
 const evening = data.filter(x => x.blend === "Evening Blend");
 
-function avg(arr){
-  return (arr.reduce((a,b)=>a+b,0)/arr.length).toFixed(1);
+function avgDiff(before, after){
+
+let total = 0;
+
+for(let i=0;i<before.length;i++){
+total += (after[i] - before[i]);
 }
 
-function uplift(before, after){
-  return avg(after.map((v,i)=>v-before[i]));
+return (total / before.length).toFixed(1);
+
 }
 
 document.getElementById("morningSummary").innerHTML = `
 
-<div class="card">
-  <div class="label">Sessions</div>
-  <div class="value">${morning.length}</div>
+<div class="metric-card">
+  <div class="metric-label">Sessions logged</div>
+  <div>
+    <div class="metric-value">${morning.length}</div>
+    <div class="metric-small">ongoing experimentation</div>
+  </div>
 </div>
 
-<div class="card">
-  <div class="label">Focus uplift</div>
-  <div class="value">↑ ${uplift(
-    morning.map(x=>x.focus_before),
-    morning.map(x=>x.focus_after)
-  )}</div>
+<div class="metric-card">
+  <div class="metric-label">Focus uplift</div>
+  <div>
+    <div class="metric-uplift">+${avgDiff(
+      morning.map(x=>x.focus_before),
+      morning.map(x=>x.focus_after)
+    )}</div>
+    <div class="metric-caption">average post-session lift</div>
+  </div>
 </div>
 
-<div class="card">
-  <div class="label">Energy uplift</div>
-  <div class="value">↑ ${uplift(
-    morning.map(x=>x.energy_before),
-    morning.map(x=>x.energy_after)
-  )}</div>
+<div class="metric-card">
+  <div class="metric-label">Energy uplift</div>
+  <div>
+    <div class="metric-uplift">+${avgDiff(
+      morning.map(x=>x.energy_before),
+      morning.map(x=>x.energy_after)
+    )}</div>
+    <div class="metric-caption">average post-session lift</div>
+  </div>
 </div>
 
-<div class="card">
-  <div class="label">Mood uplift</div>
-  <div class="value">↑ ${uplift(
-    morning.map(x=>x.mood_before),
-    morning.map(x=>x.mood_after)
-  )}</div>
+<div class="metric-card">
+  <div class="metric-label">Mood uplift</div>
+  <div>
+    <div class="metric-uplift">+${avgDiff(
+      morning.map(x=>x.mood_before),
+      morning.map(x=>x.mood_after)
+    )}</div>
+    <div class="metric-caption">average post-session lift</div>
+  </div>
 </div>
 
 `;
 
 document.getElementById("eveningSummary").innerHTML = `
 
-<div class="card">
-  <div class="label">Sessions</div>
-  <div class="value">${evening.length}</div>
+<div class="metric-card">
+  <div class="metric-label">Sessions logged</div>
+  <div>
+    <div class="metric-value">${evening.length}</div>
+    <div class="metric-small">small but revealing sample</div>
+  </div>
 </div>
 
-<div class="card">
-  <div class="label">Emotional warmth</div>
-  <div class="value">↑ ${uplift(
-    evening.map(x=>x.warmth_before),
-    evening.map(x=>x.warmth_after)
-  )}</div>
+<div class="metric-card">
+  <div class="metric-label">Emotional warmth</div>
+  <div>
+    <div class="metric-uplift">+${avgDiff(
+      evening.map(x=>x.warmth_before),
+      evening.map(x=>x.warmth_after)
+    )}</div>
+    <div class="metric-caption">felt emotional shift</div>
+  </div>
 </div>
 
-<div class="card">
-  <div class="label">Conversation depth</div>
-  <div class="value">↑ ${uplift(
-    evening.map(x=>x.conversation_before),
-    evening.map(x=>x.conversation_after)
-  )}</div>
+<div class="metric-card">
+  <div class="metric-label">Conversation depth</div>
+  <div>
+    <div class="metric-uplift">+${avgDiff(
+      evening.map(x=>x.conversation_before),
+      evening.map(x=>x.conversation_after)
+    )}</div>
+    <div class="metric-caption">slowness + openness</div>
+  </div>
 </div>
 
-<div class="card">
-  <div class="label">Memorability</div>
-  <div class="value">↑ ${uplift(
-    evening.map(x=>x.memory_before),
-    evening.map(x=>x.memory_after)
-  )}</div>
+<div class="metric-card">
+  <div class="metric-label">Memorability</div>
+  <div>
+    <div class="metric-uplift">+${avgDiff(
+      evening.map(x=>x.memory_before),
+      evening.map(x=>x.memory_after)
+    )}</div>
+    <div class="metric-caption">lingering emotional recall</div>
+  </div>
 </div>
 
 `;
 
-function createChart(id, labels, beforeData, afterData, accentColor){
+function chart(id, labels, before, after, color){
 
-new Chart(document.getElementById(id), {
+new Chart(document.getElementById(id),{
 
 type:'line',
 
 data:{
+
 labels:labels,
 
 datasets:[
 
 {
 label:'before',
-data:beforeData,
-borderColor:'rgba(165,132,95,.45)',
+data:before,
+borderColor:'rgba(173,132,88,.45)',
 borderDash:[5,5],
 borderWidth:2,
 tension:.35,
-pointRadius:3
+pointRadius:2
 },
 
 {
 label:'after',
-data:afterData,
-borderColor:accentColor,
+data:after,
+borderColor:color,
 borderWidth:3,
 tension:.35,
 pointRadius:4
 }
 
 ]
+
 },
 
 options:{
@@ -355,27 +453,29 @@ responsive:true,
 maintainAspectRatio:false,
 
 plugins:{
+
 legend:{
 labels:{
-color:'#d9c4aa',
+color:'#d8c5ae',
 font:{
 size:11
 }
 }
 }
+
 },
 
 scales:{
 
 x:{
 ticks:{
-color:'#9f7e5d',
+color:'#8d6d4f',
 font:{
 size:11
 }
 },
 grid:{
-color:'rgba(255,255,255,.04)'
+color:'rgba(255,255,255,.03)'
 }
 },
 
@@ -384,13 +484,13 @@ min:1,
 max:5,
 ticks:{
 stepSize:1,
-color:'#9f7e5d',
+color:'#8d6d4f',
 font:{
 size:11
 }
 },
 grid:{
-color:'rgba(255,255,255,.04)'
+color:'rgba(255,255,255,.03)'
 }
 }
 
@@ -402,7 +502,7 @@ color:'rgba(255,255,255,.04)'
 
 }
 
-createChart(
+chart(
 'focusChart',
 morning.map(x=>x.date),
 morning.map(x=>x.focus_before),
@@ -410,15 +510,15 @@ morning.map(x=>x.focus_after),
 '#e0a63b'
 );
 
-createChart(
+chart(
 'energyChart',
 morning.map(x=>x.date),
 morning.map(x=>x.energy_before),
 morning.map(x=>x.energy_after),
-'#b8f2d0'
+'#c9f7e1'
 );
 
-createChart(
+chart(
 'moodChart',
 morning.map(x=>x.date),
 morning.map(x=>x.mood_before),
@@ -426,7 +526,7 @@ morning.map(x=>x.mood_after),
 '#f6d365'
 );
 
-createChart(
+chart(
 'warmthChart',
 evening.map(x=>x.date),
 evening.map(x=>x.warmth_before),
@@ -434,20 +534,20 @@ evening.map(x=>x.warmth_after),
 '#f4a261'
 );
 
-createChart(
+chart(
 'conversationChart',
 evening.map(x=>x.date),
 evening.map(x=>x.conversation_before),
 evening.map(x=>x.conversation_after),
-'#f7c59f'
+'#ffd6a5'
 );
 
-createChart(
+chart(
 'memoryChart',
 evening.map(x=>x.date),
 evening.map(x=>x.memory_before),
 evening.map(x=>x.memory_after),
-'#ffd166'
+'#ffe29a'
 );
 
 });
