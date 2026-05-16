@@ -31,12 +31,64 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
+a{
+  text-decoration:none;
+}
+
 .container{
   width:1240px;
   max-width:92%;
   margin:auto;
-  padding:60px 0 90px;
+  padding:40px 0 90px;
 }
+
+/* NAV */
+
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:60px;
+}
+
+.logo{
+  color:#f4ede3;
+  font-size:34px;
+  letter-spacing:-1px;
+  font-style:italic;
+}
+
+.logo span{
+  color:var(--gold);
+}
+
+.nav-links{
+  display:flex;
+  gap:12px;
+}
+
+.nav-links a{
+  color:#8d6d4f;
+  border:1px solid rgba(224,166,59,.12);
+  padding:11px 18px;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1.4px;
+  transition:.25s ease;
+}
+
+.nav-links a:hover{
+  border-color:rgba(224,166,59,.35);
+  color:#f0e5d6;
+}
+
+.nav-links a.active{
+  background:#20120c;
+  border-color:rgba(224,166,59,.32);
+  color:var(--gold);
+}
+
+/* HERO */
 
 .topbar{
   display:flex;
@@ -64,12 +116,7 @@ body{
   line-height:1.7;
 }
 
-.nav{
-  color:#71553d;
-  font-size:12px;
-  letter-spacing:1px;
-  text-transform:uppercase;
-}
+/* SECTIONS */
 
 .section{
   margin-bottom:90px;
@@ -91,6 +138,8 @@ body{
   color:var(--muted);
   font-size:13px;
 }
+
+/* SUMMARY */
 
 .summary-grid{
   display:grid;
@@ -142,6 +191,8 @@ body{
   font-size:12px;
 }
 
+/* CHARTS */
+
 .charts-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -172,12 +223,16 @@ canvas{
   height:280px !important;
 }
 
+/* FOOTER */
+
 .footer{
   margin-top:18px;
   color:#745a42;
   font-size:13px;
   line-height:1.8;
 }
+
+/* MOBILE */
 
 @media(max-width:1100px){
 
@@ -206,6 +261,12 @@ canvas{
     gap:20px;
   }
 
+  .navbar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:22px;
+  }
+
   .brand{
     font-size:48px;
   }
@@ -219,6 +280,24 @@ canvas{
 
 <div class="container">
 
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<a href="index.html" class="logo">
+State<span>Shift</span>
+</a>
+
+<div class="nav-links">
+  <a href="index.html">Home</a>
+  <a href="lab.html">Lab</a>
+  <a href="states.html" class="active">Observations</a>
+</div>
+
+</div>
+
+<!-- HERO -->
+
 <div class="topbar">
 
 <div>
@@ -231,10 +310,6 @@ What the <span>data</span> says
 small sample · repeated sessions · emotional & functional tracking through drink experimentation
 </div>
 
-</div>
-
-<div class="nav">
-/ lab &nbsp;&nbsp;&nbsp; / observations
 </div>
 
 </div>
@@ -345,6 +420,8 @@ return (total / before.length).toFixed(1);
 
 }
 
+/* MORNING SUMMARY */
+
 document.getElementById("morningSummary").innerHTML = `
 
 <div class="metric-card">
@@ -403,6 +480,8 @@ document.getElementById("morningSummary").innerHTML = `
 
 `;
 
+/* EVENING SUMMARY */
+
 document.getElementById("eveningSummary").innerHTML = `
 
 <div class="metric-card">
@@ -460,6 +539,8 @@ document.getElementById("eveningSummary").innerHTML = `
 </div>
 
 `;
+
+/* CHART FUNCTION */
 
 function createChart(id, labels, before, after, color){
 
@@ -551,6 +632,8 @@ color:'rgba(255,255,255,.03)'
 
 }
 
+/* MORNING CHARTS */
+
 createChart(
 'focusChart',
 morning.map(x => x.date),
@@ -574,6 +657,8 @@ morning.map(x => x.mood_before),
 morning.map(x => x.mood_after),
 '#f6d365'
 );
+
+/* EVENING CHARTS */
 
 createChart(
 'warmthChart',
