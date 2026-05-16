@@ -1,167 +1,79 @@
-{
-  "meta": {
-    "start_date": "May 11",
-    "experiment_days": 6,
-    "total_logs": 8,
-    "active_skus": [
-      "Morning Blend",
-      "Evening Blend"
-    ]
+[
+  {
+    "date": "2026-05-11",
+    "blend": "Morning Blend",
+    "session": 1,
+    "focus_before": 2,
+    "focus_after": 3,
+    "energy_before": 2,
+    "energy_after": 3,
+    "mood_before": 3,
+    "mood_after": 3
   },
-
-  "daily": [
-    {
-      "date": "May 11",
-      "blend": "Morning Blend",
-
-      "focus_before": 2,
-      "focus_after": 3,
-
-      "energy_before": 2,
-      "energy_after": 3,
-
-      "mood_before": 3,
-      "mood_after": 3.5,
-
-      "anxiety_before": 2,
-      "anxiety_after": 1,
-
-      "note": "First version felt sharper and more activating than expected. Cardamom was dominating the cup but also making the drink feel intentional and alert."
-    },
-
-    {
-      "date": "May 12",
-      "blend": "Morning Blend",
-
-      "focus_before": 3,
-      "focus_after": 5,
-
-      "energy_before": 2,
-      "energy_after": 4,
-
-      "mood_before": 3,
-      "mood_after": 4,
-
-      "anxiety_before": 2,
-      "anxiety_after": 1,
-
-      "note": "Best functional lift so far. Coffee felt alive, sharper and emotionally energising without becoming jittery."
-    },
-
-    {
-      "date": "May 13",
-      "blend": "Morning Blend",
-
-      "focus_before": 3,
-      "focus_after": 4,
-
-      "energy_before": 2,
-      "energy_after": 3,
-
-      "mood_before": 3,
-      "mood_after": 4,
-
-      "anxiety_before": 2,
-      "anxiety_after": 1,
-
-      "note": "Cinnamon softened the alertness. Mood improved slightly but the drink became calmer and less focused."
-    },
-
-    {
-      "date": "May 14",
-      "blend": "Morning Blend",
-
-      "focus_before": 2,
-      "focus_after": 4,
-
-      "energy_before": 2,
-      "energy_after": 3,
-
-      "mood_before": 2,
-      "mood_after": 3,
-
-      "anxiety_before": 1,
-      "anxiety_after": 1,
-
-      "note": "Freshly crushed cardamom balanced better with the coffee. Aroma arrived first through the nose, then coffee followed in taste."
-    },
-
-    {
-      "date": "May 15",
-      "blend": "Morning Blend",
-
-      "focus_before": 3,
-      "focus_after": 3,
-
-      "energy_before": 3,
-      "energy_after": 3,
-
-      "mood_before": 3.5,
-      "mood_after": 3.5,
-
-      "anxiety_before": 1,
-      "anxiety_after": 1,
-
-      "note": "Straining removed residue but also removed the identity of the drink. Cardamom almost disappeared and the cup felt like a generic instant coffee."
-    }
-  ],
-
-  "social_daily": [
-    {
-      "date": "May 12",
-      "blend": "Evening Blend",
-
-      "conversation_before": 2,
-      "conversation_after": 3,
-
-      "warmth_before": 2,
-      "warmth_after": 4,
-
-      "linger_before": 2,
-      "linger_after": 4,
-
-      "drinkability_before": 2,
-      "drinkability_after": 2,
-
-      "note": "Drink felt thick, bitter and slow. More like a ritual hot chocolate than a coffee."
-    },
-
-    {
-      "date": "May 13",
-      "blend": "Evening Blend",
-
-      "conversation_before": 2,
-      "conversation_after": 4,
-
-      "warmth_before": 2,
-      "warmth_after": 4,
-
-      "linger_before": 2,
-      "linger_after": 5,
-
-      "drinkability_before": 2,
-      "drinkability_after": 3,
-
-      "note": "Guests found it easier to drink. One described it as coffee-kadha while another sensed hazelnut notes."
-    },
-
-    {
-      "date": "May 15",
-      "blend": "Evening Blend",
-
-      "conversation_before": 2,
-      "conversation_after": 2,
-
-      "warmth_before": 2,
-      "warmth_after": 3,
-
-      "linger_before": 2,
-      "linger_after": 4,
-
-      "drinkability_before": 2,
-      "drinkability_after": 2,
-
-      "note": "Cardamom infusion removed the residue problem but the cup drifted too close to kahwa territory. Cinnamon was overpowering and coffee disappeared."
-    }
-  ]
-}
+  {
+    "date": "2026-05-12",
+    "blend": "Morning Blend",
+    "session": 2,
+    "focus_before": 3,
+    "focus_after": 5,
+    "energy_before": 2,
+    "energy_after": 4,
+    "mood_before": 3,
+    "mood_after": 4
+  },
+  {
+    "date": "2026-05-13",
+    "blend": "Morning Blend",
+    "session": 3,
+    "focus_before": 3,
+    "focus_after": 4,
+    "energy_before": 2,
+    "energy_after": 3,
+    "mood_before": 3,
+    "mood_after": 4
+  },
+  {
+    "date": "2026-05-14",
+    "blend": "Morning Blend",
+    "session": 4,
+    "focus_before": 2,
+    "focus_after": 4,
+    "energy_before": 2,
+    "energy_after": 3,
+    "mood_before": 2,
+    "mood_after": 3
+  },
+  {
+    "date": "2026-05-15",
+    "blend": "Evening Blend",
+    "session": 1,
+    "warmth_before": 2,
+    "warmth_after": 4,
+    "conversation_before": 2,
+    "conversation_after": 4,
+    "memory_before": 2,
+    "memory_after": 4
+  },
+  {
+    "date": "2026-05-16",
+    "blend": "Evening Blend",
+    "session": 2,
+    "warmth_before": 2,
+    "warmth_after": 3,
+    "conversation_before": 2,
+    "conversation_after": 3,
+    "memory_before": 2,
+    "memory_after": 3
+  },
+  {
+    "date": "2026-05-17",
+    "blend": "Evening Blend",
+    "session": 3,
+    "warmth_before": 2,
+    "warmth_after": 4,
+    "conversation_before": 2,
+    "conversation_after": 4,
+    "memory_before": 2,
+    "memory_after": 5
+  }
+]
