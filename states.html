@@ -250,26 +250,26 @@ document.getElementById('morningSummary').innerHTML = `
 
 <div class="card">
 <div class="label">Focus uplift</div>
-<div class="value">+${avgDiff(
+<div class="value">${avgDiff(
 morning.map(x=>x.focus_before),
 morning.map(x=>x.focus_after)
-)} / 5</div>
+)}</div>
 </div>
 
 <div class="card">
 <div class="label">Energy uplift</div>
-<div class="value">+${avgDiff(
+<div class="value">↑ {avgDiff(
 morning.map(x=>x.energy_before),
 morning.map(x=>x.energy_after)
-)} / 5</div>
+)}</div>
 </div>
 
 <div class="card">
 <div class="label">Mood uplift</div>
-<div class="value">+${avgDiff(
+<div class="value">↑ {avgDiff(
 morning.map(x=>x.mood_before),
 morning.map(x=>x.mood_after)
-)} / 5</div>
+)}</div>
 </div>
 
 `;
@@ -283,26 +283,26 @@ document.getElementById('eveningSummary').innerHTML = `
 
 <div class="card">
 <div class="label">Emotional warmth</div>
-<div class="value">+${avgDiff(
+<div class="value">↑ {avgDiff(
 evening.map(x=>x.warmth_before),
 evening.map(x=>x.warmth_after)
-)} / 5</div>
+)}</div>
 </div>
 
 <div class="card">
 <div class="label">Conversation depth</div>
-<div class="value">+${avgDiff(
+<div class="value">↑ {avgDiff(
 evening.map(x=>x.conversation_before),
 evening.map(x=>x.conversation_after)
-)} / 5</div>
+)}</div>
 </div>
 
 <div class="card">
 <div class="label">Memorability</div>
-<div class="value">+${avgDiff(
+<div class="value">↑ {avgDiff(
 evening.map(x=>x.memory_before),
 evening.map(x=>x.memory_after)
-)} / 5</div>
+)}</div>
 </div>
 
 `;
