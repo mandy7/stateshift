@@ -1,535 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Observations — StateShift</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<title>Observations — StateShift</title>
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    body{
-      background:#120d0a;
-      color:#f3e7d3;
-      font-family:Georgia, serif;
-      line-height:1.6;
-    }
+<style>
+body{
+  margin:0;
+  background:#120b08;
+  color:#f6efe7;
+  font-family:Georgia, serif;
+}
 
-    .container{
-      max-width:1200px;
-      margin:auto;
-      padding:60px 24px 100px;
-    }
+.container{
+  width:1100px;
+  max-width:92%;
+  margin:auto;
+  padding:40px 0 80px;
+}
 
-    .topbar{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:50px;
-    }
+h1{
+  font-size:72px;
+  margin-bottom:10px;
+  font-weight:400;
+}
 
-    .logo{
-      font-size:34px;
-      font-style:italic;
-      color:#f5e8d3;
-    }
+h1 span{
+  color:#e0a63b;
+  font-style:italic;
+}
 
-    .nav{
-      display:flex;
-      gap:24px;
-      font-size:14px;
-      letter-spacing:1px;
-      text-transform:uppercase;
-    }
+.sub{
+  color:#b48b63;
+  margin-bottom:40px;
+  letter-spacing:1px;
+}
 
-    .nav a{
-      color:#b59663;
-      text-decoration:none;
-    }
+.section{
+  margin-bottom:70px;
+}
 
-    h1{
-      font-size:68px;
-      line-height:1;
-      margin-bottom:12px;
-      font-weight:400;
-    }
+.section-title{
+  font-size:28px;
+  margin-bottom:24px;
+  color:#f2e7d8;
+}
 
-    h1 span{
-      color:#e0a63b;
-      font-style:italic;
-    }
+.summary{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+  margin-bottom:35px;
+}
 
-    .sub{
-      color:#c1a57a;
-      margin-bottom:50px;
-      font-size:15px;
-    }
+.card{
+  border:1px solid rgba(224,166,59,.35);
+  padding:22px;
+  background:rgba(255,255,255,.02);
+}
 
-    .stats-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-      gap:16px;
-      margin-bottom:60px;
-    }
+.label{
+  font-size:12px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:#b48b63;
+  margin-bottom:10px;
+}
 
-    .stat-card{
-      border:1px solid #5a4325;
-      padding:22px;
-      background:#1b120d;
-    }
+.value{
+  font-size:38px;
+  color:#f6efe7;
+}
 
-    .stat-label{
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:1px;
-      color:#b59663;
-      margin-bottom:12px;
-    }
+.note{
+  color:#b48b63;
+  margin-top:8px;
+  font-size:13px;
+}
 
-    .stat-value{
-      font-size:42px;
-      color:#fff3dd;
-    }
+.charts{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:28px;
+}
 
-    .section-title{
-      font-size:36px;
-      margin-bottom:28px;
-      margin-top:70px;
-      font-weight:400;
-    }
+.chart-card{
+  border:1px solid rgba(224,166,59,.18);
+  padding:22px;
+  background:rgba(255,255,255,.015);
+}
 
-    .charts{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(420px,1fr));
-      gap:26px;
-    }
+.chart-title{
+  margin-bottom:18px;
+  color:#f2e7d8;
+  font-size:18px;
+}
 
-    .chart-card{
-      border:1px solid #3d2c1c;
-      background:#18110d;
-      padding:22px;
-    }
+.scale-note{
+  margin-top:50px;
+  color:#9d7c58;
+  font-size:14px;
+}
 
-    .chart-title{
-      font-size:20px;
-      margin-bottom:14px;
-      color:#f3e7d3;
-    }
-
-    canvas{
-      width:100% !important;
-      height:320px !important;
-    }
-
-    .notes{
-      margin-top:70px;
-      display:grid;
-      gap:18px;
-    }
-
-    .note{
-      border:1px solid #3d2c1c;
-      background:#18110d;
-      padding:22px;
-    }
-
-    .note-date{
-      color:#c39b5f;
-      font-size:13px;
-      margin-bottom:8px;
-      letter-spacing:1px;
-      text-transform:uppercase;
-    }
-
-    .note-title{
-      font-size:22px;
-      margin-bottom:12px;
-      color:#fff1d7;
-    }
-
-    .note-text{
-      color:#d6c4ac;
-      font-size:16px;
-    }
-
-    .tags{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:16px;
-    }
-
-    .tag{
-      border:1px solid #4d3925;
-      padding:6px 10px;
-      font-size:12px;
-      color:#d0ae79;
-    }
-
-    @media(max-width:768px){
-
-      h1{
-        font-size:48px;
-      }
-
-      .charts{
-        grid-template-columns:1fr;
-      }
-
-      .topbar{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:18px;
-      }
-    }
-  </style>
+canvas{
+  height:300px !important;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <div class="topbar">
-      <div class="logo">StateShift</div>
+<h1>What the <span>data</span> says</h1>
 
-      <div class="nav">
-        <a href="/">Home</a>
-        <a href="/lab">Lab</a>
-        <a href="/states">Observations</a>
-      </div>
-    </div>
+<div class="sub">
+small sample · honest logging · emotional & functional tracking
+</div>
 
-    <h1>What the <span>data</span> says</h1>
+<div class="section">
 
-    <div class="sub">
-      small sample · honest observations · emotional state tracking · still evolving
-    </div>
+<div class="section-title">Morning Blend</div>
 
-    <div id="statsGrid" class="stats-grid"></div>
+<div class="summary" id="morningSummary"></div>
 
-    <div class="section-title">Morning Blend — Functional State</div>
+<div class="charts">
 
-    <div class="charts">
+<div class="chart-card">
+<div class="chart-title">Focus uplift</div>
+<canvas id="focusChart"></canvas>
+</div>
 
-      <div class="chart-card">
-        <div class="chart-title">Focus shift</div>
-        <canvas id="focusChart"></canvas>
-      </div>
-
-      <div class="chart-card">
-        <div class="chart-title">Energy shift</div>
-        <canvas id="energyChart"></canvas>
-      </div>
-
-      <div class="chart-card">
-        <div class="chart-title">Mood shift</div>
-        <canvas id="moodChart"></canvas>
-      </div>
-
-      <div class="chart-card">
-        <div class="chart-title">Anxiety shift</div>
-        <canvas id="anxietyChart"></canvas>
-      </div>
-
-    </div>
-
-    <div class="section-title">Evening Blend — Social & Emotional State</div>
-
-    <div class="charts">
-
-      <div class="chart-card">
-        <div class="chart-title">Conversation openness</div>
-        <canvas id="conversationChart"></canvas>
-      </div>
-
-      <div class="chart-card">
-        <div class="chart-title">Warmth & comfort</div>
-        <canvas id="warmthChart"></canvas>
-      </div>
-
-      <div class="chart-card">
-        <div class="chart-title">Conversation pacing</div>
-        <canvas id="lingerChart"></canvas>
-      </div>
-
-      <div class="chart-card">
-        <div class="chart-title">Drinkability</div>
-        <canvas id="drinkabilityChart"></canvas>
-      </div>
-
-    </div>
-
-    <div class="section-title">Field notes</div>
-
-    <div id="notes" class="notes"></div>
-
-  </div>
-
-  <script>
-
-    async function loadData(){
-
-      const response = await fetch('./states.json');
-      const data = await response.json();
-
-      renderStats(data);
-      renderMorningCharts(data.daily);
-      renderEveningCharts(data.social_daily);
-      renderNotes(data.daily, data.social_daily);
-    }
-
-    function average(arr){
-      return (arr.reduce((a,b)=>a+b,0) / arr.length).toFixed(1);
-    }
-
-    function renderStats(data){
-
-      const daily = data.daily;
-
-      const focusLift = average(
-        daily.map(d => d.focus_after - d.focus_before)
-      );
-
-      const energyLift = average(
-        daily.map(d => d.energy_after - d.energy_before)
-      );
-
-      const moodLift = average(
-        daily.map(d => d.mood_after - d.mood_before)
-      );
-
-      const anxietyShift = average(
-        daily.map(d => d.anxiety_after - d.anxiety_before)
-      );
-
-      document.getElementById('statsGrid').innerHTML = `
-        <div class="stat-card">
-          <div class="stat-label">Sessions logged</div>
-          <div class="stat-value">${data.meta.total_logs}</div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-label">Experiment days</div>
-          <div class="stat-value">${data.meta.experiment_days}</div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-label">Avg focus lift</div>
-          <div class="stat-value">+${focusLift}</div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-label">Anxiety shift</div>
-          <div class="stat-value">${anxietyShift}</div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-label">Avg energy lift</div>
-          <div class="stat-value">+${energyLift}</div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-label">Avg mood lift</div>
-          <div class="stat-value">+${moodLift}</div>
-        </div>
-      `;
-    }
-
-    function createLineChart(id, labels, beforeData, afterData, beforeColor, afterColor){
-
-      new Chart(document.getElementById(id),{
-        type:'line',
-
-        data:{
-          labels,
-          datasets:[
-            {
-              label:'before',
-              data:beforeData,
-              borderColor:beforeColor,
-              backgroundColor:'transparent',
-              tension:0.35,
-              borderDash:[5,5],
-              borderWidth:2
-            },
-            {
-              label:'after',
-              data:afterData,
-              borderColor:afterColor,
-              backgroundColor:'transparent',
-              tension:0.35,
-              borderWidth:3
-            }
-          ]
-        },
-
-        options:{
-          responsive:true,
-
-          plugins:{
-            legend:{
-              labels:{
-                color:'#e8d5b5'
-              }
-            }
-          },
-
-          scales:{
-            x:{
-              ticks:{
-                color:'#c6ab81'
-              },
-              grid:{
-                color:'#2d2117'
-              }
-            },
-
-            y:{
-              min:0,
-              max:5,
-              ticks:{
-                stepSize:1,
-                color:'#c6ab81'
-              },
-              grid:{
-                color:'#2d2117'
-              }
-            }
-          }
-        }
-      });
-    }
-
-    function renderMorningCharts(daily){
-
-      const labels = daily.map(d => d.date);
-
-      createLineChart(
-        'focusChart',
-        labels,
-        daily.map(d => d.focus_before),
-        daily.map(d => d.focus_after),
-        '#8d6b3f',
-        '#f2c14e'
-      );
-
-      createLineChart(
-        'energyChart',
-        labels,
-        daily.map(d => d.energy_before),
-        daily.map(d => d.energy_after),
-        '#7e8a70',
-        '#c8f7c5'
-      );
-
-      createLineChart(
-        'moodChart',
-        labels,
-        daily.map(d => d.mood_before),
-        daily.map(d => d.mood_after),
-        '#8d6b3f',
-        '#f2c14e'
-      );
-
-      createLineChart(
-        'anxietyChart',
-        labels,
-        daily.map(d => d.anxiety_before),
-        daily.map(d => d.anxiety_after),
-        '#6d7f77',
-        '#8de0c1'
-      );
-    }
-
-    function renderEveningCharts(social){
-
-      const labels = social.map(d => d.date);
-
-      createLineChart(
-        'conversationChart',
-        labels,
-        social.map(d => d.conversation_before),
-        social.map(d => d.conversation_after),
-        '#7a5a35',
-        '#ffb86c'
-      );
-
-      createLineChart(
-        'warmthChart',
-        labels,
-        social.map(d => d.warmth_before),
-        social.map(d => d.warmth_after),
-        '#7a5a35',
-        '#ff9f43'
-      );
-
-      createLineChart(
-        'lingerChart',
-        labels,
-        social.map(d => d.linger_before),
-        social.map(d => d.linger_after),
-        '#7a5a35',
-        '#ffd166'
-      );
-
-      createLineChart(
-        'drinkabilityChart',
-        labels,
-        social.map(d => d.drinkability_before),
-        social.map(d => d.drinkability_after),
-        '#7a5a35',
-        '#f4a261'
-      );
-    }
-
-    function renderNotes(daily, social){
-
-      const combined = [...daily, ...social];
-
-      const notesContainer = document.getElementById('notes');
-
-      combined.reverse().forEach(item => {
-
-        const div = document.createElement('div');
-
-        div.className = 'note';
-
-        div.innerHTML = `
-          <div class="note-date">${item.date}</div>
-
-          <div class="note-title">${item.blend}</div>
-
-          <div class="note-text">
-            ${item.note}
-          </div>
-
-          <div class="tags">
-
-            ${Object.entries(item)
-              .filter(([key]) =>
-                !['date','blend','note'].includes(key)
-              )
-              .map(([key,value]) =>
-                `<div class="tag">${key.replaceAll('_',' ')}: ${value}</div>`
-              )
-              .join('')}
-
-          </div>
-        `;
-
-        notesContainer.appendChild(div);
-      });
-    }
-
-    loadData();
-
-  </script>
+<div class="chart-card">
+<div class="chart-title">Energy uplift</div>
+<canvas id="energyChart"></canvas>
+</div>
+
+<div class="chart-card">
+<div class="chart-title">Mood uplift</div>
+<canvas id="moodChart"></canvas>
+</div>
+
+</div>
+</div>
+
+<div class="section">
+
+<div class="section-title">Evening Blend</div>
+
+<div class="summary" id="eveningSummary"></div>
+
+<div class="charts">
+
+<div class="chart-card">
+<div class="chart-title">Emotional warmth</div>
+<canvas id="warmthChart"></canvas>
+</div>
+
+<div class="chart-card">
+<div class="chart-title">Conversation depth</div>
+<canvas id="conversationChart"></canvas>
+</div>
+
+<div class="chart-card">
+<div class="chart-title">Memorability</div>
+<canvas id="memoryChart"></canvas>
+</div>
+
+</div>
+</div>
+
+<div class="scale-note">
+Scale: 1 = low · 3 = balanced baseline · 5 = unusually elevated state
+</div>
+
+</div>
+
+<script>
+
+fetch('states.json')
+.then(res => res.json())
+.then(data => {
+
+const morning = data.filter(d => d.blend === "Morning Blend");
+const evening = data.filter(d => d.blend === "Evening Blend");
+
+function avg(arr){
+return (arr.reduce((a,b)=>a+b,0)/arr.length).toFixed(1);
+}
+
+function uplift(before, after){
+return avg(after.map((v,i)=>v-before[i]));
+}
+
+document.getElementById("morningSummary").innerHTML = `
+<div class="card">
+<div class="label">Sessions</div>
+<div class="value">${morning.length}</div>
+</div>
+
+<div class="card">
+<div class="label">Focus uplift</div>
+<div class="value">+${uplift(
+morning.map(x=>x.focus_before),
+morning.map(x=>x.focus_after)
+)} / 5</div>
+</div>
+
+<div class="card">
+<div class="label">Energy uplift</div>
+<div class="value">+${uplift(
+morning.map(x=>x.energy_before),
+morning.map(x=>x.energy_after)
+)} / 5</div>
+</div>
+
+<div class="card">
+<div class="label">Mood uplift</div>
+<div class="value">+${uplift(
+morning.map(x=>x.mood_before),
+morning.map(x=>x.mood_after)
+)} / 5</div>
+</div>
+`;
+
+document.getElementById("eveningSummary").innerHTML = `
+<div class="card">
+<div class="label">Sessions</div>
+<div class="value">${evening.length}</div>
+</div>
+
+<div class="card">
+<div class="label">Emotional warmth</div>
+<div class="value">+${uplift(
+evening.map(x=>x.warmth_before),
+evening.map(x=>x.warmth_after)
+)} / 5</div>
+</div>
+
+<div class="card">
+<div class="label">Conversation depth</div>
+<div class="value">+${uplift(
+evening.map(x=>x.conversation_before),
+evening.map(x=>x.conversation_after)
+)} / 5</div>
+</div>
+
+<div class="card">
+<div class="label">Memorability</div>
+<div class="value">+${uplift(
+evening.map(x=>x.memory_before),
+evening.map(x=>x.memory_after)
+)} / 5</div>
+</div>
+`;
+
+function makeChart(id, labels, before, after, color){
+
+new Chart(document.getElementById(id),{
+
+type:'line',
+
+data:{
+labels,
+datasets:[
+{
+label:'before',
+data:before,
+borderColor:'rgba(180,139,99,.5)',
+borderDash:[5,5],
+tension:.4
+},
+{
+label:'after',
+data:after,
+borderColor:color,
+tension:.4
+}
+]
+},
+
+options:{
+responsive:true,
+plugins:{
+legend:{
+labels:{
+color:'#f6efe7'
+}
+}
+},
+scales:{
+x:{
+ticks:{color:'#c6a57f'},
+grid:{color:'rgba(255,255,255,.05)'}
+},
+y:{
+min:1,
+max:5,
+ticks:{color:'#c6a57f'},
+grid:{color:'rgba(255,255,255,.05)'}
+}
+}
+}
+
+});
+
+}
+
+makeChart(
+'focusChart',
+morning.map(x=>x.date),
+morning.map(x=>x.focus_before),
+morning.map(x=>x.focus_after),
+'#e0a63b'
+);
+
+makeChart(
+'energyChart',
+morning.map(x=>x.date),
+morning.map(x=>x.energy_before),
+morning.map(x=>x.energy_after),
+'#b8f2d0'
+);
+
+makeChart(
+'moodChart',
+morning.map(x=>x.date),
+morning.map(x=>x.mood_before),
+morning.map(x=>x.mood_after),
+'#f6d365'
+);
+
+makeChart(
+'warmthChart',
+evening.map(x=>x.date),
+evening.map(x=>x.warmth_before),
+evening.map(x=>x.warmth_after),
+'#f2a65a'
+);
+
+makeChart(
+'conversationChart',
+evening.map(x=>x.date),
+evening.map(x=>x.conversation_before),
+evening.map(x=>x.conversation_after),
+'#f7c59f'
+);
+
+makeChart(
+'memoryChart',
+evening.map(x=>x.date),
+evening.map(x=>x.memory_before),
+evening.map(x=>x.memory_after),
+'#ffd166'
+);
+
+});
+
+</script>
 
 </body>
 </html>
