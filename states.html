@@ -1,439 +1,646 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>StateShift — States</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Observations — StateShift</title>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
-    body {
-      margin: 0;
-      padding: 0;
-      background: #0f0f0f;
-      color: #f5f5f5;
-      font-family: Inter, sans-serif;
-      line-height: 1.6;
-    }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 40px 20px 80px;
-    }
+<style>
 
-    h1 {
-      font-size: 40px;
-      margin-bottom: 10px;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    .subtitle {
-      color: #a0a0a0;
-      margin-bottom: 40px;
-      max-width: 700px;
-    }
+html{
+  font-size:16px;
+  scroll-behavior:smooth;
+}
 
-    .section {
-      margin-bottom: 60px;
-    }
+body{
+  font-family:'Lora',Georgia,serif;
+  background-color:#221408;
+  color:#ede8df;
+  min-height:100vh;
+}
 
-    .section h2 {
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
+h1,h2,h3{
+  font-family:'Playfair Display',serif;
+  font-weight:400;
+  line-height:1.2;
+}
 
-    .meta-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-bottom: 40px;
-    }
+.site-header{
+  border-bottom:1px solid rgba(200,146,42,0.2);
+  padding:1.1rem 2rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:rgba(20,10,3,0.98);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
 
-    .meta-card {
-      background: #171717;
-      border: 1px solid #2a2a2a;
-      border-radius: 16px;
-      padding: 20px;
-    }
+.site-logo{
+  font-family:'Playfair Display',serif;
+  font-size:1.25rem;
+  color:#f0ebe0;
+  text-decoration:none;
+}
 
-    .meta-label {
-      color: #8a8a8a;
-      font-size: 13px;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+.site-logo span{
+  color:#d4a853;
+  font-style:italic;
+}
 
-    .meta-value {
-      font-size: 26px;
-      font-weight: 600;
-    }
+.site-nav{
+  display:flex;
+  gap:0.2rem;
+  align-items:center;
+}
 
-    .chart-card {
-      background: #171717;
-      border: 1px solid #2a2a2a;
-      border-radius: 20px;
-      padding: 24px;
-      margin-bottom: 30px;
-    }
+.site-nav a{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.67rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:#9a9088;
+  text-decoration:none;
+  padding:0.45rem 0.9rem;
+  border:1px solid transparent;
+}
 
-    canvas {
-      width: 100% !important;
-      height: 320px !important;
-    }
+.site-nav a.active{
+  color:#d4a853;
+  border-color:rgba(200,146,42,0.4);
+}
 
-    .entries {
-      display: grid;
-      gap: 20px;
-    }
+.page-wrap{
+  max-width:860px;
+  margin:0 auto;
+  padding:3.5rem 2rem 5rem 2.4rem;
+}
 
-    .entry {
-      background: #171717;
-      border: 1px solid #2a2a2a;
-      border-radius: 18px;
-      padding: 22px;
-    }
+.page-eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.62rem;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:#c8922a;
+  margin-bottom:0.7rem;
+}
 
-    .entry-date {
-      color: #8a8a8a;
-      font-size: 13px;
-      margin-bottom: 6px;
-    }
+.page-title{
+  font-size:clamp(1.8rem,4vw,2.6rem);
+  color:#f0ebe0;
+  margin-bottom:0.5rem;
+}
 
-    .entry-title {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 14px;
-    }
+.page-title em{
+  color:#d4a853;
+  font-style:italic;
+}
 
-    .entry-note {
-      color: #cfcfcf;
-      margin-bottom: 16px;
-    }
+.page-caveat{
+  font-family:'Caveat',cursive;
+  font-size:1rem;
+  color:rgba(200,146,42,0.5);
+  margin-bottom:3rem;
+}
 
-    .metrics {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
+.kpi-row{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:1px;
+  background:rgba(200,146,42,0.12);
+  border:1px solid rgba(200,146,42,0.15);
+  margin-bottom:3rem;
+}
 
-    .metric {
-      background: #111;
-      border: 1px solid #2f2f2f;
-      border-radius: 999px;
-      padding: 8px 14px;
-      font-size: 13px;
-    }
+.kpi{
+  background:rgba(40,22,8,0.7);
+  padding:1.2rem 1rem;
+}
 
-    .divider {
-      height: 1px;
-      background: #242424;
-      margin: 60px 0;
-    }
+.kpi-key{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.58rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:#9a9088;
+  margin-bottom:0.5rem;
+}
 
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 32px;
-      }
+.kpi-val{
+  font-family:'Playfair Display',serif;
+  font-size:1.8rem;
+  color:#f0ebe0;
+}
 
-      .section h2 {
-        font-size: 24px;
-      }
-    }
-  </style>
+.kpi-note{
+  font-family:'Caveat',cursive;
+  font-size:0.75rem;
+  color:rgba(200,146,42,0.4);
+  margin-top:0.3rem;
+}
+
+.chart-pair{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1.5rem;
+  margin-bottom:2.5rem;
+}
+
+@media(max-width:620px){
+  .chart-pair{
+    grid-template-columns:1fr;
+  }
+}
+
+.chart-head{
+  display:flex;
+  align-items:baseline;
+  gap:1rem;
+  margin-bottom:1rem;
+}
+
+.chart-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.58rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:rgba(200,146,42,0.6);
+}
+
+.chart-title{
+  font-size:1rem;
+}
+
+.chart-frame{
+  background:rgba(35,18,6,0.6);
+  border:1px solid rgba(200,146,42,0.12);
+  padding:1.4rem;
+}
+
+.chart-wrap{
+  position:relative;
+  height:220px;
+}
+
+.sku-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1rem;
+  margin-bottom:3rem;
+}
+
+.sku-card{
+  background:rgba(40,22,8,0.6);
+  border:1px solid rgba(200,146,42,0.18);
+  padding:1.2rem;
+}
+
+.sku-name{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.65rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:#c8922a;
+  margin-bottom:0.5rem;
+}
+
+.sku-taste{
+  font-size:1.6rem;
+  margin-bottom:0.6rem;
+}
+
+.sku-stat{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.62rem;
+  color:#8a8278;
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:0.25rem;
+}
+
+.sku-status-note{
+  font-family:'Caveat',cursive;
+  font-size:0.9rem;
+  margin-top:0.7rem;
+  color:rgba(200,146,42,0.45);
+}
+
+.interpret-section{
+  border:1px solid rgba(200,146,42,0.18);
+  background:rgba(35,18,6,0.5);
+  padding:1.8rem;
+}
+
+.interpret-header{
+  display:flex;
+  gap:1rem;
+  margin-bottom:1rem;
+}
+
+.interpret-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.58rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:rgba(200,146,42,0.55);
+}
+
+.interpret-entry{
+  padding:0.6rem 0;
+}
+
+.interpret-date{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.58rem;
+  color:rgba(200,146,42,0.45);
+  margin-bottom:0.35rem;
+}
+
+.interpret-text{
+  font-family:'Caveat',cursive;
+  font-size:1.05rem;
+  line-height:1.55;
+}
+
+.interpret-divider{
+  height:1px;
+  background:rgba(200,146,42,0.1);
+}
+
+.bottom-note{
+  margin-top:2rem;
+  font-family:'Caveat',cursive;
+  font-size:0.95rem;
+  color:rgba(200,146,42,0.35);
+  text-align:center;
+}
+
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<header class="site-header">
 
-    <h1>StateShift — State Logs</h1>
+  <a href="/" class="site-logo">
+    State<span>Shift</span>
+  </a>
 
-    <p class="subtitle">
-      Tracking emotional and functional state shifts across experimental beverage iterations.
-      These logs are less about coffee ratings and more about how different formulations shape energy,
-      clarity, conversation, warmth, and emotional pacing.
-    </p>
+  <nav class="site-nav">
+    <a href="/lab">/ Lab</a>
+    <a href="/states" class="active">/ Observations</a>
+  </nav>
 
-    <div id="metaGrid" class="meta-grid"></div>
+</header>
 
-    <div class="section">
-      <h2>Morning Blend States</h2>
+<div class="page-wrap">
 
-      <div class="chart-card">
-        <canvas id="focusChart"></canvas>
-      </div>
+  <div class="page-eyebrow">
+    State Tracking · Field Observations
+  </div>
 
-      <div class="chart-card">
-        <canvas id="energyChart"></canvas>
-      </div>
+  <h1 class="page-title">
+    What the <em>data</em> says
+  </h1>
 
-      <div class="chart-card">
-        <canvas id="moodChart"></canvas>
-      </div>
+  <div class="page-caveat" id="pageCaveat">
+    loading observations...
+  </div>
 
-      <div class="chart-card">
-        <canvas id="anxietyChart"></canvas>
-      </div>
+  <div class="kpi-row">
+
+    <div class="kpi">
+      <div class="kpi-key">Sessions logged</div>
+      <div class="kpi-val" id="k-sessions">—</div>
+      <div class="kpi-note">and counting</div>
     </div>
 
-    <div class="divider"></div>
-
-    <div class="section">
-      <h2>Evening Blend States</h2>
-
-      <div class="chart-card">
-        <canvas id="conversationChart"></canvas>
-      </div>
-
-      <div class="chart-card">
-        <canvas id="warmthChart"></canvas>
-      </div>
-
-      <div class="chart-card">
-        <canvas id="lingerChart"></canvas>
-      </div>
-
-      <div class="chart-card">
-        <canvas id="drinkabilityChart"></canvas>
-      </div>
+    <div class="kpi">
+      <div class="kpi-key">Experiment days</div>
+      <div class="kpi-val" id="k-days">—</div>
+      <div class="kpi-note">since first cup</div>
     </div>
 
-    <div class="divider"></div>
+    <div class="kpi">
+      <div class="kpi-key">Avg focus lift</div>
+      <div class="kpi-val">+<span id="k-focus">—</span></div>
+      <div class="kpi-note">post vs pre</div>
+    </div>
 
-    <div class="section">
-      <h2>Interpretation Notes</h2>
-      <div id="entries" class="entries"></div>
+    <div class="kpi">
+      <div class="kpi-key">Anxiety shift</div>
+      <div class="kpi-val">−<span id="k-anxiety">—</span></div>
+      <div class="kpi-note">avg per session</div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi-key">Avg energy lift</div>
+      <div class="kpi-val">+<span id="k-energy">—</span></div>
+      <div class="kpi-note">post vs pre</div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi-key">Avg mood lift</div>
+      <div class="kpi-val">+<span id="k-mood">—</span></div>
+      <div class="kpi-note">post vs pre</div>
     </div>
 
   </div>
 
-  <script>
+  <div class="chart-pair">
 
-    async function loadStates() {
+    <div>
+      <div class="chart-head">
+        <span class="chart-label">Focus</span>
+        <span class="chart-title">Before and after</span>
+      </div>
 
-      const response = await fetch('./states.json');
-      const data = await response.json();
-
-      renderMeta(data.meta);
-      renderCharts(data.daily);
-      renderSocialCharts(data.social_daily);
-      renderEntries(data.daily, data.social_daily);
-
-    }
-
-    function renderMeta(meta) {
-
-      const grid = document.getElementById("metaGrid");
-
-      grid.innerHTML = `
-        <div class="meta-card">
-          <div class="meta-label">Experiment Start</div>
-          <div class="meta-value">${meta.start_date}</div>
+      <div class="chart-frame">
+        <div class="chart-wrap">
+          <canvas id="focusChart"></canvas>
         </div>
+      </div>
+    </div>
 
-        <div class="meta-card">
-          <div class="meta-label">Experiment Days</div>
-          <div class="meta-value">${meta.experiment_days}</div>
+    <div>
+      <div class="chart-head">
+        <span class="chart-label">Anxiety</span>
+        <span class="chart-title">Reduction per session</span>
+      </div>
+
+      <div class="chart-frame">
+        <div class="chart-wrap">
+          <canvas id="anxChart"></canvas>
         </div>
+      </div>
+    </div>
 
-        <div class="meta-card">
-          <div class="meta-label">Total Logs</div>
-          <div class="meta-value">${meta.total_logs}</div>
+  </div>
+
+  <div class="chart-pair">
+
+    <div>
+      <div class="chart-head">
+        <span class="chart-label">Energy</span>
+        <span class="chart-title">Before and after</span>
+      </div>
+
+      <div class="chart-frame">
+        <div class="chart-wrap">
+          <canvas id="energyChart"></canvas>
         </div>
+      </div>
+    </div>
 
-        <div class="meta-card">
-          <div class="meta-label">Active SKUs</div>
-          <div class="meta-value">${meta.active_skus.join(", ")}</div>
+    <div>
+      <div class="chart-head">
+        <span class="chart-label">Mood</span>
+        <span class="chart-title">Lift across sessions</span>
+      </div>
+
+      <div class="chart-frame">
+        <div class="chart-wrap">
+          <canvas id="moodChart"></canvas>
         </div>
-      `;
-    }
+      </div>
+    </div>
 
-    function buildChart(id, labels, beforeData, afterData, beforeLabel, afterLabel) {
+  </div>
 
-      const ctx = document.getElementById(id);
+  <div class="chart-head">
+    <span class="chart-label">SKUs</span>
+    <span class="chart-title">Current formulation status</span>
+  </div>
 
-      new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels,
-          datasets: [
-            {
-              label: beforeLabel,
-              data: beforeData,
-              borderWidth: 2,
-              tension: 0.35
-            },
-            {
-              label: afterLabel,
-              data: afterData,
-              borderWidth: 2,
-              tension: 0.35
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              labels: {
-                color: '#f5f5f5'
-              }
-            }
+  <div class="sku-grid" id="skuGrid"></div>
+
+  <div class="interpret-section">
+
+    <div class="interpret-header">
+      <div class="interpret-label">
+        What I actually think is happening
+      </div>
+    </div>
+
+    <div id="interpretEntries"></div>
+
+  </div>
+
+  <div class="bottom-note" id="bottomNote">
+    the real patterns emerge around day 30
+  </div>
+
+</div>
+
+<script>
+
+const C = {
+  text:'#b8a898',
+  grid:'rgba(255,255,255,0.06)',
+  font:"'IBM Plex Mono',monospace",
+  gold:'rgba(200,146,42,',
+  sage:'rgba(122,140,110,'
+};
+
+Chart.defaults.color = C.text;
+Chart.defaults.font.family = C.font;
+
+async function loadStates() {
+
+  try {
+
+    const response =
+      await fetch('./states.json?v=' + new Date().getTime());
+
+    const data = await response.json();
+
+    init(data);
+
+  } catch(err) {
+
+    console.error(err);
+
+  }
+
+}
+
+function init(data) {
+
+  const daily = data.daily || [];
+  const meta = data.meta || {};
+
+  document.getElementById('k-sessions').textContent =
+    meta.total_logs || daily.length;
+
+  document.getElementById('k-days').textContent =
+    meta.experiment_days || '—';
+
+  const avg = arr =>
+    (arr.reduce((a,b)=>a+b,0)/arr.length).toFixed(1);
+
+  if(daily.length){
+
+    document.getElementById('k-focus').textContent =
+      avg(daily.map(d=>d.fpo-d.fp));
+
+    document.getElementById('k-anxiety').textContent =
+      avg(daily.map(d=>d.ap-d.apo));
+
+    document.getElementById('k-energy').textContent =
+      avg(daily.map(d=>d.epo-d.ep));
+
+    document.getElementById('k-mood').textContent =
+      avg(daily.map(d=>d.mpo-d.mp));
+
+  }
+
+  document.getElementById('pageCaveat').textContent =
+    `day ${meta.experiment_days} · ${(meta.active_skus || []).join(' · ').toLowerCase()} · small sample · honest`;
+
+  const labels = daily.map(d=>d.date);
+
+  function createLineChart(id,beforeKey,afterKey,color){
+
+    new Chart(document.getElementById(id),{
+      type:'line',
+      data:{
+        labels,
+        datasets:[
+          {
+            label:'before',
+            data:daily.map(d=>d[beforeKey]),
+            borderColor:color+'0.35)',
+            borderDash:[3,4],
+            tension:0.4,
+            borderWidth:1
           },
-          scales: {
-            x: {
-              ticks: {
-                color: '#bdbdbd'
-              },
-              grid: {
-                color: '#222'
-              }
-            },
-            y: {
-              min: 0,
-              max: 5,
-              ticks: {
-                stepSize: 1,
-                color: '#bdbdbd'
-              },
-              grid: {
-                color: '#222'
-              }
-            }
+          {
+            label:'after',
+            data:daily.map(d=>d[afterKey]),
+            borderColor:color+'0.9)',
+            tension:0.4,
+            borderWidth:1.5
+          }
+        ]
+      },
+      options:{
+        responsive:true,
+        maintainAspectRatio:false,
+        scales:{
+          y:{
+            min:0,
+            max:5
           }
         }
-      });
+      }
+    });
+
+  }
+
+  createLineChart('focusChart','fp','fpo',C.gold);
+  createLineChart('energyChart','ep','epo',C.sage);
+  createLineChart('moodChart','mp','mpo',C.gold);
+
+  new Chart(document.getElementById('anxChart'),{
+    type:'bar',
+    data:{
+      labels,
+      datasets:[
+        {
+          data:daily.map(d=>d.ap-d.apo),
+          backgroundColor:C.sage+'0.7)'
+        }
+      ]
+    },
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+      scales:{
+        y:{
+          min:-2,
+          max:5
+        }
+      }
     }
+  });
 
-    function renderCharts(daily) {
+  document.getElementById('skuGrid').innerHTML = '';
 
-      const labels = daily.map(d => d.date);
+  (data.skus || []).forEach(sku=>{
 
-      buildChart(
-        "focusChart",
-        labels,
-        daily.map(d => d.fp),
-        daily.map(d => d.fpo),
-        "Focus Before",
-        "Focus After"
-      );
+    const card = document.createElement('div');
 
-      buildChart(
-        "energyChart",
-        labels,
-        daily.map(d => d.ep),
-        daily.map(d => d.epo),
-        "Energy Before",
-        "Energy After"
-      );
+    card.className = 'sku-card';
 
-      buildChart(
-        "moodChart",
-        labels,
-        daily.map(d => d.mp),
-        daily.map(d => d.mpo),
-        "Mood Before",
-        "Mood After"
-      );
+    card.innerHTML = `
+      <div class="sku-name">${sku.name}</div>
 
-      buildChart(
-        "anxietyChart",
-        labels,
-        daily.map(d => d.ap),
-        daily.map(d => d.apo),
-        "Anxiety Before",
-        "Anxiety After"
-      );
-    }
+      <div class="sku-taste">
+        ${sku.taste}/5
+      </div>
 
-    function renderSocialCharts(social) {
+      <div class="sku-stat">
+        <span>Focus Δ</span>
+        <strong>+${sku.avg_focus_delta}</strong>
+      </div>
 
-      const labels = social.map(d => d.date);
+      <div class="sku-stat">
+        <span>Energy Δ</span>
+        <strong>+${sku.avg_energy_delta}</strong>
+      </div>
 
-      buildChart(
-        "conversationChart",
-        labels,
-        social.map(d => d.conversation_before),
-        social.map(d => d.conversation_after),
-        "Conversation Before",
-        "Conversation After"
-      );
+      <div class="sku-stat">
+        <span>Mood Δ</span>
+        <strong>+${sku.avg_mood_delta}</strong>
+      </div>
 
-      buildChart(
-        "warmthChart",
-        labels,
-        social.map(d => d.warmth_before),
-        social.map(d => d.warmth_after),
-        "Warmth Before",
-        "Warmth After"
-      );
+      <div class="sku-stat">
+        <span>Anxiety ↓</span>
+        <strong>${Math.abs(sku.avg_anxiety_delta)}</strong>
+      </div>
 
-      buildChart(
-        "lingerChart",
-        labels,
-        social.map(d => d.linger_before),
-        social.map(d => d.linger_after),
-        "Linger Before",
-        "Linger After"
-      );
+      <div class="sku-stat">
+        <span>Sessions</span>
+        <strong>${sku.tests}</strong>
+      </div>
 
-      buildChart(
-        "drinkabilityChart",
-        labels,
-        social.map(d => d.drinkability_before),
-        social.map(d => d.drinkability_after),
-        "Drinkability Before",
-        "Drinkability After"
-      );
-    }
+      <div class="sku-status-note">
+        ${sku.status || ''}
+      </div>
+    `;
 
-    function renderEntries(daily, social) {
+    document.getElementById('skuGrid').appendChild(card);
 
-      const entries = document.getElementById("entries");
+  });
 
-      const combined = [...daily, ...social];
+  const notes = daily.map(d => `
+    <div class="interpret-entry">
+      <div class="interpret-date">${d.date}</div>
+      <div class="interpret-text">${d.note || d.blend}</div>
+    </div>
+    <div class="interpret-divider"></div>
+  `).join('');
 
-      combined.forEach(item => {
+  document.getElementById('interpretEntries').innerHTML = notes;
 
-        const div = document.createElement("div");
-        div.className = "entry";
+}
 
-        div.innerHTML = `
-          <div class="entry-date">${item.date}</div>
-          <div class="entry-title">${item.blend}</div>
+loadStates();
 
-          <div class="entry-note">
-            ${item.note || ""}
-          </div>
-
-          <div class="metrics">
-            ${Object.entries(item)
-              .filter(([key]) =>
-                !["date", "blend", "note"].includes(key)
-              )
-              .map(([key, value]) =>
-                `<div class="metric">${key}: ${value}</div>`
-              )
-              .join("")
-            }
-          </div>
-        `;
-
-        entries.appendChild(div);
-
-      });
-
-    }
-
-    loadStates();
-
-  </script>
+</script>
 
 </body>
 </html>
