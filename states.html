@@ -12,7 +12,7 @@
 
 :root{
   --bg:#120a07;
-  --panel:#1b100b;
+  --panel:#1a100b;
   --border:rgba(224,166,59,.14);
   --text:#f5efe6;
   --muted:#8f6e4d;
@@ -42,13 +42,13 @@ body{
   display:flex;
   justify-content:space-between;
   align-items:flex-start;
-  margin-bottom:55px;
+  margin-bottom:54px;
 }
 
 .brand{
   font-size:66px;
   line-height:1;
-  letter-spacing:-1.5px;
+  letter-spacing:-1.4px;
   font-weight:400;
 }
 
@@ -61,11 +61,11 @@ body{
   margin-top:12px;
   color:var(--muted);
   font-size:14px;
-  letter-spacing:.3px;
+  line-height:1.7;
 }
 
 .nav{
-  color:#6f543c;
+  color:#71553d;
   font-size:12px;
   letter-spacing:1px;
   text-transform:uppercase;
@@ -77,9 +77,9 @@ body{
 
 .section-header{
   display:flex;
-  align-items:end;
   justify-content:space-between;
-  margin-bottom:26px;
+  align-items:end;
+  margin-bottom:24px;
 }
 
 .section-title{
@@ -110,7 +110,7 @@ body{
 }
 
 .metric-label{
-  color:#9c7b58;
+  color:#9b7a57;
   font-size:11px;
   letter-spacing:1.3px;
   text-transform:uppercase;
@@ -120,54 +120,61 @@ body{
 .metric-value{
   font-size:42px;
   line-height:1;
-  color:#f9f3eb;
-  margin-top:10px;
+  color:#f7f1e8;
 }
 
 .metric-small{
   font-size:13px;
-  color:#7b6146;
+  color:#7d6247;
   margin-top:8px;
 }
 
 .metric-uplift{
   font-size:46px;
   line-height:1;
-  margin-top:18px;
-  color:#f5f0e8;
+  margin-top:16px;
+  color:#f6f1e9;
 }
 
 .metric-caption{
   margin-top:8px;
-  color:#87684a;
+  color:#86684a;
   font-size:12px;
 }
 
 .charts-grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:20px;
+  align-items:start;
 }
 
 .chart-card{
   background:var(--panel);
   border:1px solid var(--border);
   padding:24px;
+  width:100%;
+  min-width:0;
+}
+
+.chart-card.full-width{
+  grid-column:1 / span 2;
 }
 
 .chart-title{
   font-size:18px;
-  margin-bottom:20px;
-  color:#efe4d6;
+  margin-bottom:18px;
+  color:#efe4d5;
 }
 
 canvas{
-  height:290px !important;
+  width:100% !important;
+  height:280px !important;
 }
 
 .footer{
-  margin-top:20px;
-  color:#755b42;
+  margin-top:18px;
+  color:#745a42;
   font-size:13px;
   line-height:1.8;
 }
@@ -178,21 +185,25 @@ canvas{
     grid-template-columns:1fr 1fr;
   }
 
+}
+
+@media(max-width:800px){
+
   .charts-grid{
     grid-template-columns:1fr;
   }
 
-}
-
-@media(max-width:700px){
-
-  .topbar{
-    flex-direction:column;
-    gap:24px;
+  .chart-card.full-width{
+    grid-column:auto;
   }
 
   .summary-grid{
     grid-template-columns:1fr;
+  }
+
+  .topbar{
+    flex-direction:column;
+    gap:20px;
   }
 
   .brand{
@@ -211,11 +222,15 @@ canvas{
 <div class="topbar">
 
 <div>
-<div class="brand">What the <span>data</span> says</div>
+
+<div class="brand">
+What the <span>data</span> says
+</div>
 
 <div class="sub">
-small sample · repeated sessions · emotional + functional tracking
+small sample · repeated sessions · emotional & functional tracking through drink experimentation
 </div>
+
 </div>
 
 <div class="nav">
@@ -224,71 +239,79 @@ small sample · repeated sessions · emotional + functional tracking
 
 </div>
 
-<!-- MORNING -->
+<!-- MORNING BLEND -->
 
 <div class="section">
 
 <div class="section-header">
-<div class="section-title">Morning Blend</div>
+
+<div class="section-title">
+Morning Blend
+</div>
 
 <div class="section-note">
 focus · energy · mood
 </div>
+
 </div>
 
 <div class="summary-grid" id="morningSummary"></div>
 
 <div class="charts-grid">
 
-<div class="chart-card">
-<div class="chart-title">Focus uplift</div>
-<canvas id="focusChart"></canvas>
-</div>
+  <div class="chart-card">
+    <div class="chart-title">Focus uplift</div>
+    <canvas id="focusChart"></canvas>
+  </div>
 
-<div class="chart-card">
-<div class="chart-title">Energy uplift</div>
-<canvas id="energyChart"></canvas>
-</div>
+  <div class="chart-card">
+    <div class="chart-title">Energy uplift</div>
+    <canvas id="energyChart"></canvas>
+  </div>
 
-<div class="chart-card">
-<div class="chart-title">Mood uplift</div>
-<canvas id="moodChart"></canvas>
-</div>
-
-</div>
+  <div class="chart-card full-width">
+    <div class="chart-title">Mood uplift</div>
+    <canvas id="moodChart"></canvas>
+  </div>
 
 </div>
 
-<!-- EVENING -->
+</div>
+
+<!-- EVENING BLEND -->
 
 <div class="section">
 
 <div class="section-header">
-<div class="section-title">Evening Blend</div>
+
+<div class="section-title">
+Evening Blend
+</div>
 
 <div class="section-note">
 warmth · conversation · memorability
 </div>
+
 </div>
 
 <div class="summary-grid" id="eveningSummary"></div>
 
 <div class="charts-grid">
 
-<div class="chart-card">
-<div class="chart-title">Emotional warmth</div>
-<canvas id="warmthChart"></canvas>
-</div>
+  <div class="chart-card">
+    <div class="chart-title">Emotional warmth</div>
+    <canvas id="warmthChart"></canvas>
+  </div>
 
-<div class="chart-card">
-<div class="chart-title">Conversation depth</div>
-<canvas id="conversationChart"></canvas>
-</div>
+  <div class="chart-card">
+    <div class="chart-title">Conversation depth</div>
+    <canvas id="conversationChart"></canvas>
+  </div>
 
-<div class="chart-card">
-<div class="chart-title">Memorability</div>
-<canvas id="memoryChart"></canvas>
-</div>
+  <div class="chart-card full-width">
+    <div class="chart-title">Memorability</div>
+    <canvas id="memoryChart"></canvas>
+  </div>
 
 </div>
 
@@ -296,7 +319,7 @@ warmth · conversation · memorability
 
 <div class="footer">
 Scale reference → 1 = low state · 3 = balanced baseline · 5 = unusually elevated state.<br/>
-The goal is not scientific precision. The goal is noticing patterns across repeated rituals.
+The goal is not scientific precision. The goal is noticing emotional and functional patterns across repeated rituals.
 </div>
 
 </div>
@@ -314,8 +337,8 @@ function avgDiff(before, after){
 
 let total = 0;
 
-for(let i=0;i<before.length;i++){
-total += (after[i] - before[i]);
+for(let i = 0; i < before.length; i++){
+  total += (after[i] - before[i]);
 }
 
 return (total / before.length).toFixed(1);
@@ -326,6 +349,7 @@ document.getElementById("morningSummary").innerHTML = `
 
 <div class="metric-card">
   <div class="metric-label">Sessions logged</div>
+
   <div>
     <div class="metric-value">${morning.length}</div>
     <div class="metric-small">ongoing experimentation</div>
@@ -334,34 +358,46 @@ document.getElementById("morningSummary").innerHTML = `
 
 <div class="metric-card">
   <div class="metric-label">Focus uplift</div>
+
   <div>
     <div class="metric-uplift">+${avgDiff(
-      morning.map(x=>x.focus_before),
-      morning.map(x=>x.focus_after)
+      morning.map(x => x.focus_before),
+      morning.map(x => x.focus_after)
     )}</div>
-    <div class="metric-caption">average post-session lift</div>
+
+    <div class="metric-caption">
+      average post-session lift
+    </div>
   </div>
 </div>
 
 <div class="metric-card">
   <div class="metric-label">Energy uplift</div>
+
   <div>
     <div class="metric-uplift">+${avgDiff(
-      morning.map(x=>x.energy_before),
-      morning.map(x=>x.energy_after)
+      morning.map(x => x.energy_before),
+      morning.map(x => x.energy_after)
     )}</div>
-    <div class="metric-caption">average post-session lift</div>
+
+    <div class="metric-caption">
+      average post-session lift
+    </div>
   </div>
 </div>
 
 <div class="metric-card">
   <div class="metric-label">Mood uplift</div>
+
   <div>
     <div class="metric-uplift">+${avgDiff(
-      morning.map(x=>x.mood_before),
-      morning.map(x=>x.mood_after)
+      morning.map(x => x.mood_before),
+      morning.map(x => x.mood_after)
     )}</div>
-    <div class="metric-caption">average post-session lift</div>
+
+    <div class="metric-caption">
+      average post-session lift
+    </div>
   </div>
 </div>
 
@@ -371,6 +407,7 @@ document.getElementById("eveningSummary").innerHTML = `
 
 <div class="metric-card">
   <div class="metric-label">Sessions logged</div>
+
   <div>
     <div class="metric-value">${evening.length}</div>
     <div class="metric-small">small but revealing sample</div>
@@ -379,42 +416,54 @@ document.getElementById("eveningSummary").innerHTML = `
 
 <div class="metric-card">
   <div class="metric-label">Emotional warmth</div>
+
   <div>
     <div class="metric-uplift">+${avgDiff(
-      evening.map(x=>x.warmth_before),
-      evening.map(x=>x.warmth_after)
+      evening.map(x => x.warmth_before),
+      evening.map(x => x.warmth_after)
     )}</div>
-    <div class="metric-caption">felt emotional shift</div>
+
+    <div class="metric-caption">
+      felt emotional shift
+    </div>
   </div>
 </div>
 
 <div class="metric-card">
   <div class="metric-label">Conversation depth</div>
+
   <div>
     <div class="metric-uplift">+${avgDiff(
-      evening.map(x=>x.conversation_before),
-      evening.map(x=>x.conversation_after)
+      evening.map(x => x.conversation_before),
+      evening.map(x => x.conversation_after)
     )}</div>
-    <div class="metric-caption">slowness + openness</div>
+
+    <div class="metric-caption">
+      openness + slowness
+    </div>
   </div>
 </div>
 
 <div class="metric-card">
   <div class="metric-label">Memorability</div>
+
   <div>
     <div class="metric-uplift">+${avgDiff(
-      evening.map(x=>x.memory_before),
-      evening.map(x=>x.memory_after)
+      evening.map(x => x.memory_before),
+      evening.map(x => x.memory_after)
     )}</div>
-    <div class="metric-caption">lingering emotional recall</div>
+
+    <div class="metric-caption">
+      lingering emotional recall
+    </div>
   </div>
 </div>
 
 `;
 
-function chart(id, labels, before, after, color){
+function createChart(id, labels, before, after, color){
 
-new Chart(document.getElementById(id),{
+new Chart(document.getElementById(id), {
 
 type:'line',
 
@@ -456,7 +505,7 @@ plugins:{
 
 legend:{
 labels:{
-color:'#d8c5ae',
+color:'#d9c5ac',
 font:{
 size:11
 }
@@ -502,51 +551,51 @@ color:'rgba(255,255,255,.03)'
 
 }
 
-chart(
+createChart(
 'focusChart',
-morning.map(x=>x.date),
-morning.map(x=>x.focus_before),
-morning.map(x=>x.focus_after),
+morning.map(x => x.date),
+morning.map(x => x.focus_before),
+morning.map(x => x.focus_after),
 '#e0a63b'
 );
 
-chart(
+createChart(
 'energyChart',
-morning.map(x=>x.date),
-morning.map(x=>x.energy_before),
-morning.map(x=>x.energy_after),
-'#c9f7e1'
+morning.map(x => x.date),
+morning.map(x => x.energy_before),
+morning.map(x => x.energy_after),
+'#c8f7df'
 );
 
-chart(
+createChart(
 'moodChart',
-morning.map(x=>x.date),
-morning.map(x=>x.mood_before),
-morning.map(x=>x.mood_after),
+morning.map(x => x.date),
+morning.map(x => x.mood_before),
+morning.map(x => x.mood_after),
 '#f6d365'
 );
 
-chart(
+createChart(
 'warmthChart',
-evening.map(x=>x.date),
-evening.map(x=>x.warmth_before),
-evening.map(x=>x.warmth_after),
+evening.map(x => x.date),
+evening.map(x => x.warmth_before),
+evening.map(x => x.warmth_after),
 '#f4a261'
 );
 
-chart(
+createChart(
 'conversationChart',
-evening.map(x=>x.date),
-evening.map(x=>x.conversation_before),
-evening.map(x=>x.conversation_after),
+evening.map(x => x.date),
+evening.map(x => x.conversation_before),
+evening.map(x => x.conversation_after),
 '#ffd6a5'
 );
 
-chart(
+createChart(
 'memoryChart',
-evening.map(x=>x.date),
-evening.map(x=>x.memory_before),
-evening.map(x=>x.memory_after),
+evening.map(x => x.date),
+evening.map(x => x.memory_before),
+evening.map(x => x.memory_after),
 '#ffe29a'
 );
 
