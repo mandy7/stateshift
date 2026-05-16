@@ -1,6 +1,6 @@
 [
   {
-    "date": "2026-05-11",
+    "date": "May 11",
     "blend": "Morning Blend",
     "session": 1,
     "focus_before": 2,
@@ -11,7 +11,7 @@
     "mood_after": 3
   },
   {
-    "date": "2026-05-12",
+    "date": "May 12",
     "blend": "Morning Blend",
     "session": 2,
     "focus_before": 3,
@@ -22,7 +22,7 @@
     "mood_after": 4
   },
   {
-    "date": "2026-05-13",
+    "date": "May 13",
     "blend": "Morning Blend",
     "session": 3,
     "focus_before": 3,
@@ -33,7 +33,7 @@
     "mood_after": 4
   },
   {
-    "date": "2026-05-14",
+    "date": "May 14",
     "blend": "Morning Blend",
     "session": 4,
     "focus_before": 2,
@@ -43,8 +43,9 @@
     "mood_before": 2,
     "mood_after": 3
   },
+
   {
-    "date": "2026-05-15",
+    "date": "May 12",
     "blend": "Evening Blend",
     "session": 1,
     "warmth_before": 2,
@@ -55,7 +56,7 @@
     "memory_after": 4
   },
   {
-    "date": "2026-05-16",
+    "date": "May 13",
     "blend": "Evening Blend",
     "session": 2,
     "warmth_before": 2,
@@ -66,7 +67,7 @@
     "memory_after": 3
   },
   {
-    "date": "2026-05-17",
+    "date": "May 14",
     "blend": "Evening Blend",
     "session": 3,
     "warmth_before": 2,
