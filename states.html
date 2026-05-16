@@ -84,14 +84,17 @@ h1 span{
 
 .charts{
   display:grid;
-  grid-template-columns:1fr 1fr 1fr;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
   gap:28px;
+  width:100%;
 }
 
 .chart-card{
   border:1px solid rgba(224,166,59,.18);
   padding:22px;
   background:rgba(255,255,255,.015);
+  min-width:0;
+  overflow:hidden;
 }
 
 .chart-title{
@@ -107,8 +110,50 @@ h1 span{
 }
 
 canvas{
-  height:300px !important;
+  width:100% !important;
+  height:260px !important;
 }
+@media(max-width:900px){
+
+.summary{
+  grid-template-columns:1fr 1fr;
+}
+
+h1{
+  font-size:52px;
+}
+
+.section-title{
+  font-size:24px;
+}
+
+.value{
+  font-size:30px;
+}
+
+}
+
+@media(max-width:640px){
+
+.summary{
+  grid-template-columns:1fr;
+}
+
+h1{
+  font-size:42px;
+}
+
+.container{
+  max-width:94%;
+}
+
+canvas{
+  height:220px !important;
+}
+
+}
+  
+  
 </style>
 </head>
 
