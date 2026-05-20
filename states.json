@@ -1,80 +1,82 @@
 [
   {
     "date": "May 11",
-    "blend": "Morning Blend",
+    "blend": "Rukh",
     "session": 1,
     "focus_before": 2,
     "focus_after": 3,
     "energy_before": 2,
     "energy_after": 3,
     "mood_before": 3,
-    "mood_after": 3
+    "mood_after": 3,
+    "notes": "The morning already felt scattered before the cup even began. Small interruptions, unfinished thoughts, daughter duty, half-sleep. The cup softened the edges a little, but emotionally it still felt distant. Like coffee hiding behind milk instead of standing up for itself."
   },
   {
     "date": "May 12",
-    "blend": "Morning Blend",
+    "blend": "Rukh",
     "session": 2,
     "focus_before": 3,
     "focus_after": 5,
     "energy_before": 2,
     "energy_after": 4,
     "mood_before": 3,
-    "mood_after": 4
+    "mood_after": 4,
+    "notes": "First real breakthrough morning. The cup finally felt awake. Aroma entered like chai nostalgia but the sip resolved into coffee. Alertness arrived quickly and stayed longer. For the first time, the ritual itself felt intentional instead of routine."
   },
   {
     "date": "May 13",
-    "blend": "Morning Blend",
+    "blend": "Rukh",
     "session": 3,
     "focus_before": 3,
     "focus_after": 4,
     "energy_before": 2,
     "energy_after": 3,
     "mood_before": 3,
-    "mood_after": 4
+    "mood_after": 4,
+    "notes": "Too many changes at once. Cinnamon overtook the entire emotional direction of the drink. Instead of sharpening the morning, the cup wrapped it in warmth. Pleasant, but wrong for what Rukh is trying to become."
   },
   {
     "date": "May 14",
-    "blend": "Morning Blend",
+    "blend": "Rukh",
     "session": 4,
     "focus_before": 2,
     "focus_after": 4,
     "energy_before": 2,
     "energy_after": 3,
     "mood_before": 2,
-    "mood_after": 3
+    "mood_after": 3,
+    "notes": "More balanced than yesterday. The coffee finally surfaced in flashes between the spice layers. Mentally I wanted to work. Physically my body still felt sleepy underneath. The mind woke up before the body did."
   },
-
   {
-    "date": "May 12",
-    "blend": "Evening Blend",
+    "date": "May 11",
+    "blend": "Kisse",
     "session": 1,
     "warmth_before": 2,
     "warmth_after": 4,
     "conversation_before": 2,
     "conversation_after": 4,
     "memory_before": 2,
-    "memory_after": 4
+    "memory_after": 4,
+    "notes": "Storm outside. Heavy cup inside. First version was chaotic and crowded, but somewhere beneath all the noise was a slower emotional rhythm. The second variation finally revealed what the drink wanted to become — not stimulation, but presence."
   },
   {
-    "date": "May 13",
-    "blend": "Evening Blend",
+    "date": "May 12",
+    "blend": "Kisse",
     "session": 2,
     "warmth_before": 2,
     "warmth_after": 3,
     "conversation_before": 2,
     "conversation_after": 3,
     "memory_before": 2,
-    "memory_after": 3
+    "memory_after": 3,
+    "notes": "The room slowed down naturally tonight. Nobody rushed the cup. Texture became softer, bitterness reduced and the drink finally started behaving less like an experiment and more like a shared evening ritual."
   },
   {
-    "date": "May 14",
-    "blend": "Evening Blend",
+    "date": "May 13",
+    "blend": "Kisse",
     "session": 3,
     "warmth_before": 2,
     "warmth_after": 4,
     "conversation_before": 2,
     "conversation_after": 4,
-    "memory_before": 2,
-    "memory_after": 5
-  }
 ]
