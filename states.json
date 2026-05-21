@@ -148,43 +148,43 @@
 "blend": "Evening Blend",
 "session": 5,
 "warmth_before": 2,
-"warmth_after": 5,
+"warmth_after": 2,
 "conversation_before": 2,
-"conversation_after": 5,
+"conversation_after": 3,
 "memory_before": 2,
-"memory_after": 5
+"memory_after": 3
 },
 {
 "date": "May 17",
 "blend": "Evening Blend",
 "session": 6,
 "warmth_before": 2,
-"warmth_after": 5,
+"warmth_after": 2,
 "conversation_before": 2,
-"conversation_after": 5,
+"conversation_after": 2,
 "memory_before": 2,
-"memory_after": 5
+"memory_after": 3
 },
 {
 "date": "May 18",
 "blend": "Evening Blend",
 "session": 7,
 "warmth_before": 2,
-"warmth_after": 5,
+"warmth_after": 3,
 "conversation_before": 2,
-"conversation_after": 5,
+"conversation_after": 2,
 "memory_before": 2,
-"memory_after": 5
+"memory_after": 1
 },
 {
 "date": "May 20",
 "blend": "Evening Blend",
 "session": 8,
 "warmth_before": 2,
-"warmth_after": 5,
+"warmth_after": 4,
 "conversation_before": 2,
-"conversation_after": 5,
+"conversation_after": 3,
 "memory_before": 2,
-"memory_after": 5
+"memory_after": 2
 }
 ]
