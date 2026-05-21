@@ -1,485 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Lab Notes — StateShift</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:wght@400;500&display=swap" rel="stylesheet">
-
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-:root{
-  --bg:#1d120a;
-  --card:#2b1a0f;
-  --border:rgba(212,168,83,0.15);
-  --gold:#d4a853;
-  --muted:#8d8175;
-  --text:#ece5da;
-}
-
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:'Lora',serif;
-  min-height:100vh;
-}
-
-body::after{
-  content:'';
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  opacity:0.03;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='%23ffffff'%3E%3Ccircle cx='12' cy='14' r='1'/%3E%3Ccircle cx='78' cy='40' r='1'/%3E%3Ccircle cx='110' cy='120' r='1'/%3E%3Ccircle cx='34' cy='88' r='1'/%3E%3C/g%3E%3C/svg%3E");
-}
-
-.site-header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:rgba(20,10,5,0.96);
-  border-bottom:1px solid var(--border);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:1rem 2rem;
-}
-
-.site-logo{
-  text-decoration:none;
-  color:white;
-  font-family:'Playfair Display',serif;
-  font-size:1.3rem;
-}
-
-.site-logo span{
-  color:var(--gold);
-  font-style:italic;
-}
-
-.site-nav{
-  display:flex;
-  gap:0.8rem;
-}
-
-.site-nav a{
-  text-decoration:none;
-  color:var(--muted);
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.68rem;
-  text-transform:uppercase;
-  letter-spacing:0.1em;
-  border:1px solid transparent;
-  padding:0.5rem 0.8rem;
-}
-
-.site-nav a.active{
-  color:var(--gold);
-  border-color:rgba(212,168,83,0.25);
-}
-
-.top{
-  max-width:920px;
-  margin:auto;
-  padding:3rem 1.5rem 1rem;
-  display:flex;
-  justify-content:space-between;
-  gap:1rem;
-  align-items:flex-end;
-  flex-wrap:wrap;
-}
-
-.eyebrow{
-  font-family:'IBM Plex Mono',monospace;
-  color:var(--gold);
-  font-size:0.65rem;
-  letter-spacing:0.2em;
-  text-transform:uppercase;
-  margin-bottom:0.8rem;
-}
-
-h1{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(2rem,5vw,3.4rem);
-  font-weight:400;
-}
-
-h1 em{
-  color:var(--gold);
-  font-style:italic;
-}
-
-.hand{
-  font-family:'Caveat',cursive;
-  color:rgba(212,168,83,0.6);
-  font-size:1rem;
-  margin-top:0.5rem;
-}
-
-.filters{
-  max-width:920px;
-  margin:auto;
-  padding:1rem 1.5rem 2rem;
-  display:flex;
-  flex-wrap:wrap;
-  gap:0.5rem;
-}
-
-.tag{
-  border:1px solid rgba(212,168,83,0.18);
-  background:transparent;
-  color:var(--muted);
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.65rem;
-  padding:0.45rem 0.8rem;
-  cursor:pointer;
-  text-transform:uppercase;
-}
-
-.tag.active{
-  background:var(--gold);
-  color:#1b1208;
-}
-
-.entries{
-  max-width:920px;
-  margin:auto;
-  padding:0 1.5rem 5rem;
-}
-
-.entry{
-  background:rgba(43,26,15,0.65);
-  border:1px solid var(--border);
-  margin-bottom:1.2rem;
-  overflow:hidden;
-}
-
-.entry.breakthrough{
-  border-color:rgba(212,168,83,0.35);
-}
-
-.entry.failed{
-  border-color:rgba(170,70,40,0.4);
-}
-
-.entry-header{
-  padding:1.4rem;
-  cursor:pointer;
-}
-
-.entry-meta{
-  display:flex;
-  gap:1rem;
-  flex-wrap:wrap;
-  margin-bottom:0.7rem;
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.62rem;
-  color:var(--muted);
-  text-transform:uppercase;
-}
-
-.entry-title{
-  font-size:1.1rem;
-  line-height:1.5;
-  margin-bottom:0.8rem;
-}
-
-.entry-tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:0.4rem;
-}
-
-.entry-tag{
-  border:1px solid rgba(212,168,83,0.12);
-  padding:0.2rem 0.5rem;
-  font-size:0.55rem;
-  color:var(--muted);
-  font-family:'IBM Plex Mono',monospace;
-  text-transform:uppercase;
-}
-
-.entry-body{
-  display:none;
-  border-top:1px solid rgba(212,168,83,0.08);
-  padding:1.4rem;
-}
-
-.entry-body.open{
-  display:block;
-}
-
-.prose{
-  line-height:1.9;
-  color:#d9d0c4;
-  margin-bottom:1.5rem;
-}
-
-.columns{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:1.5rem;
-}
-
-@media(max-width:700px){
-  .columns{
-    grid-template-columns:1fr;
-  }
-}
-
-.block-label{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.58rem;
-  color:rgba(212,168,83,0.7);
-  text-transform:uppercase;
-  letter-spacing:0.15em;
-  margin-bottom:0.8rem;
-}
-
-.obs-list{
-  list-style:none;
-}
-
-.obs-list li{
-  padding-left:1rem;
-  position:relative;
-  margin-bottom:0.5rem;
-  color:#cdbfae;
-  line-height:1.7;
-  font-size:0.9rem;
-}
-
-.obs-list li::before{
-  content:'—';
-  position:absolute;
-  left:0;
-  color:rgba(212,168,83,0.5);
-}
-
-.metric{
-  margin-bottom:1rem;
-}
-
-.metric-top{
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:0.3rem;
-}
-
-.metric-name{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.65rem;
-  color:var(--muted);
-}
-
-.metric-change{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.65rem;
-  color:var(--gold);
-}
-
-.track{
-  height:4px;
-  background:rgba(255,255,255,0.05);
-  overflow:hidden;
-}
-
-.fill{
-  height:100%;
-  background:var(--gold);
-}
-
-.note{
-  margin-top:1.5rem;
-  border-left:2px solid rgba(212,168,83,0.4);
-  padding-left:1rem;
-}
-
-.note-label{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:0.58rem;
-  color:rgba(212,168,83,0.7);
-  text-transform:uppercase;
-  margin-bottom:0.4rem;
-}
-
-.note-text{
-  font-family:'Caveat',cursive;
-  font-size:1.1rem;
-  color:#d8b574;
-  line-height:1.5;
-}
-</style>
-</head>
-
-<body>
-
-<header class="site-header">
-  <a href="/" class="site-logo">State<span>Shift</span></a>
-
-  <nav class="site-nav">
-    <a href="/lab" class="active">/ Lab</a>
-    <a href="/states">/ Observations</a>
-  </nav>
-</header>
-
-<section class="top">
-  <div>
-    <div class="eyebrow">Field Notes · Experiment Log</div>
-    <h1>The <em>Lab</em></h1>
-    <div class="hand" id="entryCount">Loading...</div>
-  </div>
-</section>
-
-<section class="filters">
-  <button class="tag active" data-filter="all">All</button>
-  <button class="tag" data-filter="RUKH">Rukh</button>
-  <button class="tag" data-filter="KISSE">Kisse</button>
-  <button class="tag" data-filter="Social">Social</button>
-  <button class="tag" data-filter="Ingredients">Ingredients</button>
-  <button class="tag" data-filter="Failed">Failed</button>
-</section>
-
-<section class="entries" id="entriesContainer"></section>
-
-<script>
-
-let allEntries = [];
-let currentFilter = 'all';
-
-async function init(){
-
-  try{
-
-    const response = await fetch('./lab.json?v=' + Date.now());
-
-    if(!response.ok){
-      throw new Error('lab.json failed to load');
-    }
-
-    const json = await response.json();
-
-    const local = JSON.parse(localStorage.getItem('ss_entries') || '[]');
-
-    allEntries = [...local, ...json];
-
-    render();
-
-  }catch(err){
-
-    console.error(err);
-
-    document.getElementById('entriesContainer').innerHTML = `
-      <div style="
-        border:1px solid rgba(212,168,83,0.2);
-        padding:2rem;
-        color:#d4a853;
-        font-family:'IBM Plex Mono',monospace;
-      ">
-        Failed to load lab.json
-      </div>
-    `;
-  }
-}
-
-function render(){
-
-  const list = currentFilter === 'all'
-    ? allEntries
-    : allEntries.filter(e =>
-        (e.tags || []).includes(currentFilter)
-      );
-
-  document.getElementById('entryCount').textContent =
-    `${list.length} sessions documented`;
-
-  const container = document.getElementById('entriesContainer');
-
-  container.innerHTML = list.map(buildEntry).join('');
-}
-
-function buildEntry(entry){
-
-  const tags = (entry.tags || [])
-    .map(t => `<span class="entry-tag">${t}</span>`)
-    .join('');
-
-  const observations = (entry.observations || [])
-    .map(o => `<li>${o}</li>`)
-    .join('');
-
-  let metricsHTML = '';
-
-  if(entry.metrics && entry.metrics_after){
-
-    const keys = ['energy','focus','anxiety','mood'];
-
-    metricsHTML = `
-      <div>
-        <div class="block-label">Before → After</div>
-
-        ${keys.map(k => {
-
-          const pre = entry.metrics[k] || 0;
-          const post = entry.metrics_after[k] || 0;
-          const diff = post - pre;
-
-          return `
-            <div class="metric">
-              <div class="metric-top">
-                <div class="metric-name">${k}</div>
-                <div class="metric-change">
-                  ${diff > 0 ? '+' : ''}${diff}
-                </div>
-              </div>
-
-              <div class="track">
-                <div class="fill" style="width:${post * 10}%"></div>
-              </div>
-            </div>
-          `;
-
-        }).join('')}
-      </div>
-    `;
-  }
-
-  return `
-    <article class="entry ${entry.status || ''}">
-
-      <div class="entry-header" onclick="toggleEntry('${entry.id}')">
-
-        <div class="entry-meta">
-          <span>${formatDate(entry.date)}</span>
-          <span>${entry.time || ''}</span>
-          <span>${entry.sku || ''}</span>
-        </div>
-
-        <div class="entry-title">
-          ${entry.title || ''}
-        </div>
-
-        <div class="entry-tags">
-          ${tags}
-        </div>
-
-      </div>
-
-      <div class="entry-body" id="body-${entry.id}">
-
-        <div class="prose">
-          ${entry.body || ''}
-        </div>
-
-        <div class="columns">
-
           <div>
             <div class="block-label">Observations</div>
 
@@ -488,20 +7,18 @@ function buildEntry(entry){
             </ul>
           </div>
 
-          ${metricsHTML}
-
         </div>
 
         ${
           entry.note
           ?
           `
-          <div class="note">
-            <div class="note-label">Field Note</div>
-            <div class="note-text">
-              "${entry.note}"
+            <div class="note">
+              <div class="note-label">Field Note</div>
+              <div class="note-text">
+                “${entry.note}”
+              </div>
             </div>
-          </div>
           `
           :
           ''
@@ -510,19 +27,15 @@ function buildEntry(entry){
       </div>
 
     </article>
+
   `;
 }
 
 function toggleEntry(id){
-
-  const body = document.getElementById(`body-${id}`);
-
-  body.classList.toggle('open');
+  document.getElementById(`body-${id}`).classList.toggle('open');
 }
 
 function formatDate(dateStr){
-
-  if(!dateStr) return '';
 
   return new Date(dateStr).toLocaleDateString(
     'en-IN',
@@ -534,18 +47,21 @@ function formatDate(dateStr){
   );
 }
 
-document.querySelectorAll('.tag').forEach(btn => {
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabs = document.querySelectorAll('.tab-content');
+
+tabBtns.forEach(btn => {
 
   btn.addEventListener('click', () => {
 
-    document.querySelectorAll('.tag')
-      .forEach(b => b.classList.remove('active'));
+    tabBtns.forEach(b => b.classList.remove('active'));
+    tabs.forEach(t => t.classList.remove('active'));
 
     btn.classList.add('active');
 
-    currentFilter = btn.dataset.filter;
-
-    render();
+    document
+      .getElementById(btn.dataset.tab)
+      .classList.add('active');
   });
 });
 
