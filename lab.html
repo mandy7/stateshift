@@ -1,510 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Lab — StateShift</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+<title>Test</title>
 
 <style>
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-:root{
-  --bg:#140c08;
-  --panel:#1f140d;
-  --border:rgba(224,166,59,.12);
-  --gold:#d4a853;
-  --muted:#8d7258;
-  --text:#f2e8db;
-}
-
 body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:'Lora', serif;
-  min-height:100vh;
-}
-
-.container{
-  width:980px;
-  max-width:92%;
-  margin:auto;
-  padding-bottom:80px;
-}
-
-.navbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:28px 0;
-  margin-bottom:40px;
-}
-
-.logo{
-  text-decoration:none;
-  font-family:'Playfair Display', serif;
-  font-size:34px;
+  background:#111;
   color:white;
-  font-style:italic;
+  font-family:Arial;
+  padding:40px;
 }
-
-.logo span{
-  color:var(--gold);
+.card{
+  border:1px solid #444;
+  padding:20px;
+  margin-bottom:20px;
 }
-
-.nav{
-  display:flex;
-  gap:10px;
-}
-
-.nav a{
-  text-decoration:none;
-  color:var(--muted);
-  border:1px solid rgba(224,166,59,.12);
-  padding:10px 16px;
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:1.2px;
-}
-
-.nav a.active{
-  color:var(--gold);
-  border-color:rgba(224,166,59,.3);
-}
-
-.eyebrow{
-  color:var(--gold);
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:2px;
-  margin-bottom:18px;
-  font-family:'IBM Plex Mono', monospace;
-}
-
-.hero{
-  margin-bottom:36px;
-}
-
-.hero h1{
-  font-size:72px;
-  font-weight:400;
-  line-height:1;
-}
-
-.hero h1 span{
-  color:var(--gold);
-  font-style:italic;
-}
-
-.hero p{
-  margin-top:18px;
-  color:var(--muted);
-  line-height:1.9;
-  max-width:700px;
-}
-
-.tabs{
-  display:flex;
-  gap:10px;
-  margin-bottom:36px;
-}
-
-.tab-btn{
-  background:transparent;
-  border:1px solid rgba(224,166,59,.12);
-  color:var(--muted);
-  padding:12px 18px;
-  cursor:pointer;
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:1.2px;
-}
-
-.tab-btn.active{
-  background:var(--gold);
-  color:#1a120b;
-}
-
-.tab-content{
-  display:none;
-}
-
-.tab-content.active{
-  display:block;
-}
-
-.main-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-}
-
-.note-card{
-  background:var(--panel);
-  border:1px solid var(--border);
-  padding:24px;
-}
-
-.note-title{
-  color:var(--gold);
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:1.4px;
-  margin-bottom:14px;
-  font-family:'IBM Plex Mono', monospace;
-}
-
-.note-body{
-  color:#dccdbb;
-  line-height:1.9;
-}
-
-.entry{
-  background:var(--panel);
-  border:1px solid var(--border);
-  margin-bottom:18px;
-}
-
-.entry-header{
-  padding:24px;
-  cursor:pointer;
-}
-
-.entry-meta{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  color:var(--muted);
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:1.2px;
-  margin-bottom:12px;
-  font-family:'IBM Plex Mono', monospace;
-}
-
-.entry-title{
-  font-size:28px;
-  line-height:1.4;
-}
-
-.entry-body{
-  display:none;
-  border-top:1px solid rgba(224,166,59,.08);
-  padding:24px;
-}
-
-.entry-body.open{
-  display:block;
-}
-
-.prose{
-  line-height:2;
-  color:#ddd0c0;
-  margin-bottom:24px;
-}
-
-.section-label{
-  color:var(--gold);
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:1.2px;
-  margin-bottom:12px;
-  font-family:'IBM Plex Mono', monospace;
-}
-
-.obs-list{
-  list-style:none;
-}
-
-.obs-list li{
-  position:relative;
-  padding-left:18px;
-  margin-bottom:10px;
-  line-height:1.8;
-  color:#cdbda9;
-}
-
-.obs-list li::before{
-  content:'—';
-  position:absolute;
-  left:0;
-  color:rgba(224,166,59,.5);
-}
-
-.field-note{
-  margin-top:28px;
-  border-left:2px solid rgba(224,166,59,.35);
-  padding-left:16px;
-}
-
-.field-note-text{
-  color:#d7b06d;
-  line-height:1.8;
-  font-style:italic;
-}
-
-@media(max-width:760px){
-
-  .hero h1{
-    font-size:52px;
-  }
-
-  .main-grid{
-    grid-template-columns:1fr;
-  }
-
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<h1>Lab Test</h1>
 
-  <div class="navbar">
-
-    <a href="index.html" class="logo">
-      State<span>Shift</span>
-    </a>
-
-    <div class="nav">
-      <a href="lab.html" class="active">Lab</a>
-      <a href="states.html">Observations</a>
-    </div>
-
-  </div>
-
-  <div class="hero">
-
-    <div class="eyebrow">
-      Field Notes · Experiment Log
-    </div>
-
-    <h1>
-      The <span>Lab</span>
-    </h1>
-
-    <p>
-      Observations from repeated ritual experiments around aroma, alertness, warmth, pacing, emotional memory, and sensory sequencing.
-    </p>
-
-  </div>
-
-  <div class="tabs">
-    <button class="tab-btn active" data-tab="mainTab">Main Notes</button>
-    <button class="tab-btn" data-tab="noonTab">Noon Ritual</button>
-    <button class="tab-btn" data-tab="eveningTab">Evening Ritual</button>
-  </div>
-
-  <div id="mainTab" class="tab-content active">
-
-    <div class="main-grid">
-
-      <div class="note-card">
-        <div class="note-title">Current direction</div>
-
-        <div class="note-body">
-          The noon ritual is stabilizing around cleaner activation, lower friction entering work, and stronger aromatic identity without increasing bitterness.
-        </div>
-      </div>
-
-      <div class="note-card">
-        <div class="note-title">Evening direction</div>
-
-        <div class="note-body">
-          The evening ritual is evolving toward emotional warmth, lingering memory, slower pacing, and low-volatility comfort notes.
-        </div>
-      </div>
-
-      <div class="note-card">
-        <div class="note-title">Most important learning</div>
-
-        <div class="note-body">
-          Technical smoothness alone does not create memorability. The strongest sessions carried tension, ambiguity, or emotional surprise.
-        </div>
-      </div>
-
-      <div class="note-card">
-        <div class="note-title">Current experimentation model</div>
-
-        <div class="note-body">
-          Moving toward side-by-side micro-batch comparisons where only one variable changes against a locked control cup.
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-
-  <div id="noonTab" class="tab-content">
-    <div id="noonEntries"></div>
-  </div>
-
-  <div id="eveningTab" class="tab-content">
-    <div id="eveningEntries"></div>
-  </div>
-
-</div>
+<div id="app"></div>
 
 <script>
 
-let allEntries = [];
-
-async function init(){
-
-  const response = await fetch('./lab.json?v=' + Date.now());
-  const data = await response.json();
-
-  allEntries = data;
-
-  renderEntries();
-}
-
-function renderEntries(){
-
-  const noon = allEntries.filter(
-    item => item.sku === 'Morning Blend'
-  );
-
-  const evening = allEntries.filter(
-    item => item.sku === 'Evening Blend'
-  );
-
-  document.getElementById('noonEntries').innerHTML =
-    noon.map(buildEntry).join('');
-
-  document.getElementById('eveningEntries').innerHTML =
-    evening.map(buildEntry).join('');
-}
+const entries = [
+  {
+    id:'1',
+    title:'Test Entry',
+    body:'This is working.',
+    observations:[
+      'Observation one',
+      'Observation two'
+    ]
+  }
+];
 
 function buildEntry(entry){
 
-  let observationsHTML = '';
+  let obs = '';
 
-  if(entry.observations){
-
-    entry.observations.forEach(obs => {
-
-      observationsHTML += `
-        <li>${obs}</li>
-      `;
-
-    });
-
-  }
-
-  let noteHTML = '';
-
-  if(entry.note){
-
-    noteHTML = `
-      <div class="field-note">
-        <div class="section-label">
-          Field Note
-        </div>
-
-        <div class="field-note-text">
-          "${entry.note}"
-        </div>
-      </div>
-    `;
-  }
+  entry.observations.forEach(item => {
+    obs += '<li>' + item + '</li>';
+  });
 
   return `
+    <div class="card">
 
-    <article class="entry">
+      <h2>${entry.title}</h2>
 
-      <div class="entry-header" onclick="toggleEntry('${entry.id}')">
+      <p>${entry.body}</p>
 
-        <div class="entry-meta">
-          <span>${formatDate(entry.date)}</span>
-          <span>${entry.time || ''}</span>
-        </div>
+      <ul>
+        ${obs}
+      </ul>
 
-        <div class="entry-title">
-          ${entry.title || ''}
-        </div>
-
-      </div>
-
-      <div class="entry-body" id="body-${entry.id}">
-
-        <div class="prose">
-          ${entry.body || ''}
-        </div>
-
-        <div class="section-label">
-          Observations
-        </div>
-
-        <ul class="obs-list">
-          ${observationsHTML}
-        </ul>
-
-        ${noteHTML}
-
-      </div>
-
-    </article>
-
+    </div>
   `;
 }
 
-function toggleEntry(id){
-
-  document
-    .getElementById('body-' + id)
-    .classList
-    .toggle('open');
-}
-
-function formatDate(dateStr){
-
-  return new Date(dateStr).toLocaleDateString(
-    'en-IN',
-    {
-      day:'numeric',
-      month:'short',
-      year:'numeric'
-    }
-  );
-}
-
-const tabBtns = document.querySelectorAll('.tab-btn');
-const tabContents = document.querySelectorAll('.tab-content');
-
-tabBtns.forEach(btn => {
-
-  btn.addEventListener('click', () => {
-
-    tabBtns.forEach(
-      b => b.classList.remove('active')
-    );
-
-    tabContents.forEach(
-      t => t.classList.remove('active')
-    );
-
-    btn.classList.add('active');
-
-    document
-      .getElementById(btn.dataset.tab)
-      .classList.add('active');
-
-  });
-
-});
-
-init();
+document.getElementById('app').innerHTML =
+  entries.map(buildEntry).join('');
 
 </script>
 
