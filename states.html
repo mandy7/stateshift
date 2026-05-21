@@ -1,72 +1,128 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Observations — StateShift</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --bg:#140c08;
+  --panel:#1f140d;
+  --border:rgba(224,166,59,.12);
+  --gold:#d4a853;
+  --muted:#8d7258;
+  --text:#f2e8db;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Lora', serif;
+}
+
+.container{
+  width:1180px;
+  max-width:92%;
+  margin:auto;
+  padding-bottom:90px;
+}
+
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:28px 0;
+  margin-bottom:40px;
+}
+
+.logo{
   text-decoration:none;
+  font-family:'Playfair Display', serif;
+  font-size:34px;
+  color:white;
+  font-style:italic;
 }
 
 .logo span{
   color:var(--gold);
 }
 
-.nav-links{
+.nav{
   display:flex;
-  gap:12px;
+  gap:10px;
 }
 
-.nav-links a{
-  color:#8d6d4f;
+.nav a{
+  text-decoration:none;
+  color:var(--muted);
   border:1px solid rgba(224,166,59,.12);
-  padding:11px 18px;
+  padding:10px 16px;
   font-size:11px;
   text-transform:uppercase;
-  letter-spacing:1.4px;
-  text-decoration:none;
+  letter-spacing:1.2px;
 }
 
-.nav-links a.active{
-  background:#20120c;
-  border-color:rgba(224,166,59,.32);
+.nav a.active{
   color:var(--gold);
+  border-color:rgba(224,166,59,.3);
 }
 
-.brand{
-  font-size:66px;
-  line-height:1;
-  letter-spacing:-1.4px;
+.hero{
+  margin-bottom:40px;
+}
+
+.hero h1{
+  font-size:72px;
   font-weight:400;
+  line-height:1;
 }
 
-.brand span{
+.hero h1 span{
   color:var(--gold);
   font-style:italic;
 }
 
-.sub{
-  margin-top:12px;
+.hero p{
+  margin-top:18px;
   color:var(--muted);
-  font-size:14px;
-  line-height:1.7;
+  line-height:1.9;
+  max-width:760px;
 }
 
 .tabs{
   display:flex;
-  gap:12px;
-  margin:40px 0 30px;
+  gap:10px;
+  margin-bottom:36px;
 }
 
 .tab-btn{
   background:transparent;
-  color:#8d6d4f;
   border:1px solid rgba(224,166,59,.12);
+  color:var(--muted);
   padding:12px 18px;
+  cursor:pointer;
   font-size:11px;
   text-transform:uppercase;
-  letter-spacing:1.4px;
-  cursor:pointer;
+  letter-spacing:1.2px;
 }
 
 .tab-btn.active{
-  background:#20120c;
-  border-color:rgba(224,166,59,.32);
-  color:var(--gold);
+  background:var(--gold);
+  color:#1a120b;
 }
 
 .tab-content{
@@ -79,8 +135,453 @@
 
 .summary-grid{
   display:grid;
-  grid-template-columns:220px repeat(3,1fr);
+  grid-template-columns:repeat(4,1fr);
   gap:18px;
   margin-bottom:26px;
 }
+
+.metric-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  padding:24px;
+}
+
+.metric-label{
+  color:var(--gold);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1.2px;
+  margin-bottom:18px;
+  font-family:'IBM Plex Mono', monospace;
+}
+
+.metric-value{
+  font-size:52px;
+}
+
+.metric-caption{
+  margin-top:12px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.chart-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.chart-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  padding:24px;
+}
+
+.chart-card.full{
+  grid-column:1 / -1;
+}
+
+.chart-title{
+  margin-bottom:18px;
+  font-size:20px;
+}
+
+canvas{
+  width:100% !important;
+  height:320px !important;
+}
+
+.footer-note{
+  margin-top:50px;
+  color:var(--muted);
+  line-height:1.8;
+  font-size:14px;
+}
+
+@media(max-width:900px){
+
+  .summary-grid,
+  .chart-grid{
+    grid-template-columns:1fr;
+  }
+
+  .chart-card.full{
+    grid-column:auto;
+  }
+
+  .hero h1{
+    font-size:52px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="navbar">
+
+<a href="index.html" class="logo">
+State<span>Shift</span>
+</a>
+
+<div class="nav">
+<a href="lab.html">Lab</a>
+<a href="states.html" class="active">Observations</a>
+</div>
+
+</div>
+
+<div class="hero">
+
+<h1>
+What the <span>data</span> says
+</h1>
+
+<p>
+Repeated sessions tracking emotional and functional shifts across ritual experimentation.
+</p>
+
+</div>
+
+<div class="tabs">
+<button class="tab-btn active" data-tab="noonTab">Noon Ritual</button>
+<button class="tab-btn" data-tab="eveningTab">Evening Ritual</button>
+</div>
+
+<div id="noonTab" class="tab-content active">
+
+<div class="summary-grid" id="morningSummary"></div>
+
+<div class="chart-grid">
+
+<div class="chart-card">
+<div class="chart-title">Focus uplift</div>
+<canvas id="focusChart"></canvas>
+</div>
+
+<div class="chart-card">
+<div class="chart-title">Energy uplift</div>
+<canvas id="energyChart"></canvas>
+</div>
+
+<div class="chart-card full">
+<div class="chart-title">Mood uplift</div>
+<canvas id="moodChart"></canvas>
+</div>
+
+</div>
+
+</div>
+
+<div id="eveningTab" class="tab-content">
+
+<div class="summary-grid" id="eveningSummary"></div>
+
+<div class="chart-grid">
+
+<div class="chart-card">
+<div class="chart-title">Emotional warmth</div>
+<canvas id="warmthChart"></canvas>
+</div>
+
+<div class="chart-card">
+<div class="chart-title">Conversation depth</div>
+<canvas id="conversationChart"></canvas>
+</div>
+
+<div class="chart-card full">
+<div class="chart-title">Memorability</div>
+<canvas id="memoryChart"></canvas>
+</div>
+
+</div>
+
+</div>
+
+<div class="footer-note">
+Scale reference → 1 = low state · 3 = balanced baseline · 5 = unusually elevated state.
+</div>
+
+</div>
+
+<script>
+
+fetch('./states.json?v=' + Date.now())
+.then(function(response){
+  return response.json();
+})
+.then(function(data){
+
+  const morning = data.filter(function(item){
+    return item.blend === 'Morning Blend';
+  });
+
+  const evening = data.filter(function(item){
+    return item.blend === 'Evening Blend';
+  });
+
+  renderMorningSummary(morning);
+  renderEveningSummary(evening);
+
+  renderMorningCharts(morning);
+  renderEveningCharts(evening);
+
+});
+
+function averageLift(before, after){
+
+  let total = 0;
+
+  for(let i = 0; i < before.length; i++){
+    total += (after[i] - before[i]);
+  }
+
+  return (total / before.length).toFixed(1);
+}
+
+function renderMorningSummary(morning){
+
+  const focusLift = averageLift(
+    morning.map(function(x){ return x.focus_before; }),
+    morning.map(function(x){ return x.focus_after; })
+  );
+
+  const energyLift = averageLift(
+    morning.map(function(x){ return x.energy_before; }),
+    morning.map(function(x){ return x.energy_after; })
+  );
+
+  const moodLift = averageLift(
+    morning.map(function(x){ return x.mood_before; }),
+    morning.map(function(x){ return x.mood_after; })
+  );
+
+  document.getElementById('morningSummary').innerHTML =
+
+    '<div class="metric-card">' +
+      '<div class="metric-label">Sessions logged</div>' +
+      '<div class="metric-value">' + morning.length + '</div>' +
+      '<div class="metric-caption">ongoing experimentation</div>' +
+    '</div>' +
+
+    '<div class="metric-card">' +
+      '<div class="metric-label">Focus uplift</div>' +
+      '<div class="metric-value">+' + focusLift + '</div>' +
+      '<div class="metric-caption">average post-session shift</div>' +
+    '</div>' +
+
+    '<div class="metric-card">' +
+      '<div class="metric-label">Energy uplift</div>' +
+      '<div class="metric-value">+' + energyLift + '</div>' +
+      '<div class="metric-caption">average post-session shift</div>' +
+    '</div>' +
+
+    '<div class="metric-card">' +
+      '<div class="metric-label">Mood uplift</div>' +
+      '<div class="metric-value">+' + moodLift + '</div>' +
+      '<div class="metric-caption">average emotional shift</div>' +
+    '</div>';
+}
+
+function renderEveningSummary(evening){
+
+  const warmthLift = averageLift(
+    evening.map(function(x){ return x.warmth_before; }),
+    evening.map(function(x){ return x.warmth_after; })
+  );
+
+  const conversationLift = averageLift(
+    evening.map(function(x){ return x.conversation_before; }),
+    evening.map(function(x){ return x.conversation_after; })
+  );
+
+  const memoryLift = averageLift(
+    evening.map(function(x){ return x.memory_before; }),
+    evening.map(function(x){ return x.memory_after; })
+  );
+
+  document.getElementById('eveningSummary').innerHTML =
+
+    '<div class="metric-card">' +
+      '<div class="metric-label">Sessions logged</div>' +
+      '<div class="metric-value">' + evening.length + '</div>' +
+      '<div class="metric-caption">ongoing experimentation</div>' +
+    '</div>' +
+
+    '<div class="metric-card">' +
+      '<div class="metric-label">Emotional warmth</div>' +
+      '<div class="metric-value">+' + warmthLift + '</div>' +
+      '<div class="metric-caption">average emotional shift</div>' +
+    '</div>' +
+
+    '<div class="metric-card">' +
+      '<div class="metric-label">Conversation depth</div>' +
+      '<div class="metric-value">+' + conversationLift + '</div>' +
+      '<div class="metric-caption">social openness + pacing</div>' +
+    '</div>' +
+
+    '<div class="metric-card">' +
+      '<div class="metric-label">Memorability</div>' +
+      '<div class="metric-value">+' + memoryLift + '</div>' +
+      '<div class="metric-caption">lingering emotional recall</div>' +
+    '</div>';
+}
+
+function createChart(id, labels, before, after, color){
+
+  new Chart(document.getElementById(id), {
+
+    type:'line',
+
+    data:{
+      labels:labels,
+
+      datasets:[
+        {
+          label:'before',
+          data:before,
+          borderColor:'rgba(173,132,88,.4)',
+          borderDash:[5,5],
+          borderWidth:2,
+          tension:.35,
+          pointRadius:2
+        },
+        {
+          label:'after',
+          data:after,
+          borderColor:color,
+          borderWidth:3,
+          tension:.35,
+          pointRadius:4
+        }
+      ]
+    },
+
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+
+      plugins:{
+        legend:{
+          labels:{
+            color:'#d9c5ac'
+          }
+        }
+      },
+
+      scales:{
+        x:{
+          ticks:{
+            color:'#8d7258'
+          },
+          grid:{
+            color:'rgba(255,255,255,.03)'
+          }
+        },
+
+        y:{
+          min:1,
+          max:5,
+
+          ticks:{
+            stepSize:1,
+            color:'#8d7258'
+          },
+
+          grid:{
+            color:'rgba(255,255,255,.03)'
+          }
+        }
+      }
+    }
+
+  });
+}
+
+function renderMorningCharts(morning){
+
+  createChart(
+    'focusChart',
+    morning.map(function(x){ return x.date; }),
+    morning.map(function(x){ return x.focus_before; }),
+    morning.map(function(x){ return x.focus_after; }),
+    '#d4a853'
+  );
+
+  createChart(
+    'energyChart',
+    morning.map(function(x){ return x.date; }),
+    morning.map(function(x){ return x.energy_before; }),
+    morning.map(function(x){ return x.energy_after; }),
+    '#bff6e3'
+  );
+
+  createChart(
+    'moodChart',
+    morning.map(function(x){ return x.date; }),
+    morning.map(function(x){ return x.mood_before; }),
+    morning.map(function(x){ return x.mood_after; }),
+    '#f7d488'
+  );
+}
+
+function renderEveningCharts(evening){
+
+  createChart(
+    'warmthChart',
+    evening.map(function(x){ return x.date; }),
+    evening.map(function(x){ return x.warmth_before; }),
+    evening.map(function(x){ return x.warmth_after; }),
+    '#f4a261'
+  );
+
+  createChart(
+    'conversationChart',
+    evening.map(function(x){ return x.date; }),
+    evening.map(function(x){ return x.conversation_before; }),
+    evening.map(function(x){ return x.conversation_after; }),
+    '#ffd6a5'
+  );
+
+  createChart(
+    'memoryChart',
+    evening.map(function(x){ return x.date; }),
+    evening.map(function(x){ return x.memory_before; }),
+    evening.map(function(x){ return x.memory_after; }),
+    '#ffe29a'
+  );
+}
+
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+
+tabBtns.forEach(function(btn){
+
+  btn.addEventListener('click', function(){
+
+    tabBtns.forEach(function(b){
+      b.classList.remove('active');
+    });
+
+    tabContents.forEach(function(t){
+      t.classList.remove('active');
+    });
+
+    btn.classList.add('active');
+
+    document
+      .getElementById(btn.dataset.tab)
+      .classList.add('active');
+
+  });
+
+});
+
+</script>
+
+</body>
 </html>
