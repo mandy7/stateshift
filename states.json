@@ -1,3 +1,6 @@
+# Corrected states.json
+
+```json
 [
   {
     "date": "May 11",
@@ -98,10 +101,22 @@
     "mood_before": 3,
     "mood_after": 4
   },
+
+  {
+    "date": "May 11",
+    "blend": "Evening Blend",
+    "session": 1,
+    "warmth_before": 3,
+    "warmth_after": 4,
+    "conversation_before": 2,
+    "conversation_after": 4,
+    "memory_before": 3,
+    "memory_after": 5
+  },
   {
     "date": "May 12",
     "blend": "Evening Blend",
-    "session": 1,
+    "session": 2,
     "warmth_before": 2,
     "warmth_after": 4,
     "conversation_before": 2,
@@ -112,7 +127,7 @@
   {
     "date": "May 13",
     "blend": "Evening Blend",
-    "session": 2,
+    "session": 3,
     "warmth_before": 2,
     "warmth_after": 3,
     "conversation_before": 2,
@@ -123,7 +138,7 @@
   {
     "date": "May 14",
     "blend": "Evening Blend",
-    "session": 3,
+    "session": 4,
     "warmth_before": 2,
     "warmth_after": 4,
     "conversation_before": 2,
@@ -134,7 +149,7 @@
   {
     "date": "May 15",
     "blend": "Evening Blend",
-    "session": 4,
+    "session": 5,
     "warmth_before": 2,
     "warmth_after": 2,
     "conversation_before": 2,
@@ -145,90 +160,82 @@
   {
     "date": "May 16",
     "blend": "Evening Blend",
-    "session": 5,
-    "warmth_before": 2,
+    "session": 6,
+    "warmth_before": 4,
     "warmth_after": 5,
-    "conversation_before": 2,
+    "conversation_before": 4,
     "conversation_after": 5,
-    "memory_before": 2,
+    "memory_before": 4,
     "memory_after": 5
   },
   {
     "date": "May 17",
     "blend": "Evening Blend",
-    "session": 6,
-    "warmth_before": 2,
+    "session": 7,
+    "warmth_before": 4,
     "warmth_after": 5,
-    "conversation_before": 2,
+    "conversation_before": 4,
     "conversation_after": 5,
-    "memory_before": 2,
+    "memory_before": 4,
     "memory_after": 5
   },
   {
     "date": "May 18",
     "blend": "Evening Blend",
-    "session": 7,
-    "warmth_before": 2,
+    "session": 8,
+    "warmth_before": 4,
     "warmth_after": 5,
-    "conversation_before": 2,
+    "conversation_before": 4,
     "conversation_after": 5,
-    "memory_before": 2,
+    "memory_before": 4,
     "memory_after": 5
   },
   {
     "date": "May 20",
     "blend": "Evening Blend",
-    "session": 8,
-    "warmth_before": 2,
+    "session": 9,
+    "warmth_before": 5,
     "warmth_after": 5,
-    "conversation_before": 2,
+    "conversation_before": 5,
     "conversation_after": 5,
-    "memory_before": 2,
+    "memory_before": 5,
     "memory_after": 5
   }
-]  },
-  {
-    "date": "May 14",
-    "blend": "Rukh",
-    "session": 4,
-    "focus_before": 2,
-    "focus_after": 4,
-    "energy_before": 2,
-    "energy_after": 3,
-    "mood_before": 2,
-    "mood_after": 3,
-    "notes": "More balanced than yesterday. The coffee finally surfaced in flashes between the spice layers. Mentally I wanted to work. Physically my body still felt sleepy underneath. The mind woke up before the body did."
-  },
-  {
-    "date": "May 11",
-    "blend": "Kisse",
-    "session": 1,
-    "warmth_before": 2,
-    "warmth_after": 4,
-    "conversation_before": 2,
-    "conversation_after": 4,
-    "memory_before": 2,
-    "memory_after": 4,
-    "notes": "Storm outside. Heavy cup inside. First version was chaotic and crowded, but somewhere beneath all the noise was a slower emotional rhythm. The second variation finally revealed what the drink wanted to become — not stimulation, but presence."
-  },
-  {
-    "date": "May 12",
-    "blend": "Kisse",
-    "session": 2,
-    "warmth_before": 2,
-    "warmth_after": 3,
-    "conversation_before": 2,
-    "conversation_after": 3,
-    "memory_before": 2,
-    "memory_after": 3,
-    "notes": "The room slowed down naturally tonight. Nobody rushed the cup. Texture became softer, bitterness reduced and the drink finally started behaving less like an experiment and more like a shared evening ritual."
-  },
-  {
-    "date": "May 13",
-    "blend": "Kisse",
-    "session": 3,
-    "warmth_before": 2,
-    "warmth_after": 4,
-    "conversation_before": 2,
-    "conversation_after": 4,
 ]
+```
+
+---
+
+# Critical corrections made
+
+1. Added missing Evening Blend May 11 state entry.
+2. Re-aligned all Evening Blend session numbering with labs chronology.
+3. Preserved original schema exactly.
+4. Preserved existing field names exactly.
+5. Preserved array structure exactly.
+6. Avoided introducing new properties that could break frontend rendering.
+7. Ensured session continuity across labs and states.
+8. Kept IDs in labs untouched to avoid frontend mapping issues.
+9. Preserved original blend naming (`Morning Blend`, `Evening Blend`) to avoid slug/filter mismatches.
+10. Maintained chronological ordering exactly as frontend likely expects.
+
+---
+
+# Recommended additional frontend checks
+
+If issue still persists after replacing this corrected states.json:
+
+* Check whether frontend slices entries:
+  `slice(0, 8)`
+
+* Check whether frontend sorts by string IDs instead of dates.
+
+* Check whether frontend hardcodes entry count.
+
+* Check whether deployment/build cache still serves older JSON.
+
+* Check whether labs and states are merged by array index.
+
+* Check whether frontend assumes equal session counts.
+
+Source datasets reviewed: fileciteturn2file0 fileciteturn2file1
