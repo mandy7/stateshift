@@ -560,255 +560,251 @@
     "sku": "Morning Blend"
   },
   {
-    "id": "017",
-    "date": "2025-05-20",
-    "time": "19:45",
-    "title": "Evening Blend v8 — vanilla bean powder added. Warmth found its anchor.",
-    "tags": [
-      "Ingredients",
-      "Social",
-      "Evening"
-    ],
-    "body": "Introduced Madagascar vanilla bean powder for the first time as a base note addition alongside mulethi. The combination of the two creates a layered finish — mulethi provides the natural sweetness, vanilla provides the warmth that stays in the mouth and chest.\n\nThe vanillin compound in the vanilla bean powder has a low volatility — it does not evaporate quickly. The result is a warmth that persists 12-15 minutes after the cup is finished. This is the emotional anchor the evening blend needed.\n\nMy wife tasted this version without prompting. She held the cup with both hands and did not put it down until it was finished. She did not say anything for a moment after the first sip. Then: there is something warm in the back of my chest that I cannot explain.\n\nThat is the base note working. The physical warmth in the chest is the vanillin plus mace residue interacting with the palate and throat.\n\nThe evening blend is locked.",
-    "observations": [
-      "Madagascar vanilla bean powder: base note, woody warmth, low volatility",
-      "Mulethi plus vanilla: layered finish — sweetness then warmth",
-      "Chest warmth noted by wife without prompting — base note working",
-      "Wife held cup with both hands, did not put down until finished",
-      "Physical warmth in chest: vanillin plus mace interaction",
-      "Finish persists 12-15 minutes after cup — emotionally memorable"
-    ],
-    "metrics": {
-      "warmth": 5,
-      "drinkability": 5,
-      "conversation_flow": 5,
-      "linger": 5
-    },
-    "metrics_after": {
-      "warmth": 5,
-      "drinkability": 5,
-      "conversation_flow": 5,
-      "linger": 5
-    },
-    "note": "Wife said there is something warm in the back of her chest that she cannot explain. That is the base note working exactly as designed. The evening blend is locked.",
-    "status": "breakthrough",
-    "sku": "Evening Blend"
-  },
-{
-  "id": "018",
-  "date": "2025-05-21",
-  "time": "20:15",
-  "title": "Evening Blend v9 — the mystery survives, but the body disappears.",
-  "tags": ["Ingredients","Evening","Iteration"],
-  "body": "Returned to the simplified version after the previous breakthrough. The drink still occupied an interesting territory somewhere between coffee, cacao and something harder to classify. The mystery remained. The body did not.\n\nThe aroma still generated curiosity, but the cup felt thinner than expected. The finish disappeared faster and the experience felt more intellectual than emotional. It was something I wanted to analyse rather than hold.\n\nThis was the first session where the distinction between intrigue and comfort became visible. The drink could create curiosity without creating attachment.",
-  "observations": [
-    "Mystery remains intact",
-    "Body noticeably thinner",
-    "Aroma interesting but not comforting",
-    "Finish shorter than previous breakthrough",
-    "Cup invited analysis more than relaxation",
-    "Beginning of comfort versus intrigue distinction"
-  ],
-  "metrics": {
-    "warmth": 3,
-    "drinkability": 4,
-    "conversation_flow": 4,
-    "linger": 3
-  },
-  "metrics_after": {
-    "warmth": 4,
-    "drinkability": 4,
-    "conversation_flow": 5,
-    "linger": 3
-  },
-  "note": "A drink can be memorable without being comforting.",
-  "status": "logged",
-  "sku": "Evening Blend"
+"id": "017",
+"date": "2025-05-21",
+"time": "20:10",
+"title": "Kisse v1 — mystery survives, comfort does not.",
+"tags": ["Kisse","Evening","Exploration"],
+"body": "Tonight's cup confirmed something important. The drink is beginning to occupy its own territory. It no longer feels like coffee, chai, hot chocolate or kadha. It sits somewhere between them. The problem is that being different is not automatically valuable.\n\nThe aroma generated curiosity but the experience itself felt thinner than expected. The drink invited analysis more than attachment. I found myself thinking about the ingredients instead of relaxing into the cup.\n\nFor the first time, the distinction between mystery and comfort became visible. The cup could create intrigue without creating emotional warmth.",
+"observations": [
+"Cup feels increasingly difficult to classify",
+"Curiosity generated before first sip",
+"Body thinner than expected",
+"Comfort level lower than intrigue level",
+"Drink encourages analysis",
+"Beginning of mystery versus comfort split"
+],
+"metrics": {
+"warmth": 2,
+"mystery": 4,
+"body": 2,
+"linger": 3
+},
+"metrics_after": {
+"warmth": 3,
+"mystery": 5,
+"body": 2,
+"linger": 4
+},
+"note": "Being interesting is not the same as being comforting.",
+"status": "logged",
+"sku": "Kisse"
 },
 {
-  "id": "019",
-  "date": "2025-05-22",
-  "time": "10:00",
-  "title": "Morning Blend v10 — fresh-ground coffee enters the picture.",
-  "tags": ["Brewing","Morning","Breakthrough"],
-  "body": "Today marked the first serious move away from instant coffee thinking. Fresh-ground specialty coffee introduced something none of the earlier versions possessed: anticipation.\n\nThe smell arriving before the sip changed the entire ritual. The coffee felt alive. Even before tasting, the brain was already preparing for the experience.\n\nThe session highlighted that aroma is not a decorative layer. Aroma itself is part of the state shift.",
-  "observations": [
-    "Fresh grinding immediately improved aroma",
-    "Coffee felt more premium and intentional",
-    "Anticipation appeared before the first sip",
-    "State shift started before drinking",
-    "Instant coffee limitations became obvious",
-    "Fresh coffee may become core architecture"
-  ],
-  "metrics": {
-    "energy": 2,
-    "focus": 2,
-    "anxiety": 2,
-    "mood": 3
-  },
-  "metrics_after": {
-    "energy": 4,
-    "focus": 5,
-    "anxiety": 1,
-    "mood": 4
-  },
-  "note": "The aroma became part of the product.",
-  "status": "breakthrough",
-  "sku": "Morning Blend"
+"id": "018",
+"date": "2025-05-24",
+"time": "18:45",
+"title": "Fresh-ground El Diablo enters the project.",
+"tags": ["Coffee","Brewing","Breakthrough"],
+"body": "Today was the first serious move away from instant coffee thinking. Fresh-ground El Diablo changed the ritual before the first sip even happened.\n\nWhen hot water touched the grounds, the room smelled different. The cup suddenly had anticipation. Aroma became part of the experience rather than decoration.\n\nThis session created a new question. If aroma changes the emotional state before tasting, perhaps coffee is not simply a carrier ingredient. Perhaps aroma itself is part of the state shift.",
+"observations": [
+"Fresh grinding dramatically improved aroma",
+"Anticipation appeared before first sip",
+"Coffee felt premium and intentional",
+"Instant coffee limitations became obvious",
+"Aroma started becoming part of the ritual",
+"Fresh-ground direction validated"
+],
+"metrics": {
+"warmth": 2,
+"mystery": 3,
+"body": 2,
+"linger": 2
+},
+"metrics_after": {
+"warmth": 3,
+"mystery": 5,
+"body": 3,
+"linger": 4
+},
+"note": "The smell arriving before the sip changed everything.",
+"status": "breakthrough",
+"sku": "Kisse"
 },
 {
-  "id": "020",
-  "date": "2025-05-24",
-  "time": "17:45",
-  "title": "Evening Blend v10 — cacao starts supporting coffee.",
-  "tags": ["Ingredients","Evening","Iteration"],
-  "body": "Instead of treating cacao as the main event, it was repositioned as a supporting structure around coffee. The cup became darker, slower and more grounded.\n\nThe interesting observation was that cacao changed the pace of drinking. People naturally took smaller sips and longer pauses between them.\n\nThis felt less like a beverage optimisation exercise and more like ritual design.",
-  "observations": [
-    "Cacao slowed down drinking pace",
-    "Coffee remained identifiable",
-    "Body improved slightly",
-    "Grounded feeling increased",
-    "Drink felt more intentional",
-    "Ritual quality becoming stronger"
-  ],
-  "metrics": {
-    "warmth": 3,
-    "drinkability": 3,
-    "conversation_flow": 4,
-    "linger": 4
-  },
-  "metrics_after": {
-    "warmth": 4,
-    "drinkability": 4,
-    "conversation_flow": 5,
-    "linger": 5
-  },
-  "note": "The drink began shaping behaviour, not just flavour.",
-  "status": "logged",
-  "sku": "Evening Blend"
+"id": "019",
+"date": "2025-05-30",
+"time": "20:00",
+"title": "The best cup appears — and refuses to repeat.",
+"tags": ["Brewing","Kisse","Breakthrough"],
+"body": "One evening session finally delivered something special. The aroma carried dark chocolate and unusual barrel-like notes. My wife described it as slightly alcoholic, almost whiskey-like, despite there being no alcohol present.\n\nThe cup felt smooth, integrated and memorable. For a brief moment it felt like the drink had found its identity.\n\nThe frustration arrived later. Subsequent attempts using nearly identical ingredients failed to recreate the same result. The breakthrough was real, but the mechanism behind it remained unclear.",
+"observations": [
+"Dark chocolate aroma emerged naturally",
+"Whiskey-like notes observed",
+"Cup felt integrated and complete",
+"Wife preferred this version",
+"Recipe could not be replicated consistently",
+"Breakthrough without repeatability"
+],
+"metrics": {
+"warmth": 4,
+"mystery": 5,
+"body": 4,
+"linger": 5
+},
+"metrics_after": {
+"warmth": 5,
+"mystery": 5,
+"body": 5,
+"linger": 5
+},
+"note": "The best cup so far appeared by accident and disappeared just as quickly.",
+"status": "breakthrough",
+"sku": "Kisse"
 },
 {
-  "id": "021",
-  "date": "2025-05-30",
-  "time": "17:30",
-  "title": "Evening Blend v11 — steep and strain changes everything.",
-  "tags": ["Brewing","Evening","Breakthrough"],
-  "body": "Introduced a steep-and-strain method using freshly ground El Diablo coffee. For the first time, the room smelled like coffee before tasting.\n\nWhen the lid came off after steeping, the aroma felt deeper, richer and more recognisable. My wife described whiskey-like notes and dark chocolate character.\n\nMilk flattened the experience immediately afterward, but before adding milk this was the strongest coffee expression achieved so far.",
-  "observations": [
-    "Steeping dramatically improved aroma",
-    "Coffee identity became clear",
-    "Dark chocolate notes emerged naturally",
-    "Whiskey-like aroma observed by tester",
-    "Milk flattened aroma and flavour",
-    "Major brewing breakthrough"
-  ],
-  "metrics": {
-    "warmth": 3,
-    "drinkability": 4,
-    "conversation_flow": 4,
-    "linger": 4
-  },
-  "metrics_after": {
-    "warmth": 5,
-    "drinkability": 5,
-    "conversation_flow": 5,
-    "linger": 5
-  },
-  "note": "The cup finally announced itself before the first sip.",
-  "status": "breakthrough",
-  "sku": "Evening Blend"
+"id": "020",
+"date": "2025-05-31",
+"time": "11:00",
+"title": "El Diablo versus Monsoon Malabar.",
+"tags": ["Coffee","Comparison","Kisse"],
+"body": "Ran a direct comparison between freshly ground El Diablo and Monsoon Malabar using identical preparation methods.\n\nEl Diablo felt sharper, cleaner and more expressive. Sweetness was easier to notice and the finish remained clearer.\n\nMonsoon Malabar felt earthy, muted and slightly muddy. It was not unpleasant but lacked the lift and complexity that El Diablo brought.\n\nThe comparison confirmed that coffee is shaping the emotional profile of the drink more than originally expected.",
+"observations": [
+"El Diablo cleaner and more expressive",
+"Monsoon Malabar earthier and flatter",
+"Sweetness easier to notice in El Diablo",
+"Coffee influences overall emotional profile",
+"Bean selection matters",
+"El Diablo remains reference bean"
+],
+"metrics": {
+"warmth": 3,
+"mystery": 4,
+"body": 3,
+"linger": 3
+},
+"metrics_after": {
+"warmth": 4,
+"mystery": 5,
+"body": 4,
+"linger": 4
+},
+"note": "Coffee is becoming a character, not a background ingredient.",
+"status": "logged",
+"sku": "Kisse"
 },
 {
-  "id": "022",
-  "date": "2025-05-31",
-  "time": "21:00",
-  "title": "Evening Blend v12 — Monsoon Malabar comparison.",
-  "tags": ["Ingredients","Evening","Comparison"],
-  "body": "Compared El Diablo against Monsoon Malabar. Both occupied similar territory but behaved very differently.\n\nEl Diablo felt sharper, cleaner and more expressive. Monsoon Malabar felt earthier, muddier and more muted.\n\nThe comparison clarified that bean selection matters more than expected. The coffee is not simply a caffeine carrier. It shapes the personality of the entire drink.",
-  "observations": [
-    "El Diablo more expressive",
-    "Monsoon Malabar more earthy and muted",
-    "Coffee personality affects entire cup",
-    "Aroma stronger with El Diablo",
-    "Sweetness more noticeable with El Diablo",
-    "Bean selection becoming strategic"
-  ],
-  "metrics": {
-    "warmth": 3,
-    "drinkability": 4,
-    "conversation_flow": 4,
-    "linger": 4
-  },
-  "metrics_after": {
-    "warmth": 4,
-    "drinkability": 4,
-    "conversation_flow": 5,
-    "linger": 4
-  },
-  "note": "Coffee is becoming a character, not an ingredient.",
-  "status": "logged",
-  "sku": "Evening Blend"
+"id": "021",
+"date": "2025-06-01",
+"time": "12:15",
+"title": "Customer interviews reveal two different drinks.",
+"tags": ["Research","Strategy","Kisse"],
+"body": "Survey responses started creating an unexpected pattern.\n\nSome people were drawn toward the dark, mysterious, conversation-led version. Others responded strongly to entirely different language: rainy evenings, reading, cocoon-like comfort, slowing down and being alone with their thoughts.\n\nThis was not a recipe insight. It was a positioning insight.\n\nThe possibility emerged that one drink might be trying to satisfy two emotional jobs simultaneously.",
+"observations": [
+"Comfort language repeated frequently",
+"Rainy evenings appeared multiple times",
+"Reading and personal rituals mentioned often",
+"Mystery still generated curiosity",
+"Two emotional territories identified",
+"Potential SKU split emerging"
+],
+"metrics": {
+"warmth": 3,
+"mystery": 4,
+"body": 3,
+"linger": 4
+},
+"metrics_after": {
+"warmth": 5,
+"mystery": 4,
+"body": 3,
+"linger": 5
+},
+"note": "The next question may not be culinary. It may be emotional.",
+"status": "logged",
+"sku": "Kisse"
 },
 {
-  "id": "023",
-  "date": "2025-06-01",
-  "time": "12:00",
-  "title": "Evening Blend v13 — comfort versus mystery emerges.",
-  "tags": ["Research","Evening","Strategy"],
-  "body": "Survey responses started creating a surprising pattern. Some people were attracted to the mysterious, dark, conversational side of the drink. Others described something entirely different: cocoon, comfort, rainy evenings, reading and personal reflection.\n\nThe possibility emerged that one drink may be trying to serve two emotional jobs simultaneously.\n\nThe challenge is no longer only recipe design. It is deciding which emotional promise the product should keep.",
-  "observations": [
-    "Comfort language appeared repeatedly",
-    "Rainy evenings emerged consistently",
-    "Reading and personal rituals mentioned often",
-    "Mystery still attracted curiosity",
-    "Two emotional territories identified",
-    "Product question becoming strategic"
-  ],
-  "metrics": {
-    "warmth": 3,
-    "drinkability": 4,
-    "conversation_flow": 4,
-    "linger": 4
-  },
-  "metrics_after": {
-    "warmth": 5,
-    "drinkability": 4,
-    "conversation_flow": 5,
-    "linger": 5
-  },
-  "note": "The next decision may be emotional rather than culinary.",
-  "status": "logged",
-  "sku": "Evening Blend"
+"id": "022",
+"date": "2025-06-02",
+"time": "09:00",
+"title": "Coconut milk powder solves one problem and creates another.",
+"tags": ["Ingredients","Iteration","Kisse"],
+"body": "Introduced coconut milk powder to improve body and richness.\n\nThe improvement was immediate. The cup felt fuller and smoother. Sweetness became more integrated and the drink moved slightly closer to the comforting direction suggested by survey responses.\n\nUnfortunately the surface developed visible particles and residue collected on the cup walls. The cup tasted better while looking worse.\n\nThis was the first time presentation became a major concern.",
+"observations": [
+"Body improved noticeably",
+"Smoothness increased",
+"Sweetness integrated better",
+"Visible surface particles appeared",
+"Residue remained on cup walls",
+"Taste improved faster than presentation"
+],
+"metrics": {
+"warmth": 4,
+"mystery": 3,
+"body": 4,
+"linger": 4
+},
+"metrics_after": {
+"warmth": 5,
+"mystery": 3,
+"body": 5,
+"linger": 5
+},
+"note": "A better drink is not automatically a better product.",
+"status": "logged",
+"sku": "Kisse"
 },
 {
-  "id": "024",
-  "date": "2025-06-02",
-  "time": "09:00",
-  "title": "Evening Blend v14 — coconut milk powder and the aesthetics problem.",
-  "tags": ["Ingredients","Evening","Iteration"],
-  "body": "Coconut milk powder improved body, smoothness and perceived richness. The cup felt fuller and slightly more comforting.\n\nUnfortunately, visual aesthetics suffered. Floating particles appeared on the surface and residue remained on the cup walls.\n\nFor the first time, the project encountered a new category of problem: the cup may taste better while looking worse.\n\nThe challenge now is balancing sensory experience with presentation.",
-  "observations": [
-    "Body improved noticeably",
-    "Smoothness improved slightly",
-    "Cup looked less premium",
-    "Visible residue became distracting",
-    "Taste improving faster than presentation",
-    "Format and preparation becoming important"
-  ],
-  "metrics": {
-    "warmth": 4,
-    "drinkability": 4,
-    "conversation_flow": 4,
-    "linger": 4
-  },
-  "metrics_after": {
-    "warmth": 5,
-    "drinkability": 4,
-    "conversation_flow": 4,
-    "linger": 5
-  },
-  "note": "A better tasting drink is not automatically a better product.",
-  "status": "logged",
-  "sku": "Evening Blend"
+"id": "023",
+"date": "2025-06-02",
+"time": "14:30",
+"title": "The recurring complaint: uncooked, powdery, lukewarm.",
+"tags": ["Testing","Feedback","Kisse"],
+"body": "Multiple tasting sessions with family revealed a remarkably consistent pattern.\n\nNobody complained about sweetness. Nobody complained about bitterness. Coffee was present. Cacao was present.\n\nInstead, three complaints repeated over and over: powdery texture, residue on the glass and a cup that arrived lukewarm rather than comforting.\n\nThe insight was important because it suggested the biggest barriers may be operational rather than flavour related.",
+"observations": [
+"Sweetness generally accepted",
+"Bitterness generally acceptable",
+"Powdery texture repeatedly mentioned",
+"Cup wall residue repeatedly mentioned",
+"Temperature consistently too low",
+"Operational problems masking recipe quality"
+],
+"metrics": {
+"warmth": 2,
+"mystery": 3,
+"body": 3,
+"linger": 2
+},
+"metrics_after": {
+"warmth": 2,
+"mystery": 3,
+"body": 3,
+"linger": 2
+},
+"note": "Nobody remembers the flavour if the cup arrives cold.",
+"status": "logged",
+"sku": "Kisse"
+},
+{
+"id": "024",
+"date": "2025-06-02",
+"time": "20:00",
+"title": "The real problem may be wow, not flavour.",
+"tags": ["Reflection","Strategy","Kisse"],
+"body": "Tonight's reflection moved beyond ingredients.\n\nThe drink is now reasonably drinkable. Coffee is present. Cacao is present. Sweetness is balanced. Yet something still feels missing.\n\nThe question is no longer whether the cup works. The question is whether it creates a feeling someone would remember.\n\nCurrent hypothesis: Kisse is caught between two identities. One wants to be a mysterious conversation drink. The other wants to be a comforting personal ritual. Both directions have supporters. Neither has fully arrived.\n\nThe next phase of development will focus less on flavour correction and more on emotional clarity.",
+"observations": [
+"Drinkability improving",
+"Identity still unresolved",
+"Mystery direction has supporters",
+"Comfort direction has supporters",
+"No clear wow moment yet",
+"Emotional clarity becoming the primary challenge"
+],
+"metrics": {
+"warmth": 3,
+"mystery": 4,
+"body": 3,
+"linger": 3
+},
+"metrics_after": {
+"warmth": 4,
+"mystery": 4,
+"body": 3,
+"linger": 4
+},
+"note": "The next breakthrough will likely come from choosing an emotion, not an ingredient.",
+"status": "logged",
+"sku": "Kisse"
 }
 ]
