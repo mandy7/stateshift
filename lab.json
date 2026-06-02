@@ -593,5 +593,221 @@
     "note": "Wife said there is something warm in the back of her chest that she cannot explain. That is the base note working exactly as designed. The evening blend is locked.",
     "status": "breakthrough",
     "sku": "Evening Blend"
-  }
+{
+  "id": "018",
+  "date": "2025-05-21",
+  "time": "20:15",
+  "title": "Evening Blend v9 — the mystery survives, but the body disappears.",
+  "tags": ["Ingredients","Evening","Iteration"],
+  "body": "Returned to the simplified version after the previous breakthrough. The drink still occupied an interesting territory somewhere between coffee, cacao and something harder to classify. The mystery remained. The body did not.\n\nThe aroma still generated curiosity, but the cup felt thinner than expected. The finish disappeared faster and the experience felt more intellectual than emotional. It was something I wanted to analyse rather than hold.\n\nThis was the first session where the distinction between intrigue and comfort became visible. The drink could create curiosity without creating attachment.",
+  "observations": [
+    "Mystery remains intact",
+    "Body noticeably thinner",
+    "Aroma interesting but not comforting",
+    "Finish shorter than previous breakthrough",
+    "Cup invited analysis more than relaxation",
+    "Beginning of comfort versus intrigue distinction"
+  ],
+  "metrics": {
+    "warmth": 3,
+    "drinkability": 4,
+    "conversation_flow": 4,
+    "linger": 3
+  },
+  "metrics_after": {
+    "warmth": 4,
+    "drinkability": 4,
+    "conversation_flow": 5,
+    "linger": 3
+  },
+  "note": "A drink can be memorable without being comforting.",
+  "status": "logged",
+  "sku": "Evening Blend"
+},
+{
+  "id": "019",
+  "date": "2025-05-22",
+  "time": "10:00",
+  "title": "Morning Blend v10 — fresh-ground coffee enters the picture.",
+  "tags": ["Brewing","Morning","Breakthrough"],
+  "body": "Today marked the first serious move away from instant coffee thinking. Fresh-ground specialty coffee introduced something none of the earlier versions possessed: anticipation.\n\nThe smell arriving before the sip changed the entire ritual. The coffee felt alive. Even before tasting, the brain was already preparing for the experience.\n\nThe session highlighted that aroma is not a decorative layer. Aroma itself is part of the state shift.",
+  "observations": [
+    "Fresh grinding immediately improved aroma",
+    "Coffee felt more premium and intentional",
+    "Anticipation appeared before the first sip",
+    "State shift started before drinking",
+    "Instant coffee limitations became obvious",
+    "Fresh coffee may become core architecture"
+  ],
+  "metrics": {
+    "energy": 2,
+    "focus": 2,
+    "anxiety": 2,
+    "mood": 3
+  },
+  "metrics_after": {
+    "energy": 4,
+    "focus": 5,
+    "anxiety": 1,
+    "mood": 4
+  },
+  "note": "The aroma became part of the product.",
+  "status": "breakthrough",
+  "sku": "Morning Blend"
+},
+{
+  "id": "020",
+  "date": "2025-05-24",
+  "time": "17:45",
+  "title": "Evening Blend v10 — cacao starts supporting coffee.",
+  "tags": ["Ingredients","Evening","Iteration"],
+  "body": "Instead of treating cacao as the main event, it was repositioned as a supporting structure around coffee. The cup became darker, slower and more grounded.\n\nThe interesting observation was that cacao changed the pace of drinking. People naturally took smaller sips and longer pauses between them.\n\nThis felt less like a beverage optimisation exercise and more like ritual design.",
+  "observations": [
+    "Cacao slowed down drinking pace",
+    "Coffee remained identifiable",
+    "Body improved slightly",
+    "Grounded feeling increased",
+    "Drink felt more intentional",
+    "Ritual quality becoming stronger"
+  ],
+  "metrics": {
+    "warmth": 3,
+    "drinkability": 3,
+    "conversation_flow": 4,
+    "linger": 4
+  },
+  "metrics_after": {
+    "warmth": 4,
+    "drinkability": 4,
+    "conversation_flow": 5,
+    "linger": 5
+  },
+  "note": "The drink began shaping behaviour, not just flavour.",
+  "status": "logged",
+  "sku": "Evening Blend"
+},
+{
+  "id": "021",
+  "date": "2025-05-30",
+  "time": "17:30",
+  "title": "Evening Blend v11 — steep and strain changes everything.",
+  "tags": ["Brewing","Evening","Breakthrough"],
+  "body": "Introduced a steep-and-strain method using freshly ground El Diablo coffee. For the first time, the room smelled like coffee before tasting.\n\nWhen the lid came off after steeping, the aroma felt deeper, richer and more recognisable. My wife described whiskey-like notes and dark chocolate character.\n\nMilk flattened the experience immediately afterward, but before adding milk this was the strongest coffee expression achieved so far.",
+  "observations": [
+    "Steeping dramatically improved aroma",
+    "Coffee identity became clear",
+    "Dark chocolate notes emerged naturally",
+    "Whiskey-like aroma observed by tester",
+    "Milk flattened aroma and flavour",
+    "Major brewing breakthrough"
+  ],
+  "metrics": {
+    "warmth": 3,
+    "drinkability": 4,
+    "conversation_flow": 4,
+    "linger": 4
+  },
+  "metrics_after": {
+    "warmth": 5,
+    "drinkability": 5,
+    "conversation_flow": 5,
+    "linger": 5
+  },
+  "note": "The cup finally announced itself before the first sip.",
+  "status": "breakthrough",
+  "sku": "Evening Blend"
+},
+{
+  "id": "022",
+  "date": "2025-05-31",
+  "time": "21:00",
+  "title": "Evening Blend v12 — Monsoon Malabar comparison.",
+  "tags": ["Ingredients","Evening","Comparison"],
+  "body": "Compared El Diablo against Monsoon Malabar. Both occupied similar territory but behaved very differently.\n\nEl Diablo felt sharper, cleaner and more expressive. Monsoon Malabar felt earthier, muddier and more muted.\n\nThe comparison clarified that bean selection matters more than expected. The coffee is not simply a caffeine carrier. It shapes the personality of the entire drink.",
+  "observations": [
+    "El Diablo more expressive",
+    "Monsoon Malabar more earthy and muted",
+    "Coffee personality affects entire cup",
+    "Aroma stronger with El Diablo",
+    "Sweetness more noticeable with El Diablo",
+    "Bean selection becoming strategic"
+  ],
+  "metrics": {
+    "warmth": 3,
+    "drinkability": 4,
+    "conversation_flow": 4,
+    "linger": 4
+  },
+  "metrics_after": {
+    "warmth": 4,
+    "drinkability": 4,
+    "conversation_flow": 5,
+    "linger": 4
+  },
+  "note": "Coffee is becoming a character, not an ingredient.",
+  "status": "logged",
+  "sku": "Evening Blend"
+},
+{
+  "id": "023",
+  "date": "2025-06-01",
+  "time": "12:00",
+  "title": "Evening Blend v13 — comfort versus mystery emerges.",
+  "tags": ["Research","Evening","Strategy"],
+  "body": "Survey responses started creating a surprising pattern. Some people were attracted to the mysterious, dark, conversational side of the drink. Others described something entirely different: cocoon, comfort, rainy evenings, reading and personal reflection.\n\nThe possibility emerged that one drink may be trying to serve two emotional jobs simultaneously.\n\nThe challenge is no longer only recipe design. It is deciding which emotional promise the product should keep.",
+  "observations": [
+    "Comfort language appeared repeatedly",
+    "Rainy evenings emerged consistently",
+    "Reading and personal rituals mentioned often",
+    "Mystery still attracted curiosity",
+    "Two emotional territories identified",
+    "Product question becoming strategic"
+  ],
+  "metrics": {
+    "warmth": 3,
+    "drinkability": 4,
+    "conversation_flow": 4,
+    "linger": 4
+  },
+  "metrics_after": {
+    "warmth": 5,
+    "drinkability": 4,
+    "conversation_flow": 5,
+    "linger": 5
+  },
+  "note": "The next decision may be emotional rather than culinary.",
+  "status": "logged",
+  "sku": "Evening Blend"
+},
+{
+  "id": "024",
+  "date": "2025-06-02",
+  "time": "09:00",
+  "title": "Evening Blend v14 — coconut milk powder and the aesthetics problem.",
+  "tags": ["Ingredients","Evening","Iteration"],
+  "body": "Coconut milk powder improved body, smoothness and perceived richness. The cup felt fuller and slightly more comforting.\n\nUnfortunately, visual aesthetics suffered. Floating particles appeared on the surface and residue remained on the cup walls.\n\nFor the first time, the project encountered a new category of problem: the cup may taste better while looking worse.\n\nThe challenge now is balancing sensory experience with presentation.",
+  "observations": [
+    "Body improved noticeably",
+    "Smoothness improved slightly",
+    "Cup looked less premium",
+    "Visible residue became distracting",
+    "Taste improving faster than presentation",
+    "Format and preparation becoming important"
+  ],
+  "metrics": {
+    "warmth": 4,
+    "drinkability": 4,
+    "conversation_flow": 4,
+    "linger": 4
+  },
+  "metrics_after": {
+    "warmth": 5,
+    "drinkability": 4,
+    "conversation_flow": 4,
+    "linger": 5
+  },
+  "note": "A better tasting drink is not automatically a better product.",
+  "status": "logged",
+  "sku": "Evening Blend"
+}
 ]
