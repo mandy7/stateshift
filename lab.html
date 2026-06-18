@@ -1,462 +1,156 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lab — StateShift</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:wght@400;500&display=swap" rel="stylesheet">
-
 <style>
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#140c08;
-  --panel:#1f140d;
-  --border:rgba(224,166,59,.12);
-  --gold:#d4a853;
-  --muted:#8d7258;
-  --text:#f2e8db;
+  --bg:#140c08;--panel:#1f140d;--border:rgba(224,166,59,.12);
+  --gold:#d4a853;--muted:#8d7258;--text:#f2e8db;
 }
-
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:'Lora', serif;
-}
-
-.container{
-  width:980px;
-  max-width:92%;
-  margin:auto;
-  padding-bottom:80px;
-}
-
-.navbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:28px 0;
-  margin-bottom:40px;
-}
-
-.logo{
-  text-decoration:none;
-  font-family:'Playfair Display', serif;
-  font-size:34px;
-  color:white;
-  font-style:italic;
-}
-
-.logo span{
-  color:var(--gold);
-}
-
-.nav{
-  display:flex;
-  gap:10px;
-}
-
-.nav a{
-  text-decoration:none;
-  color:var(--muted);
-  border:1px solid rgba(224,166,59,.12);
-  padding:10px 16px;
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:1.2px;
-}
-
-.nav a.active{
-  color:var(--gold);
-  border-color:rgba(224,166,59,.3);
-}
-
-.hero{
-  margin-bottom:36px;
-}
-
-.eyebrow{
-  color:var(--gold);
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:2px;
-  margin-bottom:18px;
-  font-family:'IBM Plex Mono', monospace;
-}
-
-.hero h1{
-  font-size:72px;
-  font-weight:400;
-}
-
-.hero h1 span{
-  color:var(--gold);
-  font-style:italic;
-}
-
-.hero p{
-  margin-top:18px;
-  color:var(--muted);
-  line-height:1.9;
-}
-
-.tabs{
-  display:flex;
-  gap:10px;
-  margin-bottom:36px;
-}
-
-.tab-btn{
-  background:transparent;
-  border:1px solid rgba(224,166,59,.12);
-  color:var(--muted);
-  padding:12px 18px;
-  cursor:pointer;
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:1.2px;
-}
-
-.tab-btn.active{
-  background:var(--gold);
-  color:#1a120b;
-}
-
-.tab-content{
-  display:none;
-}
-
-.tab-content.active{
-  display:block;
-}
-
-.main-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-}
-
-.note-card,
-.entry{
-  background:var(--panel);
-  border:1px solid var(--border);
-}
-
-.note-card{
-  padding:24px;
-}
-
-.note-title{
-  color:var(--gold);
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:1.4px;
-  margin-bottom:14px;
-  font-family:'IBM Plex Mono', monospace;
-}
-
-.note-body{
-  color:#dccdbb;
-  line-height:1.9;
-}
-
-.entry{
-  margin-bottom:18px;
-}
-
-.entry-header{
-  padding:24px;
-  cursor:pointer;
-}
-
-.entry-meta{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  color:var(--muted);
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:1.2px;
-  margin-bottom:12px;
-  font-family:'IBM Plex Mono', monospace;
-}
-
-.entry-title{
-  font-size:28px;
-  line-height:1.4;
-}
-
-.entry-body{
-  display:none;
-  border-top:1px solid rgba(224,166,59,.08);
-  padding:24px;
-}
-
-.entry-body.open{
-  display:block;
-}
-
-.prose{
-  line-height:2;
-  color:#ddd0c0;
-  margin-bottom:24px;
-}
-
-.section-label{
-  color:var(--gold);
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:1.2px;
-  margin-bottom:12px;
-  font-family:'IBM Plex Mono', monospace;
-}
-
-.obs-list{
-  list-style:none;
-}
-
-.obs-list li{
-  position:relative;
-  padding-left:18px;
-  margin-bottom:10px;
-  line-height:1.8;
-  color:#cdbda9;
-}
-
-.obs-list li::before{
-  content:'—';
-  position:absolute;
-  left:0;
-  color:rgba(224,166,59,.5);
-}
-
-.field-note{
-  margin-top:28px;
-  border-left:2px solid rgba(224,166,59,.35);
-  padding-left:16px;
-}
-
-.field-note-text{
-  color:#d7b06d;
-  line-height:1.8;
-  font-style:italic;
-}
-
+body{background:var(--bg);color:var(--text);font-family:'Lora',serif}
+.container{width:980px;max-width:92%;margin:auto;padding-bottom:80px}
+.navbar{display:flex;justify-content:space-between;align-items:center;padding:28px 0;margin-bottom:40px}
+.logo{text-decoration:none;font-family:'Playfair Display',serif;font-size:34px;color:white;font-style:italic}
+.logo span{color:var(--gold)}
+.nav{display:flex;gap:10px}
+.nav a{text-decoration:none;color:var(--muted);border:1px solid rgba(224,166,59,.12);padding:10px 16px;font-size:11px;text-transform:uppercase;letter-spacing:1.2px}
+.nav a.active{color:var(--gold);border-color:rgba(224,166,59,.3)}
+.hero{margin-bottom:36px}
+.eyebrow{color:var(--gold);font-size:11px;text-transform:uppercase;letter-spacing:2px;margin-bottom:18px;font-family:'IBM Plex Mono',monospace}
+.hero h1{font-size:72px;font-weight:400}
+.hero h1 span{color:var(--gold);font-style:italic}
+.hero p{margin-top:18px;color:var(--muted);line-height:1.9}
+.tabs{display:flex;gap:10px;margin-bottom:36px}
+.tab-btn{background:transparent;border:1px solid rgba(224,166,59,.12);color:var(--muted);padding:12px 18px;cursor:pointer;font-size:11px;text-transform:uppercase;letter-spacing:1.2px}
+.tab-btn.active{background:var(--gold);color:#1a120b}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.main-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.note-card,.entry{background:var(--panel);border:1px solid var(--border)}
+.note-card{padding:24px}
+.note-title{color:var(--gold);font-size:11px;text-transform:uppercase;letter-spacing:1.4px;margin-bottom:14px;font-family:'IBM Plex Mono',monospace}
+.note-body{color:#dccdbb;line-height:1.9}
+.entry{margin-bottom:18px}
+.entry-header{padding:24px;cursor:pointer;user-select:none}
+.entry-meta{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:12px;font-family:'IBM Plex Mono',monospace}
+.entry-title{font-size:28px;line-height:1.4}
+.entry-body{display:none;border-top:1px solid rgba(224,166,59,.08);padding:24px}
+.entry-body.open{display:block}
+.prose{line-height:2;color:#ddd0c0;margin-bottom:24px}
+.section-label{color:var(--gold);font-size:11px;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:12px;font-family:'IBM Plex Mono',monospace}
+.obs-list{list-style:none}
+.obs-list li{position:relative;padding-left:18px;margin-bottom:10px;line-height:1.8;color:#cdbda9}
+.obs-list li::before{content:'—';position:absolute;left:0;color:rgba(224,166,59,.5)}
+.field-note{margin-top:28px;border-left:2px solid rgba(224,166,59,.35);padding-left:16px}
+.field-note-text{color:#d7b06d;line-height:1.8;font-style:italic}
 @media(max-width:760px){
-
-  .hero h1{
-    font-size:52px;
-  }
-
-  .main-grid{
-    grid-template-columns:1fr;
-  }
-
+  .hero h1{font-size:52px}
+  .main-grid{grid-template-columns:1fr}
 }
-
 </style>
 </head>
-
 <body>
-
 <div class="container">
 
 <div class="navbar">
-
-<a href="index.html" class="logo">
-State<span>Shift</span>
-</a>
-
-<div class="nav">
-<a href="lab.html" class="active">Lab</a>
-<a href="states.html">Observations</a>
-</div>
-
+  <a href="index.html" class="logo">State<span>Shift</span></a>
+  <div class="nav">
+    <a href="lab.html" class="active">Lab</a>
+    <a href="states.html">Observations</a>
+  </div>
 </div>
 
 <div class="hero">
-
-<div class="eyebrow">
-Field Notes · Experiment Log
-</div>
-
-<h1>
-The <span>Lab</span>
-</h1>
-
-<p>
-Observations from repeated ritual experiments around aroma, alertness, warmth, pacing, emotional memory, and sensory sequencing.
-</p>
-
+  <div class="eyebrow">Field Notes · Experiment Log</div>
+  <h1>The <span>Lab</span></h1>
+  <p>Observations from repeated ritual experiments around aroma, alertness, warmth, pacing, emotional memory, and sensory sequencing.</p>
 </div>
 
 <div class="tabs">
-<button class="tab-btn active" data-tab="mainTab">Main Notes</button>
-<button class="tab-btn" data-tab="noonTab">Noon Ritual</button>
-<button class="tab-btn" data-tab="eveningTab">Evening Ritual</button>
+  <button class="tab-btn active" data-tab="mainTab">Overview</button>
+  <button class="tab-btn" data-tab="rukhTab">Rukh</button>
+  <button class="tab-btn" data-tab="kisseTab">Kisse</button>
 </div>
 
 <div id="mainTab" class="tab-content active">
-
-<div class="main-grid">
-
-<div class="note-card">
-<div class="note-title">Current direction</div>
-<div class="note-body">
-The noon ritual is stabilizing around cleaner activation and lower friction entering work.
-</div>
-</div>
-
-<div class="note-card">
-<div class="note-title">Evening direction</div>
-<div class="note-body">
-The evening ritual is evolving toward emotional warmth and slower pacing.
-</div>
-</div>
-
-<div class="note-card">
-<div class="note-title">Most important learning</div>
-<div class="note-body">
-Technical smoothness alone does not create memorability.
-</div>
+  <div class="main-grid">
+    <div class="note-card">
+      <div class="note-title">Rukh direction</div>
+      <div class="note-body">The noon ritual is stabilizing around cleaner activation and lower friction entering work.</div>
+    </div>
+    <div class="note-card">
+      <div class="note-title">Kisse direction</div>
+      <div class="note-body">The evening ritual is evolving toward emotional warmth and slower pacing.</div>
+    </div>
+    <div class="note-card">
+      <div class="note-title">Most important learning</div>
+      <div class="note-body">Technical smoothness alone does not create memorability.</div>
+    </div>
+    <div class="note-card">
+      <div class="note-title">Current experimentation model</div>
+      <div class="note-body">Moving toward side-by-side micro-batch comparisons.</div>
+    </div>
+  </div>
 </div>
 
-<div class="note-card">
-<div class="note-title">Current experimentation model</div>
-<div class="note-body">
-Moving toward side-by-side micro-batch comparisons.
-</div>
+<div id="rukhTab" class="tab-content">
+  <div id="rukhEntries"></div>
 </div>
 
-</div>
-
-</div>
-
-<div id="noonTab" class="tab-content">
-<div id="noonEntries"></div>
-</div>
-
-<div id="eveningTab" class="tab-content">
-<div id="eveningEntries"></div>
+<div id="kisseTab" class="tab-content">
+  <div id="kisseEntries"></div>
 </div>
 
 </div>
 
 <script>
+const DATA = [{"id":"050","date":"2025-06-21","time":"10:00","title":"KISSE v27 — Bloom beans: Venkids and Meera. Neither produced distinctive character.","tags":["KISSE","Brewing","Ingredients"],"sku":"KISSE","body":"Two half cups with newly arrived Bloom Roasters beans. All with El Diablo recipe format: 3.5g setting 12, Dutch cocoa 0.6g, palm jaggery 1.9g, mace pinch, 110ml water.\n\nCup A: Venkids Valley Estate (Bloom Roasters).\nCup B: Meera (Bloom Roasters).\n\nWife: Cup B (Meera) — premium coffee. Cup A (Venkids) — average. Neither produced special aroma or notes.\n\nBrother-in-law: could not detect any distinct taste in either cup.\n\nConclusion: both Bloom beans closed for Kisse. Neither produced the character El Diablo consistently delivers.\n\nEl Diablo bean selection now closed with high confidence. Five beans tested across multiple sessions (El Diablo, Harley Robusta, Vin Van Gogh, Venkids, Meera). El Diablo has been the only bean producing consistent character. Bean question settled.","observations":["Venkids: average — no distinctive notes","Meera: premium coffee quality but no distinguishing character","Brother-in-law: no taste detected in either — but evaluation reliability limited","Neither Bloom bean produced the El Diablo-level character","Five beans now tested for Kisse — El Diablo consistently the only distinctive performer","Bean selection closed: El Diablo confirmed, all others closed"],"metrics":{"warmth":2,"mystery":1,"body":2,"linger":2},"metrics_after":{"warmth":2,"mystery":1,"body":2,"linger":2},"note":"Bean selection closed. El Diablo only. Orange peel test is the final remaining variable before group tasting.","status":"logged"},{"id":"049","date":"2025-06-20","time":"20:00","title":"KISSE v26 — Brother-in-law validation. El Diablo vs Harley. Social nightcap brief crystallised.","tags":["KISSE","Ingredients","Social"],"sku":"KISSE","body":"First external taster session for Kisse in this phase. Brother-in-law and sister-in-law as evaluators.\n\nCup A: Harley Estate 3.5g setting 13, palm jaggery 1.9g, Dutch cocoa 0.6g, mace pinch, 110ml water.\nCup B: El Diablo 3.5g setting 13, palm jaggery 1.9g, Dutch cocoa 0.6g, mace pinch, 110ml water.\n\nBrother-in-law (distracted, limited feedback): Cup A — smooth, slightly sweet, very good. Cup B — could not identify particular note. Tasting compromised by distraction — not reliable evaluation.\n\nSister-in-law (few sips of Cup B): recalled something but could not name it. Sensed something in the throat — mace working as unidentifiable warmth. Could not name the ingredient.\n\nKey insight: mace creating unidentifiable throat sensation in someone who did not know it was there. This is the mystery layer working at minimum viable dose.\n\nStrategic clarity from this session: differentiation question raised. Beyond the sachet format and narrative, the liquid differentiation is still thin — a sophisticated consumer could recreate this by buying El Diablo directly. Mystery layer remains the unsolved gap.\n\nBrief reframed: Kisse as bold social drink for friends-over-drinks moment — nostalgia, honest conversation, shared evenings. Not solo mystery. Kisse (stories/conversations) as name confirmed as correct for this brief.","observations":["Mace: sister-in-law sensed unidentifiable throat warmth without knowing ingredient — mystery layer confirmed working","Brother-in-law evaluation compromised by distraction — not reliable data","Cup A (Harley): smooth and sweet — approachable but lacks identity","Cup B (El Diablo): no specific notes identified — tasting conditions poor","Differentiation concern raised: liquid differentiation thin beyond narrative and format","Kisse brief reframed: bold social drink, friends and conversation, not solo mystery ritual","Kisse name confirmed correct for social-conversation-stories brief","Mystery layer still needed for repeat purchase justification"],"metrics":{"warmth":3,"mystery":3,"body":3,"linger":3},"metrics_after":{"warmth":4,"mystery":3,"body":3,"linger":3},"note":"Mace confirmed as mystery layer in throat. Brief reframed to social shared-drink occasion. Orange peel next test before group tasting.","status":"logged"},{"id":"048","date":"2025-06-20","time":"18:40","title":"KISSE v25 — Three-way: El Diablo vs Harley Robusta vs Vin Van Gogh. Cocoa and mace added. El Diablo confirmed.","tags":["KISSE","Brewing","Ingredients"],"sku":"KISSE","body":"Three half-cup session with cocoa and mace added to all cups. All beans 2g setting 12, Dutch cocoa 0.4g, palm jaggery 0.9g, tiny mace pinch, 75ml hot water, 3-3:20 steep.\n\nCup A: El Diablo. Cup B: Harley Estate Robusta. Cup C: Vin Van Gogh (Bloom Roasters).\n\nWife: Cup A — orange citrus flavor. No alcohol detected today. Not bitter. Liked it. Cup B — citrus note also present (cup had cooled by evaluation). Cup C — plain black coffee, no notes.\n\nSelf: Cup A doing what El Diablo has been doing — strong, sharp, bold. No specific notes but lingering joshanda/mulethi finish. Cup B — dry powder aroma interesting before water, but in cup unremarkable. Cup C — no notes but noticeably thicker body than A or B.\n\nWife's orange citrus detection on Cup A is significant — El Diablo plus cocoa appears to unlock a latent citrus note. This is the second time citrus has appeared with El Diablo when cocoa is present. Cocoa may be actively unlocking something in El Diablo rather than just adding texture.\n\nVin Van Gogh: thickest body but no distinctive character. Possible body-building blending candidate only.\n\nWife's preference at end of session: went back to the morning Harley Robusta cup with 0.35g cocoa — indicating preference for approachability over complexity. Note: her preference ≠ Kisse brief.","observations":["El Diablo + cocoa: wife detected orange citrus — second time citrus emerges with this combination","Cocoa may be unlocking latent citrus in El Diablo — not just texture contribution","El Diablo: sharp, bold, joshanda lingering — consistent character","Harley Robusta: dry powder interesting before water, unremarkable in cup","Vin Van Gogh: thickest body, no distinctive notes — body candidate only","Wife preference for approachability (Harley morning cup) ≠ Kisse brief","Cup C (Vin Van Gogh) body thickness noted — potential blending role"],"metrics":{"warmth":3,"mystery":3,"body":3,"linger":3},"metrics_after":{"warmth":3,"mystery":3,"body":3,"linger":3},"note":"El Diablo + cocoa unlocking citrus note — investigate. Vin Van Gogh body noted. El Diablo confirmed. Harley closed.","status":"logged"},{"id":"047","date":"2025-06-19","time":"18:30","title":"KISSE v24 — Harley Robusta at grind 12. Thin body, burnt note. Robusta closed for Kisse.","tags":["KISSE","Brewing","Ingredients"],"sku":"KISSE","body":"Diagnostic session to give Harley Estate Robusta a clean evaluation at correct grind setting.\n\nCup A: Harley Estate 2g setting 12, palm jaggery 0.9g, 75ml hot water, 3 min 30 sec steep.\nCup B: same as Cup A, plus Dutch cocoa 0.35g.\n\nWife: Cup A — burnt coffee, thin body. Did not like it. Cup B — cocoa made it drinkable, premium coffee character, no orange or specialty notes. Cocoa appears to mask the burnt quality.\n\nSelf: Cup A thin body confirmed. Cup B — cocoa adds thickness and premium quality but still no distinctive notes.\n\nConclusion: Harley Estate Robusta is not suitable for Kisse regardless of grind setting. It produces a burnt character without richness or body. The orange note from the earlier session at setting 14 was likely under-extraction artifact — the note that seemed interesting was actually a coarse-grind artifact, not the bean's true character.\n\nCocoa at 0.35g half-cup (0.7g full-cup equivalent): partially confirms its role. Adds body and premium quality without pushing toward hot chocolate. But 'made it drinkable' is too low a bar for Kisse.","observations":["Harley Estate Robusta at setting 12: burnt coffee character — not the orange note from setting 14","Body thin even at finer grind — Robusta not providing expected body","Wife: Cup A burnt and disliked, Cup B drinkable but ordinary","Cocoa 0.35g (half cup): partially confirms body contribution, premium quality","Orange note from setting 14 session likely under-extraction artifact — not true bean character","Harley Estate Robusta permanently closed for Kisse","Cocoa role confirmed: adds body and premium quality, not mystery"],"metrics":{"warmth":1,"mystery":1,"body":2,"linger":1},"metrics_after":{"warmth":2,"mystery":1,"body":2,"linger":1},"note":"Harley Estate Robusta closed. El Diablo remains sole Kisse bean. Cocoa partially confirmed. Orange peel next.","status":"failed"},{"id":"046","date":"2025-06-19","time":"10:00","title":"KISSE v23 — Three-way head-to-head: Harley Estate vs El Diablo vs 50-50 blend. El Diablo dominant.","tags":["KISSE","Brewing","Ingredients"],"sku":"KISSE","body":"Three-cup comparative at setting 13. Cup A: Harley Estate 1.5g. Cup B: El Diablo 1.5g. Cup C: 0.75g Harley Estate + 0.75g El Diablo. All with palm jaggery 0.9g, 60ml hot water, 3 min 20 sec steep.\n\nWife: Cup A lightest, watery. Cup B heaviest and strongest, jaggery taste dominant — molasses character of El Diablo. Cup C neutral, neither here nor there.\n\nSelf: Cup A — some aroma detected, unidentifiable, possibly bitter orange or burnt coffee. Cup B — joshanda pre-indication, strong, sharp, bold. Cup C — El Diablo dominating blend entirely, Harley Estate suppressed.\n\nOrange note not detected by either taster in this session despite setting 13 vs 14. Possible that setting 13 extraction is different from setting 14 session or orange only emerges without other beans.\n\nEl Diablo dominance in 50-50 blend confirms it is a high-identity bean. Harley Estate too light to hold its character alongside El Diablo.\n\nConclusion: El Diablo confirmed as Kisse bean. Harley Estate unsuitable for Kisse — body too light, identity too subtle to survive blending or supporting ingredients.","observations":["Harley Estate: lightest body, watery at setting 13 and 60ml","El Diablo: heaviest, strongest, molasses and jaggery character dominant","50-50 blend: El Diablo dominated entirely — Harley suppressed","Orange note absent in this session — may require no competing bean to emerge","El Diablo: joshanda/medicinal pre-indication noted — dark roast character","El Diablo confirmed as dominant, high-identity bean — correct for Kisse","Harley Estate confirmed unsuitable for Kisse — closes this bean for SKU"],"metrics":{"warmth":3,"mystery":2,"body":3,"linger":3},"metrics_after":{"warmth":3,"mystery":2,"body":3,"linger":3},"note":"El Diablo confirmed as Kisse bean. Harley Estate closed for Kisse. High-identity bean requires high-identity mystery layer.","status":"logged"},{"id":"045","date":"2025-06-18","time":"10:00","title":"KISSE v22 — Harley Estate Robusta first session. Three half cups. Orange note from bean only.","tags":["KISSE","Brewing","Ingredients"],"sku":"KISSE","body":"Three half cups comparative session with newly arrived Harley Estate Robusta.\n\nCup 1: Harley Estate 1.5g setting 14, 60ml hot water, no other ingredients. 3 min 50 sec steep.\nCup 2: Harley Estate 1.5g setting 14, palm jaggery 1.25g, 60ml hot water. 3 min 40 sec steep.\nCup 3: Harley Estate 1.5g setting 14, palm jaggery 1.25g, tiny mace pinch, 60ml hot water. 3 min 30 sec steep.\n\nWife: Cup 1 — orange fragrance and taste present. Cup 2 — sweet, orange aroma and taste, quite present. Cup 3 — nothing coming through, neither aroma nor taste.\n\nSelf: Cup 1 light, slightly bitter. Cup 2 sweet, jaggery 1.25g too much for 60ml. Cup 3 interesting with some notes but lighter than El Diablo. Orange not detected by self.\n\nKey insight: wife detected orange independently in cups 1 and 2 — this is Harley Estate's natural character, not a supporting ingredient. Orange is latent in this bean. Mace at Cup 3 appears to suppress rather than complement at this dose and volume.\n\nSetting 14 possibly coarse — water and steep time both above ideal. Next test: setting 12, 75ml, 3 minutes.","observations":["Harley Estate: orange/citrus note detected by wife in cups 1 and 2 — natural bean character","Orange note present without any supporting ingredients — significant find","Jaggery 1.25g for 60ml: too high — sweet and molasses-forward","Mace at Cup 3: suppressed everything at this volume — nothing came through","Setting 14: likely coarse — body lighter than El Diablo sessions","Self could not detect orange — wife more sensitive palate for this note","Cup 1 (plain): light, slightly bitter — suggests under-extraction at setting 14","El Diablo comparison: Harley much cleaner and lighter, El Diablo more acidic and sharper"],"metrics":{"warmth":2,"mystery":3,"body":2,"linger":2},"metrics_after":{"warmth":2,"mystery":3,"body":2,"linger":2},"note":"Orange is Harley Estate's natural character. Test at setting 12 to confirm. Compare against El Diablo before concluding.","status":"logged"},{"id":"044","date":"2025-06-18","time":"11:00","title":"KISSE v21 — Half cup El Diablo setting 16. Tobacco aroma. Jaggery overdosed for volume.","tags":["KISSE","Brewing","Failed"],"sku":"KISSE","body":"Half cup session. El Diablo 2g freshly ground setting 16, palm jaggery 1.5g, Dutch cocoa 0.2g, tiny mace pinch, 70ml hot water, 3 minute 30 second steep.\n\nWife: aroma of strong tobacco — not smooth cigarette, more like beedi. Not pleasant. Taste: slightly burnt coffee with jaggery or molasses.\n\nSelf: more of a molasses or brown sugar character, less of complex coffee.\n\nDiagnosis: three problems simultaneously. First, setting 16 confirmed producing under-extraction rough tobacco character instead of dark chocolate. Second, palm jaggery 1.5g for 70ml is overdosed — correct ratio at this volume is closer to 1.1g. Third, half-batch scaling introduces variables. This session has too many confounds to be useful as diagnostic data.\n\nSession invalidated as decision data. Return to full batch at setting 12-13.","observations":["Setting 16: tobacco aroma — confirms under-extraction rough character at this setting","Jaggery 1.5g for 70ml: too high — molasses dominates at this ratio","Half cup scaling: introduces additional variables","Three problems simultaneously: grind, jaggery ratio, batch size — session not usable","Burned coffee taste: setting 16 under-extraction artifact","Session permanently retired as data point — too many confounds"],"metrics":{"warmth":1,"mystery":1,"body":2,"linger":1},"metrics_after":{"warmth":1,"mystery":1,"body":1,"linger":1},"note":"Session invalidated. Setting 16 permanently closed for Kisse. Full batch at 12-13 only.","status":"failed"},{"id":"051","date":"2025-06-17","time":"10:30","title":"RUKH v8 — 2.7g Van Gogh + 0.6g Cothas. Bitterness returned. Cothas floor identified.","tags":["RUKH","Brewing","Ingredients"],"sku":"RUKH","body":"Evening session. Recipe: 2.7g Vin Van Gogh setting 13, 0.6g Cothas Royal, 1.3g Nestlé creamer, 2.3g palm jaggery, 0.11g cardamom, 120ml water, 3 minute steep, Rhodiola one-sixth capsule (~80mg).\n\nWife: bitter, flat, cardamom absent.\nSelf: Mexican chocolate faint but bitterness dominant. Less milky than expected.\n\nDiagnosis: dropping Cothas Royal from 1g to 0.6g removed more backbone than the Van Gogh increase from 2.5g to 2.7g added. Cothas Royal at 1g appears to be the minimum floor — it provides body and familiar coffee backbone that specialty alone cannot replicate at these doses. Creamer at 1.3g also slightly low — 1.5g is the confirmed working level.\n\nNext test: restore Cothas to 1g, keep Van Gogh at 2.7g, restore creamer to 1.5g, cardamom 0.11g.","observations":["Cothas Royal at 0.6g: insufficient — backbone lost, bitterness without structure","Cothas Royal floor identified at 1g minimum","Van Gogh at 2.7g: Mexican chocolate faintly present but bitterness dominant","Creamer at 1.3g: slightly low — reduces body compared to 1.5g","Cardamom absent from both evaluations — likely suppressed by bitterness","Dropping instant below floor removed more than specialty increase added","120ml water correct — not the variable causing this failure"],"metrics":{"energy":3,"focus":3,"anxiety":1,"mood":3},"metrics_after":{"energy":3,"focus":3,"anxiety":1,"mood":3},"note":"Cothas Royal floor is 1g. Restore to 1g. Next: 2.7g Van Gogh + 1g Cothas + 1.5g creamer + 0.11g cardamom + 2.3g jaggery + 120ml.","status":"failed"},{"id":"043","date":"2025-06-17","time":"18:40","title":"KISSE v20 — El Diablo 3.9g setting 16. Vanilla extract added. Sharp but thin. Setting 16 confirmed wrong.","tags":["KISSE","Brewing","Ingredients"],"sku":"KISSE","body":"El Diablo 3.9g freshly ground setting 16, Dutch cocoa 0.6g, palm jaggery 2.6g, tiny mace pinch, 135ml initial water yielding 120ml, 3 minute steep. Three drops vanilla extract added after 4-5 sips.\n\nSelf: coffee taste present but not distinctive. Mace slightly detectable. Vanilla immediately identifiable after addition — identified it on contact, mystery collapsed. Towards end: lingering joshanda/mulethi quality. Cup direction: sharp, alcohol-adjacent, bitter contemplative drink.\n\nSediment at bottom again — cocoa powder.\n\nAnalysis: setting 16 is under-extraction territory confirmed. The non-distinctive coffee taste and thin character consistent with grind too coarse. Vanilla permanently eliminated from Kisse — too identifiable, destroys mystery the moment it registers.\n\nStrategic observation: the drink keeps converging on alcohol-adjacent, sharp, contemplative regardless of supporting ingredients. This may be the correct brief — bold social evening drink rather than mysterious solo ritual.","observations":["Setting 16: under-extraction — coffee taste thin and non-distinctive","Vanilla 3 drops: immediately identifiable — permanently eliminated from Kisse","Mace detectable at this dose — working","Joshanda/mulethi lingering finish from El Diablo dark roast character","Sediment at cup bottom — cocoa dissolution unsolved","Alcohol-adjacent sharp character emerging consistently across all El Diablo sessions","Strategic question raised: is Kisse a mystery drink or a bold social nightcap?"],"metrics":{"warmth":3,"mystery":2,"body":2,"linger":3},"metrics_after":{"warmth":3,"mystery":2,"body":2,"linger":3},"note":"Vanilla permanently eliminated. Setting 16 confirmed wrong for Kisse. Return to 12-13.","status":"logged"},{"id":"042","date":"2025-06-17","time":"11:30","title":"KISSE v19 — El Diablo 4g at 95ml water. Bitterness increased. Cocoa sediment visible.","tags":["KISSE","Brewing","Ingredients"],"sku":"KISSE","body":"El Diablo 4g freshly ground setting 12-13, Dutch cocoa 0.6g, palm jaggery 2.2g, tiny mace pinch, 110-115ml initial water yielding 95ml final, 3 minute 30 second steep.\n\nWife: more bitter today than yesterday. Aroma still alcoholic — consistent with yesterday. No mystery aroma beyond alcoholic character.\n\nSelf: aroma good, slightly, but taste not unique. More like premium coffee. Powdery substance visible in cup — unsolved aesthetic problem, either cocoa powder or over-extracted coffee oils.\n\nDiagnosis: two variables changed simultaneously — less water (95ml vs 120ml) and longer steep (3:30 vs 3:00). Both pushed toward over-extraction. Bitterness increase caused by concentration and steep time, not recipe change. Water volume is the primary variable to fix.\n\nNext step: return to 120ml water and exactly 3 minutes. Do not adjust jaggery further until water variable is controlled.","observations":["Water 95ml final — below 120ml floor, over-concentrated","Steep 3:30 — 30 seconds longer than previous session","Bitterness increased from yesterday — water volume and time both contributed","Aroma alcoholic — consistent across sessions, valid signal","Powdery sediment visible — cocoa dissolution still unsolved","Mystery aroma from yesterday partially invalidated (shampoo confound)","Two variables changed simultaneously — lesson: change one at a time"],"metrics":{"warmth":2,"mystery":2,"body":3,"linger":3},"metrics_after":{"warmth":3,"mystery":2,"body":3,"linger":3},"note":"120ml non-negotiable. Steep 3 minutes exactly. Bitterness is a water problem not a recipe problem.","status":"failed"},{"id":"041","date":"2025-06-17","time":"11:00","title":"KISSE v18 — El Diablo 4g baseline. Alcoholic aroma confirmed. Bitterness at 1.2g jaggery.","tags":["KISSE","Brewing","Ingredients"],"sku":"KISSE","body":"El Diablo 4g freshly ground setting 12-13, Dutch cocoa 0.6g, palm jaggery powder 1.2g initial (increased to 2.3g mid-session), tiny mace pinch, 120ml hot water, 3 minute steep, strained into preheated cup.\n\nWife found it bitter at 1.2g jaggery. Added 1.1g more mid-cup, reaching 2.2-2.3g total. At that point she found it not bitter, liked it. Described taste as alcoholic — a quality she liked. Both tasters could not identify the aroma layer — possibly coffee, possibly mace, possibly palm jaggery. Could not place it.\n\nSelf: Bold and sharp. Intriguing rather than refreshing. Not a cup you want immediately again, but one you want to hold and sit with. Closest to the 'hold your glass and linger' territory that Kisse is supposed to occupy.\n\nNote: the mystery aroma partially attributed later to wife's shampoo residue on cup — cancel this data point. The alcoholic strength and intriguing character remain valid observations.\n\nCOGS direction: 4g El Diablo is within range. Palm jaggery at 2.2-2.3g confirmed range.","observations":["El Diablo 4g: bold, sharp, alcohol-adjacent character","Palm jaggery 1.2g: too low — bitterness dominant at this dose","Palm jaggery 2.2-2.3g: correct range — bitterness resolved without dessert sweetness","Cocoa 0.6g: contributing but not identifiable","Aroma unidentifiable to both tasters — potential mystery layer but partially confounded by shampoo on cup","Wife verdict: alcoholic character liked, not bitter at 2.3g jaggery","Self verdict: intriguing, bold, 'hold the cup and linger' territory","Sediment visible — cocoa dissolution unsolved"],"metrics":{"warmth":3,"mystery":3,"body":3,"linger":4},"metrics_after":{"warmth":4,"mystery":3,"body":3,"linger":4},"note":"Jaggery floor confirmed at 2.2g. Alcoholic character is the Kisse identity. Mystery aroma data point partially invalid — shampoo confound.","status":"logged"},{"id":"040","date":"2025-06-16","time":"10:30","title":"RUKH v7 — Nestlé creamer introduced. Two iterations. Bitterness gap remains. Creamer locked over milk.","tags":["RUKH","Brewing","Ingredients"],"sku":"RUKH","body":"First session with Nestlé Everyday dairy creamer replacing fresh milk. Two iterations prepared.\n\nCup 1 initial: 2.5g Vin Van Gogh setting 13, 0.8g Cothas Royal, 1g Nestlé creamer, 2.2g palm jaggery, 0.15g cardamom, 120ml water, 3 min steep, Rhodiola one-sixth capsule. Wife: bitter, creamer insufficient, too thin. Rescue addition of 0.5g creamer and 0.3g jaggery mid-cup — wife found editable after, cardamom and coffee detectable. Called it cardamom coffee.\n\nCup 2 fresh: 3g Vin Van Gogh setting 13, 0.5g Cothas Royal, 1.5g Nestlé creamer, 2.5g palm jaggery, 0.1g cardamom, 120ml water, 3 min steep. Wife: different aroma emerging besides cardamom, slight Mexican spice-chocolate from Van Gogh coming through, still slightly bitter.\n\nSelf: both cups drinkable. Cup 2 showed Mexican chocolate adding slight masala-chocolate note. Body acceptable at 1.5g creamer. Powdery finish noted at 1.5g creamer — aesthetic concern only, not taste.\n\nCreamer decision locked: convenience case strong for office-use format. Eliminates milk temperature variable. Single-sachet format confirmed — no separate preparation steps.\n\nCardamom constraint confirmed: above 0.11g aroma registers more strongly — keep at 0.10g for control. Specialty sweet spot still to find — 2.5g too low for notes, 3g tips to bitterness, 2.7-2.8g is next test target.","observations":["Nestlé creamer at 1g: too thin — wife found bitter and insufficient body","Creamer at 1.5g: body acceptable, powdery finish noted — aesthetic not taste issue","Creamer permanently locked over fresh milk — consistency and convenience for office context","Cup 2: wife detected something different beyond cardamom — Van Gogh Mexican chocolate emerging","Cardamom above 0.11g enhances aroma significantly — constraint noted, keep at 0.10g","Bitterness persists — total coffee dose still slightly high","120ml water confirmed working — both cups at correct floor","Specialty dose 2.7-2.8g identified as next test target"],"metrics":{"energy":3,"focus":3,"anxiety":1,"mood":3},"metrics_after":{"energy":3,"focus":4,"anxiety":1,"mood":4},"note":"Creamer locked. Next cup: 2.7g Van Gogh, 0.6g Cothas, 1.5g creamer, 0.10g cardamom, 2.3g jaggery, 120ml water. Bitterness must clear.","status":"logged"},{"id":"039","date":"2025-06-15","time":"10:30","title":"RUKH v6 — specialty vs instant ratio reversal. Wife wanted to lock Cup A. Strongest signal yet.","tags":["RUKH","Brewing","Ingredients"],"sku":"RUKH","body":"Ratio reversal test. Cup A: specialty-led — 2.5g Vin Van Gogh + 1g Cothas Royal. Cup B: instant-led — 1g Vin Van Gogh + 2.5g Levista 80:20 (Cothas Royal running low, substituted). Both: 2.2g palm jaggery, 0.1g cardamom, 125ml water, 3 min steep, 25ml warm milk. Rhodiola one-sixth capsule (~80mg).\n\nWife: Cup A — light, nice, cardamom aroma complementing, wanted to lock it. Cup B — bitter, cardamom not coming through.\n\nSelf: Cup A bitter and light in colour, thinner body but good aroma and taste — distinguished from chai or normal coffee. Spice-chocolate tanginess slightly present. Cup B very strong, thick, almost bitter — undrinkable.\n\nClear verdict: specialty-led is the correct ratio architecture. Instant-led closes. Wife saying 'want to lock' on Cup A is the strongest positive signal across all Rukh sessions to date.\n\nRemaining gaps: Cup A body thin, no specialty notes detected by either taster. Next direction: increase Vin Van Gogh to 2.7-2.8g, increase Cothas to 1.3g, switch to Nestlé creamer for milk consistency.","observations":["Cup A (specialty-led): wife wanted to lock — strongest positive signal in all Rukh sessions","Cup A: light, cardamom aroma present, distinguished from chai or normal coffee","Cup B (instant-led): bitter, cardamom lost, undrinkable — direction permanently closed","Specialty-led confirmed as correct ratio architecture","Body thin in Cup A — Cothas Royal at 1g needs increase to 1.3g","Specialty notes still absent — 2.5g Vin Van Gogh needs increase to 2.7-2.8g","Rhodiola one-sixth capsule (~80mg) — within working range, undetectable","Water at 125ml — closest to correct floor across all Rukh sessions so far"],"metrics":{"energy":3,"focus":3,"anxiety":1,"mood":4},"metrics_after":{"energy":4,"focus":4,"anxiety":1,"mood":4},"note":"Specialty-led locked. Wife wanted to lock Cup A. Gaps: body and specialty notes. Next: 2.7g Van Gogh, 1.3g Cothas, Nestlé creamer.","status":"breakthrough"},{"id":"038","date":"2025-06-14","time":"10:30","title":"RUKH v5 — Baarbara vs Vin Van Gogh at setting 13. Masala vs chocolate daily coffee.","tags":["RUKH","Brewing","Ingredients"],"sku":"RUKH","body":"Full-cup two-way comparison. Cup A: Baarbara Estate (Blue Tokai). Cup B: Vin Van Gogh (Bloom Roasters). Both 3g freshly ground setting 13, 2.5g palm jaggery, 0.65g Cothas Royal, 0.13g cardamom, 80ml water, 3 min steep, 25ml warm milk.\n\nWife: Cup A — spiced masala coffee. Cup B — chocolate coffee with cardamom, daily coffee style, nothing special.\n\nSelf: Cup A more refreshing, noticeable spiciness without being a spice bomb. Cup B slightly muted but familiar. Both functionally refreshing. Cup B felt more aligned with Rukh's dependable brief.\n\nCardamom at 0.13g starting to register in aroma. Palm jaggery at 2.5g likely slightly high for 80ml water — sweetness may be heavy. Water still below floor.\n\nStrategic clarity emerging: Rukh does not need specialty notes. A reliably good milk coffee with warm cardamom aroma and functional ingredients is the correct brief. 'Nothing special' from wife on Cup B is not a failure — it is the right identity for this SKU.","observations":["Baarbara: spiced masala — drifting toward chai, wrong identity for Rukh","Vin Van Gogh: chocolate-coffee, cardamom, daily style — correctly aligned with Rukh brief","Wife preferred Cup B — daily dependable coffee character validated","Cardamom at 0.13g registering in aroma — improvement from earlier sessions","Water still 80ml — below floor, results directional","Baarbara closed for Rukh — masala character not the identity","Specialty notes not needed for Rukh — dependable is the target"],"metrics":{"energy":3,"focus":3,"anxiety":2,"mood":3},"metrics_after":{"energy":3,"focus":4,"anxiety":1,"mood":3},"note":"Vin Van Gogh confirmed direction. Baarbara closed for Rukh. Nothing special is the correct Rukh identity.","status":"logged"},{"id":"037","date":"2025-06-13","time":"09:30","title":"RUKH v4 — Vin Van Gogh vs Harley Estate at setting 12. Half-cooked verdict. Water floor missed again.","tags":["RUKH","Brewing","Failed"],"sku":"RUKH","body":"Two-cup session. Cup A: Vin Van Gogh. Cup B: Harley Estate. Both 3.5g freshly ground setting 12, 0.45g Cothas Royal, 2.1g palm jaggery, 0.1g cardamom, 80-90ml water, 3 min steep, 25ml warm milk. Rhodiola one-third capsule (~150mg).\n\nWife: Cup A bitter. Cup B milk too hot to evaluate properly. Both felt half-cooked or half-boiled — no specific taste or palate character detectable.\n\nSelf: Both showed some notes but very difficult to detect. Body slightly thicker than espresso but thinner than milk coffee. Cardamom slightly less present than previous session.\n\nParadox noted: at setting 16 yesterday wife found Vin Van Gogh interesting; at setting 12 today she found it bitter. Most likely explanation is water volume (80-90ml) causing uneven extraction at finer grind, not grind itself.\n\nOpen questions surfaced this session: whether to remove milk entirely to surface specialty notes; whether Nestlé milk powder improves consistency and COGS vs fresh milk; whether cardamom should increase; whether Kothas Royal as primary with cardamom as sole aroma is a valid simpler Rukh direction.","observations":["Water 80-90ml again below floor — half-cooked verdict confirms under-extraction","Grind 12 with insufficient water produced bitterness in Cup A","Rhodiola one-third capsule (~150mg) — above working range","Milk temperature inconsistency — wife couldn't evaluate Cup B","Setting 16 vs 12 paradox: water volume more likely culprit than grind","Specialty notes not emerging in milk format across multiple beans","Cardamom aroma weaker than previous session"],"metrics":{"energy":2,"focus":2,"anxiety":2,"mood":2},"metrics_after":{"energy":2,"focus":3,"anxiety":1,"mood":2},"note":"120ml water non-negotiable. Cannot draw any bean conclusion until water floor is respected.","status":"failed"},{"id":"036","date":"2025-06-13","time":"10:00","title":"RUKH v3 — three-bean comparison. Vin Van Gogh, Meera, Venkids at setting 15. Under-extracted.","tags":["RUKH","Brewing","Ingredients"],"sku":"RUKH","body":"Three-bean comparative session. Cup A: Vin Van Gogh (Bloom Roasters). Cup B: Meera (Bloom Roasters). Cup C: Venkids Valley Estate (Bloom Roasters). All 3.5g freshly ground setting 15, 2.1g palm jaggery, 0.1g cardamom, 0.4g instant coffee, 80-85ml water, 3 min 10 sec steep, 20-22ml warm milk. Rhodiola 100-125mg added to all cups.\n\nWife: Cup A — good premium coffee, everyday style, chocolate-coffee-cardamom aroma, cardamom heavy. Cup B — multiple spices, slight berry after being prompted with Meera's tasting notes. Cup C — spicier, both B and C more interesting than A, both overpowered cardamom.\n\nSelf: Cup A straightforward chocolate, familiar. Cup B had hilliness and berry notes. Cup C spicy and different — Mexican chocolate direction probable.\n\nCritical issues: grind setting 15 outside locked range of 12-13, causing under-extraction across all three. Water 80-85ml below 120ml floor. Rhodiola dose inconsistent and above working range. Results directional only — cannot draw firm bean conclusions.","observations":["Grind setting 15 — outside locked range, specialty notes suppressed across all cups","Water 80-85ml — below 120ml floor, unreliable extraction","Rhodiola 100-125mg — above confirmed 80mg working range, confounding variable","Cup A (Vin Van Gogh): chocolate, cardamom-forward, premium everyday — closest to Rukh brief","Cup B (Meera): berry, multi-spice, interesting without milk","Cup C (Venkids): spicy, different, Mexican chocolate direction","Wife preferred B and C for interest — but A more aligned with Rukh's dependable brief","Spice dominance across all cups — cardamom likely too prominent relative to thin extraction"],"metrics":{"energy":2,"focus":2,"anxiety":2,"mood":3},"metrics_after":{"energy":3,"focus":3,"anxiety":1,"mood":3},"note":"Directional read only. Retest needed at grind 12-13, 120ml water, no Rhodiola for clean bean comparison.","status":"logged"},{"id":"035","date":"2025-06-12","time":"12:00","title":"RUKH v2 with Baarbara — setting 16. 80ml water yielded 46ml. Aroma gone after milk.","tags":["RUKH","Brewing"],"sku":"RUKH","body":"Baarbara 2.6g setting 16, palm jaggery 2g, cardamom 0.10g, rhodiola one-third capsule. 80ml water 900W 90 seconds. Steep 3 minutes. Strain. 25ml warm milk.\n\nYield after straining: only 46ml — 34ml absorbed by grounds. Total cup with milk: 70ml.\n\nBefore straining: Baarbara aroma present in steeping cup. After straining and adding milk: no aroma, no coffee taste. 0.3g Cothas Royal insufficient rescue.\n\nDiagnosis: 80ml still too low. At 130ml starting, yield would be ~115ml. At 20-25ml milk the extract would hold its character.","observations":["80ml water yielded 46ml strained — 34ml absorbed by grounds","Baarbara aroma present before straining, gone after","Setting 16 straining mechanics fine — problem is water volume","Total cup 70ml — too small","Cothas Royal 0.3g insufficient rescue","Minimum 130ml water confirmed required","20ml milk maximum — not 25ml"],"metrics":{"energy":2,"focus":2,"anxiety":2,"mood":2},"metrics_after":{"energy":2,"focus":2,"anxiety":1,"mood":2},"note":"130ml water minimum. 20ml milk maximum. Test these next.","status":"logged"},{"id":"034","date":"2025-06-12","time":"10:40","title":"RUKH v1 with Baarbara — setting 18. 75ml water. Grounds not wetted. Cup lost in milk.","tags":["RUKH","Brewing","Failed"],"sku":"RUKH","body":"Baarbara 2.7g freshly ground setting 18, palm jaggery 2g, cardamom 0.11g, rhodiola one-third capsule. 75ml water 900W 90 seconds. Steep 3 minutes. Strain. Added 75ml warm milk. Preheated serving cup.\n\nTemperature: correct — preheated cup worked.\n\nGrounds not fully wetted — image shows significant dry grounds remaining in steeping cup. 75ml water far insufficient to mobilise 2.7g grounds. Grounds absorbed water and stayed put.\n\nFinal cup: pale milky beige. No coffee flavour. No aroma. Added 1g Cothas Royal — gave trace colour only. More like sweetened warm milk.","observations":["75ml water — grounds absorbed it, did not steep freely","Image shows dry grounds remaining in steeping cup","75ml milk at 1:1 with water — milk dominated entirely","Final cup: pale beige sweetened milk — no coffee character","Cothas Royal 1g rescue attempt — insufficient","Temperature correct — preheated cup worked","Setting 18 too coarse for this water volume","Root cause: 75ml water far below 120ml minimum for steep and strain"],"metrics":{"energy":2,"focus":1,"anxiety":2,"mood":2},"metrics_after":{"energy":2,"focus":1,"anxiety":1,"mood":2},"note":"Water minimum 120ml. Milk maximum 25ml. Both wrong today.","status":"failed"},{"id":"033","date":"2025-06-11","time":"19:30","title":"KISSE v17 — Baarbara first session. Reads as premium coffee only without fat.","tags":["KISSE","Ingredients"],"sku":"KISSE","body":"Blue Tokai Baarbara Estate arrived. First KISSE session with Baarbara 2.9g setting 16, Dutch cocoa 0.8g, palm jaggery 2.0g, mace tiny pinch, steep and strain 3 minutes, vanilla 2 drops. No coconut milk powder. No milk.\n\nSelf: good clean coffee, dark chocolate and molasses, slight sweetness lingering 5 minutes after. Low acidity. Genuinely pleasant. Baarbara slightly darker roast than El Diablo on inspection.\n\nWife: plain strong coffee. No aroma detected. No distinguishing character.\n\nDiagnosis: Baarbara needs fat medium to express. Without coconut milk powder and milk, mace also below detection threshold. Fat-medium dependency confirmed.","observations":["Baarbara: dark chocolate and molasses — detectable to attentive taster","Wife: plain strong coffee — Baarbara subtlety disappears without fat medium","Mace undetectable without fat — confirmed fat-medium dependency","Vanilla 2 drops: undetectable","Coconut milk powder absent — missing cocoon ingredient","Baarbara slightly darker roast than El Diablo on visual inspection","Lingering sweetness 5 minutes after — positive signal"],"metrics":{"warmth":2,"mystery":3,"body":2,"linger":3},"metrics_after":{"warmth":2,"mystery":2,"body":2,"linger":2},"note":"Baarbara needs fat to express. Cannot evaluate without spray-dried coconut milk.","status":"logged"},{"id":"032","date":"2025-06-01","time":"10:15","title":"KISSE v16 — preheated cup. Mace confirmed at match-head. Cocoa undissolved.","tags":["KISSE","Brewing","Ingredients"],"sku":"KISSE","body":"El Diablo 3g setting 16, Dutch cocoa 1g, palm jaggery 2.1g, coconut milk powder 0.25g, mace tiny pinch under 0.02g. Microwave 900W 1 min 10 sec. Stir 10 seconds. Steep 2 minutes covered. Strain into preheated cup. Vanilla 2 drops.\n\nTemperature: hot — preheated cup worked. Wife waited because cup was externally hot.\n\nMace: warmth and aroma present, unidentifiable, not soup-like. First confirmed working session at correct quantity.\n\nCocoa: not detected at all. Undissolved clump visible in steeping cup wall. 10-second stir insufficient — need 30 seconds vigorous. Coconut milk powder at 0.25g below threshold — no smoothness.","observations":["Preheated cup solved temperature — wife waited, externally hot","Mace confirmed: warmth and aroma, unidentifiable — first success at correct dose","Cocoa undissolved — clump in steeping cup — 10-second stir insufficient","Vanilla 2 drops: undetectable","Coconut milk 0.25g: below threshold — no smoothness","Stir time must be 30 seconds minimum for cocoa dissolution"],"metrics":{"warmth":3,"mystery":3,"body":2,"linger":2},"metrics_after":{"warmth":4,"mystery":3,"body":2,"linger":3},"note":"Mace confirmed. Cocoa gap is stir time. Coconut milk needs 2g minimum.","status":"logged"},{"id":"031","date":"2025-05-30","time":"21:00","title":"KISSE v15 — three external testers. Operational problems identified.","tags":["KISSE","Social"],"sku":"KISSE","body":"Three cups for wife, father-in-law, and one guest using sachet simulation format. No cinnamon this session.\n\nThree consistent feedbacks: powdery feel from undissolved ingredients, visible sediment on cup walls, cups not hot enough — all three found drink lukewarm.\n\nFather-in-law: taste is good — positive from non-coffee drinker. Guest: edible and different. All three problems operational not recipe: spray-dried coconut milk powder needed, boiling water required, preheated cup.","observations":["All three testers found cup lukewarm","Powdery texture from undissolved cocoa and coconut milk powder","Visible wall residue","Father-in-law: taste is good — positive from non-coffee drinker","Guest: edible and different — no ingredient identified","All three problems operational not recipe"],"metrics":{"warmth":2,"mystery":3,"body":3,"linger":2},"metrics_after":{"warmth":3,"mystery":3,"body":3,"linger":2},"note":"Recipe working. Preparation format needs three operational fixes.","status":"logged"},{"id":"030","date":"2025-05-30","time":"10:30","title":"RUKH v15 — second rhodiola session. Recipe reproducible. Near-lock.","tags":["RUKH","Ingredients"],"sku":"RUKH","body":"Second consecutive RUKH session with Colombian + fine cardamom + rhodiola. Held all variables identical to May 26 session.\n\nCup reproduced almost exactly — cardamom aroma throughout, Colombian coffee character assertive, sustained alertness at 45 minutes confirmed again.\n\nTwo consecutive identical sessions with same functional outcome. RUKH is ready for sachet format simulation.","observations":["Second consecutive identical RUKH session — reproducibility confirmed","Cardamom aroma: throughout the cup, not front-loaded","Colombian character: assertive and holding against 60ml milk","Rhodiola: smooth alertness at 45 minutes confirmed again","Ready for sachet format simulation","No jitter, sustained window"],"metrics":{"energy":2,"focus":2,"anxiety":3,"mood":3},"metrics_after":{"energy":5,"focus":5,"anxiety":1,"mood":4},"note":"Same cup twice in a row. RUKH is ready for sachet testing.","status":"breakthrough"},{"id":"029","date":"2025-05-29","time":"21:00","title":"KISSE v14 — external guest tasting. Left half finished. Cinnamon confirmed wrong.","tags":["KISSE","Social"],"sku":"KISSE","body":"Served KISSE to one external guest blind. Recipe included cinnamon at end — mistake.\n\nGuest: 'it's different. Is it a mixture of tea and coffee?' Left half finished. Immediately identified cinnamon. Said do not remove cinnamon but there is some other masala.\n\nTwo findings: cinnamon any quantity is identifiable and disrupts mystery — permanently confirmed wrong for KISSE. Guest leaving half finished is the hardest commercial data point received.","observations":["Guest: it's different — is it tea and coffee?","Guest left half finished — not yet commercial-ready","Cinnamon immediately detectable — permanently confirmed wrong","Temperature problem: cup not hot enough","'Different' reaction is correct positioning","Half-finished cup is the honest verdict"],"metrics":{"warmth":2,"mystery":3,"body":2,"linger":2},"metrics_after":{"warmth":2,"mystery":2,"body":2,"linger":2},"note":"Guest left half finished. Not ready yet.","status":"logged"},{"id":"028","date":"2025-05-28","time":"17:00","title":"KISSE v13 — three-way cocoa comparison. Raw cacao eliminated permanently.","tags":["KISSE","Ingredients"],"sku":"KISSE","body":"Three parallel half-cups: Cup A El Diablo plus Dutch cocoa plus coconut milk powder. Cup B El Diablo plus Dutch cocoa only. Cup C El Diablo plus raw cacao powder.\n\nRaw cacao in Cup C: earthy, algae-like, grainy texture on palate. Will not dissolve without blooming step end user cannot perform. Eliminated permanently.\n\nDutch cocoa clean dissolution, acceptable body. Generic roller-dried coconut milk powder creating visible surface particles. Nestlé or Kara spray-dried brand required.","observations":["Raw cacao: earthy algae note, grainy, undissolved — eliminated permanently","Dutch cocoa: clean dissolution, no surface issues — confirmed","Generic roller-dried coconut milk: visible surface particles — wrong brand","Nestlé or Kara spray-dried required","Raw cacao eliminated from all SKUs permanently"],"metrics":{"warmth":2,"mystery":2,"body":3,"linger":2},"metrics_after":{"warmth":3,"mystery":2,"body":3,"linger":2},"note":"Raw cacao gone. Dutch cocoa confirmed.","status":"logged"},{"id":"027","date":"2025-05-27","time":"18:00","title":"KISSE research — user survey returns. Cocoon brief discovered. Rs 50 validated.","tags":["KISSE","Social"],"sku":"KISSE","body":"Survey responses from five external respondents on Option A versus Option B positioning.\n\nKey response from one respondent: 'quiet catharsis — cocoon-like comfort, a small pause where you just feel yourself.' Said she would buy regularly at Rs 50-75. Current evening drink is tea.\n\n50-50 split on Options A vs B overall. Rs 50 per sachet validated by four of five respondents. Positioning confirmed: KISSE A is a personal pause ritual, not a social mystery drink.","observations":["50-50 split Option A vs Option B","Rs 50 confirmed by 4/5 respondents","Key phrase: quiet catharsis, cocoon comfort, personal pause","Current evening drink: tea or herbal tea for all respondents","Option A emotional resonance deeper despite narrower use occasion","Positioning: personal pause, not social"],"metrics":{"warmth":3,"mystery":3,"body":3,"linger":3},"metrics_after":{"warmth":3,"mystery":3,"body":3,"linger":3},"note":"She said: a small pause where you just feel yourself. That is the product brief.","status":"breakthrough"},{"id":"026","date":"2025-05-26","time":"10:45","title":"RUKH v14 — rhodiola introduced. Colombian base confirmed. Functional signal present.","tags":["RUKH","Ingredients"],"sku":"RUKH","body":"Colombian base confirmed from yesterday. Added rhodiola — one full capsule opened and stirred in. Fine cardamom pure-seed powder 0.12g, palm jaggery 1.8g, water 50ml, milk 60ml.\n\nAt 45 minutes: alertness felt different from caffeine alone. More sustained, less spike. Cognitive friction reduced — tasks felt easier to initiate. At 90 minutes: effect still present, no noticeable drop.\n\nThis is the first RUKH session with a clearly detectable functional signal beyond caffeine.","observations":["Rhodiola 500mg capsule opened, stirred in with coffee","At 45 minutes: sustained alertness, reduced cognitive friction","At 90 minutes: effect still present — longer window than caffeine alone","No jitter, no spike — smooth curve","Colombian + cardamom + rhodiola: the three-component identity of RUKH forming","Fine cardamom powder: aroma throughout, wife confirmed detectable"],"metrics":{"energy":2,"focus":2,"anxiety":3,"mood":3},"metrics_after":{"energy":5,"focus":5,"anxiety":1,"mood":4},"note":"Rhodiola produces a felt functional signal. Sustained, smooth, 90-minute window.","status":"breakthrough"},{"id":"025","date":"2025-05-25","time":"19:00","title":"KISSE v12 — El Diablo vs Monsoon Malabar steep and strain comparison.","tags":["KISSE","Brewing"],"sku":"KISSE","body":"Same steep and strain method, same recipe, only the bean changed. Cup A: El Diablo setting 17. Cup B: Monsoon Malabar moka-pot grind.\n\nEl Diablo: complex, slightly sweet finish, whiskey character, chocolate depth. Held attention throughout.\n\nMonsoon Malabar: muddy, earthy, flat, no distinctive finish. Earthiness that works in morning format becomes obstacle in evening warmth context.\n\nBean decision confirmed: El Diablo is KISSE's bean. Malabar eliminated for KISSE.","observations":["El Diablo: complex, sweet, whiskey-chocolate — clear winner","Monsoon Malabar: muddy, earthy, flat — wrong for KISSE","El Diablo confirmed as KISSE bean — decision closed","Malabar earthiness works in morning format, not evening","Method identical — clean comparison"],"metrics":{"warmth":4,"mystery":4,"body":3,"linger":4},"metrics_after":{"warmth":4,"mystery":4,"body":3,"linger":4},"note":"El Diablo confirmed. Bean decision closed.","status":"logged"},{"id":"024","date":"2025-05-25","time":"10:30","title":"RUKH v13 — Colombian base. Fine pure-seed cardamom powder. Aroma returned.","tags":["RUKH","Brewing","Ingredients"],"sku":"RUKH","body":"Switched to Toffee Colombian Instant 3.0g. Fine pure-seed cardamom powder at 0.12g — all black seeds from 20 pods ground very fine in small grinder, sieved. Milk 60ml, water 50ml. Cardamom added to water first, then coffee.\n\nCardamom detectable in aroma throughout the cup — not just first sip. Wife detected cardamom without being told. Colombian gave clearer, brighter coffee identity than Brazilian. Cup felt activating rather than flat.\n\nCardamom delivery method confirmed: fine pure-seed powder, direct into sachet, added to water first before coffee.","observations":["Fine pure-seed powder: cardamom aroma throughout cup — not just first sip","Wife detected cardamom without prompting — correct level","Colombian clearer coffee identity than Brazilian at same dose","Cardamom to water first then coffee: correct sequence","60ml milk 50ml water ratio: coffee now holding against milk","Felt activating — alertness present at 45 minutes"],"metrics":{"energy":2,"focus":2,"anxiety":3,"mood":3},"metrics_after":{"energy":4,"focus":5,"anxiety":1,"mood":4},"note":"Fine pure-seed powder solves the cardamom problem. Colombian is the RUKH base.","status":"breakthrough"},{"id":"023","date":"2025-05-24","time":"19:30","title":"KISSE v11 — steep and strain discovered. Wife: whiskey and dark chocolate.","tags":["KISSE","Brewing"],"sku":"KISSE","body":"Changed preparation method entirely. Steeped El Diablo 3g at setting 17 in 100ml hot water for 4 minutes covered, then strained into cup containing pre-mixed cocoa, jaggery, mace paste.\n\nWhen plate removed after 4 minutes, aroma was genuinely café-like. First time any KISSE session has produced this. Wife said: whiskey and dark chocolate. She identified both elements separately and said best version yet.\n\nSteep and strain confirmed as the method for KISSE going forward.","observations":["Steep and strain: properly extracts rather than dissolves","Setting 17 for 4 minutes covered — correct parameters","Aroma on removing cover: café-like, genuinely complex","Wife: whiskey and dark chocolate — two distinct notes detected","Wife confirmed best KISSE version yet","Preparation method confirmed"],"metrics":{"warmth":5,"mystery":5,"body":4,"linger":5},"metrics_after":{"warmth":5,"mystery":5,"body":4,"linger":5},"note":"Wife said whiskey and dark chocolate. Steep and strain is the method.","status":"breakthrough"},{"id":"022","date":"2025-05-24","time":"10:15","title":"RUKH v12 — Brazilian base. Cardamom fat-bloom method tested. Aroma collapsed again.","tags":["RUKH","Brewing","Ingredients"],"sku":"RUKH","body":"Tested cardamom fat-bloom method for RUKH. Cracked 2 pods, black seeds only, crushed coarsely, steeped in 65ml cold milk heated slowly for 90 seconds, strained seeds out, added to Toffee Brazilian Instant 3.0g in 45ml water.\n\nCardamom almost disappeared. Wife could not detect it at all. Cup tasted like smooth flat instant coffee with mild bitterness. The fat-bloom solved residue but the aromatic compounds evaporated during heating.\n\nBrazilian instant at 3.0g also felt weaker than expected once milk added. Milk-to-water ratio still too milk-heavy. Session was on Saturday with low confounders — no measurable state shift because baseline already good.","observations":["Fat-bloom method: cardamom aroma completely erased","Wife could not detect cardamom — identity collapsed","Brazilian instant 3.0g: too soft against 65ml milk","Milk ratio still wrong — milk winning","Low-confounder day (Saturday, good sleep) — no meaningful shift detectable","Conclusion: fine pure-seed powder direct method needed, not fat-bloom"],"metrics":{"energy":3,"focus":3,"anxiety":2,"mood":3},"metrics_after":{"energy":3,"focus":3,"anxiety":2,"mood":3},"note":"Fat-bloom erases personality same as infusion. Direct fine powder is the only sachet-compatible method.","status":"logged"},{"id":"021","date":"2025-05-23","time":"22:00","title":"KISSE v10 — three external guests. All finished their cups.","tags":["KISSE","Social"],"sku":"KISSE","body":"Three cups for wife, brother-in-law, and one guest. El Diablo setting 10 at 2.2g, Levista 0.7g, Dutch cocoa 1.0g, palm jaggery 2.0g, mace knife-tip, vanilla 4 drops, 110ml water, 25ml warm milk.\n\nGuest who does not normally drink black coffee finished entire cup without asking for changes. Said 'edible and different'. No named ingredient detected.\n\nBrother-in-law: coffee present, other ingredients unidentifiable. All three finished their cups — first time this has happened with external testers.","observations":["Guest who avoids black coffee finished entire cup — significant","Guest: edible and different — no ingredient identified","Wife: better than before, not peak","Brother-in-law: other ingredients unidentifiable — correct","All three external testers finished cups — first time","Thickness complaint — coconut milk powder needed"],"metrics":{"warmth":3,"mystery":4,"body":3,"linger":3},"metrics_after":{"warmth":4,"mystery":4,"body":3,"linger":4},"note":"All three finished. The cup is working.","status":"logged"},{"id":"020","date":"2025-05-22","time":"10:20","title":"KISSE v9 — El Diablo enters. Setting 10. First café-like aroma.","tags":["KISSE","Ingredients","Brewing"],"sku":"KISSE","body":"Third Wave Coffee El Diablo whole bean arrived. First grinding at AAshonee setting 10. El Diablo 2.2g plus Levista 0.7g, Dutch cocoa 1.0g, palm jaggery 2.0g, mace at knife-tip 0.03g, vanilla 4 drops.\n\nAroma from freshly ground El Diablo immediately different from anything tested previously. A café-like roasted warmth from the first stir. Wife smelled it before tasting and said more complex than previous iterations.\n\nSediment at setting 10 settled cleanly. Mace at knife-tip: warmth present, not identifiable as a named spice. Vanilla warmth in chest 8 minutes after last sip.","observations":["El Diablo setting 10 — café-like aroma on grinding","Wife noted complexity before tasting","Sediment settled cleanly — setting 10 acceptable","Mace at knife-tip: warmth present, unidentifiable — correct","Vanilla: warmth in chest 8 minutes after finishing","Dutch cocoa 1.0g: chocolate depth without hot chocolate"],"metrics":{"warmth":4,"mystery":4,"body":3,"linger":4},"metrics_after":{"warmth":5,"mystery":4,"body":4,"linger":5},"note":"El Diablo changes everything. This is the right bean for KISSE.","status":"breakthrough"},{"id":"019","date":"2025-05-21","time":"10:30","title":"RUKH v11 — grind format comparison. Moka-pot grind confirmed over medium grind.","tags":["RUKH","Brewing"],"sku":"RUKH","body":"Two-cup comparison: Cup A Monsoon Malabar at moka-pot grind setting, Cup B Jack Daniels Tennessee Whiskey Coffee pre-ground medium grind.\n\nMalabar moka-pot: finer particles, better distributed aroma, clean settling. Jack Daniels medium: floating particles, gritty mouthfeel, did not integrate.\n\nMoka-pot grind confirmed as correct format for all SKUs. JD whiskey-barrel flavour noted as interesting but grind format wrong for direct dissolution.","observations":["Malabar moka-pot: finer particles, better aroma, clean settling — confirmed","Jack Daniels medium grind: floating particles, gritty mouthfeel — eliminated","Moka-pot grind standard confirmed for all specialty coffee components","JD barrel character noted — possible future KISSE test but wrong grind"],"metrics":{"energy":2,"focus":3,"anxiety":2,"mood":3},"metrics_after":{"energy":3,"focus":4,"anxiety":1,"mood":3},"note":"Grind format closed. Moka-pot fineness confirmed.","status":"logged"},{"id":"018","date":"2025-05-20","time":"21:00","title":"KISSE v8 — mace at 3-4 pinches. Worst iteration. Cinnamon permanently removed.","tags":["KISSE","Ingredients","Failed"],"sku":"KISSE","body":"KISSE session with Monsoon Malabar moka-pot grind, Levista, Dutch cocoa, coconut jaggery, cinnamon pinch, 3-4 pinches of mace. 80ml water, 30ml milk.\n\nImmediately wrong. Mace at this quantity became resinous and medicinal. Aroma before adding milk read as Indian masala soup. Wife immediately identified cinnamon.\n\nTwo permanent decisions: cinnamon removed from KISSE permanently. Mace must be measured on scale at 0.03g or less — no more pinches ever.","observations":["3-4 pinches of mace — catastrophically too much","Aroma: masala soup, not mysterious warmth","Wife immediately identified cinnamon — kills mystery","Cinnamon permanently removed from KISSE from this session","Mace must be weighed on scale — pinch measurement eliminated"],"metrics":{"warmth":1,"mystery":1,"body":3,"linger":1},"metrics_after":{"warmth":1,"mystery":1,"body":2,"linger":1},"note":"Cinnamon gone permanently. Mace requires scale measurement only.","status":"failed"},{"id":"017","date":"2025-05-20","time":"10:15","title":"RUKH v10 — Mokka Farms 80-20. Milk ratio kills aroma.","tags":["RUKH","Brewing","Ingredients"],"sku":"RUKH","body":"First session with Mokka Farms 80-20 Arabica-Robusta replacing Colombian as primary component. Cup was more assertive than previous iterations — Robusta added a forward coffee character. Cardamom arrived in first sips rather than disappearing.\n\nHowever milk at 35ml destroyed aroma completely after adding. Everything went flat. Jaggery read as slightly stevia-like without stronger coffee base to contextualise it.","observations":["Mokka Farms 80-20 more assertive than Colombian — coffee now showing up","Cardamom arriving in first sips for first time","35ml milk destroyed aroma — ratio confirmed wrong","Milk maximum confirmed as 30ml going forward"],"metrics":{"energy":3,"focus":2,"anxiety":2,"mood":3},"metrics_after":{"energy":3,"focus":3,"anxiety":1,"mood":3},"note":"The milk ratio is the problem. Not the bean.","status":"logged"},{"id":"016","date":"2025-05-19","time":"10:30","title":"Morning Blend v9 — rhodiola replaced with L-theanine. Stack locked.","tags":["Ingredients","Morning"],"body":"Final functional stack configuration tested. Replaced rhodiola powder entirely with L-theanine for the sachet format. The decision is pragmatic and correct: L-theanine dissolves completely, contributes no taste, and produces a meaningfully smoother alertness curve that most people will notice within one session.\n\nThe cup was clean from start to finish. No residue, no bitter aftertaste, no cup-wall cling. The spice top note arrived correctly and receded by mid-cup. The coffee identity from the microground base held throughout.\n\nFunctional shift at 45 minutes: noticeably smoother cognitive engagement. The difference from caffeine-only sessions is the absence of the mid-morning jitter and the extension of the focused window. Not more energy — better-quality energy.\n\nThis is the locked morning blend. The sachet format works. The preparation is single-step. The experience is clean, distinctive, and functionally real.","observations":["L-theanine: complete dissolution, zero taste impact, zero residue","Single-step preparation confirmed: all ingredients dissolve cleanly together","Spice top note correct: arrives first, recedes mid-cup","Functional shift at 45 min: smoother alertness, reduced cognitive friction","No bitter aftertaste — cleanest finish of all morning sessions","Ready for Layer 1 external testing"],"metrics":{"energy":2,"focus":2,"anxiety":3,"mood":3},"metrics_after":{"energy":3,"focus":4,"anxiety":1,"mood":4},"note":"This is the locked morning blend. Single-step, clean, functional, and distinctive enough to serve to someone who did not know what was coming.","status":"breakthrough","sku":"RUKH"},{"id":"015","date":"2025-05-18","time":"20:00","title":"Evening Blend v7 — mace introduced. The mystery deepens.","tags":["Ingredients","Social","Evening"],"body":"Replaced the previous micro-spice with mace powder at a very small quantity. Mace is the outer lacy covering of the nutmeg seed — more delicate and floral than nutmeg, and at low doses nearly unidentifiable.\n\nThe aroma from the steam was immediately different from previous versions. Something warm and slightly ethereal that nobody in the room could name. Brother-in-law smelled it and said: what is that? He guessed several things — none of them correct.\n\nAdded mulethi for the first time as a base note. The lingering sweetness on the back of the tongue extended the finish significantly. Ten minutes after finishing the cup, the palate still carried a faint pleasant warmth.\n\nThe cup is now producing the full emotional arc: intrigue on the nose before the first sip, warmth and depth through the middle, and a lingering sweetness that stays after the cup is gone. Brother-in-law finished the entire cup without pausing.","observations":["Mace at micro-dose: warm, floral, completely unidentifiable to tester","Brother-in-law: what is that? — could not guess the ingredient","Mulethi introduced as base note: trailing natural sweetness","Finish extended noticeably — palate warmth present 10 minutes after","Brother-in-law completed the entire cup without pausing","No bitter aftertaste — mulethi replaced bitterness with sweetness"],"metrics":{"warmth":4,"drinkability":5,"conversation_flow":5,"linger":5},"metrics_after":{"warmth":5,"drinkability":5,"conversation_flow":5,"linger":5},"note":"The three-layer emotional arc is working. Top note creates intrigue. Middle creates warmth. Base note creates the reason to linger.","status":"breakthrough","sku":"KISSE"},{"id":"014","date":"2025-05-18","time":"10:15","title":"Morning Blend v8 — Blue Tokai medium-dark microground introduced.","tags":["Brewing","Ingredients","Morning"],"body":"Visited the local Blue Tokai outlet and obtained their Baarbara Estate at medium-dark roast, ground at Turkish fineness. This is the first session using fresh-ground specialty coffee as part of the morning blend.\n\nThe difference in aroma was immediate and unmistakable. When hot water hit the microground, a roasted warmth lifted into the steam that the instant format had never produced. The cup smelled intentional before the first sip.\n\nThe blend combined the fresh-ground base with a small amount of instant for solubility, plus the confirmed spice and functional stack.\n\nThe spice arrived as the top note and receded naturally during the middle of the cup. Coffee identity was clearer than in any previous morning iteration. The functional shift was cleaner than the rhodiola powder sessions — less bitter residue, smoother alertness curve.\n\nThe residue problem from the microground remained in the final sips, but at this grind level it was significantly reduced and felt like a texture note rather than a concentrated spice dump.","observations":["Fresh-ground medium-dark at Turkish fineness: roasted warmth immediately present in steam","Aroma distinction from instant base was immediately noticeable","Hybrid format: microground for aroma + instant for solubility","Spice arrived as top note, receded naturally — correct sequence","Coffee identity clearer than any previous morning session","Microground sediment in final sips: tolerable at this grind level"],"metrics":{"energy":2,"focus":2,"anxiety":2,"mood":3},"metrics_after":{"energy":3,"focus":4,"anxiety":1,"mood":4},"note":"The aroma problem is solved. The cup now smells like something worth paying attention to before the first sip.","status":"breakthrough","sku":"RUKH"},{"id":"013","date":"2025-05-17","time":"10:30","title":"Morning Blend v7 — Colombian confirmed. Rhodiola format problem.","tags":["Ingredients","Morning","Iteration"],"body":"Ran a clean comparison between the Colombian and South Indian blend bases in separate cups, then confirmed Colombian as the morning base. Colombian reads as sharper, slightly acidic, with an unidentifiable character note that makes it more interesting than the South Indian blend in this context.\n\nRhodiola powder format confirmed as a problem for the sachet. The raw powder does not dissolve cleanly in a water-milk mixture. The fat in the milk creates a barrier around the particles, which explains the cup-wall residue and the bitter concentrated final sips. The format needs to change — either water-soluble extract or a functional alternative.\n\nL-theanine tested as a rhodiola substitute. It dissolves completely, contributes no taste, and produces the alpha-wave smoothing effect that reduces caffeine jitter without dulling alertness. Not identical to rhodiola's anti-fatigue mechanism but practically useful and sachet-compatible.","observations":["Colombian vs South Indian blind comparison: Colombian clearly more interesting","Colombian: sharp, acidic, distinctive unnamed note — right direction","Rhodiola raw powder: cup wall residue confirmed — format problem","L-theanine substitute tested: clean dissolution, no taste impact","L-theanine effect: smoother alertness curve, less friction entering work","Cardamom quantity needs increase — present but too quiet"],"metrics":{"energy":3,"focus":3,"anxiety":2,"mood":3},"metrics_after":{"energy":3,"focus":4,"anxiety":1,"mood":3},"note":"Colombian is the base. Rhodiola format is wrong. L-theanine is the bridge until water-soluble extract is sourced.","status":"logged","sku":"RUKH"},{"id":"012","date":"2025-05-16","time":"19:30","title":"Evening Blend v6 — simplification breakthrough. Wife says: alcoholic.","tags":["Ingredients","Social","Evening"],"body":"Removed cinnamon entirely. Removed black pepper entirely. Switched to Dutch-processed cocoa powder instead of raw cacao. Switched coffee base to a cleaner Colombian instant. Kept: cocoa, coconut jaggery, and a very small amount of nutmeg.\n\nThis was the most significant reset of the evening blend so far.\n\nMy wife smelled it before tasting and said: it smells like an alcoholic drink. She could not place it anywhere. When she tasted it, she said it reminded her of nothing she had drunk before — not kadha, not hot chocolate, not café mocha.\n\nThis is the target state. The cup is no longer identifiable as a spiced coffee or a wellness drink. It exists in its own unclassified territory. The aroma produces social curiosity. The taste grounds rather than stimulates. The experience creates conversation without demanding explanation.\n\nThe kadha association is completely gone. This is the breakthrough session the evening blend needed.","observations":["All warm spices removed except one at micro-dose","Dutch-processed cocoa: smoother, less bitter, dissolves better than raw cacao","Wife could not categorise the drink from smell alone","Wife said: it smells like an alcoholic drink","No kadha association — this is gone for the first time","Thickness slightly less than previous versions — needs addressing"],"metrics":{"warmth":4,"drinkability":5,"conversation_flow":5,"linger":4},"metrics_after":{"warmth":5,"drinkability":5,"conversation_flow":5,"linger":5},"note":"Wife said it smells like an alcoholic drink and could not place it anywhere she had tasted before. The kadha association is gone.","status":"breakthrough","sku":"KISSE"},{"id":"011","date":"2025-05-16","time":"10:44","title":"Morning Blend v6 — coffee base switched, rhodiola introduced.","tags":["Ingredients","Morning","Iteration"],"body":"First session with a different instant coffee base — switched from the familiar South Indian blend to a Colombian single-origin instant. Also introduced a measured amount of rhodiola powder, opening the capsule directly into the cup.\n\nAroma was slightly better than yesterday — there was a slight lingering top note but nothing assertive. A somewhat pungent smell appeared which I initially could not place. On reflection this was likely the rhodiola itself, which has a characteristic earthy-herbal note in raw powder form.\n\nThe taste was stronger than previous sessions. Something bitter was consistently present throughout — again, likely the rhodiola interacting with the milk rather than fully dissolving. The cup wall showed fine residue after drinking, consistent with undissolved functional powder.\n\nThe functional state shift was present but modest on a reasonable baseline day. Alertness moved by approximately one point, focus similarly. Energy was unchanged. The rhodiola's anti-fatigue mechanism requires a fatigued baseline to show its full effect — a good-baseline day underestimates it.","observations":["Colombian instant base: sharper and more acidic than previous South Indian blend","Rhodiola powder introduced: characteristic pungent note detected","Cup wall residue from functional powder — dissolution problem identified","Bitter aftertaste not from coffee — likely functional ingredient","50:50 water-milk ratio maintained — balance improved","Functional shift modest on good baseline — expected"],"metrics":{"energy":3,"focus":2,"anxiety":2,"mood":3},"metrics_after":{"energy":3,"focus":3,"anxiety":1,"mood":3},"note":"The functional ingredient introduced a taste and dissolution problem. Format needs to change before the cup can be served to others.","status":"logged","sku":"RUKH"},{"id":"010","date":"2025-05-15","time":"19:15","title":"Evening Blend v5 — cardamom infusion method tested.","tags":["Brewing","Ingredients","Evening"],"body":"Attempted to solve the cardamom residue problem through infusion rather than direct dissolution. Cracked the seeds, steeped them in the hot water for a minute, then strained before adding the dry ingredients.\n\nThe infusion solved the residue and unevenness problem. The cup was technically cleaner than any previous version — no sediment, no spice-heavy final sips, consistent experience throughout.\n\nBut: the cardamom almost disappeared. My wife could not detect it at all from a distance. The cup no longer felt distinctive. It tasted like a smooth, slightly flat drink with very mild bitterness and a slightly thicker body — but the identity collapsed.\n\nStraining had solved the mechanics but removed the aromatic personality. The volatile oils that create the top note and the surprise contrast seem to evaporate during the steeping and straining process.\n\nKey realisation: the infusion method solves residue but erases the sensory signature. A cleaner cup that nobody notices is worse than a slightly imperfect cup that people remember.","observations":["Infusion method: steeped and strained before adding other ingredients","Zero sediment — technically the cleanest cup yet","Cardamom aroma almost completely absent","Wife could not detect any spice from distance","Cinnamon dominated what little aroma remained","Cup felt generic — no intrigue, no mystery"],"metrics":{"warmth":2,"drinkability":4,"conversation_flow":2,"linger":2},"metrics_after":{"warmth":2,"drinkability":3,"conversation_flow":2,"linger":2},"note":"Solved the mechanics. Erased the personality. Technical cleanliness without emotional identity is worse than the original problem.","status":"failed","sku":"KISSE"},{"id":"009","date":"2025-05-15","time":"10:30","title":"Morning Blend v5 — cardamom delivery method changed.","tags":["Brewing","Ingredients","Morning"],"body":"Used freshly crushed inner seeds instead of pre-ground powder, reduced the quantity slightly compared to earlier versions. The rest of the structure remained mostly stable.\n\nCompared to the second iteration, this cup felt much more balanced. The spice no longer overpowered the coffee immediately. The aroma still entered through the spice first, but by the time I actually tasted the sip, the coffee came through more naturally.\n\nThere was an interesting sensory transition: the spice arrived through the nose first, coffee through the mouth later. That duality felt more intentional today.\n\nToward the second half and especially the final sip, the spice started becoming stronger again. Visible fine residue settled at the bottom, which likely caused the later sips to become more spice-heavy than the earlier ones. The top half and bottom half of the cup almost behaved like slightly different drinks.\n\nFunctionally the session created alertness and improved mental orientation, but not physical activation. Sitting idle in an AC room afterward, my eyes were still closing. The cup appears to improve cognitive readiness more than bodily energy.","observations":["Fresh-crushed seeds instead of powder — cleaner aroma integration","Spice arrived through nose, coffee through mouth — improved sequence","Top half balanced, bottom half spice-heavy from residue","Mental alertness improved, physical activation less clear","Residue problem persists but appeared later in the cup","Delivery method more important than quantity alone"],"metrics":{"energy":2,"focus":2,"anxiety":2,"mood":3},"metrics_after":{"energy":3,"focus":3,"anxiety":1,"mood":3},"note":"The flavour direction is close. The structural problem is delivery and distribution, not the ingredient itself.","status":"logged","sku":"RUKH"},{"id":"008","date":"2025-05-14","time":"19:25","title":"Evening Blend v4 — cleaner mechanics, weaker identity.","tags":["Ingredients","Social","Evening"],"body":"Tonight's session was prepared more carefully to solve the sediment and unevenness issues from previous iterations. The cup became technically cleaner, but emotionally less distinct.\n\nThe aroma leaned strongly toward one warm spice again, while the coffee itself almost disappeared. My wife immediately associated the aroma with kahwa rather than coffee.\n\nThe texture became lighter than previous versions and the cup visually resembled a spiced herbal drink in the glass. Bitterness from the cacao stayed present while the emotional warmth reduced.\n\nInstead of encouraging conversation naturally, the session became more analytical. I kept evaluating the drink while drinking it. That itself felt like a signal that the emotional direction is still unresolved.","observations":["Cleaner preparation removed sediment problems","Coffee identity weakened further behind spice and cacao","The cup visually resembled kahwa in a glass cup","Bitterness remained while emotional warmth reduced","The drink became easier to analyse than enjoy","Important lesson around identity versus technical smoothness"],"metrics":{"warmth":3,"drinkability":3,"conversation_flow":2,"linger":3},"metrics_after":{"warmth":3,"drinkability":3,"conversation_flow":2,"linger":2},"note":"Cleaning up the mechanics exposed that the emotional identity itself is still unresolved.","status":"logged","sku":"KISSE"},{"id":"004","date":"2025-05-14","time":"10:15","title":"Morning Blend v4 — closer to balance, but physically sleepy.","tags":["Brewing","Morning","Iteration"],"body":"Woke around 5:45AM after roughly six to six-and-a-half hours of sleep. The morning felt calmer than yesterday but less sharp than the strongest earlier session. Spent some relaxed time with my daughter before preparing the cup.\n\nToday the spice felt much more controlled. The aroma entered first through the nose but no longer interrupted the coffee completely. For the first time, the top half of the cup felt directionally balanced.\n\nThere was an interesting split in the experience. The beginning of the cup felt cleaner and fresher, while the bottom half slowly drifted back toward spice-heavy territory because residue settled near the end.\n\nFunctionally the session created alertness and willingness to work, but physically I still felt sleepy underneath. Even fifteen minutes later while sitting quietly in an AC room, my eyes still wanted to close. The mental shift was clearer than the physical shift.","observations":["Fresh preparation softened the spice dominance","Top half of the cup felt more balanced than previous sessions","Residue still disrupted the final sips","Coffee appeared briefly in the middle of the sip","Mental alertness improved more than physical energy","The drink felt closer to its intended direction"],"metrics":{"energy":2,"focus":2,"anxiety":2,"mood":2},"metrics_after":{"energy":3,"focus":4,"anxiety":1,"mood":3},"note":"The mind woke up before the body did.","status":"logged","sku":"RUKH"},{"id":"007","date":"2025-05-13","time":"20:00","title":"Evening Blend v3 — less medicinal, more conversational.","tags":["Brewing","Social","Evening"],"body":"Third evening iteration with returning testers. The atmosphere was rushed because they only had a few minutes before leaving for somewhere, which made the feedback less reflective and more instinctive.\n\nThat actually helped.\n\nThe immediate response was that the drink felt easier and less bitter than previous versions. The spice layers no longer dominated the cup aggressively.\n\nOne interesting thing: the earlier comparison to a medicinal tonic did not return this time. That suggests the drink is slowly moving away from 'functional concoction' territory and closer toward an actual evening ritual beverage.\n\nThe thickness now felt aligned with the purpose of the drink rather than accidental.","observations":["Short tasting window created instinctive reactions","Guests found it easier to drink than earlier versions","Bitterness no longer became the dominant memory","Spices moved into the background instead of leading","Texture now felt intentional","Conversation around the drink became calmer and more curious"],"metrics":{"warmth":3,"drinkability":3,"conversation_flow":3,"linger":3},"metrics_after":{"warmth":5,"drinkability":4,"conversation_flow":5,"linger":5},"note":"The drink is slowly moving from experimentation toward ritual.","status":"logged","sku":"KISSE"},{"id":"003","date":"2025-05-13","time":"10:30","title":"Morning Blend v3 — warmth replaced sharpness.","tags":["Ingredients","Morning","Failed"],"body":"Today started very differently. Slept roughly four hours after a difficult night with my daughter and woke around 3:30AM. Despite the sleep deprivation, I still spent a couple of focused hours working before preparing the cup.\n\nI changed too many things at once today and immediately felt the cost of that mistake.\n\nThe aroma leaned heavily toward cinnamon from the beginning. The coffee itself became quieter. The cup still felt pleasant, but the emotional direction shifted away from alertness toward comfort.\n\nInstead of feeling ready to move, I felt slower and more grounded. That is not necessarily bad — it is simply wrong for what this SKU is supposed to become.\n\nAnother issue emerged near the end of the cup. Spice sediment collected at the bottom and dominated the final sips, which disrupted the finish entirely.","observations":["Very sleep-deprived morning before the session","One spice dominated both aroma and emotional direction","Cup became calming instead of activating","Alertness uplift significantly weaker than previous iteration","Final sips carried excessive spice residue","Changing multiple variables together created confusion"],"metrics":{"energy":2,"focus":3,"anxiety":2,"mood":3},"metrics_after":{"energy":3,"focus":4,"anxiety":1,"mood":4},"note":"The cup became emotionally warmer, but lost the edge it needed.","status":"failed","sku":"RUKH"},{"id":"006","date":"2025-05-12","time":"20:30","title":"Evening Blend v2 — the room finally slowed down.","tags":["Brewing","Social","Evening"],"body":"Second evening iteration using the same tester as reference. This mattered because now I could observe progression instead of isolated reactions.\n\nThe cup immediately felt calmer and more balanced than yesterday. The bitterness softened. Warmth increased. Thickness now felt intentional rather than excessive.\n\nOne guest described the drink as reminding him of a traditional ritual tonic, while another noticed a nutty dessert-like warmth in the aroma. Both reactions were useful.\n\nMost importantly, nobody rushed through the cup. The drink naturally slowed the pace of the room. Conversation stretched longer without the drink demanding attention constantly.","observations":["Bitterness reduced significantly from previous night","Warmth and texture became more cohesive","Guests naturally slowed their drinking pace","The cup encouraged longer conversation windows","The emotional territory became clearer","More memorable than traditional instant coffee"],"metrics":{"warmth":3,"drinkability":3,"conversation_flow":3,"linger":3},"metrics_after":{"warmth":5,"drinkability":4,"conversation_flow":5,"linger":5},"note":"The drink stopped interrupting the conversation and started accompanying it.","status":"logged","sku":"KISSE"},{"id":"002","date":"2025-05-12","time":"09:50","title":"Morning Blend v2 — the cup finally developed a voice.","tags":["Brewing","Ingredients","Morning"],"body":"Woke around 5AM after roughly six hours of sleep. Managed to get a solid block of focused work done before preparing the session, which changed the emotional starting point entirely compared to yesterday.\n\nToday the cup immediately felt more alive. As I brought it closer, the aroma reminded me of spiced chai, but the sip itself resolved into coffee. That contrast was confusing for a second and then suddenly very interesting.\n\nThe drink no longer felt flat. Texture became fuller and warmer. The bitterness integrated into the structure instead of sitting separately. It felt less like an instant coffee and more like an intentional ritual.\n\nFunctionally this was the first session where the shift became noticeable. Alertness increased within minutes, sleepiness reduced and mood lifted slightly. The sharper state lasted much longer than yesterday before fading.","observations":["Morning started more positively after focused work","Aroma felt familiar like chai, but sip resolved into coffee","Texture fuller and more satisfying than baseline","The cup carried a stronger emotional identity","Alertness sustained much longer than previous day","Sleepiness reduced noticeably"],"metrics":{"energy":2,"focus":3,"anxiety":2,"mood":3},"metrics_after":{"energy":4,"focus":5,"anxiety":1,"mood":4},"note":"For the first time, the drink felt intentional instead of automatic.","status":"breakthrough","sku":"RUKH"},{"id":"005","date":"2025-05-11","time":"20:00","title":"Evening Blend v1 — too many voices inside one cup.","tags":["Brewing","Social","Evening","Failed"],"body":"First evening attempt at building a slower conversational drink. The weather outside had turned cold and stormy and the mood naturally leaned inward, which felt like the perfect context for testing this direction.\n\nThe first version was chaotic. The cup had richness and weight, but too many flavour systems were competing at once. Spice, bitterness, cacao and coffee all wanted attention simultaneously.\n\nMy brother-in-law found it difficult to finish, especially alongside food. The bitterness amplified further with the meal.\n\nI immediately prepared a second variation with a softer structure and that changed the direction completely. The drink became slower, warmer and more cohesive. I personally loved the heavier ritual feeling of it, especially the way it encouraged slower sipping and conversation.","observations":["Rainy evening amplified the ritual feeling","First version felt crowded and overly aggressive","Food pairing amplified bitterness heavily","Second variation became much more drinkable","Texture naturally slowed down the pace of drinking","The drink felt closer to a conversation ritual than a coffee"],"metrics":{"warmth":3,"drinkability":2,"conversation_flow":2,"linger":3},"metrics_after":{"warmth":4,"drinkability":3,"conversation_flow":4,"linger":5},"note":"This drink was not trying to wake anyone up. It was trying to slow the room down.","status":"logged","sku":"KISSE"},{"id":"001","date":"2025-05-11","time":"10:05","title":"Morning Blend v1 — the cup disappeared into the milk.","tags":["Baseline","Brewing","Morning"],"body":"First proper baseline session for the late-morning cup. Slept around 6.5 hours and woke slightly irritated, mentally cluttered and low-energy because the morning was already fragmented around taking care of my daughter. I wanted to understand what the coffee itself was doing before adding any sensory or functional layers.\n\nThe cup felt smooth and soft but almost invisible. Aroma leaned heavily toward warm milk. The coffee itself barely introduced itself. I drank a few sips before breakfast, continued through the meal and finished the remaining cup later. Nothing about the cup demanded attention.\n\nToward the end I could finally notice a faint woody bitterness underneath the milk structure. That ended up becoming the only memorable moment in the session.\n\nFunctionally there was a slight increase in wakefulness and focus, but it was difficult to separate the actual effect of the cup from the excitement of beginning the experiment itself. The session did not fail. It clarified what was missing.","observations":["Morning felt rushed and mentally fragmented before the cup","Aroma mostly carried warm milk rather than coffee","Texture smooth but emotionally flat","No strong acidity or bitterness","Slight improvement in wakefulness and focus","The cup lacked identity or memorability"],"metrics":{"energy":2,"focus":2,"anxiety":2,"mood":3},"metrics_after":{"energy":3,"focus":3,"anxiety":1,"mood":3},"note":"The coffee existed physically, but emotionally it disappeared.","status":"logged","sku":"RUKH"}];
 
-let allEntries = [];
-
-async function init(){
-
-  const response = await fetch('./lab.json?v=' + Date.now());
-  const data = await response.json();
-
-  allEntries = data;
-
-  renderEntries();
+function buildHTML(entries){
+  return entries.map(function(e){
+    const obs = (e.observations||[]).map(function(o){
+      return '<li>'+o+'</li>';
+    }).join('');
+    const note = e.note
+      ? '<div class="field-note"><div class="section-label">Field Note</div><div class="field-note-text">"'+e.note+'"</div></div>'
+      : '';
+    const dateStr = e.date ? new Date(e.date).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) : '';
+    return '<article class="entry">'
+      +'<div class="entry-header" onclick="toggle(\''+e.id+'\')">'
+      +'<div class="entry-meta"><span>'+dateStr+'</span><span>'+(e.time||'')+'</span></div>'
+      +'<div class="entry-title">'+(e.title||'')+'</div>'
+      +'</div>'
+      +'<div class="entry-body" id="body-'+e.id+'">'
+      +'<div class="prose">'+(e.body||'')+'</div>'
+      +'<div class="section-label">Observations</div>'
+      +'<ul class="obs-list">'+obs+'</ul>'
+      +note
+      +'</div>'
+      +'</article>';
+  }).join('');
 }
 
-function renderEntries(){
-
-  const noon = allEntries.filter(function(item){
-    return item.sku === 'Morning Blend';
-  });
-
-  const evening = allEntries.filter(function(item){
-    return item.sku === 'Evening Blend';
-  });
-
-  document.getElementById('noonEntries').innerHTML = buildEntriesHTML(noon);
-  document.getElementById('eveningEntries').innerHTML = buildEntriesHTML(evening);
+function toggle(id){
+  document.getElementById('body-'+id).classList.toggle('open');
 }
 
-function buildEntriesHTML(entries){
+// DATA is already reverse-chronological — render directly
+document.getElementById('rukhEntries').innerHTML  = buildHTML(DATA.filter(function(e){return e.sku==='RUKH'}));
+document.getElementById('kisseEntries').innerHTML = buildHTML(DATA.filter(function(e){return e.sku==='KISSE'}));
 
-  let html = '';
-
-  entries.forEach(function(entry){
-
-    let observationsHTML = '';
-
-    if(entry.observations){
-
-      entry.observations.forEach(function(obs){
-        observationsHTML += '<li>' + obs + '</li>';
-      });
-
-    }
-
-    let noteHTML = '';
-
-    if(entry.note){
-
-      noteHTML = '\n<div class="field-note">\n<div class="section-label">Field Note</div>\n<div class="field-note-text">"' + entry.note + '"</div>\n</div>';
-    }
-
-    html += '\n<article class="entry">\n<div class="entry-header" onclick="toggleEntry(\'' + entry.id + '\')">\n<div class="entry-meta">\n<span>' + formatDate(entry.date) + '</span>\n<span>' + (entry.time || '') + '</span>\n</div>\n<div class="entry-title">' + (entry.title || '') + '</div>\n</div>\n<div class="entry-body" id="body-' + entry.id + '">\n<div class="prose">' + (entry.body || '') + '</div>\n<div class="section-label">Observations</div>\n<ul class="obs-list">' + observationsHTML + '</ul>' + noteHTML + '\n</div>\n</article>';
-
-  });
-
-  return html;
-}
-
-function toggleEntry(id){
-
-  document
-    .getElementById('body-' + id)
-    .classList
-    .toggle('open');
-}
-
-function formatDate(dateStr){
-
-  return new Date(dateStr).toLocaleDateString(
-    'en-IN',
-    {
-      day:'numeric',
-      month:'short',
-      year:'numeric'
-    }
-  );
-}
-
-const tabBtns = document.querySelectorAll('.tab-btn');
-const tabContents = document.querySelectorAll('.tab-content');
-
-tabBtns.forEach(function(btn){
-
-  btn.addEventListener('click', function(){
-
-    tabBtns.forEach(function(b){
-      b.classList.remove('active');
-    });
-
-    tabContents.forEach(function(t){
-      t.classList.remove('active');
-    });
-
+document.querySelectorAll('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active')});
+    document.querySelectorAll('.tab-content').forEach(function(t){t.classList.remove('active')});
     btn.classList.add('active');
-
-    document
-      .getElementById(btn.dataset.tab)
-      .classList.add('active');
-
+    document.getElementById(btn.dataset.tab).classList.add('active');
   });
-
 });
-
-init();
-
 </script>
-
 </body>
 </html>
-```
