@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Sampler — StateShift</title>
+<meta name="description" content="Request the StateShift Sampler: Sehar, Rukh, and Kisse, made fresh in a small batch for founding tasters.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.s-hero{padding:6rem 2rem 4rem;text-align:center}
+.box{
+  border:1px solid var(--line-strong);background:var(--cream);
+  max-width:760px;margin:0 auto;padding:2.8rem;position:relative;
+  box-shadow:0 8px 30px rgba(38,25,14,.12);
+}
+.box::before{
+  content:'FOUNDING TASTER EDITION';position:absolute;top:-11px;left:50%;transform:translateX(-50%);
+  background:var(--forest);color:var(--cream);font-family:'IBM Plex Mono',monospace;
+  font-size:.55rem;letter-spacing:.24em;padding:.35rem 1.1rem;
+}
+.box-list{list-style:none;margin:1.6rem 0}
+.box-list li{
+  display:grid;grid-template-columns:44px 1fr;gap:1rem;align-items:start;
+  padding:1rem 0;border-bottom:1px dashed var(--line);
+}
+.box-list li:last-child{border-bottom:none}
+.box-list .n{font-family:'Playfair Display',serif;font-size:1.5rem;font-style:italic;color:var(--gold)}
+.box-list b{font-weight:500;display:block;margin-bottom:.15rem}
+.box-list p{font-size:.88rem;color:var(--ink-soft);line-height:1.7}
+.price-row{
+  display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.6rem;
+  border-top:1px solid var(--line-strong);margin-top:1.6rem;padding-top:1.4rem;
+}
+.price{font-family:'Playfair Display',serif;font-size:2rem}
+.price small{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block}
+.how{max-width:760px;margin:0 auto;padding:4rem 2rem}
+.how-step{display:grid;grid-template-columns:52px 1fr;gap:1.4rem;padding:1.4rem 0;border-bottom:1px solid var(--line)}
+.how-step .n{font-family:'Playfair Display',serif;font-size:2rem;font-style:italic;color:var(--gold);line-height:1}
+.how-step h3{font-size:1.2rem;margin-bottom:.35rem}
+.how-step p{font-size:.93rem;color:var(--ink-soft);line-height:1.8}
+.honesty{background:var(--paper-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:3rem 2rem}
+.honesty-inner{max-width:720px;margin:0 auto}
+.honesty p{font-size:.95rem;color:var(--ink-soft);line-height:1.9;margin-bottom:1rem}
+.wa-note{font-family:'Caveat',cursive;font-size:1.2rem;color:var(--gold);margin-top:.9rem}
+.sampler-photos{display:grid;grid-template-columns:1fr 1fr;gap:2.6rem;max-width:760px;margin:3.5rem auto 0;padding:0 2rem}
+@media(max-width:700px){.sampler-photos{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="site-logo">State<span>Shift</span><small>A study of moments</small></a>
+  <nav class="site-nav">
+    <a href="index.html">Home</a>
+    <a href="story.html">Story</a>
+    <a href="ritual.html">The Pause</a>
+    <a href="collection.html">Collection</a>
+    <a href="journal.html">Journal</a>
+    <a href="lab.html">Lab</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="sampler.html" class="cta active">Sampler</a>
+  </nav>
+</header>
+
+<section class="s-hero">
+  <span class="eyebrow">The Sampler Pack</span>
+  <h1 class="display">Six cups.<br>Three <em>shifts</em>.</h1>
+  <p class="lead" style="max-width:560px;margin:0 auto">One for the morning, one for the middle, one for the evening — sealed in the week your box ships. The recipes are locked, but the craft is still warm. Founding Tasters drink StateShift while it's still being decided.</p>
+</section>
+
+<!-- WHAT'S IN THE BOX -->
+<section style="padding:1rem 2rem 0">
+  <div class="box">
+    <span class="eyebrow">Inside the box</span>
+    <ul class="box-list">
+      <li><span class="n">2×</span><div><b>Sehar — dawn</b><p>Two servings of the bright morning cup. Bergamot, orange peel, clean coffee.</p></div></li>
+      <li><span class="n">2×</span><div><b>Rukh — direction</b><p>Two servings of the mid-morning reset. Cardamom, dark chocolate, roasted almond.</p></div></li>
+      <li><span class="n">2×</span><div><b>Kisse — stories</b><p>Two servings of the evening cup. Deep coffee, dark cocoa, and the spice no one can name.</p></div></li>
+      <li><span class="n">+</span><div><b>Brew card & tasting notes</b><p>The six steps, and a Moment Wheel card to capture what each cup felt like.</p></div></li>
+      <li><span class="n">+</span><div><b>A direct line to the founder</b><p>Every Sampler comes with the founder's WhatsApp. What you notice shapes the next batch — that's the deal.</p></div></li>
+    </ul>
+    <div class="price-row">
+      <div class="price">₹300<small>six cups · shipping included · replace with final price</small></div>
+      <!-- REPLACE: put your WhatsApp number below in international format, e.g. 919876543210 -->
+      <a class="btn gold" href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20love%20to%20try%20the%20StateShift%20Sampler.%20My%20name%20is%20___%20and%20I%27m%20in%20___%20(city).">Request via WhatsApp</a>
+    </div>
+    <div class="wa-note">no cart, no checkout — just a conversation. it's nicer that way.</div>
+  </div>
+
+  <div class="sampler-photos">
+    <figure class="print">
+      <img src="assets/photos/three-cups.jpg" alt="Three tasting cups from a StateShift session">
+      <figcaption>tasted before it ships</figcaption>
+    </figure>
+    <figure class="print tilt-r">
+      <img src="assets/posters/tasting-form.jpg" alt="The StateShift tasting notes card with the Moment Wheel">
+      <figcaption>the tasting card that comes in your box</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <span class="eyebrow">How it works</span>
+  <h2 style="font-size:clamp(1.8rem,4vw,2.4rem);margin-bottom:.5rem">Four steps, no shopping cart</h2>
+  <div class="how-step">
+    <span class="n">1</span>
+    <div><h3>You send a message</h3><p>The button above opens WhatsApp with a short note. Tell us who you are and where you are.</p></div>
+  </div>
+  <div class="how-step">
+    <span class="n">2</span>
+    <div><h3>We blend your batch fresh</h3><p>Your sachets are weighed and sealed in the same week they ship. Nothing sits on a shelf.</p></div>
+  </div>
+  <div class="how-step">
+    <span class="n">3</span>
+    <div><h3>You brew, slowly</h3><p>Six cups, six pauses. The brew card walks you through each pause — about five minutes a cup.</p></div>
+  </div>
+  <div class="how-step" style="border-bottom:none">
+    <span class="n">4</span>
+    <div><h3>You tell us what you felt</h3><p>Not a star rating — a conversation. What stood out, what didn't, which moment the cup belonged to.</p></div>
+  </div>
+</section>
+
+<!-- HONESTY -->
+<section class="honesty">
+  <div class="honesty-inner">
+    <span class="eyebrow">Why now is different</span>
+    <p>One day StateShift will be a finished thing on a shelf. Right now it is a bench you can pull a chair up to. Founding Tasters drink versions that will never exist again, talk directly with the person who makes them, and are quietly the reason the final blends will taste the way they do.</p>
+    <p>Shelf-stability testing and FSSAI registration are underway; every box says so plainly. If you want polish, wait for the shelf. If you want fingerprints on the craft — yours among them — this is the only moment that offer exists.</p>
+    <div class="notebook" style="margin-bottom:0"><span class="nb-label">A promise</span><span class="nb-line">"your feedback goes into the same notebook as every breakthrough on this site."</span></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-word">"Moments pass. Shifts stay."</div>
+      <p style="font-size:.85rem;line-height:1.8">StateShift — a study of everyday transitions, brewed in North India in batches small enough to sign.</p>
+    </div>
+    <div>
+      <h4>Pages</h4>
+      <ul class="footer-links">
+        <li><a href="story.html">Story</a></li>
+        <li><a href="ritual.html">The pause</a></li>
+        <li><a href="collection.html">Collection</a></li>
+        <li><a href="sampler.html">Sampler</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Field Notes</h4>
+      <ul class="footer-links">
+        <li><a href="journal.html">Journal</a></li>
+        <li><a href="lab.html">Lab</a></li>
+        <li><a href="observations.html">Observations</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-base">
+    <span>stateshift.in · North India</span>
+    <span class="hand">one cup. one pause. one you.</span>
+  </div>
+</footer>
+
+</body>
+</html>
