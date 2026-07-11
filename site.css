@@ -79,8 +79,8 @@ img{max-width:100%;display:block}
 }
 .site-nav{display:flex;gap:.15rem;align-items:center;flex-wrap:wrap}
 .site-nav a{
-  font-family:'IBM Plex Mono',monospace;font-size:.64rem;
-  letter-spacing:.12em;text-transform:uppercase;
+  font-family:'IBM Plex Mono',monospace;font-size:.82rem;
+  letter-spacing:.14em;text-transform:uppercase;
   color:var(--muted);text-decoration:none;
   padding:.45rem .8rem;border:1px solid transparent;
   transition:color .2s,border-color .2s;
