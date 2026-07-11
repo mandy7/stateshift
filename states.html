@@ -3,69 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>States — The Research Lab · StateShift</title>
+<title>The Lab — StateShift</title>
 <meta name="description" content="The research layer of StateShift: every logged session, every verdict, and the measured before/after shifts — failures included.">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-.s-hero{padding:4.5rem 2rem 3rem;text-align:center}
-.s-body{background:var(--espresso);color:var(--dark-text);padding:3rem 0 5rem;min-height:50vh}
+.s-hero{padding:4.5rem 2rem 2.6rem;text-align:center}
+.s-body{padding:1.4rem 0 5rem}
 .s-inner{max-width:1060px;margin:0 auto;padding:0 2rem}
 /* master tabs */
 .master-tabs{display:flex;gap:.6rem;justify-content:center;margin:0 0 2.6rem;flex-wrap:wrap}
 .mtab{
-  background:transparent;border:1px solid var(--line-dark);color:var(--dark-muted);
+  background:transparent;border:1px solid var(--line-strong);color:var(--muted);
   padding:.85rem 1.8rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;
   font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;transition:all .2s;
 }
-.mtab:hover{color:var(--amber);border-color:var(--amber)}
-.mtab.active{background:var(--amber);color:var(--espresso);border-color:var(--amber)}
+.mtab:hover{color:var(--gold);border-color:var(--gold)}
+.mtab.active{background:var(--gold);color:var(--cream);border-color:var(--gold)}
 .master-pane{display:none}
 .master-pane.active{display:block}
-/* records */
+/* sub tabs */
 .tabs{display:flex;gap:.6rem;margin-bottom:2rem;flex-wrap:wrap}
 .tab-btn{
-  background:transparent;border:1px solid var(--line-dark);color:var(--dark-muted);
+  background:transparent;border:1px solid var(--line);color:var(--muted);
   padding:.6rem 1.3rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;
   font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;transition:all .2s;
 }
-.tab-btn:hover{color:var(--amber);border-color:var(--amber)}
-.tab-btn.active{background:var(--amber);color:var(--espresso);border-color:var(--amber)}
-.lab-entry{border:1px solid var(--line-dark);background:var(--roast);margin-bottom:1.1rem}
+.tab-btn:hover{color:var(--gold);border-color:var(--gold)}
+.tab-btn.active{background:var(--gold);color:var(--cream);border-color:var(--gold)}
+/* records — light cards */
+.lab-entry{border:1px solid var(--line);background:var(--cream);margin-bottom:1.1rem}
 .le-head{padding:1.3rem 1.5rem;cursor:pointer;user-select:none;display:flex;justify-content:space-between;gap:1rem;align-items:baseline}
-.le-head:hover .le-title{color:var(--amber)}
-.le-meta{font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dark-muted);white-space:nowrap}
-.le-title{font-family:'Playfair Display',serif;font-size:1.15rem;line-height:1.45;transition:color .2s;color:var(--dark-text)}
-.le-tag{font-family:'IBM Plex Mono',monospace;font-size:.52rem;letter-spacing:.14em;color:var(--amber);border:1px solid var(--line-dark);padding:.2rem .55rem;white-space:nowrap}
-.le-body{display:none;border-top:1px solid var(--line-dark);padding:1.5rem}
+.le-head:hover .le-title{color:var(--gold)}
+.le-meta{font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.le-title{font-family:'Playfair Display',serif;font-size:1.15rem;line-height:1.45;transition:color .2s;color:var(--ink)}
+.le-tag{font-family:'IBM Plex Mono',monospace;font-size:.52rem;letter-spacing:.14em;color:var(--gold);border:1px solid var(--line);padding:.2rem .55rem;white-space:nowrap}
+.le-body{display:none;border-top:1px solid var(--line);padding:1.5rem;background:var(--paper)}
 .le-body.open{display:block}
-.le-body .prose{white-space:pre-line;color:#d8c8ae;font-size:.93rem;line-height:1.85;margin-bottom:1.4rem}
-.le-label{font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:.7rem}
+.le-body .prose{white-space:pre-line;color:var(--ink-soft);font-size:.93rem;line-height:1.85;margin-bottom:1.4rem}
+.le-label{font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.7rem}
 .obs-list{list-style:none;margin-bottom:1.2rem}
-.obs-list li{position:relative;padding-left:1.1rem;margin-bottom:.5rem;color:#c4b295;font-size:.9rem;line-height:1.7}
-.obs-list li::before{content:'—';position:absolute;left:0;color:rgba(212,168,83,.5)}
-.field-note{border-left:2px solid rgba(212,168,83,.4);padding-left:1rem;margin-top:1.2rem}
-.field-note-text{color:#d7b06d;font-style:italic;font-size:.92rem;line-height:1.75}
+.obs-list li{position:relative;padding-left:1.1rem;margin-bottom:.5rem;color:var(--ink-soft);font-size:.9rem;line-height:1.7}
+.obs-list li::before{content:'—';position:absolute;left:0;color:rgba(176,125,30,.55)}
+.field-note{border-left:2px solid rgba(176,125,30,.5);padding-left:1rem;margin-top:1.2rem}
+.field-note-text{color:var(--gold);font-style:italic;font-size:.92rem;line-height:1.75}
 .lab-note{
-  border:1px dashed var(--line-dark);padding:1.2rem 1.5rem;margin-bottom:2.2rem;
-  font-size:.88rem;color:var(--dark-muted);line-height:1.8;
+  border:1px dashed var(--line-strong);padding:1.2rem 1.5rem;margin-bottom:2.2rem;
+  font-size:.88rem;color:var(--ink-soft);line-height:1.8;background:var(--cream);
 }
-.lab-note .hand{color:var(--amber);font-size:1.1rem}
-.count-line{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dark-muted);margin-bottom:1.4rem}
-/* measurements */
+.lab-note .hand{color:var(--gold);font-size:1.1rem}
+.count-line{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:1.4rem}
+/* measurements — light cards */
 .summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-bottom:1.6rem}
-.metric-card{background:var(--roast);border:1px solid var(--line-dark);padding:1.5rem}
-.metric-label{color:var(--amber);font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.9rem}
-.metric-value{font-family:'Playfair Display',serif;font-size:2.6rem;color:var(--dark-text)}
-.metric-caption{margin-top:.5rem;color:var(--dark-muted);font-size:.8rem;line-height:1.6}
+.metric-card{background:var(--cream);border:1px solid var(--line);padding:1.5rem}
+.metric-label{color:var(--gold);font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.9rem}
+.metric-value{font-family:'Playfair Display',serif;font-size:2.6rem;color:var(--ink)}
+.metric-caption{margin-top:.5rem;color:var(--muted);font-size:.8rem;line-height:1.6}
 .chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
-.chart-card{background:var(--roast);border:1px solid var(--line-dark);padding:1.5rem}
+.chart-card{background:var(--cream);border:1px solid var(--line);padding:1.5rem}
 .chart-card.full{grid-column:1/-1}
-.chart-title{font-family:'Playfair Display',serif;font-size:1.15rem;margin-bottom:1rem;color:var(--dark-text)}
+.chart-title{font-family:'Playfair Display',serif;font-size:1.15rem;margin-bottom:1rem;color:var(--ink)}
 canvas{width:100%!important;height:300px!important}
-.footer-note{margin-top:2.6rem;color:var(--dark-muted);line-height:1.8;font-size:.85rem;border-top:1px solid var(--line-dark);padding-top:1.4rem}
+.footer-note{margin-top:2.6rem;color:var(--muted);line-height:1.8;font-size:.85rem;border-top:1px solid var(--line);padding-top:1.4rem}
 .tab-content{display:none}
 .tab-content.active{display:block}
 @media(max-width:900px){.summary-grid,.chart-grid{grid-template-columns:1fr}.chart-card.full{grid-column:auto}}
@@ -80,16 +81,14 @@ canvas{width:100%!important;height:300px!important}
     <a href="story.html">Story</a>
     <a href="ritual.html">The Pause</a>
     <a href="collection.html">Collection</a>
-    <a href="journal.html">Journal</a>
-    <a href="states.html" class="active">States</a>
-    <a href="faq.html">FAQ</a>
+    <a href="states.html" class="active">Lab</a>
     <a href="sampler.html" class="cta">Try the Sampler</a>
   </nav>
 </header>
 
 <section class="s-hero">
   <span class="eyebrow">The Research Lab</span>
-  <h1 class="display">States</h1>
+  <h1 class="display">The <em>Lab</em></h1>
   <p class="lead" style="max-width:620px;margin:0 auto 1rem">We study moments as carefully as others study coffee. Every sitting is logged, scored, and kept — the field records and the measurements, side by side.</p>
   <span class="margin-note">prefer the story version? read the <a href="journal.html" style="color:inherit">journal</a> →</span>
 </section>
@@ -162,6 +161,7 @@ canvas{width:100%!important;height:300px!important}
     <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%20—%20I%27d%20like%20to%20join%20the%20Tasting%20Circle.">Join the Tasting Circle</a>
     <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
     <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a>
+    <a href="faq.html">Questions → FAQ</a>
   </div>
   <a class="btn gold" href="sampler.html">Try the Sampler</a>
 </section>
@@ -185,7 +185,7 @@ canvas{width:100%!important;height:300px!important}
       <h4>Field Notes</h4>
       <ul class="footer-links">
         <li><a href="journal.html">Journal</a></li>
-        <li><a href="states.html">States</a></li>
+        <li><a href="states.html">The Lab</a></li>
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -240,7 +240,7 @@ function render(sku){
         ${note}
       </div>
     </article>`;
-  }).join('') || '<p style="color:var(--dark-muted)">No sessions logged for this blend yet.</p>';
+  }).join('') || '<p style="color:var(--muted)">No sessions logged for this blend yet.</p>';
   document.querySelectorAll('.le-head').forEach(h => {
     h.addEventListener('click', () => {
       document.getElementById('body-' + h.dataset.id)?.classList.toggle('open');
@@ -259,10 +259,10 @@ fetch('lab.json')
   .then(data => { ALL = data; render('ALL'); })
   .catch(() => {
     document.getElementById('entries').innerHTML =
-      '<p style="color:var(--dark-muted)">Could not load lab.json. Serve over http (e.g. <code>python3 -m http.server</code>) or deploy to Vercel.</p>';
+      '<p style="color:var(--muted)">Could not load lab.json. Serve over http (e.g. <code>python3 -m http.server</code>) or deploy to Vercel.</p>';
   });
 
-/* ---------- measurements (states.json) ---------- */
+/* ---------- measurements (states.json) — light theme charts ---------- */
 function card(label, value, caption){
   return '<div class="metric-card">'
     + '<div class="metric-label">' + label + '</div>'
@@ -281,10 +281,10 @@ function metricSeries(rows, key){
 }
 const OPTS = {
   responsive:true, maintainAspectRatio:false,
-  plugins:{legend:{labels:{color:'#d9c5ac', font:{family:"'IBM Plex Mono', monospace", size:10}}}},
+  plugins:{legend:{labels:{color:'#4a3a28', font:{family:"'IBM Plex Mono', monospace", size:10}}}},
   scales:{
-    x:{ticks:{color:'#8d7258', font:{size:10}}, grid:{color:'rgba(255,255,255,.04)'}},
-    y:{min:1, max:5, ticks:{stepSize:1, color:'#8d7258'}, grid:{color:'rgba(255,255,255,.04)'}}
+    x:{ticks:{color:'#7d7057', font:{size:10}}, grid:{color:'rgba(38,25,14,.06)'}},
+    y:{min:1, max:5, ticks:{stepSize:1, color:'#7d7057'}, grid:{color:'rgba(38,25,14,.06)'}}
   }
 };
 function mkChart(id, series, color){
@@ -293,7 +293,7 @@ function mkChart(id, series, color){
     data:{
       labels:series.pts.map(p => p.label),
       datasets:[
-        {label:'before', data:series.pts.map(p => p.before), borderColor:'rgba(173,132,88,.4)', borderDash:[5,5], borderWidth:2, tension:.35, pointRadius:2},
+        {label:'before', data:series.pts.map(p => p.before), borderColor:'rgba(38,25,14,.28)', borderDash:[5,5], borderWidth:2, tension:.35, pointRadius:2},
         {label:'after',  data:series.pts.map(p => p.after),  borderColor:color, borderWidth:3, tension:.35, pointRadius:4}
       ]
     },
@@ -311,9 +311,9 @@ fetch('states.json').then(r => r.json()).then(DATA => {
     card('Focus uplift', '+' + rF.lift, 'avg shift · ' + rF.pts.length + ' sessions measured') +
     card('Energy uplift', '+' + rE.lift, 'avg shift · ' + rE.pts.length + ' sessions measured') +
     card('Mood uplift', '+' + rM.lift, 'avg shift · ' + rM.pts.length + ' sessions measured');
-  mkChart('focusChart',  rF, '#d4a853');
-  mkChart('energyChart', rE, '#bff6e3');
-  mkChart('moodChart',   rM, '#f7d488');
+  mkChart('focusChart',  rF, '#b07d1e');
+  mkChart('energyChart', rE, '#33472f');
+  mkChart('moodChart',   rM, '#a3541e');
   const kW = metricSeries(kisse, 'warmth'),
         kM = metricSeries(kisse, 'mystery'),
         kL = metricSeries(kisse, 'linger');
@@ -322,12 +322,12 @@ fetch('states.json').then(r => r.json()).then(DATA => {
     card('Emotional warmth', '+' + kW.lift, 'avg shift · ' + kW.pts.length + ' sessions measured') +
     card('Mystery', '+' + kM.lift, 'unnameable intrigue · ' + kM.pts.length + ' sessions') +
     card('Linger', '+' + kL.lift, 'what stays after · ' + kL.pts.length + ' sessions');
-  mkChart('warmthChart',  kW, '#f4a261');
-  mkChart('mysteryChart', kM, '#c7a4f7');
-  mkChart('lingerChart',  kL, '#ffe29a');
+  mkChart('warmthChart',  kW, '#a3541e');
+  mkChart('mysteryChart', kM, '#6b4a8a');
+  mkChart('lingerChart',  kL, '#b07d1e');
 }).catch(() => {
   document.getElementById('rukhSummary').innerHTML =
-    '<p style="color:var(--dark-muted)">Could not load states.json.</p>';
+    '<p style="color:var(--muted)">Could not load states.json.</p>';
 });
 document.querySelectorAll('.m-active').forEach(btn => {
   btn.addEventListener('click', () => {
