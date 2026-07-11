@@ -2,12 +2,13 @@
   "rewrites": [
     { "source": "/story", "destination": "/story.html" },
     { "source": "/ritual", "destination": "/ritual.html" },
+    { "source": "/pause", "destination": "/ritual.html" },
     { "source": "/collection", "destination": "/collection.html" },
     { "source": "/sampler", "destination": "/sampler.html" },
     { "source": "/journal", "destination": "/journal.html" },
-    { "source": "/lab", "destination": "/lab.html" },
-    { "source": "/observations", "destination": "/observations.html" },
-    { "source": "/states", "destination": "/observations.html" },
+    { "source": "/states", "destination": "/states.html" },
+    { "source": "/lab", "destination": "/states.html" },
+    { "source": "/observations", "destination": "/states.html" },
     { "source": "/faq", "destination": "/faq.html" },
     { "source": "/contact", "destination": "/contact.html" }
   ]

@@ -3,197 +3,336 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Observations — StateShift</title>
+<title>States — The Research Lab · StateShift</title>
+<meta name="description" content="The research layer of StateShift: every logged session, every verdict, and the measured before/after shifts — failures included.">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#140c08;--panel:#1f140d;--border:rgba(224,166,59,.12);--gold:#d4a853;--muted:#8d7258;--text:#f2e8db}
-body{background:var(--bg);color:var(--text);font-family:'Lora',serif}
-.container{width:1180px;max-width:92%;margin:auto;padding-bottom:90px}
-.navbar{display:flex;justify-content:space-between;align-items:center;padding:28px 0;margin-bottom:40px}
-.logo{text-decoration:none;font-family:'Playfair Display',serif;font-size:34px;color:white;font-style:italic}
-.logo span{color:var(--gold)}
-.nav{display:flex;gap:10px}
-.nav a{text-decoration:none;color:var(--muted);border:1px solid rgba(224,166,59,.12);padding:10px 16px;font-size:11px;text-transform:uppercase;letter-spacing:1.2px}
-.nav a.active{color:var(--gold);border-color:rgba(224,166,59,.3)}
-.hero{margin-bottom:40px}
-.hero h1{font-size:72px;font-weight:400;line-height:1}
-.hero h1 span{color:var(--gold);font-style:italic}
-.hero p{margin-top:18px;color:var(--muted);line-height:1.9;max-width:760px}
-.tabs{display:flex;gap:10px;margin-bottom:36px}
-.tab-btn{background:transparent;border:1px solid rgba(224,166,59,.12);color:var(--muted);padding:12px 18px;cursor:pointer;font-size:11px;text-transform:uppercase;letter-spacing:1.2px}
-.tab-btn.active{background:var(--gold);color:#1a120b}
+.s-hero{padding:4.5rem 2rem 3rem;text-align:center}
+.s-body{background:var(--espresso);color:var(--dark-text);padding:3rem 0 5rem;min-height:50vh}
+.s-inner{max-width:1060px;margin:0 auto;padding:0 2rem}
+/* master tabs */
+.master-tabs{display:flex;gap:.6rem;justify-content:center;margin:0 0 2.6rem;flex-wrap:wrap}
+.mtab{
+  background:transparent;border:1px solid var(--line-dark);color:var(--dark-muted);
+  padding:.85rem 1.8rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;
+  font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;transition:all .2s;
+}
+.mtab:hover{color:var(--amber);border-color:var(--amber)}
+.mtab.active{background:var(--amber);color:var(--espresso);border-color:var(--amber)}
+.master-pane{display:none}
+.master-pane.active{display:block}
+/* records */
+.tabs{display:flex;gap:.6rem;margin-bottom:2rem;flex-wrap:wrap}
+.tab-btn{
+  background:transparent;border:1px solid var(--line-dark);color:var(--dark-muted);
+  padding:.6rem 1.3rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;
+  font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;transition:all .2s;
+}
+.tab-btn:hover{color:var(--amber);border-color:var(--amber)}
+.tab-btn.active{background:var(--amber);color:var(--espresso);border-color:var(--amber)}
+.lab-entry{border:1px solid var(--line-dark);background:var(--roast);margin-bottom:1.1rem}
+.le-head{padding:1.3rem 1.5rem;cursor:pointer;user-select:none;display:flex;justify-content:space-between;gap:1rem;align-items:baseline}
+.le-head:hover .le-title{color:var(--amber)}
+.le-meta{font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dark-muted);white-space:nowrap}
+.le-title{font-family:'Playfair Display',serif;font-size:1.15rem;line-height:1.45;transition:color .2s;color:var(--dark-text)}
+.le-tag{font-family:'IBM Plex Mono',monospace;font-size:.52rem;letter-spacing:.14em;color:var(--amber);border:1px solid var(--line-dark);padding:.2rem .55rem;white-space:nowrap}
+.le-body{display:none;border-top:1px solid var(--line-dark);padding:1.5rem}
+.le-body.open{display:block}
+.le-body .prose{white-space:pre-line;color:#d8c8ae;font-size:.93rem;line-height:1.85;margin-bottom:1.4rem}
+.le-label{font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:.7rem}
+.obs-list{list-style:none;margin-bottom:1.2rem}
+.obs-list li{position:relative;padding-left:1.1rem;margin-bottom:.5rem;color:#c4b295;font-size:.9rem;line-height:1.7}
+.obs-list li::before{content:'—';position:absolute;left:0;color:rgba(212,168,83,.5)}
+.field-note{border-left:2px solid rgba(212,168,83,.4);padding-left:1rem;margin-top:1.2rem}
+.field-note-text{color:#d7b06d;font-style:italic;font-size:.92rem;line-height:1.75}
+.lab-note{
+  border:1px dashed var(--line-dark);padding:1.2rem 1.5rem;margin-bottom:2.2rem;
+  font-size:.88rem;color:var(--dark-muted);line-height:1.8;
+}
+.lab-note .hand{color:var(--amber);font-size:1.1rem}
+.count-line{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dark-muted);margin-bottom:1.4rem}
+/* measurements */
+.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-bottom:1.6rem}
+.metric-card{background:var(--roast);border:1px solid var(--line-dark);padding:1.5rem}
+.metric-label{color:var(--amber);font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.9rem}
+.metric-value{font-family:'Playfair Display',serif;font-size:2.6rem;color:var(--dark-text)}
+.metric-caption{margin-top:.5rem;color:var(--dark-muted);font-size:.8rem;line-height:1.6}
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.chart-card{background:var(--roast);border:1px solid var(--line-dark);padding:1.5rem}
+.chart-card.full{grid-column:1/-1}
+.chart-title{font-family:'Playfair Display',serif;font-size:1.15rem;margin-bottom:1rem;color:var(--dark-text)}
+canvas{width:100%!important;height:300px!important}
+.footer-note{margin-top:2.6rem;color:var(--dark-muted);line-height:1.8;font-size:.85rem;border-top:1px solid var(--line-dark);padding-top:1.4rem}
 .tab-content{display:none}
 .tab-content.active{display:block}
-.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:26px}
-.metric-card{background:var(--panel);border:1px solid var(--border);padding:24px}
-.metric-label{color:var(--gold);font-size:11px;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:18px;font-family:'IBM Plex Mono',monospace}
-.metric-value{font-size:52px}
-.metric-caption{margin-top:12px;color:var(--muted);line-height:1.7}
-.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.chart-card{background:var(--panel);border:1px solid var(--border);padding:24px}
-.chart-card.full{grid-column:1/-1}
-.chart-title{margin-bottom:18px;font-size:20px}
-canvas{width:100%!important;height:320px!important}
-.footer-note{margin-top:50px;color:var(--muted);line-height:1.8;font-size:14px}
-@media(max-width:900px){
-  .summary-grid,.chart-grid{grid-template-columns:1fr}
-  .chart-card.full{grid-column:auto}
-  .hero h1{font-size:52px}
-}
+@media(max-width:900px){.summary-grid,.chart-grid{grid-template-columns:1fr}.chart-card.full{grid-column:auto}}
 </style>
 </head>
 <body>
-<div class="container">
 
-<div class="navbar">
-  <a href="index.html" class="logo">State<span>Shift</span></a>
-  <div class="nav">
-    <a href="lab.html">Lab</a>
-    <a href="states.html" class="active">Observations</a>
+<header class="site-header">
+  <a href="index.html" class="site-logo">State<span>Shift</span><small>A study of moments</small></a>
+  <nav class="site-nav">
+    <a href="index.html">Home</a>
+    <a href="story.html">Story</a>
+    <a href="ritual.html">The Pause</a>
+    <a href="collection.html">Collection</a>
+    <a href="journal.html">Journal</a>
+    <a href="states.html" class="active">States</a>
+    <a href="faq.html">FAQ</a>
+    <a href="sampler.html" class="cta">Try the Sampler</a>
+  </nav>
+</header>
+
+<section class="s-hero">
+  <span class="eyebrow">The Research Lab</span>
+  <h1 class="display">States</h1>
+  <p class="lead" style="max-width:620px;margin:0 auto 1rem">We study moments as carefully as others study coffee. Every sitting is logged, scored, and kept — the field records and the measurements, side by side.</p>
+  <span class="margin-note">prefer the story version? read the <a href="journal.html" style="color:inherit">journal</a> →</span>
+</section>
+
+<div class="s-body">
+  <div class="s-inner">
+
+    <div class="master-tabs">
+      <button class="mtab active" data-pane="recordsPane">Field Records</button>
+      <button class="mtab" data-pane="measurePane">Measurements</button>
+    </div>
+
+    <!-- ===== FIELD RECORDS ===== -->
+    <div id="recordsPane" class="master-pane active">
+      <div class="lab-note">
+        Transcribed from the bench notebook, verdicts intact. <b>Sehar, Rukh, and Kisse are locked</b> — the pages below are how that happened. Current sittings study consistency and shelf life. <span class="hand">new pages arrive with each transcription</span>
+      </div>
+      <div class="tabs" id="recordTabs">
+        <button class="tab-btn active" data-sku="ALL">All sessions</button>
+        <button class="tab-btn" data-sku="RUKH">Rukh</button>
+        <button class="tab-btn" data-sku="KISSE">Kisse</button>
+      </div>
+      <div class="count-line" id="countLine"></div>
+      <div id="entries"></div>
+    </div>
+
+    <!-- ===== MEASUREMENTS ===== -->
+    <div id="measurePane" class="master-pane">
+      <div class="lab-note">
+        Every sitting begins and ends with the same quiet question: <em>how do you feel, one to five?</em> These are the answers, plotted. Direction matters more than magnitude.
+      </div>
+      <div class="tabs">
+        <button class="tab-btn m-active active" data-tab="rukhTab">Rukh</button>
+        <button class="tab-btn m-active" data-tab="kisseTab">Kisse</button>
+      </div>
+
+      <div id="rukhTab" class="tab-content active">
+        <div class="summary-grid" id="rukhSummary"></div>
+        <div class="chart-grid">
+          <div class="chart-card"><div class="chart-title">Focus, before the cup and after</div><canvas id="focusChart"></canvas></div>
+          <div class="chart-card"><div class="chart-title">Energy, before the cup and after</div><canvas id="energyChart"></canvas></div>
+          <div class="chart-card full"><div class="chart-title">Mood, before the cup and after</div><canvas id="moodChart"></canvas></div>
+        </div>
+      </div>
+
+      <div id="kisseTab" class="tab-content">
+        <div class="summary-grid" id="kisseSummary"></div>
+        <div class="chart-grid">
+          <div class="chart-card"><div class="chart-title">Warmth, before the cup and after</div><canvas id="warmthChart"></canvas></div>
+          <div class="chart-card"><div class="chart-title">Mystery — the note no one can name</div><canvas id="mysteryChart"></canvas></div>
+          <div class="chart-card full"><div class="chart-title">Linger — what stays when the cup is done</div><canvas id="lingerChart"></canvas></div>
+        </div>
+      </div>
+
+      <div class="footer-note">
+        Scale reference → 1 = low state · 3 = balanced baseline · 5 = unusually elevated. Sessions that did not record a given metric are excluded from that metric's average and chart, rather than counted as zero. Self-reported by tester; treated as directional evidence, not proof.
+      </div>
+    </div>
+
   </div>
 </div>
 
-<div class="hero">
-  <h1>What the <span>data</span> says</h1>
-  <p>Repeated sessions tracking emotional and functional shifts across ritual experimentation.</p>
-</div>
+<!-- CONTACT CLOSE -->
+<section class="contact-close">
+  <span class="eyebrow">Before you go</span>
+  <h2>Want to talk?<br><em>Want to taste?</em></h2>
+  <p class="cc-line">There's a person at the other end of every message — usually mid-experiment.</p>
+  <div class="cc-links">
+    <!-- REPLACE: WhatsApp number -->
+    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%20—%20I%27d%20like%20to%20join%20the%20Tasting%20Circle.">Join the Tasting Circle</a>
+    <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
+    <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a>
+  </div>
+  <a class="btn gold" href="sampler.html">Try the Sampler</a>
+</section>
 
-<div class="tabs">
-  <button class="tab-btn active" data-tab="rukhTab">Rukh</button>
-  <button class="tab-btn" data-tab="kisseTab">Kisse</button>
-</div>
-
-<div id="rukhTab" class="tab-content active">
-  <div class="summary-grid" id="rukhSummary"></div>
-  <div class="chart-grid">
-    <div class="chart-card">
-      <div class="chart-title">Focus uplift</div>
-      <canvas id="focusChart"></canvas>
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-word">"Never optimize on opinions. Optimize on observations."</div>
+      <p style="font-size:.85rem;line-height:1.8">StateShift — a study of everyday transitions, brewed in North India in batches small enough to sign.</p>
     </div>
-    <div class="chart-card">
-      <div class="chart-title">Energy uplift</div>
-      <canvas id="energyChart"></canvas>
+    <div>
+      <h4>Pages</h4>
+      <ul class="footer-links">
+        <li><a href="story.html">Story</a></li>
+        <li><a href="ritual.html">The pause</a></li>
+        <li><a href="collection.html">Collection</a></li>
+        <li><a href="sampler.html">Sampler</a></li>
+      </ul>
     </div>
-    <div class="chart-card full">
-      <div class="chart-title">Mood uplift</div>
-      <canvas id="moodChart"></canvas>
+    <div>
+      <h4>Field Notes</h4>
+      <ul class="footer-links">
+        <li><a href="journal.html">Journal</a></li>
+        <li><a href="states.html">States</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
     </div>
   </div>
-</div>
-
-<div id="kisseTab" class="tab-content">
-  <div class="summary-grid" id="kisseSummary"></div>
-  <div class="chart-grid">
-    <div class="chart-card">
-      <div class="chart-title">Emotional warmth</div>
-      <canvas id="warmthChart"></canvas>
-    </div>
-    <div class="chart-card">
-      <div class="chart-title">Mystery</div>
-      <canvas id="mysteryChart"></canvas>
-    </div>
-    <div class="chart-card full">
-      <div class="chart-title">Linger</div>
-      <canvas id="lingerChart"></canvas>
-    </div>
+  <div class="footer-base">
+    <span>stateshift.in · North India</span>
+    <span class="hand">one cup. one pause. one you.</span>
   </div>
-</div>
-
-<div class="footer-note">Scale reference → 1 = low state · 3 = balanced baseline · 5 = unusually elevated state.</div>
-</div>
+</footer>
 
 <script>
-const DATA = [{"date":"Jun 21","blend":"KISSE","session":28,"sku":"KISSE","notes":"Bloom beans: Venkids and Meera. Both closed. Bean selection fully settled on El Diablo.","warmth_before":2,"warmth_after":2,"mystery_before":1,"mystery_after":1,"linger_before":2,"linger_after":2,"wife_finished":true,"wife_comment":"Venkids: average. Meera: premium coffee but nothing special.","external_testers":1,"beans_tested":["Venkids Valley Estate","Meera"],"both_bloom_beans_closed":true,"bean_selection_closed":true,"verdict":"bean selection closed. Five beans tested. El Diablo only. Orange peel is final variable before group tasting."},{"date":"Jun 20","blend":"KISSE","session":26,"sku":"KISSE","notes":"El Diablo vs Harley Robusta vs Vin Van Gogh with cocoa and mace. El Diablo + cocoa unlocking citrus note.","warmth_before":3,"warmth_after":3,"mystery_before":2,"mystery_after":3,"linger_before":2,"linger_after":3,"wife_finished":true,"wife_comment":"El Diablo cup: orange citrus flavour. No alcohol today. Not bitter. Liked it.","grind_setting":12,"water_ml":75,"beans_tested":["El Diablo","Harley Estate Robusta","Vin Van Gogh"],"cocoa_g":0.4,"citrus_note_detected":true,"cocoa_unlocking_citrus":true,"vin_van_gogh_body_noted":true,"verdict":"El Diablo + cocoa unlocking latent citrus. Vin Van Gogh body-only candidate. El Diablo confirmed."},{"date":"Jun 20","blend":"KISSE","session":27,"sku":"KISSE","notes":"Brother-in-law and sister-in-law. Mace confirmed as unidentifiable throat sensation. Social brief crystallised.","warmth_before":3,"warmth_after":4,"mystery_before":2,"mystery_after":3,"linger_before":2,"linger_after":3,"wife_finished":null,"external_testers":2,"sister_in_law_comment":"Something in the throat — could not name it. Sensed something.","brother_in_law_comment":"Smooth, slightly sweet, very good — Cup A.","mace_mystery_confirmed":true,"brief_reframed":"bold social drink — friends, evening, conversation, nostalgia","kisse_name_confirmed":true,"verdict":"mace confirmed as unidentifiable mystery in throat. Brief reframed to social shared-drink. Kisse name correct."},{"date":"Jun 19","blend":"KISSE","session":24,"sku":"KISSE","notes":"Three-way head-to-head: Harley Estate vs El Diablo vs 50-50 blend. Setting 13. El Diablo dominant.","warmth_before":3,"warmth_after":3,"mystery_before":2,"mystery_after":2,"linger_before":2,"linger_after":3,"wife_finished":true,"wife_comment":"Harley: watery. El Diablo: heaviest, jaggery taste. Blend: neutral.","grind_setting":13,"water_ml":60,"beans_tested":["Harley Estate","El Diablo","50-50 blend"],"el_diablo_dominant_in_blend":true,"harley_closed_for_kisse":true,"verdict":"El Diablo confirmed Kisse bean. Harley Estate closed. 50-50 blend still reads as El Diablo."},{"date":"Jun 19","blend":"KISSE","session":25,"sku":"KISSE","notes":"Harley Robusta at grind 12. Burnt note confirmed. Robusta permanently closed for Kisse.","warmth_before":1,"warmth_after":2,"mystery_before":1,"mystery_after":1,"linger_before":1,"linger_after":1,"wife_finished":false,"wife_comment":"Cup A: burnt, thin. Cup B: drinkable but plain premium coffee.","grind_setting":12,"water_ml":75,"beans_tested":["Harley Estate Robusta"],"cocoa_g":0.35,"harley_robusta_closed":true,"verdict":"Harley Robusta closed permanently. Orange note was coarse-grind artifact. El Diablo only."},{"date":"Jun 18","blend":"KISSE","session":22,"sku":"KISSE","notes":"Half cup setting 16. Tobacco aroma. Jaggery 1.5g overdose for 70ml. Session invalidated.","warmth_before":1,"warmth_after":1,"mystery_before":1,"mystery_after":1,"linger_before":1,"linger_after":1,"wife_finished":false,"wife_comment":"Tobacco aroma — beedi character. Burnt coffee with molasses.","grind_setting":16,"water_ml":70,"jaggery_g":1.5,"cocoa_g":0.2,"session_valid":false,"verdict":"invalidated — setting 16, overdosed jaggery, half batch. Too many confounds."},{"date":"Jun 18","blend":"KISSE","session":23,"sku":"KISSE","notes":"Harley Estate Robusta. Three half cups. Orange note detected by wife from bean alone in cups 1 and 2.","warmth_before":2,"warmth_after":2,"mystery_before":2,"mystery_after":3,"linger_before":2,"linger_after":2,"wife_finished":true,"wife_comment":"Cup 1 and 2: orange fragrance and taste. Cup 3: nothing coming through.","grind_setting":14,"water_ml":60,"beans_tested":["Harley Estate Robusta"],"orange_note_detected":true,"verdict":"orange note from Harley Estate natural character — but setting 14 likely coarse. Retest at 12."},{"date":"Jun 17","blend":"RUKH","session":8,"sku":"RUKH","notes":"2.7g Van Gogh + 0.6g Cothas + 1.3g creamer. Evening session. Wife and self both found flat, bitter, cardamom absent. Cothas dropped too low.","energy_before":3,"energy_after":3,"focus_before":3,"focus_after":3,"mood_before":3,"mood_after":3,"water_ml":120,"milk_ml":0,"grind_setting":13,"rhodiola_mg":80,"creamer_g":1.3,"specialty_g":2.7,"instant_g":0.6,"wife_comment":"Bitter, flat, cardamom absent","self_comment":"Mexican chocolate faint but bitterness dominant. Less milky than expected.","aroma_survived_milk":false,"root_cause":"Cothas Royal at 0.6g insufficient — floor is 1g. Dropping instant removed more backbone than Van Gogh increase added.","verdict":"failed — restore Cothas to 1g. Next cup: 2.7g Van Gogh + 1g Cothas + 1.5g creamer + 0.11g cardamom + 2.3g jaggery + 120ml water."},{"date":"Jun 17","blend":"KISSE","session":19,"sku":"KISSE","notes":"El Diablo 4g setting 12-13. Jaggery floor at 2.2g confirmed. Alcoholic character. Mace/aroma confounded by shampoo on cup.","warmth_before":3,"warmth_after":4,"mystery_before":2,"mystery_after":3,"linger_before":2,"linger_after":4,"wife_finished":true,"wife_comment":"Alcoholic character — liked it. Not bitter at 2.3g jaggery.","grind_setting":13,"water_ml":120,"jaggery_g":2.3,"cocoa_g":0.6,"verdict":"jaggery floor 2.2g confirmed — mystery aroma data invalidated by shampoo confound"},{"date":"Jun 17","blend":"KISSE","session":20,"sku":"KISSE","notes":"95ml water + 3:30 steep. Bitterness increased. Two variables changed simultaneously — lesson.","warmth_before":2,"warmth_after":3,"mystery_before":2,"mystery_after":2,"linger_before":2,"linger_after":3,"wife_finished":true,"wife_comment":"More bitter today. Aroma alcoholic — consistent.","grind_setting":13,"water_ml":95,"jaggery_g":2.2,"cocoa_g":0.6,"sediment_visible":true,"verdict":"failed — 120ml non-negotiable. Steep 3 min exactly. Change one variable at a time."},{"date":"Jun 17","blend":"KISSE","session":21,"sku":"KISSE","notes":"Setting 16 + vanilla extract. Sharp but thin. Vanilla immediately identifiable — eliminated.","warmth_before":3,"warmth_after":3,"mystery_before":2,"mystery_after":2,"linger_before":2,"linger_after":3,"wife_finished":null,"grind_setting":16,"water_ml":120,"jaggery_g":2.6,"cocoa_g":0.6,"vanilla_drops":3,"vanilla_eliminated":true,"verdict":"vanilla permanently eliminated — identifiable on contact. Setting 16 confirmed wrong."},{"date":"Jun 16","blend":"RUKH","session":7,"sku":"RUKH","notes":"Nestlé creamer introduced. Two iterations. Cup 1: 1g creamer too thin. Cup 2: 1.5g creamer better body. Van Gogh Mexican chocolate emerging for wife.","energy_before":3,"energy_after":3,"focus_before":3,"focus_after":4,"mood_before":3,"mood_after":4,"water_ml":120,"milk_ml":0,"grind_setting":13,"rhodiola_mg":80,"creamer_g":1.5,"wife_comment":"Cup 2: different aroma besides cardamom. Slight Mexican spice-chocolate emerging.","self_comment":"Both drinkable. Cup 2 body acceptable. Powdery finish at 1.5g — aesthetic only.","creamer_locked":true,"fresh_milk_closed":true,"aroma_survived_milk":true,"verdict":"creamer locked over fresh milk. Bitterness gap remains. 2.7g Van Gogh next target."},{"date":"Jun 15","blend":"RUKH","session":6,"sku":"RUKH","notes":"Ratio reversal. Cup A: 2.5g Van Gogh + 1g Cothas (specialty-led). Cup B: 1g Van Gogh + 2.5g Levista (instant-led). Wife wanted to lock Cup A.","energy_before":3,"energy_after":4,"focus_before":3,"focus_after":4,"mood_before":4,"mood_after":4,"water_ml":125,"milk_ml":25,"grind_setting":13,"rhodiola_mg":80,"beans_tested":["Vin Van Gogh"],"instant_tested":["Cothas Royal","Levista 80:20"],"wife_preferred":"Cup A — specialty-led","wife_comment":"Light, nice, cardamom aroma complementing — wanted to lock it","self_comment":"Cup A light with good aroma, slight spice-chocolate. Cup B bitter and undrinkable.","aroma_survived_milk":true,"specialty_led_confirmed":true,"instant_led_closed":true,"verdict":"breakthrough — specialty-led confirmed. Wife wanted to lock. Body thin and no specialty notes are remaining gaps."},{"date":"Jun 14","blend":"RUKH","session":5,"sku":"RUKH","notes":"Baarbara vs Vin Van Gogh. Setting 13. 80ml water. 25ml milk. Baarbara: masala. Van Gogh: chocolate daily coffee.","energy_before":3,"energy_after":3,"focus_before":3,"focus_after":4,"mood_before":3,"mood_after":3,"water_ml":80,"milk_ml":25,"grind_setting":13,"beans_tested":["Baarbara Estate","Vin Van Gogh"],"wife_preferred":"Vin Van Gogh","wife_comment":"Van Gogh: chocolate coffee, cardamom, daily style. Baarbara: spiced masala.","self_comment":"Cup A more refreshing but spice-forward. Cup B muted but dependable.","aroma_survived_milk":true,"baarbara_closed_for_rukh":true,"verdict":"Vin Van Gogh confirmed direction. Baarbara closed for Rukh. Dependable daily character is correct brief."},{"date":"Jun 13","blend":"RUKH","session":3,"sku":"RUKH","notes":"Three-bean comparison. Vin Van Gogh, Meera, Venkids. Setting 15. 80-85ml water. Rhodiola 100-125mg. Results directional only — wrong grind and water floor.","energy_before":2,"energy_after":3,"focus_before":2,"focus_after":3,"mood_before":3,"mood_after":3,"water_ml":83,"milk_ml":21,"grind_setting":15,"rhodiola_mg":113,"beans_tested":["Vin Van Gogh","Meera","Venkids Valley Estate"],"wife_preferred":"Meera and Venkids","self_preferred":"Vin Van Gogh","aroma_survived_milk":false,"verdict":"directional only — grind 15 and 80ml water invalidate results. Retest at 12-13 and 120ml needed."},{"date":"Jun 13","blend":"RUKH","session":4,"sku":"RUKH","notes":"Vin Van Gogh vs Harley Estate. Setting 12. 80-90ml water. Rhodiola one-third capsule ~150mg. Half-cooked verdict from wife.","energy_before":2,"energy_after":2,"focus_before":2,"focus_after":3,"mood_before":2,"mood_after":2,"water_ml":85,"milk_ml":25,"grind_setting":12,"rhodiola_mg":150,"beans_tested":["Vin Van Gogh","Harley Estate"],"wife_comment":"Half-cooked, half-boiled — tough to detect any notes","aroma_survived_milk":false,"verdict":"failed — water below floor again. 120ml non-negotiable before any bean conclusion."},{"date":"Jun 12","blend":"RUKH","session":1,"sku":"RUKH","notes":"Baarbara 2.7g setting 18. 75ml water. 75ml milk. Grounds not wetted. Sweetened milk result.","energy_before":2,"energy_after":2,"focus_before":1,"focus_after":1,"mood_before":2,"mood_after":2,"water_ml":75,"milk_ml":75,"aroma_survived_milk":false,"verdict":"failed — water 75ml too low, milk 75ml too high"},{"date":"Jun 12","blend":"RUKH","session":2,"sku":"RUKH","notes":"Baarbara 2.6g setting 16. 80ml water yielded 46ml. 25ml milk. Aroma gone after straining.","energy_before":2,"energy_after":2,"focus_before":2,"focus_after":2,"mood_before":2,"mood_after":2,"water_ml":80,"yield_ml":46,"milk_ml":25,"aroma_before_straining":true,"aroma_survived_milk":false,"verdict":"130ml water required — 80ml still too low"},{"date":"Jun 11","blend":"KISSE","session":18,"sku":"KISSE","notes":"Baarbara first KISSE session. Self: dark chocolate linger. Wife: plain strong coffee.","warmth_before":2,"warmth_after":2,"mystery_before":2,"mystery_after":2,"linger_before":2,"linger_after":3,"wife_finished":true,"wife_comment":"Plain strong coffee — no distinguishing character","verdict":"Baarbara needs fat medium — defer to KISSE A with coconut milk"},{"date":"Jun 01","blend":"KISSE","session":17,"sku":"KISSE","notes":"Preheated cup. Mace confirmed at match-head. Cocoa undissolved. 0.25g coconut milk insufficient.","warmth_before":2,"warmth_after":4,"mystery_before":2,"mystery_after":3,"linger_before":2,"linger_after":3,"temperature_ok":true,"mace_working":true,"cocoa_dissolved":false,"verdict":"mace confirmed — cocoa stir time and coconut milk quantity gaps remain"},{"date":"May 30","blend":"RUKH","session":15,"sku":"RUKH","notes":"Second consecutive RUKH session. Reproducible. Same functional signal.","energy_before":2,"energy_after":5,"focus_before":2,"focus_after":5,"mood_before":3,"mood_after":4,"rhodiola_mg":500,"functional_signal":true,"verdict":"reproducibility confirmed — RUKH near-locked"},{"date":"May 30","blend":"KISSE","session":16,"sku":"KISSE","notes":"Three external testers. Lukewarm. Powdery. Operational not recipe problems.","warmth_before":2,"warmth_after":3,"mystery_before":2,"mystery_after":3,"linger_before":2,"linger_after":2,"external_testers":3,"all_finished":true,"verdict":"recipe working — operational fixes needed"},{"date":"May 29","blend":"KISSE","session":15,"sku":"KISSE","notes":"External guest. Left half finished. Cinnamon identified. Permanently confirmed wrong.","warmth_before":2,"warmth_after":2,"mystery_before":2,"mystery_after":2,"linger_before":2,"linger_after":2,"external_testers":1,"all_finished":false,"guest_comment":"Different. Is it tea and coffee?","verdict":"not ready — cinnamon permanently removed"},{"date":"May 28","blend":"KISSE","session":14,"sku":"KISSE","notes":"Three-way cocoa comparison. Raw cacao eliminated. Dutch cocoa confirmed.","warmth_before":2,"warmth_after":3,"mystery_before":2,"mystery_after":2,"linger_before":2,"linger_after":2,"wife_finished":null,"verdict":"raw cacao eliminated permanently"},{"date":"May 27","blend":"KISSE","session":13,"sku":"KISSE","notes":"User research. Cocoon brief. Rs 50 validated by 4/5 respondents.","warmth_before":2,"warmth_after":3,"mystery_before":2,"mystery_after":3,"linger_before":2,"linger_after":3,"price_validated":50,"respondents":5,"verdict":"positioning confirmed — personal pause ritual"},{"date":"May 26","blend":"RUKH","session":14,"sku":"RUKH","notes":"Rhodiola 500mg first session. Sustained alertness 45-90 min. No jitter.","energy_before":2,"energy_after":5,"focus_before":2,"focus_after":5,"mood_before":3,"mood_after":4,"rhodiola_mg":500,"functional_signal":true,"alert_window_min":90,"verdict":"breakthrough — rhodiola functional signal confirmed"},{"date":"May 25","blend":"RUKH","session":13,"sku":"RUKH","notes":"Colombian base. Fine pure-seed cardamom powder. Aroma returned. Wife detected it.","energy_before":2,"energy_after":4,"focus_before":2,"focus_after":5,"mood_before":3,"mood_after":4,"aroma_survived_milk":true,"wife_comment":"Detected cardamom unprompted","verdict":"breakthrough — Colombian confirmed, fine powder confirmed"},{"date":"May 25","blend":"KISSE","session":12,"sku":"KISSE","notes":"El Diablo vs Monsoon Malabar comparison. El Diablo confirmed as KISSE bean.","warmth_before":2,"warmth_after":4,"mystery_before":2,"mystery_after":4,"linger_before":2,"linger_after":4,"wife_finished":true,"wife_comment":null,"verdict":"El Diablo confirmed — bean decision closed"},{"date":"May 24","blend":"RUKH","session":12,"sku":"RUKH","notes":"Brazilian base. Cardamom fat-bloom method. Aroma erased. Same failure as infusion.","energy_before":3,"energy_after":3,"focus_before":3,"focus_after":3,"mood_before":3,"mood_after":3,"aroma_survived_milk":false,"verdict":"fat-bloom erases personality — direct fine powder needed"},{"date":"May 24","blend":"KISSE","session":11,"sku":"KISSE","notes":"Steep and strain method discovered. Wife: whiskey and dark chocolate.","warmth_before":2,"warmth_after":5,"mystery_before":2,"mystery_after":5,"linger_before":2,"linger_after":5,"wife_finished":true,"wife_comment":"Whiskey and dark chocolate","verdict":"breakthrough — preparation method confirmed"},{"date":"May 23","blend":"KISSE","session":10,"sku":"KISSE","notes":"Three external testers. All finished cups. No ingredient identified.","warmth_before":2,"warmth_after":4,"mystery_before":2,"mystery_after":4,"linger_before":2,"linger_after":4,"external_testers":3,"all_finished":true,"wife_comment":"Better than before, not peak","verdict":"external validation — cup working"},{"date":"May 22","blend":"KISSE","session":9,"sku":"KISSE","notes":"El Diablo setting 10. Café-like aroma. Mace at knife-tip confirmed working.","warmth_before":2,"warmth_after":5,"mystery_before":2,"mystery_after":4,"linger_before":2,"linger_after":5,"wife_finished":true,"wife_comment":"More complex than previous iterations","verdict":"breakthrough — El Diablo confirmed"},{"date":"May 21","blend":"RUKH","session":11,"sku":"RUKH","notes":"Grind comparison. Moka-pot fineness confirmed over medium grind.","energy_before":2,"energy_after":3,"focus_before":3,"focus_after":4,"mood_before":3,"mood_after":3,"verdict":"moka-pot grind standard confirmed"},{"date":"May 20","blend":"KISSE","session":8,"warmth_before":2,"warmth_after":4,"conversation_before":2,"conversation_after":3,"memory_before":2,"memory_after":2},{"date":"May 20","blend":"RUKH","session":10,"sku":"RUKH","notes":"Mokka Farms 80-20. More assertive than Colombian. 35ml milk destroyed aroma.","energy_before":3,"energy_after":3,"focus_before":2,"focus_after":3,"mood_before":3,"mood_after":3,"aroma_survived_milk":false,"verdict":"milk ratio wrong — 30ml maximum"},{"date":"May 20","blend":"KISSE","session":8,"sku":"KISSE","notes":"Mace 3-4 pinches — masala soup. Cinnamon identified by wife. Both permanently eliminated.","warmth_before":2,"warmth_after":1,"mystery_before":2,"mystery_after":1,"linger_before":2,"linger_after":1,"wife_finished":false,"wife_comment":"Immediately identified cinnamon","verdict":"failed — cinnamon and mace overdose"},{"date":"May 19","blend":"RUKH","session":9,"focus_before":2,"focus_after":4,"energy_before":2,"energy_after":3,"mood_before":3,"mood_after":4},{"date":"May 18","blend":"RUKH","session":8,"focus_before":2,"focus_after":4,"energy_before":2,"energy_after":3,"mood_before":3,"mood_after":4},{"date":"May 18","blend":"KISSE","session":7,"warmth_before":2,"warmth_after":3,"conversation_before":2,"conversation_after":2,"memory_before":2,"memory_after":1},{"date":"May 17","blend":"RUKH","session":7,"focus_before":3,"focus_after":4,"energy_before":3,"energy_after":3,"mood_before":3,"mood_after":3},{"date":"May 17","blend":"KISSE","session":6,"warmth_before":2,"warmth_after":2,"conversation_before":2,"conversation_after":2,"memory_before":2,"memory_after":3},{"date":"May 16","blend":"RUKH","session":6,"focus_before":2,"focus_after":3,"energy_before":3,"energy_after":3,"mood_before":3,"mood_after":3},{"date":"May 16","blend":"KISSE","session":5,"warmth_before":2,"warmth_after":2,"conversation_before":2,"conversation_after":3,"memory_before":2,"memory_after":3},{"date":"May 15","blend":"RUKH","session":5,"focus_before":2,"focus_after":3,"energy_before":2,"energy_after":3,"mood_before":3,"mood_after":3},{"date":"May 15","blend":"KISSE","session":4,"warmth_before":2,"warmth_after":2,"conversation_before":2,"conversation_after":2,"memory_before":2,"memory_after":2},{"date":"May 14","blend":"RUKH","session":4,"focus_before":2,"focus_after":4,"energy_before":2,"energy_after":3,"mood_before":2,"mood_after":3},{"date":"May 14","blend":"KISSE","session":3,"warmth_before":2,"warmth_after":4,"conversation_before":2,"conversation_after":4,"memory_before":2,"memory_after":5},{"date":"May 13","blend":"RUKH","session":3,"focus_before":3,"focus_after":4,"energy_before":2,"energy_after":3,"mood_before":3,"mood_after":4},{"date":"May 13","blend":"KISSE","session":2,"warmth_before":2,"warmth_after":3,"conversation_before":2,"conversation_after":3,"memory_before":2,"memory_after":3},{"date":"May 12","blend":"RUKH","session":2,"focus_before":3,"focus_after":5,"energy_before":2,"energy_after":4,"mood_before":3,"mood_after":4},{"date":"May 12","blend":"KISSE","session":1,"warmth_before":2,"warmth_after":4,"conversation_before":2,"conversation_after":4,"memory_before":2,"memory_after":4},{"date":"May 11","blend":"RUKH","session":1,"focus_before":2,"focus_after":3,"energy_before":2,"energy_after":3,"mood_before":3,"mood_after":3}];
+/* ---------- master tabs ---------- */
+document.querySelectorAll('.mtab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.mtab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.master-pane').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.pane).classList.add('active');
+  });
+});
 
-// Charts show oldest-to-newest on x-axis
-const rukh  = DATA.filter(function(e){return e.blend==='RUKH'}).slice().reverse();
-const kisse = DATA.filter(function(e){return e.blend==='KISSE'}).slice().reverse();
-
-function avg(arr){
-  var valid = arr.filter(function(v){return typeof v==='number' && !isNaN(v)});
-  if(!valid.length) return '—';
-  return (valid.reduce(function(a,b){return a+b},0)/valid.length).toFixed(1);
+/* ---------- field records (lab.json) ---------- */
+let ALL = [];
+function fmtDate(d){
+  try{ return new Date(d).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}); }
+  catch(e){ return d || ''; }
 }
-function liftArr(before,after){
-  return before.map(function(v,i){return (after[i]||0)-(v||0)});
+function esc(s){
+  return String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 }
-function avgLift(before,after){ return avg(liftArr(before,after)); }
+function render(sku){
+  const list = sku === 'ALL' ? ALL : ALL.filter(e => e.sku === sku);
+  document.getElementById('countLine').textContent =
+    list.length + ' pages transcribed' + (sku === 'ALL' ? ' · all blends' : ' · ' + sku);
+  document.getElementById('entries').innerHTML = list.map(e => {
+    const obs = (e.observations || []).map(o => '<li>' + esc(o) + '</li>').join('');
+    const note = e.note
+      ? '<div class="field-note"><div class="le-label">Field note</div><div class="field-note-text">"' + esc(e.note) + '"</div></div>'
+      : '';
+    return `<article class="lab-entry">
+      <div class="le-head" data-id="${esc(e.id)}">
+        <div>
+          <div class="le-meta">№ ${esc(e.id)} · ${fmtDate(e.date)}${e.time ? ' · ' + esc(e.time) : ''}</div>
+          <div class="le-title">${esc(e.title)}</div>
+        </div>
+        <span class="le-tag">${esc(e.sku || '')}</span>
+      </div>
+      <div class="le-body" id="body-${esc(e.id)}">
+        <div class="prose">${esc(e.body)}</div>
+        ${obs ? '<div class="le-label">Observations</div><ul class="obs-list">' + obs + '</ul>' : ''}
+        ${note}
+      </div>
+    </article>`;
+  }).join('') || '<p style="color:var(--dark-muted)">No sessions logged for this blend yet.</p>';
+  document.querySelectorAll('.le-head').forEach(h => {
+    h.addEventListener('click', () => {
+      document.getElementById('body-' + h.dataset.id)?.classList.toggle('open');
+    });
+  });
+}
+document.querySelectorAll('#recordTabs .tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#recordTabs .tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    render(btn.dataset.sku);
+  });
+});
+fetch('lab.json')
+  .then(r => r.json())
+  .then(data => { ALL = data; render('ALL'); })
+  .catch(() => {
+    document.getElementById('entries').innerHTML =
+      '<p style="color:var(--dark-muted)">Could not load lab.json. Serve over http (e.g. <code>python3 -m http.server</code>) or deploy to Vercel.</p>';
+  });
 
-// ── RUKH SUMMARY ─────────────────────────────────────────────────────────────
-var rFB=rukh.map(function(x){return x.focus_before||0});
-var rFA=rukh.map(function(x){return x.focus_after||0});
-var rEB=rukh.map(function(x){return x.energy_before||0});
-var rEA=rukh.map(function(x){return x.energy_after||0});
-var rMB=rukh.map(function(x){return x.mood_before||0});
-var rMA=rukh.map(function(x){return x.mood_after||0});
-
-document.getElementById('rukhSummary').innerHTML=
-  card('Sessions logged',rukh.length,'ongoing experimentation')+
-  card('Focus uplift','+'+avgLift(rFB,rFA),'average post-session shift')+
-  card('Energy uplift','+'+avgLift(rEB,rEA),'average post-session shift')+
-  card('Mood uplift','+'+avgLift(rMB,rMA),'average emotional shift');
-
-// ── KISSE SUMMARY ────────────────────────────────────────────────────────────
-var kWB=kisse.map(function(x){return x.warmth_before||0});
-var kWA=kisse.map(function(x){return x.warmth_after||0});
-var kMB=kisse.map(function(x){return x.mystery_before||0});
-var kMA=kisse.map(function(x){return x.mystery_after||0});
-var kLB=kisse.map(function(x){return x.linger_before||0});
-var kLA=kisse.map(function(x){return x.linger_after||0});
-
-document.getElementById('kisseSummary').innerHTML=
-  card('Sessions logged',kisse.length,'ongoing experimentation')+
-  card('Emotional warmth','+'+avgLift(kWB,kWA),'average emotional shift')+
-  card('Mystery','+'+avgLift(kMB,kMA),'unidentifiable intrigue')+
-  card('Linger','+'+avgLift(kLB,kLA),'lingering emotional recall');
-
-function card(label,value,caption){
+/* ---------- measurements (states.json) ---------- */
+function card(label, value, caption){
   return '<div class="metric-card">'
-    +'<div class="metric-label">'+label+'</div>'
-    +'<div class="metric-value">'+value+'</div>'
-    +'<div class="metric-caption">'+caption+'</div>'
-    +'</div>';
+    + '<div class="metric-label">' + label + '</div>'
+    + '<div class="metric-value">' + value + '</div>'
+    + '<div class="metric-caption">' + caption + '</div>'
+    + '</div>';
 }
-
-// ── CHARTS ───────────────────────────────────────────────────────────────────
-var OPTS={
-  responsive:true,maintainAspectRatio:false,
-  plugins:{legend:{labels:{color:'#d9c5ac'}}},
+function metricSeries(rows, key){
+  const pts = rows
+    .filter(r => typeof r[key + '_before'] === 'number' && typeof r[key + '_after'] === 'number')
+    .map(r => ({label: r.date, before: r[key + '_before'], after: r[key + '_after']}));
+  const lift = pts.length
+    ? (pts.reduce((a, p) => a + (p.after - p.before), 0) / pts.length).toFixed(1)
+    : '—';
+  return {pts, lift};
+}
+const OPTS = {
+  responsive:true, maintainAspectRatio:false,
+  plugins:{legend:{labels:{color:'#d9c5ac', font:{family:"'IBM Plex Mono', monospace", size:10}}}},
   scales:{
-    x:{ticks:{color:'#8d7258'},grid:{color:'rgba(255,255,255,.03)'}},
-    y:{min:1,max:5,ticks:{stepSize:1,color:'#8d7258'},grid:{color:'rgba(255,255,255,.03)'}}
+    x:{ticks:{color:'#8d7258', font:{size:10}}, grid:{color:'rgba(255,255,255,.04)'}},
+    y:{min:1, max:5, ticks:{stepSize:1, color:'#8d7258'}, grid:{color:'rgba(255,255,255,.04)'}}
   }
 };
-
-function mkChart(id,labels,before,after,color){
-  new Chart(document.getElementById(id),{
+function mkChart(id, series, color){
+  new Chart(document.getElementById(id), {
     type:'line',
-    data:{labels:labels,datasets:[
-      {label:'before',data:before,borderColor:'rgba(173,132,88,.4)',borderDash:[5,5],borderWidth:2,tension:.35,pointRadius:2},
-      {label:'after', data:after, borderColor:color,borderWidth:3,tension:.35,pointRadius:4}
-    ]},
+    data:{
+      labels:series.pts.map(p => p.label),
+      datasets:[
+        {label:'before', data:series.pts.map(p => p.before), borderColor:'rgba(173,132,88,.4)', borderDash:[5,5], borderWidth:2, tension:.35, pointRadius:2},
+        {label:'after',  data:series.pts.map(p => p.after),  borderColor:color, borderWidth:3, tension:.35, pointRadius:4}
+      ]
+    },
     options:OPTS
   });
 }
-
-var rL=rukh.map(function(x){return x.date});
-mkChart('focusChart', rL,rFB,rFA,'#d4a853');
-mkChart('energyChart',rL,rEB,rEA,'#bff6e3');
-mkChart('moodChart',  rL,rMB,rMA,'#f7d488');
-
-var kL=kisse.map(function(x){return x.date});
-mkChart('warmthChart', kL,kWB,kWA,'#f4a261');
-mkChart('mysteryChart',kL,kMB,kMA,'#c7a4f7');
-mkChart('lingerChart', kL,kLB,kLA,'#ffe29a');
-
-// ── TABS ─────────────────────────────────────────────────────────────────────
-document.querySelectorAll('.tab-btn').forEach(function(btn){
-  btn.addEventListener('click',function(){
-    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active')});
-    document.querySelectorAll('.tab-content').forEach(function(t){t.classList.remove('active')});
+fetch('states.json').then(r => r.json()).then(DATA => {
+  const rukh  = DATA.filter(e => e.blend === 'RUKH').slice().reverse();
+  const kisse = DATA.filter(e => e.blend === 'KISSE').slice().reverse();
+  const rF = metricSeries(rukh, 'focus'),
+        rE = metricSeries(rukh, 'energy'),
+        rM = metricSeries(rukh, 'mood');
+  document.getElementById('rukhSummary').innerHTML =
+    card('Sittings recorded', rukh.length, 'formulation season') +
+    card('Focus uplift', '+' + rF.lift, 'avg shift · ' + rF.pts.length + ' sessions measured') +
+    card('Energy uplift', '+' + rE.lift, 'avg shift · ' + rE.pts.length + ' sessions measured') +
+    card('Mood uplift', '+' + rM.lift, 'avg shift · ' + rM.pts.length + ' sessions measured');
+  mkChart('focusChart',  rF, '#d4a853');
+  mkChart('energyChart', rE, '#bff6e3');
+  mkChart('moodChart',   rM, '#f7d488');
+  const kW = metricSeries(kisse, 'warmth'),
+        kM = metricSeries(kisse, 'mystery'),
+        kL = metricSeries(kisse, 'linger');
+  document.getElementById('kisseSummary').innerHTML =
+    card('Sittings recorded', kisse.length, 'formulation season') +
+    card('Emotional warmth', '+' + kW.lift, 'avg shift · ' + kW.pts.length + ' sessions measured') +
+    card('Mystery', '+' + kM.lift, 'unnameable intrigue · ' + kM.pts.length + ' sessions') +
+    card('Linger', '+' + kL.lift, 'what stays after · ' + kL.pts.length + ' sessions');
+  mkChart('warmthChart',  kW, '#f4a261');
+  mkChart('mysteryChart', kM, '#c7a4f7');
+  mkChart('lingerChart',  kL, '#ffe29a');
+}).catch(() => {
+  document.getElementById('rukhSummary').innerHTML =
+    '<p style="color:var(--dark-muted)">Could not load states.json.</p>';
+});
+document.querySelectorAll('.m-active').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.m-active').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById(btn.dataset.tab).classList.add('active');
   });

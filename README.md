@@ -13,10 +13,9 @@ interludes, built as plain static HTML — no build step, deploys straight to Ve
 | collection.html | /collection | Sehar · Rukh · Kisse · Lamhe (+ Mehfil resting) |
 | sampler.html | /sampler | The one conversion page — WhatsApp request |
 | journal.html | /journal | Curated founder entries with real experiment photos |
-| lab.html | /lab | Raw session log — **reads from lab.json** |
-| observations.html | /observations | Before/after charts — **reads from states.json** |
+| states.html | /states (also /lab, /observations) | The Research Lab — Field Records (**lab.json**) + Measurements (**states.json**) in one destination |
 | faq.html | /faq | Honest objection handling |
-| contact.html | /contact | WhatsApp / email / Instagram + taster invitation |
+| contact.html | /contact | Kept as a page (footer link); every page now ends with a contact-close section |
 
 ## Before you deploy — replace these
 
@@ -29,7 +28,7 @@ interludes, built as plain static HTML — no build step, deploys straight to Ve
 
 ## Updating the Lab and Observations
 
-Both pages fetch their JSON at load time — no HTML editing needed:
+The States page fetches both JSON files at load time — no HTML editing needed:
 
 - `lab.json` — array of session entries (same schema as before:
   id, date, time, title, tags, sku, body, observations[], metrics, note).
