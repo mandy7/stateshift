@@ -3,47 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brand Story — StateShift</title>
-<meta name="description" content="Why StateShift exists: a company built against autopilot, designed like perfume, made for the moments in between.">
+<title>The Story — StateShift</title>
+<meta name="description" content="StateShift didn't begin with coffee. It began with paternity leave, an infant daughter, and the discovery that I'd been sleeping through my own life.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-.story-hero{padding:5.5rem 2rem 3.6rem;text-align:center}
-/* alternating chapters */
-.chapter{max-width:1060px;margin:0 auto;padding:0 2rem}
-.ch-grid{
-  display:grid;grid-template-columns:1.1fr 1fr;gap:3.4rem;align-items:center;
-  padding:3.8rem 0;
+/* ============================================================
+   PAGE-SPECIFIC ONLY.
+   Nav / eyebrow / bridge / cc-links now live in site.css.
+   ============================================================ */
+
+.story-hero{padding:3rem 1.3rem 2.4rem;text-align:center;max-width:640px;margin:0 auto}
+.story-hero .display{font-size:clamp(2.1rem,7.4vw,4.4rem);line-height:1.12;margin-bottom:1.3rem}
+.story-hero .lead{font-size:clamp(1.02rem,2.4vw,1.2rem);line-height:1.75;color:var(--ink-soft)}
+@media(min-width:761px){.story-hero{padding:4.6rem 2rem 3rem}}
+
+/* full-bleed image — NOT background-cover, so baked-in
+   headline text never gets sliced by a mobile crop        */
+.bleed{margin:0;padding:0}
+.bleed img{width:100%;display:block}
+.bleed figcaption{
+  font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:center;padding:.9rem 1.3rem 0;
 }
-.ch-grid.flip .ch-text{order:2}
-.ch-grid.flip .ch-img{order:1}
-@media(max-width:820px){
-  .ch-grid,.ch-grid.flip{grid-template-columns:1fr;gap:2rem;padding:2.6rem 0}
-  .ch-grid.flip .ch-text{order:1}
-  .ch-grid.flip .ch-img{order:2}
+
+/* the three movements — no numerals, no chapter furniture */
+.tale{max-width:660px;margin:0 auto;padding:0 1.3rem}
+@media(min-width:761px){.tale{padding:0 2rem}}
+.mv{padding:3rem 0}
+.mv + .mv{border-top:1px solid var(--line)}
+.mv h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.55rem,4.2vw,2.1rem);line-height:1.25;
+  margin-bottom:1.4rem;
 }
-.ch-img{
-  min-height:340px;height:100%;
-  background-size:cover;background-position:center;
-  filter:sepia(.12) saturate(.95);
+.mv p{margin-bottom:1.15rem;font-size:1.05rem;line-height:1.9;color:var(--ink-soft)}
+.mv p:last-child{margin-bottom:0}
+.mv p strong{color:var(--ink);font-weight:500}
+.mv em.beat{color:var(--ink);font-style:italic}
+
+.pull{
+  font-family:'Playfair Display',serif;font-size:clamp(1.2rem,3.4vw,1.45rem);
+  font-style:italic;line-height:1.6;
+  border-left:2px solid var(--gold);padding-left:1.2rem;
+  margin:1.8rem 0;color:var(--ink);
+}
+
+/* the real snapshot — deliberately unglamorous */
+.snap{margin:2rem 0 .4rem}
+.snap img{
+  width:100%;display:block;
   box-shadow:0 10px 30px rgba(38,25,14,.18);
 }
-@media(max-width:820px){.ch-img{min-height:240px}}
-.chapter-label{display:flex;align-items:baseline;gap:1rem;margin-bottom:1.4rem}
-.chapter-num{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--gold);font-style:italic}
-.ch-text p{margin-bottom:1.2rem;font-size:1.05rem;line-height:1.95;color:var(--ink-soft)}
-.ch-text p strong{color:var(--ink);font-weight:500}
-.pull{
-  font-family:'Playfair Display',serif;font-size:1.45rem;font-style:italic;line-height:1.6;
-  border-left:2px solid var(--gold);padding-left:1.4rem;margin:1.8rem 0;color:var(--ink);
+.snap figcaption{
+  font-family:'Caveat',cursive;font-size:1.1rem;color:var(--muted);
+  padding-top:.7rem;
 }
-.beliefs{list-style:none;margin:2rem 0}
-.beliefs li{
-  padding:1.2rem 0;border-bottom:1px solid var(--line);
-  font-family:'Playfair Display',serif;font-size:1.35rem;font-style:italic;
+
+/* beliefs */
+.beliefs-block{background:var(--paper-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:1rem}
+.beliefs-inner{max-width:660px;margin:0 auto;padding:3.2rem 1.3rem}
+@media(min-width:761px){.beliefs-inner{padding:4.2rem 2rem}}
+.belief{padding:1.5rem 0;border-bottom:1px solid var(--line)}
+.belief:last-of-type{border-bottom:none;padding-bottom:0}
+.belief h3{
+  font-family:'Playfair Display',serif;font-size:1.25rem;
+  margin-bottom:.45rem;line-height:1.3;
 }
-.beliefs li span{font-family:'IBM Plex Mono',monospace;font-size:.6rem;font-style:normal;color:var(--gold);margin-right:1rem;letter-spacing:.15em}
+.belief p{margin:0;font-size:1rem;line-height:1.8;color:var(--ink-soft)}
+.sign{
+  display:block;margin-top:2.2rem;font-family:'Caveat',cursive;
+  font-size:1.25rem;color:var(--muted);line-height:1.6;
+}
 </style>
 </head>
 <body>
@@ -61,93 +94,92 @@
 </header>
 
 <section class="story-hero">
-  <span class="eyebrow">Brand Story</span>
-  <h1 class="display">We didn't set out to<br>make <em>coffee</em>.</h1>
-  <p class="lead" style="max-width:540px;margin:0 auto">We set out to make transitions — the small, deliberate pauses that turn one part of your day into the next.</p>
+  <span class="eyebrow">The Story</span>
+  <h1 class="display">Every day was the same day.<br><em>I just hadn't noticed</em>.</h1>
+  <p class="lead">StateShift didn't begin with coffee. It began with paternity leave, an infant daughter, and the slow realisation that I'd been sleeping through my own life.</p>
 </section>
 
-<div class="chapter">
+<!-- The image IS the Groundhog Day joke. Let it do that work. -->
+<figure class="bleed">
+  <img src="assets/editorial/autopilot-desk.jpg" alt="A man face-down at a desk beneath sticky notes reading Wake, Commute, Work, Meetings, Reply, Eat, Scroll, Sleep, Repeat" loading="lazy">
+  <figcaption>Wake · commute · work · reply · eat · scroll · sleep · repeat</figcaption>
+</figure>
 
-  <!-- CHAPTER 1 · text left, image right -->
-  <section class="ch-grid">
-    <div class="ch-text">
-      <div class="chapter-label">
-        <span class="chapter-num">I.</span>
-        <h2 style="font-size:1.8rem">The enemy is autopilot</h2>
-      </div>
-      <p>Somewhere along the way, coffee became fuel. Five thousand years of ceremonies, circles, and conversations — reduced to a to-do item.</p>
-      <p>Nobody needs more caffeine. <strong>People need better transitions</strong> — and the enemy was never coffee. It is the same day, lived on repeat.</p>
-      <p><span class="margin-note">the in-between is where days are decided</span></p>
-    </div>
-    <div class="ch-img" style="background-image:url('assets/editorial/autopilot-crowd.jpg')" role="img" aria-label="A blurred crowd in motion — the autopilot of ordinary days"></div>
+<div class="tale">
+
+  <!-- 1 · WHY (never labelled as such) -->
+  <section class="mv">
+    <h2>The year I stopped noticing</h2>
+    <p>Wake, commute, work, reply, eat, scroll, sleep, repeat. Groundhog Day — except Bill Murray at least <em class="beat">knew</em> he was stuck. I didn't. Autopilot is quiet like that. It saves energy. It gets things done. And it steals whole months without ever announcing itself.</p>
+    <p>Then my daughter was born and I stepped away from work. Suddenly the day had seams in it.</p>
+    <p>One hour I was a father, holding an infant who has no opinion about my inbox. The next I was at a laptop, trying to think in straight lines. Then a son. Then a husband. Then, briefly, just a person who wanted twenty minutes that belonged to nobody.</p>
+    <p>We all wear these hats. We all want to be good at every one of them. But <strong>nobody gives you a moment between them</strong> — you're expected to simply switch. So we don't. We carry the last hour into the next one and end up half-present in both.</p>
+    <p class="pull">What I needed wasn't more energy. It was a door between the rooms.</p>
   </section>
 
-  <div class="rule-double" style="margin:0"></div>
-
-  <!-- CHAPTER 2 · image left, text right -->
-  <section class="ch-grid flip">
-    <div class="ch-text">
-      <div class="chapter-label">
-        <span class="chapter-num">II.</span>
-        <h2 style="font-size:1.8rem">The perfume insight</h2>
-      </div>
-      <p>The idea came from perfume. A good perfume never smells the same from start to finish — it unfolds. Top notes that intrigue. Heart notes that define. Base notes that stay long after.</p>
-      <p class="pull">What if a cup could unfold the same way — not just in taste, but in feeling?</p>
-      <p>So every blend is composed in three movements: an aroma that begins the shift before the first sip, a body that holds you while the pace slows, and a finish you remember an hour later. Three or four ingredients, each earning its place. <strong>More have been retired than kept.</strong></p>
-    </div>
-    <div class="ch-img" style="background-image:url('assets/moments/window-still.jpg')" role="img" aria-label="A quiet still life — a steaming cup, an open book, evening window light"></div>
+  <!-- 2 · HOW -->
+  <section class="mv">
+    <h2>It started with rain</h2>
+    <p>That April it rained, properly, for the first time in months. I stepped outside and the smell of wet earth put me — instantly, without permission — in a courtyard I hadn't stood in for twenty-five years.</p>
+    <p>That, I think, is the whole idea. <strong>Nothing moves you between states faster than smell.</strong> Not caffeine. Not a to-do list. Aroma arrives before thought does.</p>
+    <p>So I stopped reading about coffee and started reading about perfume. A good perfume never smells the same from beginning to end — it <em class="beat">unfolds</em>. Top notes that catch you. Heart notes that hold you. A base that stays long after you've left the room. I wanted to know whether a cup could be composed the same way: a beginning, a middle, and an after.</p>
+    <p>But an aroma you can't drink is just a candle. The coffee had to actually be good — and good coffee in India usually means a café, a queue, four hundred rupees, or a shelf of equipment you'll use twice and resent forever. Neither of those is a transition. Both are errands.</p>
+    <p>So the format became part of the design. <strong>Two sachets, hot water, three minutes.</strong> One holds the coffee. One holds everything the aroma needs. No machine, no skill, no leaving the house.</p>
   </section>
 
-  <div class="rule-double" style="margin:0"></div>
+  <!-- 3 · WHAT -->
+  <section class="mv">
+    <h2>A kitchen counter, a scale, and a great deal of bad coffee</h2>
+    <p>All of it happens at a kitchen counter in North India: a hand grinder, a 0.1-gram scale, and a notebook that no longer closes properly.</p>
 
-  <!-- CHAPTER 3 · text left, image right -->
-  <section class="ch-grid">
-    <div class="ch-text">
-      <div class="chapter-label">
-        <span class="chapter-num">III.</span>
-        <h2 style="font-size:1.8rem">Started at a kitchen counter</h2>
-      </div>
-      <p>StateShift began in 2026 at a kitchen counter in North India — one moka pot, a 0.1-gram scale, and a notebook that no longer quite closes.</p>
-      <p>The first tester was family, and family is merciless. Early cups were pronounced <em>plain</em>, <em>masala</em>, once memorably <em>half-cooked</em>. Then, one May morning, she named the cardamom from across the kitchen — unprompted.</p>
-      <div class="notebook" style="margin:1.6rem 0"><span class="nb-label">The notebook · May 25</span><span class="nb-line">"aroma survived the milk. she found the cardamom without being asked. breakthrough."</span></div>
-      <p>Every cup since — the failures especially — is in the <a href="journal.html" style="color:var(--gold)">journal</a>.</p>
+    <figure class="snap">
+      <img src="assets/editorial/kitchen-counter.jpg" alt="A hand grinder and a 0.1-gram pocket scale on a wooden board, beans measured out" loading="lazy">
+      <figcaption>the entire factory, as of this morning</figcaption>
+    </figure>
+
+    <p>Mostly it has been failure. Cardamom that disappeared into milk. Cardamom that turned the cup into chai. Spice that tasted bright on Monday and bitter by Friday, because volatile oils do not care about your schedule. Sachets that leaked. Cups my wife described, with devastating economy, as <em class="beat">plain</em>. Once, memorably, as <em class="beat">half-cooked</em>.</p>
+    <p>The rules came out of the failures, not the plan. Grind fresh, every time. Nothing sits. Nothing gets rescued with sugar. If an ingredient can't earn its place at a tenth of a gram, it doesn't get in at all. <strong>More have been retired than kept.</strong></p>
+    <div class="notebook" style="margin:1.8rem 0">
+      <span class="nb-label">The notebook · May 25</span>
+      <span class="nb-line">"aroma survived the milk. she found the cardamom without being asked. breakthrough."</span>
     </div>
-    <div class="ch-img" style="background-image:url('assets/moments/journaling.jpg')" role="img" aria-label="A hand writing tasting notes in a worn notebook"></div>
-  </section>
-
-  <div class="rule-double" style="margin:0"></div>
-
-  <!-- CHAPTER 4 · image left, narrative blocks right -->
-  <section class="ch-grid flip" style="align-items:start">
-    <div class="ch-text">
-      <div class="chapter-label">
-        <span class="chapter-num">IV.</span>
-        <h2 style="font-size:1.8rem">What we believe</h2>
-      </div>
-      <div style="border-top:1px solid var(--line);padding:1.4rem 0">
-        <h3 style="font-size:1.3rem;margin-bottom:.5rem">Slow first, then fast</h3>
-        <p style="margin-bottom:0">Coffee should slow you down before it speeds you up. The pause before the lift is not a delay — it's the point.</p>
-      </div>
-      <div style="border-top:1px solid var(--line);padding:1.4rem 0">
-        <h3 style="font-size:1.3rem;margin-bottom:.5rem">Every cup has a purpose</h3>
-        <p style="margin-bottom:0">A cup that belongs to no moment belongs to no one. Each blend is composed for one hour of your day, and honest about which.</p>
-      </div>
-      <div style="border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1.4rem 0">
-        <h3 style="font-size:1.3rem;margin-bottom:.5rem">The pause is the recipe</h3>
-        <p style="margin-bottom:0">Ingredients can be copied. Three unhurried minutes, taken deliberately, cannot. We design for the wait as carefully as the taste.</p>
-      </div>
-      <p style="margin-top:1.4rem"><span class="margin-note">— and we'd rather earn 25 people who love this than 25,000 who merely like it. &nbsp;— Mandhir</span></p>
-    </div>
-    <div class="ch-img" style="background-image:url('assets/editorial/founder-why.jpg');min-height:460px" role="img" aria-label="A handwritten notebook page titled Why StateShift, beside dried flowers"></div>
+    <p>Then one May morning she named the cardamom from across the kitchen. Unprompted. That was the first cup that worked — and everything since, failures especially, is in the <a href="journal.html" style="color:var(--gold)">journal</a>.</p>
   </section>
 
 </div>
+
+<!-- BELIEFS -->
+<section class="beliefs-block">
+  <div class="beliefs-inner">
+    <span class="eyebrow">What we believe</span>
+    <h2 style="font-size:clamp(1.7rem,4.4vw,2.4rem);margin:.6rem 0 1.6rem;line-height:1.25">Four rules we don't break</h2>
+
+    <div class="belief">
+      <h3>Coffee is the medium, not the product</h3>
+      <p>We are not trying to sell you a better bean. We're trying to give you back three minutes you already own.</p>
+    </div>
+    <div class="belief">
+      <h3>Slow first, then fast</h3>
+      <p>A cup should slow you down before it speeds you up. The pause before the lift isn't a delay — it's the entire point.</p>
+    </div>
+    <div class="belief">
+      <h3>Every cup belongs to an hour</h3>
+      <p>A cup that belongs to no moment belongs to no one. Each blend is composed for one hour of your day, and honest about which.</p>
+    </div>
+    <div class="belief">
+      <h3>The pause is the recipe</h3>
+      <p>Ingredients can be copied. Three unhurried minutes, taken deliberately, cannot. We design for the wait as carefully as the taste.</p>
+    </div>
+
+    <span class="sign">We'd rather earn 25 people who love this<br>than 25,000 who merely like it.<br>— Mandhir</span>
+  </div>
+</section>
 
 <!-- CTA -->
 <section class="dark pad-block center">
   <div class="wrap-narrow">
     <span class="eyebrow">Next</span>
-    <h2 style="font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:1.2rem">See how a cup becomes a pause</h2>
+    <h2 style="font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:1.2rem">See how a cup becomes a pause</h2>
     <a class="btn on-dark" href="ritual.html">The Pause</a>
   </div>
 </section>
@@ -160,9 +192,16 @@
   <div class="cc-links">
     <!-- REPLACE: WhatsApp number -->
     <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%20—%20I%27d%20like%20to%20join%20the%20Tasting%20Circle.">Join the Tasting Circle</a>
-    <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
-    <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a>
     <a href="faq.html">Questions → FAQ</a>
+    <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
+    <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+        <rect x="2.5" y="2.5" width="19" height="19" rx="5"/>
+        <circle cx="12" cy="12" r="4.2"/>
+        <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/>
+      </svg>
+      @stateshiftcoffee
+    </a>
   </div>
   <a class="btn gold" href="sampler.html">Try the Sampler</a>
 </section>

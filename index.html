@@ -3,39 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StateShift — The day will shift you. Or you'll shift it.</title>
-<meta name="description" content="Four crossings a day — morning, focus, connection, comfort. Most of us sleep through every one. StateShift makes each one deliberate. Coffee is only the tool.">
+<title>StateShift — Most people live on autopilot.</title>
+<meta name="description" content="Autopilot saves energy, gets things done, and quietly steals the moments that matter. StateShift makes three minutes of your day deliberate. Coffee is only the tool.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
 /* ============================================================
-   MOBILE-FIRST OVERRIDES — loads after site.css so it wins
+   HOMEPAGE-SPECIFIC ONLY.
+   Nav, eyebrows, .bridge and .cc-links now live in site.css
+   (see the block appended to the end of that file).
    ============================================================ */
 
-/* --- 0 · TYPE SCALE --------------------------------------- */
-.eyebrow{font-size:.72rem;letter-spacing:.2em}
-.moment-when{font-size:.72rem;letter-spacing:.18em}
-.oh-who{font-size:.66rem;letter-spacing:.15em}
-.pc-when{font-size:.64rem;letter-spacing:.16em}
-h1,h2{text-wrap:balance}
-
-/* --- 1 · HEADER + NAV -------------------------------------
-   Nav shrinks so all five links hold ONE row; the ::after
-   pseudo-element is a zero-height flex line-break that pushes
-   "Try the Sampler" onto row two by itself.                 */
-.site-logo small{font-size:.68rem;letter-spacing:.18em}
-
-@media(max-width:760px){
-  .site-nav{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.5rem .8rem}
-  .site-nav a{font-size:.7rem;letter-spacing:.05em;white-space:nowrap}
-  .site-nav::after{content:'';flex-basis:100%;height:0;order:1}
-  .site-nav .cta{order:2;margin-top:.35rem;font-size:.72rem;letter-spacing:.08em}
-}
-@media(max-width:400px){
-  .site-nav{gap:.45rem .6rem}
-  .site-nav a{font-size:.64rem;letter-spacing:.02em}
-}
 
 /* --- 2 · HERO --------------------------------------------- */
 .hero{padding:2.4rem 1.3rem 3rem;text-align:center}
@@ -62,16 +41,6 @@ h1,h2{text-wrap:balance}
   .hero-ctas .btn{font-size:inherit;padding-left:1.6rem;padding-right:1.6rem}
 }
 
-/* --- 3 · BRIDGE — connective tissue between sections ------- */
-.bridge{
-  max-width:520px;margin:0 auto 2rem;text-align:center;padding:0 1.3rem;
-  font-family:'Lora',serif;font-style:italic;
-  font-size:1rem;line-height:1.75;color:var(--muted);
-}
-.bridge::before{
-  content:'';display:block;width:1px;height:2.6rem;margin:0 auto 1.5rem;
-  background:linear-gradient(var(--line),var(--gold));
-}
 
 /* --- 4 · FOUR MOMENTS — word first, then the when ---------- */
 .moments{border-top:1px solid var(--line)}
@@ -196,17 +165,6 @@ h1,h2{text-wrap:balance}
 .jt .margin-note{display:block;margin:1rem 0 0 !important}
 @media(min-width:561px){.jt .margin-note{display:inline;margin:0 0 0 1.2rem !important}}
 
-/* --- 9 · CONTACT CLOSE — 2×2 grid, no more haphazard wrap -- */
-.cc-links{
-  display:grid;grid-template-columns:1fr 1fr;gap:.85rem 1rem;
-  max-width:540px;margin-left:auto;margin-right:auto;
-}
-.cc-links a{
-  display:flex;align-items:center;justify-content:center;gap:.4rem;
-  text-align:center;white-space:nowrap;
-}
-.cc-links svg{width:.95em;height:.95em;flex:0 0 auto;opacity:.75}
-@media(max-width:380px){.cc-links a{font-size:.85rem;white-space:normal}}
 </style>
 </head>
 <body>
@@ -225,23 +183,21 @@ h1,h2{text-wrap:balance}
 
 <!-- 1 · HERO
      ------------------------------------------------------------------
-     ALTERNATE A — sharper, defines the category, most confrontational:
+     ALTERNATE A — sharper, defines the category:
        <h1 class="display">Most people drink coffee.<br><em>Very few use it</em>.</h1>
        <p>There is a difference between a habit and an instrument.</p>
        <p>One gets you through the day. The other gets you across it.</p>
-       <p class="hero-close">Four crossings. Four companions.</p>
 
      ALTERNATE B — strongest commercial hook:
        <h1 class="display">You are not the same person<br><em>at 6am and at 9pm</em>.</h1>
        <p>Different mind. Different need. Different hour.</p>
        <p>So why does everyone reach for the same cup?</p>
-       <p class="hero-close">We made four. One for each version of you.</p>
      ------------------------------------------------------------------ -->
 <section class="hero">
-  <h1 class="display">The day will shift you.<br><em>Or you'll shift it</em>.</h1>
+  <h1 class="display">Most people live<br>on <em>autopilot</em>.</h1>
   <div class="hero-lines">
-    <p>Sleep into morning. Morning into work. Work into whatever's left.</p>
-    <p>Four crossings a day — and most of us sleep through every one.</p>
+    <p>It saves energy. It gets things done. It also quietly steals the moments that matter.</p>
+    <p>Three minutes, taken on purpose, are enough to take one back.</p>
   </div>
   <p class="hero-close">Coffee is only the tool. The shift is the point.</p>
   <div class="hero-ctas">
@@ -288,7 +244,7 @@ h1,h2{text-wrap:balance}
 
 <!-- 3 · THE COLLECTION -->
 <section class="postcards">
-  <p class="bridge">Four crossings. We spent months making a companion for each.</p>
+  <p class="bridge">Four moments in every day. We spent months making a companion for each.</p>
   <div class="pc-intro">
     <span class="eyebrow">The Collection</span>
     <h2>A companion for each moment</h2>
