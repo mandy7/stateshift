@@ -32,12 +32,12 @@
 .snap figcaption{font-family:'Caveat',cursive;font-size:1.1rem;color:var(--muted);padding-top:.7rem}
 .rules{background:var(--paper-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .rules-in{max-width:620px;margin:0 auto;padding:2.8rem 1.3rem}
-.rule{padding:1.4rem 0;border-bottom:1px solid var(--line)}
+.rule{padding:1.3rem 0;border-bottom:1px solid var(--line)}
 .rule:last-of-type{border-bottom:none;padding-bottom:0}
 .rule h3{font-size:1.2rem;margin-bottom:.4rem;line-height:1.3}
 .rule p{margin:0;font-size:1rem;line-height:1.8;color:var(--ink-soft)}
 .sign{display:block;margin-top:2rem;font-family:'Caveat',cursive;font-size:1.25rem;color:var(--muted);line-height:1.6}
-.s-cta{background:var(--espresso);color:var(--dark-text);text-align:center;padding:3.2rem 1.3rem}
+.s-cta{background:var(--espresso);color:var(--dark-text);text-align:center;padding:3rem 1.3rem}
 .s-cta h2{color:var(--dark-text);font-size:clamp(1.6rem,4.2vw,2.2rem);margin-bottom:1.2rem}
 </style>
 </head>
@@ -46,16 +46,17 @@
 <header class="site-header">
   <a href="index.html" class="site-logo">State<span>Shift</span><small>A study of moments</small></a>
   <nav class="site-nav">
+    <a href="index.html">Home</a>
     <a href="collection.html">Coffee</a>
-    <a href="index.html#how">How it works</a>
     <a href="story.html" class="active">Story</a>
     <a href="states.html">Lab</a>
+    <a href="sampler.html" class="sell">Sampler</a>
   </nav>
 </header>
 
 <section class="s-hero">
   <h1>Every day was the same.<br><em>I just hadn't noticed</em>.</h1>
-  <p class="lead">StateShift did not begin with coffee. It began with paternity leave, an infant daughter, and a smell of wet earth in April.</p>
+  <p class="lead">StateShift did not begin with coffee. It began with paternity leave, an infant daughter, and the smell of wet earth in April.</p>
 </section>
 
 <figure class="bleed">
@@ -84,9 +85,14 @@
     <h2>A kitchen counter and a great deal of bad coffee</h2>
     <p>All of it happens at a kitchen counter in North India: a hand grinder, a 0.1-gram scale, and a notebook that no longer closes properly.</p>
 
-    <!-- The grinder photo. Shoot it and save as assets/photos/counter.jpg.
-         This is the most important image on the site: it is the only proof
-         that a person actually did this by hand. Falls back to hidden. -->
+    <!-- ==========================================================
+         SHOOT THIS. Your phone, your counter, the grinder and the
+         scale with a reading on it. Save as assets/photos/counter.jpg
+         This is the single most important image on the site: it is
+         the only proof a person actually did this by hand.
+         If the file is missing the figure hides itself rather than
+         showing a broken image.
+         ========================================================== -->
     <figure class="snap">
       <img src="assets/photos/counter.jpg"
            onerror="this.closest('figure').style.display='none'"
@@ -108,14 +114,24 @@
 <section class="rules">
   <div class="rules-in">
     <span class="eyebrow">What we believe</span>
+
     <div class="rule">
       <h3>Coffee is the medium, not the product</h3>
-      <p>We are not trying to sell you a better bean. We are trying to give you back three minutes you already own.</p>
+      <p>We are not selling you a better bean. We are selling you back three minutes you already own.</p>
+    </div>
+    <div class="rule">
+      <h3>Slow first, then fast</h3>
+      <p>Every cup here takes three minutes you cannot skip. That is not an inconvenience we failed to design out. It is the part we designed in.</p>
     </div>
     <div class="rule">
       <h3>A cup that fits everywhere fits nowhere</h3>
       <p>Each blend is made for one part of the day, and honest about which. If it works equally well at 7am and 10pm, it wasn't designed. It was averaged.</p>
     </div>
+    <div class="rule">
+      <h3>Nothing gets rescued with sugar</h3>
+      <p>If a cup only works because it is sweet, the cup does not work. Palm jaggery is there to round an edge, never to cover one. Ingredients that cannot earn a tenth of a gram do not get in.</p>
+    </div>
+
     <span class="sign">I would rather make something a few hundred people love<br>than something ten thousand people quite like.<br>Mandhir</span>
   </div>
 </section>
@@ -123,6 +139,17 @@
 <section class="s-cta">
   <h2>Now go and taste it.</h2>
   <a class="btn on-dark" href="collection.html">See the four coffees</a>
+</section>
+
+<section class="contact-close">
+  <span class="eyebrow">Before you go</span>
+  <h2>There is a person at the other end.</h2>
+  <p class="cc-line">Usually mid-experiment, usually happy to be interrupted.</p>
+  <div class="cc-links">
+    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20to%20join%20the%20Tasting%20Circle.">Join the Tasting Circle</a>
+    <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
+    <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a>
+  </div>
 </section>
 
 <footer class="site-footer">
@@ -134,7 +161,7 @@
       <h4>Coffee</h4>
       <ul class="footer-links">
         <li><a href="collection.html">The four coffees</a></li>
-        <li><a href="index.html#how">How it works</a></li>
+        <li><a href="collection.html#how">How it works</a></li>
         <li><a href="sampler.html">The sampler</a></li>
       </ul>
     </div>
@@ -144,7 +171,6 @@
         <li><a href="story.html">The story</a></li>
         <li><a href="states.html">The Lab</a></li>
         <li><a href="mailto:hello@stateshift.in">hello@stateshift.in</a></li>
-        <li><a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a></li>
       </ul>
     </div>
   </div>

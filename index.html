@@ -3,105 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StateShift. Four coffees, one for each part of your day.</title>
-<meta name="description" content="Ground single-estate coffee in a filter bag, plus a cup mix. Hot water, three minutes, no machine. Six cups, Rs 300, shipping included.">
+<title>StateShift. Four coffees for the four hours your day gets away from you.</title>
+<meta name="description" content="Most of the day runs on autopilot. Four coffees, one for each moment you would rather be awake for. Two sachets, hot water, three minutes. Six cups, Rs 300.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-/* ---- HERO: photo, plain English, price, button. In that order. ---- */
-.hero{padding:2.4rem 1.3rem 1.6rem;text-align:center;max-width:620px;margin:0 auto}
-@media(min-width:761px){.hero{padding:4rem 2rem 2rem}}
-.hero h1{font-size:clamp(2rem,7vw,3.4rem);line-height:1.12;margin-bottom:1rem}
+/* FOLD 1 — philosophy and product in the same breath. */
+.hero{padding:2.6rem 1.3rem 2rem;text-align:center;max-width:640px;margin:0 auto}
+@media(min-width:761px){.hero{padding:4.2rem 2rem 2.6rem}}
+.hero h1{font-size:clamp(1.95rem,6.6vw,3.3rem);line-height:1.14;margin-bottom:1.1rem}
 .hero h1 em{color:var(--gold)}
-.hero .plain{font-size:1.05rem;line-height:1.75;color:var(--ink-soft);margin-bottom:1.4rem}
+.hero .plain{font-size:1.05rem;line-height:1.8;color:var(--ink-soft);margin-bottom:1.5rem}
+.hero .plain b{color:var(--ink);font-weight:400}
 .price-line{
   font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;
+  text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;
 }
 .hero-ctas{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap}
 
-.shot{max-width:820px;margin:0 auto;padding:0 1.3rem}
-.shot img{width:100%;display:block;box-shadow:0 12px 34px rgba(38,25,14,.2)}
-.shot figcaption{
-  font-family:'Caveat',cursive;font-size:1.1rem;color:var(--muted);
-  padding-top:.7rem;text-align:center;
+/* FOLD 2 — the four moments you sleep through. */
+.autop{background:var(--espresso);color:var(--dark-text);padding:3rem 0 2.4rem;border-top:1px solid var(--line)}
+.autop-in{max-width:660px;margin:0 auto;padding:0 1.3rem 1.6rem;text-align:center}
+.autop .eyebrow{color:var(--amber)}
+.autop h2{color:var(--dark-text);font-size:clamp(1.55rem,4.4vw,2.2rem);line-height:1.3;margin-bottom:.8rem}
+.autop .sub{color:var(--dark-muted);font-size:1rem;line-height:1.8}
+.mcard{background:var(--roast);border:1px solid var(--line-dark);overflow:hidden}
+.mimg{height:130px;background-size:cover;background-position:center 40%;filter:grayscale(.35) brightness(.6)}
+.mtext{padding:1.1rem 1.2rem 1.3rem}
+.mtext h3{
+  font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--amber);margin-bottom:.6rem;
 }
+.mtext p{font-family:'Playfair Display',serif;font-style:italic;font-size:1.02rem;line-height:1.6;color:var(--dark-text)}
+.autop .rail-dots button{background:rgba(212,168,83,.25)}
+.autop .rail-dots button[aria-current="true"]{background:var(--amber)}
+.autop .rail-hint{color:var(--dark-muted)}
 
-/* ---- THE FOUR, at a glance. Flavour first. Mood second. ---- */
-.four{padding:3rem 0;background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:3rem}
-.four-inner{max-width:660px;margin:0 auto;padding:0 1.3rem}
-.sorted{
-  font-family:'Playfair Display',serif;font-size:clamp(1.25rem,3.6vw,1.6rem);
-  line-height:1.5;margin-bottom:2rem;
-}
+/* FOLD 3 — so we made one for each. */
+.four{padding:3rem 0 2.6rem;background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.four-in{max-width:660px;margin:0 auto;padding:0 1.3rem 1.4rem;text-align:center}
+.four-in h2{font-size:clamp(1.6rem,4.4vw,2.3rem);margin-bottom:.8rem}
+.sorted{font-size:1.02rem;line-height:1.8;color:var(--ink-soft)}
 .sorted em{color:var(--gold);font-style:italic}
-.cup{padding:1.3rem 0;border-top:1px solid var(--line)}
-.cup:last-of-type{border-bottom:1px solid var(--line)}
-.cup-name{
-  display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap;margin-bottom:.35rem;
+.ccard{
+  text-decoration:none;color:var(--ink);background:#fff;
+  padding:8px 8px 10px;box-shadow:0 6px 22px rgba(38,25,14,.2);
+  display:block;transition:transform .25s,box-shadow .25s;
 }
-.cup-name h3{font-family:'Playfair Display',serif;font-size:1.35rem;letter-spacing:.04em}
-.cup-name span{font-family:'Caveat',cursive;font-size:1.1rem;color:var(--gold)}
-.cup-taste{font-size:1.02rem;color:var(--ink);line-height:1.6;margin-bottom:.2rem}
-.cup-when{font-size:.98rem;color:var(--muted);font-style:italic;line-height:1.6}
-.four-more{margin-top:1.6rem;text-align:center}
+@media(min-width:861px){.ccard:hover{transform:translateY(-6px);box-shadow:0 16px 34px rgba(38,25,14,.28)}}
+.ccard img{width:100%;display:block}
+.clabel{padding:.7rem .3rem .1rem;text-align:center}
+.cname{font-family:'Playfair Display',serif;font-size:1.1rem;letter-spacing:.05em;display:block}
+.cword{font-family:'Caveat',cursive;font-size:1rem;color:var(--gold);display:block;margin-bottom:.35rem}
+.ctaste{font-size:.86rem;color:var(--ink-soft);line-height:1.5;display:block;margin-bottom:.4rem}
+.cwhen{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:block}
+.four-more{text-align:center;margin-top:1.4rem;padding:0 1.3rem}
 .four-note{
-  text-align:center;margin-top:1.1rem;font-family:'IBM Plex Mono',monospace;
-  font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+  text-align:center;margin-top:1rem;font-family:'IBM Plex Mono',monospace;
+  font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
 }
 
-/* ---- HOW IT WORKS ---- */
-.how{padding:3.2rem 0}
-.how-inner{max-width:660px;margin:0 auto;padding:0 1.3rem}
-.how h2{font-size:clamp(1.6rem,4.4vw,2.2rem);margin-bottom:1.1rem}
-.how p{font-size:1.03rem;line-height:1.85;color:var(--ink-soft);margin-bottom:1.6rem}
-.two{display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:1.8rem}
-@media(min-width:601px){.two{grid-template-columns:1fr 1fr;gap:1.2rem}}
-.sachet{border:1px solid var(--line);background:var(--cream);padding:1.3rem}
-.sachet .tag{
-  font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.5rem;
-}
-.sachet h3{font-size:1.15rem;margin-bottom:.4rem}
-.sachet p{font-size:.96rem;line-height:1.7;color:var(--ink-soft);margin:0}
-.recipe{
-  font-family:'IBM Plex Mono',monospace;font-size:.82rem;letter-spacing:.06em;
-  color:var(--ink);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  padding:1rem 0;text-align:center;line-height:2;margin-bottom:1.8rem;
-}
-.card-fig{max-width:420px;margin:0 auto}
-
-/* ---- PROOF ---- */
-.proof{background:var(--paper-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:3rem 1.3rem}
-.proof-inner{max-width:760px;margin:0 auto}
-.said{display:grid;grid-template-columns:1fr;gap:1.6rem;margin-bottom:2.2rem}
+/* FOLD 4 — proof, then buy. */
+.proof{padding:3rem 1.3rem}
+.proof-in{max-width:760px;margin:0 auto}
+.said{display:grid;grid-template-columns:1fr;gap:1.5rem;margin-bottom:2rem}
 @media(min-width:701px){.said{grid-template-columns:repeat(3,1fr);gap:1.4rem}}
 .said blockquote{
-  font-family:'Playfair Display',serif;font-style:italic;font-size:1.15rem;
+  font-family:'Playfair Display',serif;font-style:italic;font-size:1.12rem;
   line-height:1.5;color:var(--ink);margin:0 0 .5rem;
 }
 .said cite{
-  font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.14em;
+  font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.14em;
   text-transform:uppercase;color:var(--muted);font-style:normal;
 }
 .tally{text-align:center;border-top:1px solid var(--line);padding-top:1.8rem}
-.tally .n{font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,2.8rem);color:var(--gold);line-height:1.1}
+.tally .n{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,5.6vw,2.6rem);color:var(--gold);line-height:1.1}
 .tally p{font-size:1rem;color:var(--ink-soft);margin:.4rem 0 1.2rem}
 
-/* ---- FAQ ---- */
-.faq{padding:3rem 1.3rem}
-.faq-inner{max-width:640px;margin:0 auto}
-.faq .body p{font-size:1rem;line-height:1.85;color:var(--ink-soft);margin:0}
-
-/* ---- CLOSE ---- */
-.close{background:var(--espresso);color:var(--dark-text);text-align:center;padding:3.4rem 1.3rem}
-.close h2{color:var(--dark-text);font-size:clamp(1.7rem,4.5vw,2.4rem);margin-bottom:.8rem}
-.close p{color:var(--dark-muted);margin-bottom:1.8rem;font-size:1rem;line-height:1.8}
-.close .after{
-  margin-top:1.6rem;font-family:'IBM Plex Mono',monospace;font-size:.68rem;
-  letter-spacing:.1em;color:var(--dark-muted);line-height:2.1;
-}
+.close{background:var(--espresso);color:var(--dark-text);text-align:center;padding:3.2rem 1.3rem}
+.close h2{color:var(--dark-text);font-size:clamp(1.7rem,4.5vw,2.4rem);margin-bottom:.7rem}
+.close p{color:var(--dark-muted);margin-bottom:1.6rem;line-height:1.8}
+.close .after{margin-top:1.4rem;font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.1em;color:var(--dark-muted);line-height:2.1}
 </style>
 </head>
 <body class="has-buybar">
@@ -109,106 +92,124 @@
 <header class="site-header">
   <a href="index.html" class="site-logo">State<span>Shift</span><small>A study of moments</small></a>
   <nav class="site-nav">
+    <a href="index.html" class="active">Home</a>
     <a href="collection.html">Coffee</a>
-    <a href="index.html#how">How it works</a>
     <a href="story.html">Story</a>
     <a href="states.html">Lab</a>
+    <a href="sampler.html" class="sell">Sampler</a>
   </nav>
 </header>
 
+<!-- ============ FOLD 1 · autopilot AND coffee, in one breath ============ -->
 <section class="hero">
-  <h1>Four coffees.<br>One for each <em>part of your day</em>.</h1>
-  <p class="plain">Ground single-estate coffee in a filter bag, plus a cup mix that goes in first. Hot water, three minutes. No machine, no grinder, no queue.</p>
+  <h1>Four coffees for the four hours<br>your day <em>gets away from you</em>.</h1>
+  <p class="plain">Most of the day runs itself. It saves energy, it gets things done, and it quietly takes the year. <b>These are four cups built for the four moments you would rather be awake for.</b></p>
   <div class="price-line">Six cups &middot; &#8377;300 &middot; shipping included</div>
   <div class="hero-ctas">
-    <a class="btn gold" href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20the%20%E2%82%B9300%20sampler%20(six%20cups).%20My%20name%20is%20___%20and%20I%27m%20in%20___.">Order the sampler</a>
-    <a class="btn" href="#how">How it works</a>
+    <a class="btn gold" href="sampler.html">Order the sampler</a>
+    <a class="btn" href="collection.html#how">How it works</a>
   </div>
 </section>
 
-<!-- ============================================================
-     SHOOT THIS TODAY. Two sachets on your counter, the filter bag
-     hanging on your real cup, mid-pour, your kitchen, phone camera.
-     Save as assets/photos/sachets.jpg
-     Until then the onerror below falls back to the brew card so
-     nothing renders broken.
-     ============================================================ -->
-<figure class="shot">
-  <img src="assets/photos/sachets.jpg"
-       onerror="this.onerror=null;this.src='assets/posters/how-to-brew.jpg';this.nextElementSibling.textContent='replace with a real photo of the sachets';"
-       alt="Two StateShift sachets beside a cup, the filter bag hanging on the rim mid-pour">
-  <figcaption>two sachets, hot water, three minutes</figcaption>
-</figure>
+<!-- ============ FOLD 2 · the four moments you sleep through ============ -->
+<section class="autop">
+  <div class="autop-in">
+    <span class="eyebrow">Autopilot</span>
+    <h2>Four moments a day.<br>Most of us are somewhere else for all of them.</h2>
+    <p class="sub">Not the big ones. The small ones, the ones between things, the ones nobody puts in a calendar.</p>
+  </div>
 
-<!-- ============ THE FOUR, FLAVOUR FIRST ============ -->
+  <div class="rail" data-rail="mom">
+    <article class="mcard">
+      <div class="mimg" style="background-image:url('assets/moments/moment-sehar.jpg')"></div>
+      <div class="mtext">
+        <h3>Morning</h3>
+        <p>You reached for the phone before you reached for the light. The day was decided for you before you were awake.</p>
+      </div>
+    </article>
+    <article class="mcard">
+      <div class="mimg" style="background-image:url('assets/moments/moment-rukh.jpg')"></div>
+      <div class="mtext">
+        <h3>Midday</h3>
+        <p>Eleven tabs. Three unfinished thoughts. Somewhere in there was the one that mattered.</p>
+      </div>
+    </article>
+    <article class="mcard">
+      <div class="mimg" style="background-image:url('assets/moments/moment-kisse.jpg')"></div>
+      <div class="mtext">
+        <h3>Evening</h3>
+        <p>Everyone is home. Everyone is on a screen. The conversation you meant to have is still not happening.</p>
+      </div>
+    </article>
+    <article class="mcard">
+      <div class="mimg" style="background-image:url('assets/moments/moment-lamhe.jpg')"></div>
+      <div class="mtext">
+        <h3>Late</h3>
+        <p>The hour that was supposed to be yours. You spent it scrolling, and you are not sure how.</p>
+      </div>
+    </article>
+  </div>
+  <div class="rail-dots" data-dots="mom"></div>
+  <span class="rail-hint">swipe &rarr;</span>
+</section>
+
+<!-- ============ FOLD 3 · so we made one for each ============ -->
 <section class="four">
-  <div class="four-inner">
+  <div class="four-in">
+    <span class="eyebrow">The coffee</span>
+    <h2>So we made one for each.</h2>
     <p class="sorted">Every other coffee is sorted by how it was roasted. Light, medium, dark. Ours are sorted by <em>when you need them</em>.</p>
-
-    <div class="cup">
-      <div class="cup-name"><h3>SEHAR</h3><span>dawn</span></div>
-      <p class="cup-taste">Bergamot, orange peel, milk chocolate, lemon candy.</p>
-      <p class="cup-when">For the hour before the day gets loud.</p>
-    </div>
-    <div class="cup">
-      <div class="cup-name"><h3>RUKH</h3><span>direction</span></div>
-      <p class="cup-taste">Cardamom, dark chocolate, toasted almond, ripe berries.</p>
-      <p class="cup-when">For when the day scatters and needs choosing again.</p>
-    </div>
-    <div class="cup">
-      <div class="cup-name"><h3>KISSE</h3><span>stories</span></div>
-      <p class="cup-taste">Dark chocolate, roasted nuts, warm spice. Someone once said whiskey.</p>
-      <p class="cup-when">For the table after ten, and conversations that run long.</p>
-    </div>
-    <div class="cup">
-      <div class="cup-name"><h3>LAMHE</h3><span>moments</span></div>
-      <p class="cup-taste">Cocoa, soft cinnamon, gentle coffee. Nothing competing.</p>
-      <p class="cup-when">For the hour that belongs to nobody else.</p>
-    </div>
-
-    <p class="four-note">The sampler carries Sehar, Rukh and Kisse. Lamhe joins them shortly.</p>
-    <div class="four-more"><a class="btn" href="collection.html">Read the tasting notes</a></div>
   </div>
+
+  <div class="rail" data-rail="cof">
+    <a class="ccard" href="collection.html#sehar">
+      <img src="assets/posters/sehar-card.jpg" alt="SEHAR label" loading="lazy">
+      <div class="clabel">
+        <span class="cname">SEHAR</span>
+        <span class="cword">dawn</span>
+        <span class="ctaste">Bergamot, orange peel, milk chocolate.</span>
+        <span class="cwhen">Morning</span>
+      </div>
+    </a>
+    <a class="ccard" href="collection.html#rukh">
+      <img src="assets/posters/rukh-card.jpg" alt="RUKH label" loading="lazy">
+      <div class="clabel">
+        <span class="cname">RUKH</span>
+        <span class="cword">direction</span>
+        <span class="ctaste">Cardamom, dark chocolate, toasted almond.</span>
+        <span class="cwhen">Midday</span>
+      </div>
+    </a>
+    <a class="ccard" href="collection.html#kisse">
+      <img src="assets/posters/kisse-card.jpg" alt="KISSE label" loading="lazy">
+      <div class="clabel">
+        <span class="cname">KISSE</span>
+        <span class="cword">stories</span>
+        <span class="ctaste">Dark chocolate, roasted nuts, warm spice.</span>
+        <span class="cwhen">Evening</span>
+      </div>
+    </a>
+    <a class="ccard" href="collection.html#lamhe">
+      <img src="assets/posters/lamhe-card.jpg" alt="LAMHE label" loading="lazy">
+      <div class="clabel">
+        <span class="cname">LAMHE</span>
+        <span class="cword">moments</span>
+        <span class="ctaste">Cocoa, soft cinnamon, gentle coffee.</span>
+        <span class="cwhen">Late</span>
+      </div>
+    </a>
+  </div>
+  <div class="rail-dots" data-dots="cof"></div>
+  <span class="rail-hint">swipe &rarr;</span>
+
+  <p class="four-note">The sampler carries Sehar, Rukh and Kisse. Lamhe joins them shortly.</p>
+  <div class="four-more"><a class="btn" href="collection.html">Tasting notes and how it works</a></div>
 </section>
 
-<!-- ============ HOW IT WORKS ============ -->
-<section class="how" id="how">
-  <div class="how-inner">
-    <span class="eyebrow">How it works</span>
-    <h2>Two sachets. One cup. Nothing to wash up.</h2>
-    <p>Coffee grounds want to be steeped and lifted out. Creamer and jaggery want to dissolve. Put them in the same bag and you get a gritty cup, so we keep them apart until the water brings them together.</p>
-
-    <div class="two">
-      <div class="sachet">
-        <span class="tag">Sachet A</span>
-        <h3>The filter bag</h3>
-        <p>Freshly ground single-estate coffee and the aromatics. Hangs on the rim of your cup, steeps, comes out.</p>
-      </div>
-      <div class="sachet">
-        <span class="tag">Sachet B</span>
-        <h3>The cup mix</h3>
-        <p>Creamer, palm jaggery, cocoa where the blend calls for it. Goes into the empty cup first.</p>
-      </div>
-    </div>
-
-    <div class="recipe">
-      Cup mix in &middot; filter bag on<br>
-      150ml hot water &middot; three minutes<br>
-      lift it out &middot; stir &middot; drink
-    </div>
-
-    <figure class="print tilt-0 card-fig">
-      <img src="assets/posters/how-to-brew.jpg" alt="The StateShift brew card: empty the cup mix, hang the drip bag, pour slowly, steep, remove, stir" loading="lazy">
-      <figcaption>the card that comes in the box</figcaption>
-    </figure>
-  </div>
-</section>
-
-<!-- ============ PROOF ============ -->
+<!-- ============ FOLD 4 · proof ============ -->
 <section class="proof">
-  <div class="proof-inner">
-    <div class="center" style="margin-bottom:2rem"><span class="eyebrow">What people said</span></div>
-
+  <div class="proof-in">
+    <div class="center" style="margin-bottom:1.8rem"><span class="eyebrow">What people said</span></div>
     <div class="said">
       <div>
         <blockquote>"Whiskey and dark chocolate."</blockquote>
@@ -223,46 +224,29 @@
         <cite>the toughest critic in the house</cite>
       </div>
     </div>
-
     <div class="tally">
-      <div class="n">51 sittings.</div>
-      <p>Most of them failed. Every one is written down, verdicts intact.</p>
+      <div class="n">51 sittings. Most of them failed.</div>
+      <p>Every one is written down, verdicts intact.</p>
       <a class="btn" href="states.html">Read the Lab</a>
     </div>
   </div>
 </section>
 
-<!-- ============ FAQ ============ -->
-<section class="faq">
-  <div class="faq-inner">
-    <div class="center" style="margin-bottom:1.4rem"><span class="eyebrow">Before you ask</span></div>
-
-    <details class="disclose">
-      <summary>Is it tea or coffee?</summary>
-      <div class="body"><p>Coffee. It hangs on your cup like a tea bag because it is a pour-over filter, but inside is freshly ground single-estate coffee. Sehar borrows a little Earl Grey for its citrus. That is the only tea on the shelf.</p></div>
-    </details>
-
-    <details class="disclose">
-      <summary>What if I don't like it?</summary>
-      <div class="body"><p>Tell me and I will refund you, no argument and no form to fill in. I would rather know. Almost everything I have learned came from someone saying a cup was plain, or once, memorably, half-cooked.</p></div>
-    </details>
-
-    <details class="disclose">
-      <summary>When does it arrive?</summary>
-      <div class="body"><p>Boxes are filled by hand and go out the week you order. Anywhere in India, expect it inside a week. You will get a message from me, not a tracking bot.</p></div>
-    </details>
-  </div>
-</section>
-
-<!-- ============ CLOSE ============ -->
 <section class="close">
   <h2>Six cups. &#8377;300.</h2>
   <p>Two each of Sehar, Rukh and Kisse. Shipping included.</p>
-  <a class="btn on-dark" href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20the%20%E2%82%B9300%20sampler%20(six%20cups).%20My%20name%20is%20___%20and%20I%27m%20in%20___.">Order the sampler</a>
-  <div class="after">
-    I reply the same day, usually.<br>
-    Payment by UPI.<br>
-    Boxes go out the following week.
+  <a class="btn on-dark" href="sampler.html">Order the sampler</a>
+  <div class="after">I reply the same day, usually.<br>Payment by UPI.<br>Boxes go out the following week.</div>
+</section>
+
+<section class="contact-close">
+  <span class="eyebrow">Before you go</span>
+  <h2>There is a person at the other end.</h2>
+  <p class="cc-line">Usually mid-experiment, usually happy to be interrupted.</p>
+  <div class="cc-links">
+    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20to%20join%20the%20Tasting%20Circle.">Join the Tasting Circle</a>
+    <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
+    <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a>
   </div>
 </section>
 
@@ -275,7 +259,7 @@
       <h4>Coffee</h4>
       <ul class="footer-links">
         <li><a href="collection.html">The four coffees</a></li>
-        <li><a href="index.html#how">How it works</a></li>
+        <li><a href="collection.html#how">How it works</a></li>
         <li><a href="sampler.html">The sampler</a></li>
       </ul>
     </div>
@@ -285,7 +269,6 @@
         <li><a href="story.html">The story</a></li>
         <li><a href="states.html">The Lab</a></li>
         <li><a href="mailto:hello@stateshift.in">hello@stateshift.in</a></li>
-        <li><a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a></li>
       </ul>
     </div>
   </div>
@@ -297,8 +280,38 @@
 
 <div class="buybar">
   <div class="bb-price">&#8377;300<small>six cups &middot; shipping included</small></div>
-  <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20the%20%E2%82%B9300%20sampler%20(six%20cups).%20My%20name%20is%20___%20and%20I%27m%20in%20___.">Order</a>
+  <a href="sampler.html">Order</a>
 </div>
+
+<script>
+/* Rail dots. Progressive enhancement: no JS, the swipe still works. */
+document.querySelectorAll('[data-rail]').forEach(function(rail){
+  var dots = document.querySelector('[data-dots="' + rail.dataset.rail + '"]');
+  if(!dots) return;
+  var items = rail.children;
+  Array.prototype.forEach.call(items, function(it, i){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Go to card ' + (i + 1));
+    b.addEventListener('click', function(){
+      rail.scrollTo({left: it.offsetLeft - rail.offsetLeft, behavior: 'smooth'});
+    });
+    dots.appendChild(b);
+  });
+  var btns = dots.querySelectorAll('button');
+  function sync(){
+    var mid = rail.scrollLeft + rail.clientWidth / 2, active = 0, best = Infinity;
+    Array.prototype.forEach.call(items, function(it, i){
+      var c = it.offsetLeft - rail.offsetLeft + it.offsetWidth / 2, d = Math.abs(c - mid);
+      if(d < best){ best = d; active = i; }
+    });
+    btns.forEach(function(b, i){ b.setAttribute('aria-current', i === active ? 'true' : 'false'); });
+  }
+  var t;
+  rail.addEventListener('scroll', function(){ clearTimeout(t); t = setTimeout(sync, 60); }, {passive:true});
+  sync();
+});
+</script>
 
 </body>
 </html>

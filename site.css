@@ -100,6 +100,8 @@ img{max-width:100%;display:block}
 }
 .site-nav a:hover{color:var(--gold)}
 .site-nav a.active{color:var(--gold);border-bottom-color:var(--gold)}
+.site-nav a.sell{color:var(--forest)}
+.site-nav a.sell:hover,.site-nav a.sell.active{color:var(--gold)}
 
 /* ---------- sticky buy bar (mobile) ----------
    Sells continuously without stealing a single pixel of the fold. */
@@ -336,17 +338,17 @@ figure.frame figcaption{
 .contact-close{
   border-top:1px solid var(--line);
   background:var(--cream);
-  padding:4.5rem 2rem;text-align:center;
+  padding:3rem 2rem;text-align:center;
 }
 .contact-close h2{
-  font-size:clamp(1.8rem,4.5vw,2.8rem);line-height:1.25;margin-bottom:1rem;
+  font-size:clamp(1.4rem,3.6vw,1.9rem);line-height:1.3;margin-bottom:.6rem;
 }
 .contact-close h2 em{color:var(--gold)}
 .contact-close .cc-line{
-  font-style:italic;color:var(--ink-soft);max-width:460px;margin:0 auto 2rem;
+  font-style:italic;color:var(--ink-soft);max-width:460px;margin:0 auto 1.5rem;font-size:.98rem;
 }
 .cc-links{
-  display:flex;gap:2.2rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.2rem;
+  display:flex;gap:1.8rem;justify-content:center;flex-wrap:wrap;margin-bottom:0;
 }
 .cc-links a{
   font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.12em;
@@ -356,31 +358,65 @@ figure.frame figcaption{
   display:inline-flex;align-items:center;gap:.4rem;
 }
 .cc-links a:hover{color:var(--gold);border-color:var(--gold)}
-.cc-links svg{width:.95em;height:.95em;flex:0 0 auto;opacity:.75}
 
 
 /* ---------- disclosure / collapsible ------------------------
-   Shared by collection.html and sampler.html. Lets a page put
-   its full depth on screen without a wall of scroll.         */
-.disclose{border-top:1px solid var(--line)}
-.disclose:last-of-type{border-bottom:1px solid var(--line)}
+   Dark card, light text. On a page of cream and paper an
+   espresso block reads as a thing you are meant to press.    */
+.disclose{
+  border:1px solid var(--line-dark);
+  background:var(--espresso);
+  margin-bottom:.7rem;
+}
 .disclose summary{
   cursor:pointer;list-style:none;position:relative;
-  padding:1.1rem 2.2rem 1.1rem 0;
-  font-family:'IBM Plex Mono',monospace;font-size:.72rem;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--gold);
-  transition:color .2s;
+  padding:1.15rem 3rem 1.15rem 1.2rem;
+  font-family:'Playfair Display',serif;font-size:1.12rem;
+  color:var(--dark-text);transition:color .2s;
 }
-.disclose summary:hover{color:var(--ink)}
+.disclose summary:hover{color:var(--amber)}
 .disclose summary::-webkit-details-marker{display:none}
 .disclose summary::after{
-  content:'+';position:absolute;right:.2rem;top:50%;transform:translateY(-50%);
-  font-family:'IBM Plex Mono',monospace;font-size:1rem;color:var(--gold);
+  content:'+';position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);
+  font-family:'IBM Plex Mono',monospace;font-size:1.2rem;color:var(--amber);
 }
 .disclose[open] summary::after{content:'\2212'}
-.disclose .body{padding:0 0 1.4rem}
-.dark .disclose{border-color:var(--line-dark)}
-.dark .disclose summary{color:var(--amber)}
+.disclose[open] summary{border-bottom:1px solid var(--line-dark)}
+.disclose .body{padding:1.2rem 1.2rem 1.4rem;color:#cbb897}
+.disclose .body p{color:#cbb897;margin:0}
+.disclose .body p + p{margin-top:.9rem}
+.disclose .body .margin-note{color:var(--amber)}
+.disclose .body a{color:var(--amber)}
+
+/* ---------- swipe rail ----------
+   One carousel, used twice on the home page. The next card always
+   peeks, and that peek is the only affordance a thumb needs.   */
+.rail{
+  display:flex;gap:1rem;
+  overflow-x:auto;overflow-y:visible;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  padding:.4rem 1.3rem 1.2rem;scroll-padding-left:1.3rem;
+  max-width:1120px;margin:0 auto;
+}
+.rail::-webkit-scrollbar{display:none}
+.rail > *{flex:0 0 76%;scroll-snap-align:start;max-width:320px}
+@media(min-width:861px){
+  .rail{padding:.4rem 2rem 1.4rem;scroll-padding-left:2rem}
+  .rail > *{flex:0 0 calc(25% - .75rem);max-width:none}
+}
+.rail-dots{display:flex;justify-content:center;gap:.5rem;margin-top:.2rem}
+.rail-dots button{
+  width:7px;height:7px;padding:0;border-radius:50%;border:none;cursor:pointer;
+  background:var(--line);transition:background .25s,transform .25s;
+}
+.rail-dots button[aria-current="true"]{background:var(--gold);transform:scale(1.35)}
+.rail-hint{
+  display:block;text-align:center;margin-top:.6rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted);
+}
+@media(min-width:861px){.rail-dots,.rail-hint{display:none}}
 
 /* ============================================================
    RESPONSIVE
@@ -389,7 +425,8 @@ figure.frame figcaption{
 @media(max-width:860px){
   .grid-2{grid-template-columns:1fr;gap:2.2rem}
   .grid-3{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr;gap:2rem}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:1.6rem 1.2rem}
+  .footer-grid>*:first-child{grid-column:1/-1}
   .wrap,.wrap-narrow{padding:0 1.3rem}
   .pad-block{padding:3.4rem 0}
   .pullquote{margin:3.2rem auto}
