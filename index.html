@@ -9,18 +9,51 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-/* hero — dominates the page */
-.hero{padding:2.5rem 1.6rem 3rem;text-align:center}
-.hero .display{font-size:clamp(2.6rem,8vw,4.8rem);margin-bottom:1.2rem; line-height:.95}
-.hero-lines{margin:0 auto 1.6rem}
+/* ============================================================
+   MOBILE-FIRST OVERRIDES  (this block loads after site.css,
+   so equal-specificity rules here win)
+   ============================================================ */
+
+/* --- 0 · TYPOGRAPHIC SCALE REPAIR ---------------------------
+   The mono labels were 8–9px while body text was 17px. Nothing
+   lived in between. Everything below closes that gap.        */
+.site-nav a{font-size:.82rem;letter-spacing:.1em}
+.eyebrow{font-size:.72rem;letter-spacing:.2em}
+.moment-when{font-size:.72rem;letter-spacing:.18em}
+.oh-who{font-size:.64rem;letter-spacing:.15em}
+.pc-when{font-size:.62rem;letter-spacing:.16em}
+
+/* --- 1 · HERO — no longer swallows the first screen -------- */
+.hero{padding:2.4rem 1.3rem 3rem;text-align:center}
+.hero .display{font-size:clamp(2.3rem,8.6vw,6.2rem);margin-bottom:1.3rem;line-height:1.06}
+.hero-lines{margin:0 auto 1.2rem}
 .hero-lines p{
   font-family:'Playfair Display',serif;font-style:italic;
-  font-size:clamp(1.25rem,2.8vw,1.7rem);line-height:1.75;color:var(--ink-soft);
+  font-size:clamp(1.08rem,2.8vw,1.7rem);line-height:1.55;color:var(--ink-soft);
 }
-.hero-close{font-size:1rem;font-style:italic;color:var(--muted);margin-bottom:2.6rem}
-.hero-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hero-close{font-size:.95rem;font-style:italic;color:var(--muted);margin-bottom:2rem}
+.hero-ctas{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+@media(min-width:761px){
+  .hero{padding:4.2rem 2rem 5rem}
+  .hero .display{margin-bottom:2.2rem}
+  .hero-lines{margin:0 auto 1.6rem}
+  .hero-close{margin-bottom:2.6rem}
+}
 
-/* moments (unchanged) */
+/* --- 2 · BRIDGE — the connective tissue between sections ----
+   A hairline literally drops out of the previous section and
+   fades into gold, then one italic line hands you over.      */
+.bridge{
+  max-width:520px;margin:0 auto 2rem;text-align:center;padding:0 1.3rem;
+  font-family:'Lora',serif;font-style:italic;
+  font-size:1rem;line-height:1.75;color:var(--muted);
+}
+.bridge::before{
+  content:'';display:block;width:1px;height:2.6rem;margin:0 auto 1.5rem;
+  background:linear-gradient(var(--line),var(--gold));
+}
+
+/* --- 3 · FOUR MOMENTS -------------------------------------- */
 .moments{border-top:1px solid var(--line)}
 .moment-row{
   display:grid;grid-template-columns:1fr 1.4fr;gap:0;align-items:stretch;
@@ -29,22 +62,24 @@
 .moment-row:nth-child(even){grid-template-columns:1.4fr 1fr}
 .moment-row:nth-child(even) .moment-text{order:2}
 .moment-row:nth-child(even) .moment-img{order:1}
+.moment-text{padding:4.2rem 3.2rem;display:flex;flex-direction:column;justify-content:center}
+.moment-word{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.4rem);margin-bottom:.6rem;line-height:1.1}
+.moment-line{font-size:1.02rem;font-style:italic;color:var(--ink-soft);line-height:1.8;max-width:380px}
+.moment-when{font-family:'IBM Plex Mono',monospace;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.moment-img{min-height:240px;background-size:cover;background-position:center;filter:sepia(.08) saturate(1)}
 @media(max-width:760px){
   .moment-row,.moment-row:nth-child(even){grid-template-columns:1fr}
   .moment-row:nth-child(even) .moment-text{order:1}
   .moment-row:nth-child(even) .moment-img{order:2}
+  .moment-text{padding:2.4rem 1.3rem 1.8rem}
+  /* fixed 4:3 band so every photo crops predictably on phones */
+  .moment-img{min-height:0;aspect-ratio:4/3;background-position:center 40%}
 }
-.moment-text{padding:4.2rem 3.2rem;display:flex;flex-direction:column;justify-content:center}
-@media(max-width:760px){.moment-text{padding:2.6rem 1.4rem}}
-.moment-word{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.4rem);margin-bottom:.7rem}
-.moment-line{font-size:1.05rem;font-style:italic;color:var(--ink-soft);line-height:1.9;max-width:380px}
-.moment-when{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem}
-.moment-img{min-height:240px;background-size:cover;background-position:center;filter:sepia(.12) saturate(.95)}
 
-/* collection — collectible postcards */
-.postcards{padding:4.5rem 0 5rem;background:var(--cream);border-bottom:1px solid var(--line)}
-.pc-intro{max-width:560px;margin:0 auto 3rem;text-align:center;padding:0 2rem}
-.pc-intro h2{font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:.9rem}
+/* --- 4 · THE COLLECTION — swipe carousel on mobile --------- */
+.postcards{padding:3.4rem 0 3.6rem;background:var(--cream);border-bottom:1px solid var(--line)}
+.pc-intro{max-width:560px;margin:0 auto 2rem;text-align:center;padding:0 1.3rem}
+.pc-intro h2{font-size:clamp(1.7rem,4vw,2.5rem);margin-bottom:.9rem;line-height:1.2}
 .pc-row{
   max-width:1100px;margin:0 auto;padding:0 2rem;
   display:flex;justify-content:center;align-items:flex-start;flex-wrap:wrap;gap:.4rem;
@@ -65,59 +100,92 @@
 .pc-label{padding:.7rem .3rem .2rem;text-align:center}
 .pc-name{font-family:'Playfair Display',serif;font-size:1.15rem;letter-spacing:.04em}
 .pc-word{font-family:'Caveat',cursive;font-size:1rem;color:var(--gold);display:block}
-.pc-when{font-family:'IBM Plex Mono',monospace;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.pc-when{font-family:'IBM Plex Mono',monospace;text-transform:uppercase;color:var(--muted)}
 @media(max-width:1040px){.pc{width:200px}}
-@media(max-width:600px){
-  .pc-row{gap:1.4rem}
-  .pc,.pc:nth-child(n){transform:none;width:min(260px,80%)}
-}
-.pc-more{text-align:center;margin-top:2.8rem}
 
-/* overheard — one editorial strip, four treatments */
-.overheard{padding:4.5rem 2rem 5rem}
+.pc-dots{display:none}
+.pc-swipe{display:none}
+
+@media(max-width:600px){
+  .postcards{padding:3rem 0 3.2rem}
+  .pc-row{
+    flex-wrap:nowrap;justify-content:flex-start;gap:1rem;
+    padding:.5rem 1.2rem 1.4rem;max-width:none;
+    overflow-x:auto;overflow-y:visible;
+    scroll-snap-type:x mandatory;scroll-padding-left:1.2rem;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  }
+  .pc-row::-webkit-scrollbar{display:none}
+  /* 78% not 100% — the next card PEEKS. That peek is the only
+     affordance a thumb needs to know it can swipe.           */
+  .pc,.pc:nth-child(n){transform:none;width:auto;flex:0 0 78%;scroll-snap-align:start}
+  .pc:hover{transform:none}
+
+  .pc-swipe{
+    display:block;text-align:center;margin-top:.2rem;
+    font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--muted);
+  }
+  .pc-dots{
+    display:flex;justify-content:center;gap:.5rem;margin-top:1rem;
+  }
+  .pc-dots button{
+    width:7px;height:7px;padding:0;border-radius:50%;border:none;cursor:pointer;
+    background:var(--line);transition:background .25s,transform .25s;
+  }
+  .pc-dots button[aria-current="true"]{background:var(--gold);transform:scale(1.35)}
+}
+.pc-more{text-align:center;margin-top:1.8rem}
+@media(min-width:601px){.pc-more{margin-top:2.8rem}}
+
+/* --- 5 · OVERHEARD — tightened, still all four ------------- */
+.overheard{padding:3.4rem 1.3rem 3.6rem}
 .oh-strip{
-  max-width:1160px;margin:2.8rem auto 0;
+  max-width:1160px;margin:2rem auto 0;
   display:grid;grid-template-columns:repeat(4,1fr);gap:1.6rem;align-items:start;
 }
 @media(max-width:1000px){.oh-strip{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.oh-strip{grid-template-columns:1fr}}
-/* 1 — handwritten */
-.oh-hand{padding:1.6rem .6rem;text-align:center}
-.oh-hand .q{font-family:'Caveat',cursive;font-size:2rem;line-height:1.35;color:var(--ink);transform:rotate(-1.6deg)}
-/* 2 — notebook clipping */
+@media(max-width:560px){.oh-strip{grid-template-columns:1fr;gap:1.1rem;margin-top:1.6rem}}
+@media(min-width:561px){.overheard{padding:4.5rem 2rem 5rem}}
+.oh-hand{padding:1rem .6rem;text-align:center}
+.oh-hand .q{font-family:'Caveat',cursive;font-size:1.7rem;line-height:1.3;color:var(--ink);transform:rotate(-1.6deg)}
+@media(min-width:561px){.oh-hand{padding:1.6rem .6rem}.oh-hand .q{font-size:2rem;line-height:1.35}}
 .oh-clip{
   background:repeating-linear-gradient(var(--cream),var(--cream) 27px,rgba(176,125,30,.18) 28px);
-  border:1px solid var(--line);padding:1.5rem 1.4rem;transform:rotate(.8deg);
+  border:1px solid var(--line);padding:1.2rem 1.2rem;transform:rotate(.8deg);
   box-shadow:0 4px 14px rgba(38,25,14,.12);
 }
 .oh-clip .q{font-family:'IBM Plex Mono',monospace;font-size:.85rem;line-height:28px;color:var(--ink-soft)}
-/* 3 — postcard */
 .oh-post{
-  background:#fff;border:1px solid var(--line);padding:1.6rem 1.5rem 1.3rem;
+  background:#fff;border:1px solid var(--line);padding:1.3rem 1.3rem 1.1rem;
   box-shadow:0 6px 18px rgba(38,25,14,.16);transform:rotate(-1deg);position:relative;
 }
 .oh-post::after{
   content:'⌾';position:absolute;top:.7rem;right:.9rem;
   font-size:1.3rem;color:rgba(176,125,30,.4);
 }
-.oh-post .q{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;line-height:1.55}
-/* 4 — transcript */
-.oh-script{border-left:2px solid var(--gold);padding:.4rem 0 .4rem 1.3rem}
-.oh-script .turn{font-family:'IBM Plex Mono',monospace;font-size:.78rem;line-height:1.9;color:var(--ink-soft);margin-bottom:.5rem}
+.oh-post .q{font-family:'Playfair Display',serif;font-style:italic;font-size:1.15rem;line-height:1.5}
+.oh-script{border-left:2px solid var(--gold);padding:.4rem 0 .4rem 1.2rem}
+.oh-script .turn{font-family:'IBM Plex Mono',monospace;font-size:.78rem;line-height:1.85;color:var(--ink-soft);margin-bottom:.4rem}
 .oh-script .turn b{font-weight:400;color:var(--gold)}
 .oh-who{
-  font-family:'IBM Plex Mono',monospace;font-size:.54rem;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--muted);display:block;margin-top:1rem;
+  font-family:'IBM Plex Mono',monospace;
+  text-transform:uppercase;color:var(--muted);display:block;margin-top:.8rem;
 }
 
-/* how they're made — editorial spread */
+/* --- 6 · HOW THEY'RE MADE ---------------------------------- */
 .made{background:var(--paper-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.made .ed-grid{padding:4.5rem 2rem}
+.made .ed-grid{padding:3.4rem 1.3rem}
+@media(min-width:761px){.made .ed-grid{padding:4.5rem 2rem}}
 .made-note{margin-top:1.8rem}
+.made .frame img{width:100%;display:block}
 
-/* journal teaser — quiet, one entry */
-.jt{max-width:720px;margin:0 auto;padding:4.5rem 2rem;text-align:center}
-.jt .q{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.3rem,3vw,1.7rem);line-height:1.7;margin:1.2rem 0 1.6rem}
+/* --- 7 · JOURNAL TEASER ------------------------------------ */
+.jt{max-width:720px;margin:0 auto;padding:3.4rem 1.3rem;text-align:center}
+@media(min-width:761px){.jt{padding:4.5rem 2rem}}
+.jt .q{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.15rem,3vw,1.7rem);line-height:1.65;margin:1.2rem 0 1.6rem}
+.jt .margin-note{display:block;margin:1rem 0 0 !important}
+@media(min-width:561px){.jt .margin-note{display:inline;margin:0 0 0 1.2rem !important}}
 </style>
 </head>
 <body>
@@ -149,7 +217,7 @@
   </div>
 </section>
 
-<!-- 2 · FOUR MOMENTS (unchanged) -->
+<!-- 2 · FOUR MOMENTS -->
 <section class="moments" id="moments">
   <div class="moment-row">
     <div class="moment-text">
@@ -157,7 +225,7 @@
       <h2 class="moment-word">Morning</h2>
       <p class="moment-line">The day hasn't decided what it will be yet. For a few minutes, neither have you. That's not fog — that's a beginning, waiting to be chosen.</p>
     </div>
-    <div class="moment-img" style="background-image:url('assets/moments/moment-sehar.jpg')" role="img" aria-label="A cup on a desk beside a window at dawn"></div>
+    <div class="moment-img" style="background-image:url('assets/moments/moment-sehar.jpg?v=2')" role="img" aria-label="A cup on a desk beside a window at dawn"></div>
   </div>
   <div class="moment-row">
     <div class="moment-text">
@@ -165,7 +233,7 @@
       <h2 class="moment-word">Focus</h2>
       <p class="moment-line">Ten open tabs, three half-thoughts, one restless mind. What you need isn't more speed. It's a still point to move from.</p>
     </div>
-    <div class="moment-img" style="background-image:url('assets/moments/moment-rukh.jpg')" role="img" aria-label="A desk with a notebook and a cup in mid-morning light"></div>
+    <div class="moment-img" style="background-image:url('assets/moments/moment-rukh.jpg?v=2')" role="img" aria-label="A desk with a notebook and a cup in mid-morning light"></div>
   </div>
   <div class="moment-row">
     <div class="moment-text">
@@ -173,7 +241,7 @@
       <h2 class="moment-word">Connection</h2>
       <p class="moment-line">Some conversations only start after the day has ended. The best ones outlast whatever's on the table between you.</p>
     </div>
-    <div class="moment-img" style="background-image:url('assets/moments/moment-kisse.jpg')" role="img" aria-label="Two cups on a dark table in the evening"></div>
+    <div class="moment-img" style="background-image:url('assets/moments/moment-kisse.jpg?v=2')" role="img" aria-label="Two cups on a dark table in the evening"></div>
   </div>
   <div class="moment-row" style="border-bottom:none">
     <div class="moment-text">
@@ -181,17 +249,19 @@
       <h2 class="moment-word">Comfort</h2>
       <p class="moment-line">A blanket, a book, rain if you're lucky. The quiet art of being gently returned to yourself.</p>
     </div>
-    <div class="moment-img" style="background-image:url('assets/moments/armchair.jpg')" role="img" aria-label="An armchair with a blanket in warm evening light"></div>
+    <div class="moment-img" style="background-image:url('assets/moments/moment-lamhe.jpg?v=2')" role="img" aria-label="An armchair with a blanket in warm evening light"></div>
   </div>
 </section>
 
-<!-- 3 · THE COLLECTION — collectible postcards -->
+<!-- 3 · THE COLLECTION — carousel on mobile -->
 <section class="postcards">
+  <p class="bridge">Four moments. We spent a year making a companion for each one.</p>
   <div class="pc-intro">
     <span class="eyebrow">The Collection</span>
-    <h2>We made a companion<br>for each</h2>
+    <h2>We made a companion for each</h2>
   </div>
-  <div class="pc-row">
+
+  <div class="pc-row" id="pcRow">
     <a class="pc" href="collection.html#sehar">
       <img src="assets/posters/sehar-card.jpg" alt="Sehar — for mornings that set the tone" loading="lazy">
       <div class="pc-label">
@@ -225,14 +295,18 @@
       </div>
     </a>
   </div>
+
+  <div class="pc-dots" id="pcDots" role="tablist" aria-label="Collection cards"></div>
+  <span class="pc-swipe">swipe →</span>
+
   <div class="pc-more"><a class="btn" href="collection.html">Browse the collection</a></div>
 </section>
 
-<!-- 4 · OVERHEARD — one strip, four treatments -->
+<!-- 4 · OVERHEARD -->
 <section class="overheard">
   <div class="center">
     <span class="eyebrow">Overheard at tasting tables</span>
-    <h2 style="font-size:clamp(1.8rem,4vw,2.4rem)">Not reviews. Moments.</h2>
+    <h2 style="font-size:clamp(1.7rem,4vw,2.4rem)">Not reviews. Moments.</h2>
   </div>
   <div class="oh-strip">
     <div class="oh-hand">
@@ -255,32 +329,34 @@
   </div>
 </section>
 
-<!-- 5 · HOW THEY'RE MADE — editorial spread -->
+<!-- 5 · HOW THEY'RE MADE -->
 <section class="made">
   <div class="ed-grid">
     <div>
+      <p class="bridge" style="margin:0 0 1.8rem;text-align:left;padding:0;max-width:420px">Every one of them started the same way — badly.</p>
       <span class="eyebrow">How they're made</span>
-      <h2 style="font-size:clamp(1.9rem,4.5vw,2.7rem);margin-bottom:1.3rem">We study moments as carefully as others study coffee.</h2>
+      <h2 style="font-size:clamp(1.75rem,4.5vw,2.7rem);margin-bottom:1.2rem;line-height:1.2">We study moments as carefully as others study coffee.</h2>
       <p class="lead">Dozens of sittings. One question per cup. Every failure kept. What survives is a blend that has earned its place in your day.</p>
       <div class="notebook" style="margin:1.8rem 0"><span class="nb-label">Bench notes · June 17</span><span class="nb-line">"failed — 120ml non-negotiable. steep 3 minutes exactly. change one thing at a time."</span></div>
-      <div style="display:flex;gap:1rem;flex-wrap:wrap">
+      <div style="display:flex;gap:.8rem;flex-wrap:wrap">
         <a class="btn" href="ritual.html">The pause, step by step</a>
         <a class="btn" href="states.html">The lab, unedited</a>
       </div>
     </div>
     <figure class="frame">
       <img src="assets/editorial/small-batch.jpg" alt="A labelled StateShift jar beside a fresh cup — small batch, made by hand" loading="lazy">
-      <figcaption>weighed, sealed & signed · North India</figcaption>
+      <figcaption>weighed, sealed &amp; signed · North India</figcaption>
     </figure>
   </div>
 </section>
 
-<!-- 6 · FROM THE JOURNAL — quiet teaser -->
+<!-- 6 · FROM THE JOURNAL -->
 <section class="jt">
+  <p class="bridge" style="margin-bottom:1.4rem">The parts that never made it onto a label.</p>
   <span class="eyebrow">From the journal</span>
   <p class="q">"The first tester was family, and family is merciless. Early cups were pronounced <em>plain</em>, <em>masala</em>, once memorably <em>half-cooked</em>."</p>
   <a class="btn" href="story.html">Read the story</a>
-  <span class="margin-note" style="margin-left:1.2rem">failures included, honestly</span>
+  <span class="margin-note">failures included, honestly</span>
 </section>
 
 <!-- CONTACT CLOSE -->
@@ -328,6 +404,50 @@
     <span class="hand">one cup. one pause. one you.</span>
   </div>
 </footer>
+
+<script>
+/* Carousel dots — mobile only. Pure progressive enhancement:
+   if JS fails, the swipe carousel still works, you just lose dots. */
+(function(){
+  var row  = document.getElementById('pcRow');
+  var dots = document.getElementById('pcDots');
+  if(!row || !dots) return;
+
+  var cards = row.querySelectorAll('.pc');
+  cards.forEach(function(card, i){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('role','tab');
+    b.setAttribute('aria-label','Go to card ' + (i+1));
+    b.addEventListener('click', function(){
+      row.scrollTo({ left: card.offsetLeft - row.offsetLeft, behavior:'smooth' });
+    });
+    dots.appendChild(b);
+  });
+
+  var btns = dots.querySelectorAll('button');
+  function sync(){
+    var mid = row.scrollLeft + row.clientWidth / 2;
+    var active = 0, best = Infinity;
+    cards.forEach(function(card, i){
+      var c = card.offsetLeft - row.offsetLeft + card.offsetWidth / 2;
+      var d = Math.abs(c - mid);
+      if(d < best){ best = d; active = i; }
+    });
+    btns.forEach(function(b, i){
+      b.setAttribute('aria-current', i === active ? 'true' : 'false');
+    });
+  }
+
+  var t;
+  row.addEventListener('scroll', function(){
+    clearTimeout(t);
+    t = setTimeout(sync, 60);
+  }, { passive:true });
+
+  sync();
+})();
+</script>
 
 </body>
 </html>
