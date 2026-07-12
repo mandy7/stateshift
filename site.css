@@ -1,8 +1,18 @@
 /* ============================================================
-   StateShift — site.css — Website v2
+   StateShift — site.css — v3 (mobile-first pass)
    Paper journal + dark espresso accents
    Type: Playfair Display (display) · Lora (body)
          IBM Plex Mono (labels) · Caveat (margin notes)
+
+   v3 CHANGES
+   · Type scale repaired — mono labels were 8–9px against 17px
+     body text. Nothing lived in between. All raised.
+   · Nav: five links hold one row, CTA drops to row two, on
+     every page. Header un-sticks on mobile so it stops eating
+     the fold.
+   · .bridge added — connective tissue between sections.
+   · .cc-links becomes a 2×2 grid on mobile.
+   · Mobile padding reduced throughout.
    ============================================================ */
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -36,7 +46,7 @@ body{
   font-family:'Lora',Georgia,serif;
   background:var(--paper);
   color:var(--ink);
-  line-height:1.75;
+  line-height:1.85;
   min-height:100vh;
 }
 
@@ -48,6 +58,7 @@ body::after{
 }
 
 h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:400;line-height:1.15;color:var(--ink)}
+h1,h2{text-wrap:balance}
 em{font-style:italic}
 a{color:inherit}
 img{max-width:100%;display:block}
@@ -74,13 +85,13 @@ img{max-width:100%;display:block}
 }
 .site-logo span{color:var(--gold);font-style:italic}
 .site-logo small{
-  display:block;font-family:'IBM Plex Mono',monospace;font-size:.5rem;
-  letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-top:.1rem;
+  display:block;font-family:'IBM Plex Mono',monospace;font-size:.64rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:.2rem;
 }
 .site-nav{display:flex;gap:.15rem;align-items:center;flex-wrap:wrap}
 .site-nav a{
-  font-family:'IBM Plex Mono',monospace;font-size:.82rem;
-  letter-spacing:.14em;text-transform:uppercase;
+  font-family:'IBM Plex Mono',monospace;font-size:.76rem;
+  letter-spacing:.1em;text-transform:uppercase;
   color:var(--muted);text-decoration:none;
   padding:.45rem .8rem;border:1px solid transparent;
   transition:color .2s,border-color .2s;
@@ -90,7 +101,7 @@ img{max-width:100%;display:block}
 .site-nav a.cta{
   color:var(--cream);background:var(--forest);
   border:1px solid var(--forest);margin-left:.6rem;
-  padding:.5rem 1.1rem;
+  padding:.55rem 1.25rem;font-size:.74rem;
 }
 .site-nav a.cta:hover{background:var(--ink);border-color:var(--ink);color:var(--amber)}
 
@@ -100,13 +111,26 @@ img{max-width:100%;display:block}
 section{position:relative}
 
 .eyebrow{
-  font-family:'IBM Plex Mono',monospace;font-size:.62rem;
-  letter-spacing:.26em;text-transform:uppercase;color:var(--gold);
+  font-family:'IBM Plex Mono',monospace;font-size:.7rem;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
   display:block;margin-bottom:1.1rem;
 }
-.display{font-size:clamp(2.4rem,6vw,4.2rem);letter-spacing:-.02em;margin-bottom:1.4rem}
+.display{font-size:clamp(2.05rem,6.4vw,4.2rem);letter-spacing:-.02em;line-height:1.14;margin-bottom:1.4rem}
 .display em{color:var(--gold)}
-.lead{font-size:1.15rem;color:var(--ink-soft);line-height:1.9}
+.lead{font-size:clamp(1.02rem,2.4vw,1.15rem);color:var(--ink-soft);line-height:1.85}
+
+/* ---------- bridge · connective tissue between sections ------
+   A hairline drops out of the section above and fades into
+   gold, then one italic line hands you over.                  */
+.bridge{
+  max-width:520px;margin:0 auto 2rem;text-align:center;padding:0 1.3rem;
+  font-family:'Lora',serif;font-style:italic;
+  font-size:1rem;line-height:1.75;color:var(--muted);
+}
+.bridge::before{
+  content:'';display:block;width:1px;height:2.6rem;margin:0 auto 1.5rem;
+  background:linear-gradient(var(--line),var(--gold));
+}
 
 /* letterpress double rule */
 .rule-double{
@@ -125,7 +149,7 @@ section{position:relative}
 .seal{
   width:92px;height:92px;border:1px solid var(--gold);border-radius:50%;
   display:flex;align-items:center;justify-content:center;text-align:center;
-  font-family:'IBM Plex Mono',monospace;font-size:.5rem;letter-spacing:.2em;
+  font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.2em;
   text-transform:uppercase;color:var(--gold);line-height:1.5;
   transform:rotate(-8deg);padding:.6rem;
 }
@@ -150,10 +174,21 @@ section{position:relative}
   box-shadow:0 1px 3px rgba(38,25,14,.18);
 }
 
+/* ---------- full-bleed image -------------------------------
+   Use <img>, never background-cover, for any image with text
+   baked into it — a mobile crop will slice the headline off. */
+.bleed{margin:0;padding:0}
+.bleed img{width:100%;display:block}
+.bleed figcaption{
+  font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:center;padding:.9rem 1.3rem 0;
+}
+
 /* ---------- buttons ---------- */
 .btn{
   display:inline-block;font-family:'IBM Plex Mono',monospace;
-  font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
   text-decoration:none;padding:.95rem 2.1rem;
   border:1px solid var(--ink);color:var(--ink);
   transition:all .25s;background:transparent;
@@ -165,19 +200,19 @@ section{position:relative}
 .btn.on-dark:hover{background:var(--amber);color:var(--espresso)}
 
 /* ---------- dark sections ---------- */
-.dark{
-  background:var(--espresso);color:var(--dark-text);
-}
+.dark{background:var(--espresso);color:var(--dark-text)}
 .dark h1,.dark h2,.dark h3,.dark h4{color:var(--dark-text)}
 .dark .eyebrow{color:var(--amber)}
 .dark .lead{color:#cbb897}
 .dark .rule-double{border-color:var(--line-dark)}
 .dark .margin-note{color:var(--amber)}
+.dark .bridge{color:var(--dark-muted)}
+.dark .bridge::before{background:linear-gradient(var(--line-dark),var(--amber))}
 
 /* ---------- status chips ---------- */
 .chip{
   display:inline-block;font-family:'IBM Plex Mono',monospace;
-  font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;
+  font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
   padding:.3rem .75rem;border:1px solid var(--line-strong);color:var(--ink-soft);
 }
 .chip.locked{border-color:var(--forest);color:var(--forest)}
@@ -197,13 +232,13 @@ section{position:relative}
   display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem;
 }
 .site-footer h4{
-  font-family:'IBM Plex Mono',monospace;font-size:.6rem;font-weight:400;
-  letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.66rem;font-weight:400;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem;
 }
 .site-footer a{color:var(--dark-muted);text-decoration:none;transition:color .2s}
 .site-footer a:hover{color:var(--amber)}
 .footer-links{list-style:none}
-.footer-links li{margin-bottom:.5rem;font-size:.85rem}
+.footer-links li{margin-bottom:.5rem;font-size:.9rem}
 .footer-word{
   font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--dark-text);
   font-style:italic;line-height:1.5;margin-bottom:1rem;
@@ -212,10 +247,10 @@ section{position:relative}
   max-width:1060px;margin:2.5rem auto 0;padding-top:1.4rem;
   border-top:1px solid var(--line-dark);
   display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;
-  font-family:'IBM Plex Mono',monospace;font-size:.58rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.62rem;
   letter-spacing:.12em;text-transform:uppercase;
 }
-.footer-base .hand{font-family:'Caveat',cursive;font-size:.95rem;letter-spacing:0;text-transform:none;color:rgba(212,168,83,.5)}
+.footer-base .hand{font-family:'Caveat',cursive;font-size:1rem;letter-spacing:0;text-transform:none;color:rgba(212,168,83,.5)}
 
 /* ---------- helpers ---------- */
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
@@ -231,7 +266,7 @@ section{position:relative}
   box-shadow:0 2px 10px rgba(38,25,14,.08);
 }
 .notebook .nb-label{
-  font-family:'IBM Plex Mono',monospace;font-size:.54rem;letter-spacing:.22em;
+  font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.2em;
   text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.6rem;
 }
 .notebook .nb-line{
@@ -243,23 +278,117 @@ section{position:relative}
 
 /* ---------- pull quote ---------- */
 .pullquote{
-  font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3.4vw,2.1rem);
+  font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3.4vw,2.1rem);
   font-style:italic;text-align:center;line-height:1.55;
-  max-width:640px;margin:4.5rem auto;padding:0 2rem;color:var(--ink);
+  max-width:640px;margin:4.5rem auto;padding:0 1.4rem;color:var(--ink);
 }
 .pullquote small{
-  display:block;font-family:'IBM Plex Mono',monospace;font-size:.56rem;
-  letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
+  display:block;font-family:'IBM Plex Mono',monospace;font-size:.64rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gold);
   margin-top:1.1rem;font-style:normal;
 }
 .dark .pullquote{color:var(--dark-text)}
 
+/* ---------- editorial image utilities ---------- */
+.img-band{
+  width:100%;height:clamp(260px,46vw,520px);
+  background-size:cover;background-position:center;
+  filter:sepia(.08) saturate(.96);
+}
+figure.frame{margin:0}
+figure.frame img{
+  width:100%;height:auto;display:block;
+  box-shadow:0 10px 30px rgba(38,25,14,.18);
+}
+figure.frame figcaption{
+  font-family:'IBM Plex Mono',monospace;font-size:.64rem;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+  padding-top:.7rem;
+}
+.ed-grid{ /* generic editorial split: text + image, alternate with .flip */
+  max-width:1060px;margin:0 auto;padding:4rem 2rem;
+  display:grid;grid-template-columns:1fr 1.1fr;gap:3.4rem;align-items:center;
+}
+.ed-grid.flip>*:first-child{order:2}
+
+/* ---------- contact close (shared, before footer) ---------- */
+.contact-close{
+  border-top:1px solid var(--line);
+  background:var(--cream);
+  padding:4.5rem 2rem;text-align:center;
+}
+.contact-close h2{
+  font-size:clamp(1.8rem,4.5vw,2.8rem);line-height:1.25;margin-bottom:1rem;
+}
+.contact-close h2 em{color:var(--gold)}
+.contact-close .cc-line{
+  font-style:italic;color:var(--ink-soft);max-width:460px;margin:0 auto 2rem;
+}
+.cc-links{
+  display:flex;gap:2.2rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.2rem;
+}
+.cc-links a{
+  font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-soft);text-decoration:none;
+  border-bottom:1px solid var(--line-strong);padding-bottom:.3rem;
+  transition:color .2s,border-color .2s;
+  display:inline-flex;align-items:center;gap:.4rem;
+}
+.cc-links a:hover{color:var(--gold);border-color:var(--gold)}
+.cc-links svg{width:.95em;height:.95em;flex:0 0 auto;opacity:.75}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
 @media(max-width:860px){
   .grid-2{grid-template-columns:1fr;gap:2.2rem}
   .grid-3{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr}
-  .site-header{padding:.85rem 1.1rem}
-  .wrap,.wrap-narrow{padding:0 1.2rem}
-  .site-nav a{padding:.4rem .5rem;font-size:.58rem}
-  .site-nav a.cta{margin-left:.2rem}
+  .footer-grid{grid-template-columns:1fr;gap:2rem}
+  .wrap,.wrap-narrow{padding:0 1.3rem}
+  .pad-block{padding:3.4rem 0}
+  .pullquote{margin:3.2rem auto}
+  .notebook{padding:1.2rem 1.2rem;margin:1.8rem 0}
+  .ed-grid{grid-template-columns:1fr;gap:2rem;padding:2.8rem 1.3rem}
+  .ed-grid.flip>*:first-child{order:0}
+  .contact-close{padding:3.4rem 1.3rem}
+  .site-footer{padding:2.6rem 1.3rem 2rem}
+}
+
+/* --- NAV · five links hold one row, CTA alone on row two -----
+   ::after is a zero-height flex line-break. order:1 puts it
+   between the links (order 0) and the CTA (order 2).
+   Header un-sticks here so a ~130px bar stops eating the fold. */
+@media(max-width:760px){
+  .site-header{
+    position:relative;
+    flex-direction:column;align-items:center;
+    gap:.7rem;padding:.85rem 1.1rem;
+  }
+  .site-nav{
+    width:100%;display:flex;flex-wrap:wrap;
+    justify-content:center;align-items:center;gap:.35rem .55rem;
+  }
+  .site-nav a{
+    font-size:.7rem;letter-spacing:.05em;white-space:nowrap;
+    padding:.3rem .3rem;
+  }
+  .site-nav::after{content:'';flex-basis:100%;height:0;order:1}
+  .site-nav a.cta{
+    order:2;margin:.15rem 0 0;
+    padding:.55rem 1.5rem;font-size:.7rem;letter-spacing:.1em;
+  }
+  /* 2×2 instead of a haphazard wrap */
+  .cc-links{
+    display:grid;grid-template-columns:1fr 1fr;gap:.85rem 1rem;
+    max-width:540px;margin-left:auto;margin-right:auto;
+  }
+  .cc-links a{justify-content:center;text-align:center;white-space:nowrap}
+}
+
+@media(max-width:420px){
+  .site-nav{gap:.3rem .4rem}
+  .site-nav a{font-size:.63rem;letter-spacing:.02em;padding:.3rem .18rem}
+  .site-logo small{font-size:.58rem;letter-spacing:.16em}
+  .cc-links a{font-size:.64rem;white-space:normal}
 }

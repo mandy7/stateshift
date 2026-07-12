@@ -3,43 +3,72 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Pause — StateShift</title>
-<meta name="description" content="The StateShift pause: two sachets, hot water, and three minutes that belong entirely to you.">
+<title>How It Works — The Pause — StateShift</title>
+<meta name="description" content="Two sachets, hot water, three minutes. Why the wait is the point, why there are two sachets and not one, and exactly how to brew a StateShift cup.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-.ritual-hero{padding:5.5rem 2rem 3.6rem;text-align:center}
-/* the moment — image + text */
-.pm-grid{
-  max-width:1060px;margin:0 auto;padding:2.4rem 2rem 3.8rem;
-  display:grid;grid-template-columns:1fr 1.1fr;gap:3.4rem;align-items:center;
+/* PAGE-SPECIFIC ONLY — nav, eyebrow, bridge, cc-links, .bleed
+   and .print all live in site.css now. */
+
+.ritual-hero{padding:3rem 1.3rem 2.4rem;text-align:center;max-width:620px;margin:0 auto}
+@media(min-width:761px){.ritual-hero{padding:4.6rem 2rem 3rem}}
+
+.tale{max-width:660px;margin:0 auto;padding:0 1.3rem}
+@media(min-width:761px){.tale{padding:0 2rem}}
+.mv{padding:3rem 0}
+.mv + .mv{border-top:1px solid var(--line)}
+.mv h2{font-size:clamp(1.55rem,4.2vw,2.1rem);line-height:1.25;margin-bottom:1.3rem}
+.mv p{margin-bottom:1.15rem;font-size:1.05rem;line-height:1.9;color:var(--ink-soft)}
+.mv p:last-child{margin-bottom:0}
+.mv p strong{color:var(--ink);font-weight:500}
+.mv em.beat{color:var(--ink);font-style:italic}
+
+/* two sachets */
+.sachets{display:grid;grid-template-columns:1fr;gap:1.1rem;margin:2rem 0 0}
+@media(min-width:761px){.sachets{grid-template-columns:1fr 1fr;gap:1.4rem}}
+.sachet-card{border:1px solid var(--line);background:var(--cream);padding:1.5rem 1.4rem}
+@media(min-width:761px){.sachet-card{padding:1.9rem}}
+.sachet-card .tag{
+  font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.7rem;
 }
-@media(max-width:820px){.pm-grid{grid-template-columns:1fr;gap:2rem}}
-.pm-img{
-  min-height:360px;height:100%;
-  background-size:cover;background-position:center;
-  filter:sepia(.12) saturate(.95);
-  box-shadow:0 10px 30px rgba(38,25,14,.18);
-}
-@media(max-width:820px){.pm-img{min-height:250px}}
-.pm-text p{font-size:1.08rem;line-height:2;color:var(--ink-soft);margin-bottom:1.2rem}
-/* sachets */
-.sachets-band{background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:4rem 0}
-.sachets-intro{max-width:1060px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1.2fr 1fr;gap:3.4rem;align-items:center}
-@media(max-width:820px){.sachets-intro{grid-template-columns:1fr;gap:2rem}}
-.sachets{max-width:1060px;margin:2.6rem auto 0;padding:0 2rem;display:grid;grid-template-columns:1fr 1fr;gap:1.6rem}
-@media(max-width:760px){.sachets{grid-template-columns:1fr}}
-.sachet-card{border:1px solid var(--line);background:var(--paper);padding:2rem}
-.sachet-card .mono{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.9rem}
-.sachet-card h3{font-size:1.45rem;margin-bottom:.7rem}
-.sachet-card p{font-size:.93rem;color:var(--ink-soft);line-height:1.8}
+.sachet-card h3{font-size:1.3rem;margin-bottom:.5rem;line-height:1.3}
+.sachet-card > p{font-size:.98rem;color:var(--ink-soft);line-height:1.8;margin:0}
 .sachet-card ul{list-style:none;margin-top:1rem}
-.sachet-card li{font-size:.88rem;color:var(--ink-soft);padding:.35rem 0;border-top:1px dashed var(--line)}
+.sachet-card li{font-size:.95rem;color:var(--ink-soft);padding:.5rem 0;border-top:1px dashed var(--line);line-height:1.6}
 .sachet-card li b{color:var(--ink);font-weight:500}
-/* brew card */
-.brewcard{padding:4.2rem 2rem;text-align:center}
-.brewcard .print{max-width:520px;margin:2.2rem auto 0}
+
+/* six steps — real text, not a picture of text.
+   The card is a portrait JPG: at 400px wide its small print
+   is unreadable, and a search engine can't index it either. */
+.steps{list-style:none;counter-reset:s;margin:2rem 0 0}
+.steps li{
+  counter-increment:s;position:relative;
+  padding:1.15rem 0 1.15rem 3.1rem;
+  border-top:1px solid var(--line);
+  font-size:1rem;line-height:1.75;color:var(--ink-soft);
+}
+.steps li:last-child{border-bottom:1px solid var(--line)}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:1.05rem;
+  width:2.1rem;height:2.1rem;border:1px solid var(--gold);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'IBM Plex Mono',monospace;font-size:.8rem;color:var(--gold);
+}
+.steps b{display:block;font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--ink);font-weight:400;margin-bottom:.15rem}
+.steps .beat{color:var(--gold);font-style:italic}
+
+.card-figure{max-width:460px;margin:2.6rem auto 0}
+
+/* the honest answer to the question everyone asks */
+.aside-q{
+  background:var(--paper-deep);border-left:3px solid var(--gold);
+  padding:1.4rem 1.3rem;margin:2.2rem 0 0;
+}
+.aside-q h3{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;margin-bottom:.5rem}
+.aside-q p{font-size:.98rem;line-height:1.8;color:var(--ink-soft);margin:0}
 </style>
 </head>
 <body>
@@ -58,96 +87,99 @@
 
 <section class="ritual-hero">
   <span class="eyebrow">The Pause</span>
-  <h1 class="display">A small pause.<br>A big <em>shift</em>.</h1>
-  <p class="lead" style="max-width:540px;margin:0 auto">Somewhere in your day there are three minutes nobody is using. This page is about them.</p>
+  <h1 class="display">Three minutes<br>nobody is <em>using</em>.</h1>
+  <p class="lead">They're already in your day — somewhere between the last thing and the next thing. Here's what they're for, and exactly how the cup works.</p>
 </section>
 
-<!-- THE MOMENT · image left, text right -->
-<section class="pm-grid">
-  <div class="pm-img" style="background-image:url('assets/editorial/pause-person.jpg')" role="img" aria-label="A person by a window with a cup, city light beyond"></div>
-  <div class="pm-text">
-    <span class="eyebrow">First, the why</span>
-    <h2 style="font-size:clamp(1.8rem,4vw,2.4rem);margin-bottom:1.2rem">The pause is the point</h2>
-    <p>Steam rising. A window. Nowhere you have to be for three minutes. The wait isn't preparation for the experience — <em>it is the experience</em>. The cup just gives your hands something to hold while you arrive.</p>
-    <p>Everything about how a StateShift cup is made exists to protect those minutes: nothing to grind, nothing to measure, nothing to clean up. Just water, patience, and you.</p>
-    <p><span class="margin-note">one cup. one pause. one you.</span></p>
-  </div>
-</section>
+<!-- The poster carries its own headline. Full-width <img>, never
+     a background-cover crop, or mobile slices the type in half. -->
+<figure class="bleed">
+  <img src="assets/editorial/pause-person.jpg" alt="A woman sitting by a sunlit window, beside the words: the pause is not a break" loading="lazy">
+</figure>
 
-<!-- TWO SACHETS -->
-<section class="sachets-band">
-  <div class="sachets-intro">
-    <div>
-      <span class="eyebrow">Then, the how</span>
-      <h2 style="font-size:clamp(1.8rem,4vw,2.4rem);margin-bottom:1rem">Two sachets</h2>
-      <p class="lead">What should dissolve and what should steep are different things. Kept apart until the water brings them together — a clean cup, nothing gritty, nothing harsh.</p>
+<div class="tale">
+
+  <!-- WHY THE WAIT -->
+  <section class="mv">
+    <h2>We made it slow on purpose</h2>
+    <p>The first version of StateShift was instant. Powder, hot water, done in twenty seconds. It worked. It was also completely pointless.</p>
+    <p>Because the thing I actually needed — a door between one part of the day and the next — does not happen in twenty seconds. It happens in the three minutes where the water has gone in and nothing at all is being asked of you.</p>
+    <p class="pull" style="border-left:2px solid var(--gold);padding-left:1.2rem;margin:1.6rem 0;font-family:'Playfair Display',serif;font-style:italic;font-size:1.3rem;line-height:1.6;color:var(--ink)">The steep isn't you waiting for the coffee.<br>It's the coffee waiting for you.</p>
+    <p>So the slowness is designed in. <strong>Three minutes is long enough to be a pause, and short enough that you'll actually take it.</strong> Nothing to grind, nothing to weigh, nothing to wash up. The cup just gives your hands something to hold while you arrive.</p>
+  </section>
+
+  <!-- WHY TWO SACHETS -->
+  <section class="mv">
+    <h2>Why two sachets, and not one</h2>
+    <p>This is the question we get most, usually with a slightly suspicious look. Two sachets seems like one too many.</p>
+    <p>But <strong>what should dissolve and what should steep are not the same thing.</strong> Creamer, jaggery and cocoa want to melt straight into water. Coffee grounds and whole aromatics want the opposite — to be held apart from the cup, steeped, then lifted out and thrown away.</p>
+    <p>We tried it in one sachet. It was gritty, it was muddy, and the aroma never lifted off the surface. Keeping them apart until the water brings them together is the difference between a clean cup and a cup you politely finish.</p>
+    <p><em class="beat">It looks like extra packaging. It's actually the whole product.</em></p>
+
+    <div class="sachets">
+      <div class="sachet-card">
+        <span class="tag">Sachet A · the filter</span>
+        <h3>Everything that steeps</h3>
+        <p>A pour-over filter pouch that hangs on the rim of your cup. Nothing gets into the coffee except flavour.</p>
+        <ul>
+          <li><b>Freshly ground coffee</b> — single estate, ground for steeping, never in advance</li>
+          <li><b>Aromatics</b> — cardamom, mace, orange peel; by blend</li>
+        </ul>
+      </div>
+      <div class="sachet-card">
+        <span class="tag">Sachet B · the cup mix</span>
+        <h3>Everything that dissolves</h3>
+        <p>Tipped into the empty cup before the water. Body and sweetness, weighed to the tenth of a gram.</p>
+        <ul>
+          <li><b>Creamer</b> — body that survives the pour</li>
+          <li><b>Palm jaggery</b> — warmth, not dessert</li>
+          <li><b>Cocoa</b> — where the blend calls for it</li>
+        </ul>
+      </div>
     </div>
-    <figure class="print tilt-r" style="margin:0">
+
+    <!-- If assets/moments/sachet-box.jpg exists, slot it back here:
+    <figure class="print tilt-r" style="max-width:380px;margin:2.6rem auto 0">
       <img src="assets/moments/sachet-box.jpg" alt="A StateShift box with its two sachets">
       <figcaption>every serving arrives as a pair</figcaption>
     </figure>
-  </div>
-  <div class="sachets">
-    <div class="sachet-card">
-      <span class="mono">Sachet 01 · The Cup Sachet</span>
-      <h3>Everything that dissolves</h3>
-      <p>Tipped into the empty cup — the body and the sweetness, weighed to the tenth of a gram.</p>
-      <ul>
-        <li><b>Creamer</b> — for body that survives the pour</li>
-        <li><b>Palm jaggery</b> — warmth without dessert</li>
-        <li><b>Cocoa</b> — where the blend calls for it</li>
-      </ul>
-    </div>
-    <div class="sachet-card">
-      <span class="mono">Sachet 02 · The Filter Sachet</span>
-      <h3>Everything that steeps</h3>
-      <p>A filter-paper pouch that hangs in the hot water like a slow question. Nothing escapes into your cup except flavour.</p>
-      <ul>
-        <li><b>Freshly ground coffee</b> — single estate, ground for steeping</li>
-        <li><b>Botanicals & aromatics</b> — cardamom, orange peel, mace, by blend</li>
-        <li><b>Tea</b> — where the blend calls for it</li>
-      </ul>
-    </div>
-  </div>
-</section>
+    -->
+  </section>
 
-<!-- THE BREW CARD -->
-<section class="brewcard">
-  <span class="eyebrow">How to Brew</span>
-  <h2 style="font-size:clamp(1.8rem,4vw,2.4rem)">The card in every box</h2>
-  <p class="margin-note" style="margin-top:.6rem">"is it tea? is it coffee?" — a guest, mid-cup</p>
-  <figure class="print tilt-0">
-    <img src="assets/posters/how-to-brew.jpg" alt="The StateShift brew card: empty the cup sachet, hang the drip bag, pour slowly, steep and wait, remove, stir and enjoy">
-    <figcaption>six small steps, five unhurried minutes</figcaption>
-  </figure>
-</section>
+  <!-- HOW TO BREW -->
+  <section class="mv">
+    <h2>Six small steps</h2>
+    <p>You need a cup and hot water. That's the entire equipment list.</p>
 
-<div class="pullquote">The wait is not before the experience.<br>The wait is the experience.<small>why three minutes</small></div>
+    <ol class="steps">
+      <li><b>Empty the cup mix</b>Tip Sachet B into your empty cup. It should look like nothing much. It isn't.</li>
+      <li><b>Hang the filter</b>Open Sachet A and hook the drip bag over the rim.</li>
+      <li><b>Pour slowly</b>About 150ml of hot water, 90–95°C. Take 45–60 seconds over it. <span class="beat">This is not a step to rush — it's the first half of the pause.</span></li>
+      <li><b>Steep and wait</b>Two to three minutes. Don't stir, don't poke it, don't check your phone. This is the part that matters.</li>
+      <li><b>Lift the filter out</b>Straight up, no squeezing — squeezing is where bitterness comes from. Discard.</li>
+      <li><b>Stir, then drink</b>Twenty to thirty seconds, until it's one cup and not two layers. Then take a breath before the first sip.</li>
+    </ol>
 
-<!-- WHY IT MATTERS -->
-<section class="why-band" style="background:var(--paper-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1060px;margin:0 auto;padding:3.2rem 2rem" class="why-grid-inner">
-    <div>
-      <h4 style="font-size:1.15rem;margin-bottom:.5rem">Make it yours</h4>
-      <p style="font-size:.9rem;color:var(--ink-soft);line-height:1.75">Want it stronger? Steep a little longer. Softer? A splash of hot milk after the filter comes out. The pause bends to you.</p>
+    <div class="aside-q">
+      <h3>"Is it tea? Is it coffee?"</h3>
+      <p>Everyone asks. It hangs like a tea bag because it's a pour-over filter — but inside is freshly ground single-estate coffee, not leaves. (One blend does borrow a little tea. We'll tell you which.) Nobody asks twice.</p>
     </div>
-    <div>
-      <h4 style="font-size:1.15rem;margin-bottom:.5rem">Why water first</h4>
-      <p style="font-size:.9rem;color:var(--ink-soft);line-height:1.75">Milk mutes aroma — many failed cups taught us that. Water lets the top notes arrive as composed.</p>
-    </div>
-    <div>
-      <h4 style="font-size:1.15rem;margin-bottom:.5rem">Why the wait matters</h4>
-      <p style="font-size:.9rem;color:var(--ink-soft);line-height:1.75">The steep isn't waiting for the coffee. It's the coffee waiting for you.</p>
-    </div>
-  </div>
-</section>
-<style>@media(max-width:760px){.why-grid-inner{grid-template-columns:1fr!important}}</style>
+
+    <figure class="print tilt-0 card-figure">
+      <img src="assets/posters/how-to-brew.jpg" alt="The StateShift brew card: empty cup mix, hang drip bag, pour slowly, steep and wait, remove drip bag, stir and enjoy" loading="lazy">
+      <figcaption>the card that comes in every box</figcaption>
+    </figure>
+  </section>
+
+</div>
+
+<div class="pullquote">One cup.<br>One pause.<br><em>One you.</em><small>the whole idea, on a good day</small></div>
 
 <!-- CTA -->
 <section class="dark pad-block center">
   <div class="wrap-narrow">
     <span class="eyebrow">Ready?</span>
-    <h2 style="font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:1.2rem">Choose the state you want to shift into</h2>
+    <h2 style="font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:1.2rem">Choose the state you want to shift into</h2>
     <a class="btn on-dark" href="collection.html">See the collection</a>
   </div>
 </section>
@@ -160,9 +192,16 @@
   <div class="cc-links">
     <!-- REPLACE: WhatsApp number -->
     <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%20—%20I%27d%20like%20to%20join%20the%20Tasting%20Circle.">Join the Tasting Circle</a>
-    <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
-    <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a>
     <a href="faq.html">Questions → FAQ</a>
+    <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
+    <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+        <rect x="2.5" y="2.5" width="19" height="19" rx="5"/>
+        <circle cx="12" cy="12" r="4.2"/>
+        <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/>
+      </svg>
+      @stateshiftcoffee
+    </a>
   </div>
   <a class="btn gold" href="sampler.html">Try the Sampler</a>
 </section>
