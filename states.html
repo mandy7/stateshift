@@ -3,73 +3,90 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Lab — StateShift</title>
-<meta name="description" content="The research layer of StateShift: every logged session, every verdict, and the measured before/after shifts — failures included.">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<title>The Lab. StateShift.</title>
+<meta name="description" content="Fifty-one sittings, most of them failures, all of them written down. The four findings that changed the coffee, plus the full archive.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-.s-hero{padding:4.5rem 2rem 2.6rem;text-align:center}
-.s-body{padding:1.4rem 0 5rem}
-.s-inner{max-width:1060px;margin:0 auto;padding:0 2rem}
-/* master tabs */
-.master-tabs{display:flex;gap:.6rem;justify-content:center;margin:0 0 2.6rem;flex-wrap:wrap}
+.l-hero{padding:2.6rem 1.3rem 1.8rem;text-align:center;max-width:620px;margin:0 auto}
+@media(min-width:761px){.l-hero{padding:4rem 2rem 2.4rem}}
+.l-hero h1{font-size:clamp(1.9rem,6.4vw,3rem);line-height:1.15;margin-bottom:.9rem}
+.l-hero h1 em{color:var(--gold)}
+.l-hero .lead{font-size:1.03rem;line-height:1.75;color:var(--ink-soft)}
+.updated{
+  margin-top:1.2rem;font-family:'IBM Plex Mono',monospace;font-size:.64rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+}
+
+/* ---- the four findings. A database is not evidence. This is. ---- */
+.finds{max-width:660px;margin:0 auto;padding:1rem 1.3rem 3rem}
+.find{border-left:2px solid var(--gold);padding:0 0 0 1.3rem;margin-bottom:2.2rem}
+.find .k{
+  font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.5rem;
+}
+.find h2{font-family:'Playfair Display',serif;font-size:clamp(1.25rem,3.6vw,1.55rem);line-height:1.35;margin-bottom:.55rem}
+.find p{font-size:1rem;line-height:1.85;color:var(--ink-soft);margin:0}
+.find .ref{
+  display:block;margin-top:.5rem;font-family:'IBM Plex Mono',monospace;
+  font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+}
+
+.l-body{padding:0 0 4rem}
+.s-inner{max-width:1060px;margin:0 auto;padding:0 1.3rem}
+@media(min-width:761px){.s-inner{padding:0 2rem}}
+.master-tabs{display:flex;gap:.5rem;justify-content:center;margin:0 0 2rem;flex-wrap:wrap}
 .mtab{
   background:transparent;border:1px solid var(--line-strong);color:var(--muted);
-  padding:.85rem 1.8rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;
-  font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;transition:all .2s;
+  padding:.7rem 1.3rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;
+  font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;transition:all .2s;
 }
 .mtab:hover{color:var(--gold);border-color:var(--gold)}
 .mtab.active{background:var(--gold);color:var(--cream);border-color:var(--gold)}
 .master-pane{display:none}
 .master-pane.active{display:block}
-/* sub tabs */
-.tabs{display:flex;gap:.6rem;margin-bottom:2rem;flex-wrap:wrap}
+.tabs{display:flex;gap:.5rem;margin-bottom:1.6rem;flex-wrap:wrap}
 .tab-btn{
   background:transparent;border:1px solid var(--line);color:var(--muted);
-  padding:.6rem 1.3rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;
-  font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;transition:all .2s;
+  padding:.5rem 1rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;
+  font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;transition:all .2s;
 }
 .tab-btn:hover{color:var(--gold);border-color:var(--gold)}
 .tab-btn.active{background:var(--gold);color:var(--cream);border-color:var(--gold)}
-/* records — light cards */
-.lab-entry{border:1px solid var(--line);background:var(--cream);margin-bottom:1.1rem}
-.le-head{padding:1.3rem 1.5rem;cursor:pointer;user-select:none;display:flex;justify-content:space-between;gap:1rem;align-items:baseline}
+.lab-entry{border:1px solid var(--line);background:var(--cream);margin-bottom:1rem}
+.le-head{padding:1.1rem 1.2rem;cursor:pointer;user-select:none;display:flex;justify-content:space-between;gap:1rem;align-items:baseline}
 .le-head:hover .le-title{color:var(--gold)}
-.le-meta{font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
-.le-title{font-family:'Playfair Display',serif;font-size:1.15rem;line-height:1.45;transition:color .2s;color:var(--ink)}
-.le-tag{font-family:'IBM Plex Mono',monospace;font-size:.52rem;letter-spacing:.14em;color:var(--gold);border:1px solid var(--line);padding:.2rem .55rem;white-space:nowrap}
-.le-body{display:none;border-top:1px solid var(--line);padding:1.5rem;background:var(--paper)}
+.le-meta{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.le-title{font-family:'Playfair Display',serif;font-size:1.1rem;line-height:1.45;transition:color .2s;color:var(--ink)}
+.le-tag{font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.12em;color:var(--gold);border:1px solid var(--line);padding:.2rem .5rem;white-space:nowrap}
+.le-body{display:none;border-top:1px solid var(--line);padding:1.3rem;background:var(--paper)}
 .le-body.open{display:block}
-.le-body .prose{white-space:pre-line;color:var(--ink-soft);font-size:.93rem;line-height:1.85;margin-bottom:1.4rem}
-.le-label{font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.7rem}
-.obs-list{list-style:none;margin-bottom:1.2rem}
-.obs-list li{position:relative;padding-left:1.1rem;margin-bottom:.5rem;color:var(--ink-soft);font-size:.9rem;line-height:1.7}
-.obs-list li::before{content:'—';position:absolute;left:0;color:rgba(176,125,30,.55)}
-.field-note{border-left:2px solid rgba(176,125,30,.5);padding-left:1rem;margin-top:1.2rem}
-.field-note-text{color:var(--gold);font-style:italic;font-size:.92rem;line-height:1.75}
-.lab-note{
-  border:1px dashed var(--line-strong);padding:1.2rem 1.5rem;margin-bottom:2.2rem;
-  font-size:.88rem;color:var(--ink-soft);line-height:1.8;background:var(--cream);
-}
-.lab-note .hand{color:var(--gold);font-size:1.1rem}
-.count-line{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:1.4rem}
-/* measurements — light cards */
-.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-bottom:1.6rem}
-.metric-card{background:var(--cream);border:1px solid var(--line);padding:1.5rem}
-.metric-label{color:var(--gold);font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.9rem}
-.metric-value{font-family:'Playfair Display',serif;font-size:2.6rem;color:var(--ink)}
-.metric-caption{margin-top:.5rem;color:var(--muted);font-size:.8rem;line-height:1.6}
-.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
-.chart-card{background:var(--cream);border:1px solid var(--line);padding:1.5rem}
+.le-body .prose{white-space:pre-line;color:var(--ink-soft);font-size:.95rem;line-height:1.85;margin-bottom:1.2rem}
+.le-label{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+.obs-list{list-style:none;margin-bottom:1rem}
+.obs-list li{position:relative;padding-left:1.1rem;margin-bottom:.45rem;color:var(--ink-soft);font-size:.93rem;line-height:1.7}
+.obs-list li::before{content:'\2022';position:absolute;left:0;color:rgba(176,125,30,.55)}
+.field-note{border-left:2px solid rgba(176,125,30,.5);padding-left:1rem;margin-top:1rem}
+.field-note-text{color:var(--gold);font-style:italic;font-size:.95rem;line-height:1.75}
+.count-line{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem}
+.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.4rem}
+.metric-card{background:var(--cream);border:1px solid var(--line);padding:1.3rem}
+.metric-label{color:var(--gold);font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.8rem}
+.metric-value{font-family:'Playfair Display',serif;font-size:2.3rem;color:var(--ink)}
+.metric-caption{margin-top:.4rem;color:var(--muted);font-size:.82rem;line-height:1.6}
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.chart-card{background:var(--cream);border:1px solid var(--line);padding:1.3rem}
 .chart-card.full{grid-column:1/-1}
-.chart-title{font-family:'Playfair Display',serif;font-size:1.15rem;margin-bottom:1rem;color:var(--ink)}
-canvas{width:100%!important;height:300px!important}
-.footer-note{margin-top:2.6rem;color:var(--muted);line-height:1.8;font-size:.85rem;border-top:1px solid var(--line);padding-top:1.4rem}
+.chart-title{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:.9rem;color:var(--ink)}
+canvas{width:100%!important;height:280px!important}
+.footer-note{margin-top:2.2rem;color:var(--muted);line-height:1.8;font-size:.86rem;border-top:1px solid var(--line);padding-top:1.3rem}
 .tab-content{display:none}
 .tab-content.active{display:block}
 @media(max-width:900px){.summary-grid,.chart-grid{grid-template-columns:1fr}.chart-card.full{grid-column:auto}}
+.l-cta{background:var(--espresso);color:var(--dark-text);text-align:center;padding:3.2rem 1.3rem}
+.l-cta h2{color:var(--dark-text);font-size:clamp(1.6rem,4.2vw,2.2rem);margin-bottom:1.2rem}
 </style>
 </head>
 <body>
@@ -77,123 +94,139 @@ canvas{width:100%!important;height:300px!important}
 <header class="site-header">
   <a href="index.html" class="site-logo">State<span>Shift</span><small>A study of moments</small></a>
   <nav class="site-nav">
-    <a href="index.html">Home</a>
+    <a href="collection.html">Coffee</a>
+    <a href="index.html#how">How it works</a>
     <a href="story.html">Story</a>
-    <a href="ritual.html">The Pause</a>
-    <a href="collection.html">Collection</a>
     <a href="states.html" class="active">Lab</a>
-    <a href="sampler.html" class="cta">Try the Sampler</a>
   </nav>
 </header>
 
-<section class="s-hero">
-  <span class="eyebrow">The Research Lab</span>
-  <h1 class="display">The <em>Lab</em></h1>
-  <p class="lead" style="max-width:620px;margin:0 auto 1rem">We study moments as carefully as others study coffee. Every sitting is logged, scored, and kept — the field records and the measurements, side by side.</p>
-  <span class="margin-note">prefer the story version? read the <a href="journal.html" style="color:inherit">journal</a> →</span>
+<section class="l-hero">
+  <span class="eyebrow">The Lab</span>
+  <h1>Fifty-one sittings.<br><em>Most of them failed</em>.</h1>
+  <p class="lead">Every cup gets logged with the verdict intact, including the bad ones. Four of those sittings changed the coffee. Here they are, then the whole archive.</p>
+  <!-- EDIT THIS EVERY TIME YOU LOG A SESSION. A stale date on this page
+       is worse than no page: it reads as a project that was abandoned. -->
+  <div class="updated">Last sitting logged &middot; UPDATE THIS DATE</div>
 </section>
 
-<div class="s-body">
+<!-- ============ THE FOUR FINDINGS ============ -->
+<div class="finds">
+
+  <div class="find">
+    <span class="k">The breakthrough</span>
+    <h2>She named the cardamom from across the kitchen.</h2>
+    <p>Nobody asked her to. She was doing something else. For months the aroma had been vanishing into the milk, and then one morning it did not, and she said the word out loud from six feet away. That cup is Rukh, and nothing about it has changed since.</p>
+    <span class="ref">Rukh &middot; sitting 25</span>
+  </div>
+
+  <div class="find">
+    <span class="k">The biggest failure</span>
+    <h2>The coffee disappeared into the milk.</h2>
+    <p>Cup after cup of Baarbara Estate came out tasting like cardamom milk with a rumour of coffee in it. Beautiful beans, wrong job. It took eleven sittings to accept that the bean was the problem and not the dose.</p>
+    <span class="ref">Rukh &middot; sittings 3 to 14</span>
+  </div>
+
+  <div class="find">
+    <span class="k">The thing nobody expects</span>
+    <h2>The bitterness was never the coffee.</h2>
+    <p>We chased it through grind size, dose, water temperature and steep time for weeks. It was the cardamom. Ground at home, it oxidises within days and turns bitter, and it takes the whole cup down with it. Sealed commercial powder, fresh batch, fixed in one sitting. Aromatics are more fragile than the beans they sit next to.</p>
+    <span class="ref">Rukh &middot; Kisse</span>
+  </div>
+
+  <div class="find">
+    <span class="k">What is open right now</span>
+    <h2>Hazelnut, and a bergamot we cannot buy.</h2>
+    <p>Lamhe needs a signature aroma the way Rukh has cardamom, and roasted hazelnut is the current candidate. Sehar needs real bergamot: Earl Grey works as a proxy up to a point, and past about a tenth of a gram it stops being citrus and starts being black tea. Both are unfinished, and both are on this page before they are solved.</p>
+    <span class="ref">Lamhe &middot; Sehar</span>
+  </div>
+
+</div>
+
+<!-- ============ THE ARCHIVE, ON REQUEST ============ -->
+<div class="l-body">
   <div class="s-inner">
+    <details class="disclose">
+      <summary>Browse all sittings and the measurements</summary>
+      <div class="body">
 
-    <div class="master-tabs">
-      <button class="mtab active" data-pane="recordsPane">Field Records</button>
-      <button class="mtab" data-pane="measurePane">Measurements</button>
-    </div>
-
-    <!-- ===== FIELD RECORDS ===== -->
-    <div id="recordsPane" class="master-pane active">
-      <div class="lab-note">
-        Transcribed from the bench notebook, verdicts intact. <b>Sehar, Rukh, and Kisse are locked</b> — the pages below are how that happened. Current sittings study consistency and shelf life. <span class="hand">new pages arrive with each transcription</span>
-      </div>
-      <div class="tabs" id="recordTabs">
-        <button class="tab-btn active" data-sku="ALL">All sessions</button>
-        <button class="tab-btn" data-sku="RUKH">Rukh</button>
-        <button class="tab-btn" data-sku="KISSE">Kisse</button>
-      </div>
-      <div class="count-line" id="countLine"></div>
-      <div id="entries"></div>
-    </div>
-
-    <!-- ===== MEASUREMENTS ===== -->
-    <div id="measurePane" class="master-pane">
-      <div class="lab-note">
-        Every sitting begins and ends with the same quiet question: <em>how do you feel, one to five?</em> These are the answers, plotted. Direction matters more than magnitude.
-      </div>
-      <div class="tabs">
-        <button class="tab-btn m-active active" data-tab="rukhTab">Rukh</button>
-        <button class="tab-btn m-active" data-tab="kisseTab">Kisse</button>
-      </div>
-
-      <div id="rukhTab" class="tab-content active">
-        <div class="summary-grid" id="rukhSummary"></div>
-        <div class="chart-grid">
-          <div class="chart-card"><div class="chart-title">Focus, before the cup and after</div><canvas id="focusChart"></canvas></div>
-          <div class="chart-card"><div class="chart-title">Energy, before the cup and after</div><canvas id="energyChart"></canvas></div>
-          <div class="chart-card full"><div class="chart-title">Mood, before the cup and after</div><canvas id="moodChart"></canvas></div>
+        <div class="master-tabs">
+          <button class="mtab active" data-pane="recordsPane">Field records</button>
+          <button class="mtab" data-pane="measurePane">The numbers</button>
         </div>
-      </div>
 
-      <div id="kisseTab" class="tab-content">
-        <div class="summary-grid" id="kisseSummary"></div>
-        <div class="chart-grid">
-          <div class="chart-card"><div class="chart-title">Warmth, before the cup and after</div><canvas id="warmthChart"></canvas></div>
-          <div class="chart-card"><div class="chart-title">Mystery — the note no one can name</div><canvas id="mysteryChart"></canvas></div>
-          <div class="chart-card full"><div class="chart-title">Linger — what stays when the cup is done</div><canvas id="lingerChart"></canvas></div>
+        <div id="recordsPane" class="master-pane active">
+          <div class="tabs" id="recordTabs">
+            <button class="tab-btn active" data-sku="ALL">All sittings</button>
+            <button class="tab-btn" data-sku="RUKH">Rukh</button>
+            <button class="tab-btn" data-sku="KISSE">Kisse</button>
+          </div>
+          <div class="count-line" id="countLine"></div>
+          <div id="entries"></div>
         </div>
-      </div>
 
-      <div class="footer-note">
-        Scale reference → 1 = low state · 3 = balanced baseline · 5 = unusually elevated. Sessions that did not record a given metric are excluded from that metric's average and chart, rather than counted as zero. Self-reported by tester; treated as directional evidence, not proof.
-      </div>
-    </div>
+        <div id="measurePane" class="master-pane">
+          <div class="tabs">
+            <button class="tab-btn m-active active" data-tab="rukhTab">Rukh</button>
+            <button class="tab-btn m-active" data-tab="kisseTab">Kisse</button>
+          </div>
+          <div id="rukhTab" class="tab-content active">
+            <div class="summary-grid" id="rukhSummary"></div>
+            <div class="chart-grid">
+              <div class="chart-card"><div class="chart-title">Focus, before and after</div><canvas id="focusChart"></canvas></div>
+              <div class="chart-card"><div class="chart-title">Energy, before and after</div><canvas id="energyChart"></canvas></div>
+              <div class="chart-card full"><div class="chart-title">Mood, before and after</div><canvas id="moodChart"></canvas></div>
+            </div>
+          </div>
+          <div id="kisseTab" class="tab-content">
+            <div class="summary-grid" id="kisseSummary"></div>
+            <div class="chart-grid">
+              <div class="chart-card"><div class="chart-title">Warmth, before and after</div><canvas id="warmthChart"></canvas></div>
+              <div class="chart-card"><div class="chart-title">Mystery, the note no one can name</div><canvas id="mysteryChart"></canvas></div>
+              <div class="chart-card full"><div class="chart-title">Linger, what stays when the cup is done</div><canvas id="lingerChart"></canvas></div>
+            </div>
+          </div>
+          <div class="footer-note">
+            1 = low, 3 = baseline, 5 = unusually elevated. Sittings that did not record a metric are left out of that metric rather than counted as zero. Self-reported by the taster. Directional evidence, not proof.
+          </div>
+        </div>
 
+      </div>
+    </details>
   </div>
 </div>
 
-<!-- CONTACT CLOSE -->
-<section class="contact-close">
-  <span class="eyebrow">Before you go</span>
-  <h2>Want to talk?<br><em>Want to taste?</em></h2>
-  <p class="cc-line">There's a person at the other end of every message — usually mid-experiment.</p>
-  <div class="cc-links">
-    <!-- REPLACE: WhatsApp number -->
-    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%20—%20I%27d%20like%20to%20join%20the%20Tasting%20Circle.">Join the Tasting Circle</a>
-    <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
-    <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a>
-    <a href="faq.html">Questions → FAQ</a>
-  </div>
-  <a class="btn gold" href="sampler.html">Try the Sampler</a>
+<section class="l-cta">
+  <h2>The cups that survived all this.</h2>
+  <a class="btn on-dark" href="collection.html">See the four coffees</a>
 </section>
 
 <footer class="site-footer">
   <div class="footer-grid">
     <div>
-      <div class="footer-word">"Never optimize on opinions. Optimize on observations."</div>
-      <p style="font-size:.85rem;line-height:1.8">StateShift — a study of everyday transitions, brewed in North India in batches small enough to sign.</p>
+      <p style="font-size:.9rem;line-height:1.8;max-width:340px">StateShift. A study of moments. Coffee weighed, sealed and signed by hand in North India, in batches small enough to sign.</p>
     </div>
     <div>
-      <h4>Pages</h4>
+      <h4>Coffee</h4>
       <ul class="footer-links">
-        <li><a href="story.html">Story</a></li>
-        <li><a href="ritual.html">The pause</a></li>
-        <li><a href="collection.html">Collection</a></li>
-        <li><a href="sampler.html">Sampler</a></li>
+        <li><a href="collection.html">The four coffees</a></li>
+        <li><a href="index.html#how">How it works</a></li>
+        <li><a href="sampler.html">The sampler</a></li>
       </ul>
     </div>
     <div>
-      <h4>Field Notes</h4>
+      <h4>Behind it</h4>
       <ul class="footer-links">
-        <li><a href="journal.html">Journal</a></li>
+        <li><a href="story.html">The story</a></li>
         <li><a href="states.html">The Lab</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="mailto:hello@stateshift.in">hello@stateshift.in</a></li>
+        <li><a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-base">
-    <span>stateshift.in · North India</span>
-    <span class="hand">one cup. one pause. one you.</span>
+    <span>stateshift.in &middot; North India</span>
+    <span>&#169; 2026</span>
   </div>
 </footer>
 
@@ -220,7 +253,7 @@ function esc(s){
 function render(sku){
   const list = sku === 'ALL' ? ALL : ALL.filter(e => e.sku === sku);
   document.getElementById('countLine').textContent =
-    list.length + ' pages transcribed' + (sku === 'ALL' ? ' · all blends' : ' · ' + sku);
+    list.length + ' sittings logged' + (sku === 'ALL' ? ' · all blends' : ' · ' + sku);
   document.getElementById('entries').innerHTML = list.map(e => {
     const obs = (e.observations || []).map(o => '<li>' + esc(o) + '</li>').join('');
     const note = e.note
@@ -262,7 +295,7 @@ fetch('lab.json')
       '<p style="color:var(--muted)">Could not load lab.json. Serve over http (e.g. <code>python3 -m http.server</code>) or deploy to Vercel.</p>';
   });
 
-/* ---------- measurements (states.json) — light theme charts ---------- */
+/* ---------- measurements (states.json) ---------- */
 function card(label, value, caption){
   return '<div class="metric-card">'
     + '<div class="metric-label">' + label + '</div>'
@@ -338,5 +371,8 @@ document.querySelectorAll('.m-active').forEach(btn => {
   });
 });
 </script>
+</body>
+</html>
+
 </body>
 </html>

@@ -71,39 +71,60 @@ img{max-width:100%;display:block}
 ::-webkit-scrollbar-track{background:var(--paper-deep)}
 ::-webkit-scrollbar-thumb{background:rgba(176,125,30,.45)}
 
-/* ---------- header ---------- */
+/* ---------- header ----------
+   Four short items, one row, no CTA button, no tagline on mobile,
+   not sticky. The old header ate roughly a quarter of the phone
+   viewport on every scroll. Selling now happens in the buy bar. */
 .site-header{
-  position:sticky;top:0;z-index:100;
-  background:rgba(242,236,221,.96);backdrop-filter:blur(6px);
+  background:var(--paper);
   border-bottom:1px solid var(--line);
-  padding:.95rem 2rem;
+  padding:.8rem 2rem;
   display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
 }
 .site-logo{
-  font-family:'Playfair Display',serif;font-size:1.3rem;
-  color:var(--ink);text-decoration:none;letter-spacing:-.01em;
+  font-family:'Playfair Display',serif;font-size:1.25rem;
+  color:var(--ink);text-decoration:none;letter-spacing:-.01em;line-height:1.1;
 }
 .site-logo span{color:var(--gold);font-style:italic}
 .site-logo small{
-  display:block;font-family:'IBM Plex Mono',monospace;font-size:.64rem;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:.2rem;
+  display:block;font-family:'IBM Plex Mono',monospace;font-size:.6rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:.15rem;
 }
-.site-nav{display:flex;gap:.15rem;align-items:center;flex-wrap:wrap}
+.site-nav{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap}
 .site-nav a{
-  font-family:'IBM Plex Mono',monospace;font-size:.76rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.72rem;
   letter-spacing:.1em;text-transform:uppercase;
   color:var(--muted);text-decoration:none;
-  padding:.45rem .8rem;border:1px solid transparent;
-  transition:color .2s,border-color .2s;
+  padding:.4rem .7rem;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;white-space:nowrap;
 }
 .site-nav a:hover{color:var(--gold)}
-.site-nav a.active{color:var(--gold);border-bottom:1px solid var(--gold)}
-.site-nav a.cta{
-  color:var(--cream);background:var(--forest);
-  border:1px solid var(--forest);margin-left:.6rem;
-  padding:.55rem 1.25rem;font-size:.74rem;
+.site-nav a.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* ---------- sticky buy bar (mobile) ----------
+   Sells continuously without stealing a single pixel of the fold. */
+.buybar{
+  position:fixed;left:0;right:0;bottom:0;z-index:200;
+  display:none;align-items:center;justify-content:space-between;gap:1rem;
+  padding:.7rem 1.1rem;
+  background:var(--espresso);border-top:1px solid var(--line-dark);
 }
-.site-nav a.cta:hover{background:var(--ink);border-color:var(--ink);color:var(--amber)}
+.buybar .bb-price{
+  font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--dark-text);line-height:1.1;
+}
+.buybar .bb-price small{
+  display:block;font-family:'IBM Plex Mono',monospace;font-size:.56rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--dark-muted);margin-top:.15rem;
+}
+.buybar a{
+  flex:0 0 auto;background:var(--gold);color:var(--cream);text-decoration:none;
+  font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.14em;
+  text-transform:uppercase;padding:.85rem 1.4rem;
+}
+@media(max-width:760px){
+  .buybar{display:flex}
+  body.has-buybar{padding-bottom:4.6rem}
+}
 
 /* ---------- shared layout ---------- */
 .wrap{max-width:1060px;margin:0 auto;padding:0 2rem}
@@ -335,40 +356,31 @@ figure.frame figcaption{
   display:inline-flex;align-items:center;gap:.4rem;
 }
 .cc-links a:hover{color:var(--gold);border-color:var(--gold)}
+.cc-links svg{width:.95em;height:.95em;flex:0 0 auto;opacity:.75}
 
 
 /* ---------- disclosure / collapsible ------------------------
-   Shared by collection.html and sampler.html. A card, not loose
-   text: background, border, real padding, a summary big enough
-   to look like a thing you are meant to press.                */
-.disclose{
-  border:1px solid var(--line);
-  background:var(--cream);
-  margin-bottom:.7rem;
-}
+   Shared by collection.html and sampler.html. Lets a page put
+   its full depth on screen without a wall of scroll.         */
+.disclose{border-top:1px solid var(--line)}
+.disclose:last-of-type{border-bottom:1px solid var(--line)}
 .disclose summary{
   cursor:pointer;list-style:none;position:relative;
-  padding:1.15rem 3rem 1.15rem 1.2rem;
-  font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--ink);
+  padding:1.1rem 2.2rem 1.1rem 0;
+  font-family:'IBM Plex Mono',monospace;font-size:.72rem;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--gold);
   transition:color .2s;
 }
-.disclose summary:hover{color:var(--gold)}
+.disclose summary:hover{color:var(--ink)}
 .disclose summary::-webkit-details-marker{display:none}
 .disclose summary::after{
-  content:'+';position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);
-  font-family:'IBM Plex Mono',monospace;font-size:1.2rem;color:var(--gold);
+  content:'+';position:absolute;right:.2rem;top:50%;transform:translateY(-50%);
+  font-family:'IBM Plex Mono',monospace;font-size:1rem;color:var(--gold);
 }
 .disclose[open] summary::after{content:'\2212'}
-.disclose[open] summary{border-bottom:1px solid var(--line)}
-.disclose .body{padding:1.2rem 1.2rem 1.4rem}
-.dark .disclose{background:var(--roast);border-color:var(--line-dark)}
-.dark .disclose summary{color:var(--dark-text)}
-
-/* ---------- hairline · a section handing over to the next ---- */
-.hairline{
-  width:1px;height:2.8rem;margin:0 auto 1.6rem;
-  background:linear-gradient(var(--line),var(--gold));
-}
+.disclose .body{padding:0 0 1.4rem}
+.dark .disclose{border-color:var(--line-dark)}
+.dark .disclose summary{color:var(--amber)}
 
 /* ============================================================
    RESPONSIVE
@@ -388,40 +400,21 @@ figure.frame figcaption{
   .site-footer{padding:2.6rem 1.3rem 2rem}
 }
 
-/* --- NAV · five links hold one row, CTA alone on row two -----
-   ::after is a zero-height flex line-break. order:1 puts it
-   between the links (order 0) and the CTA (order 2).
-   Header un-sticks here so a ~130px bar stops eating the fold. */
+/* --- NAV on mobile: one row, four items, nothing else -------- */
 @media(max-width:760px){
-  .site-header{
-    position:relative;
-    flex-direction:column;align-items:center;
-    gap:.7rem;padding:.85rem 1.1rem;
-  }
-  .site-nav{
-    width:100%;display:flex;flex-wrap:wrap;
-    justify-content:center;align-items:center;gap:.35rem .55rem;
-  }
-  .site-nav a{
-    font-size:.7rem;letter-spacing:.05em;white-space:nowrap;
-    padding:.3rem .3rem;
-  }
-  .site-nav::after{content:'';flex-basis:100%;height:0;order:1}
-  .site-nav a.cta{
-    order:2;margin:.15rem 0 0;
-    padding:.55rem 1.5rem;font-size:.7rem;letter-spacing:.1em;
-  }
-  /* 2×2 instead of a haphazard wrap */
+  .site-header{flex-direction:column;align-items:center;gap:.55rem;padding:.75rem 1rem}
+  .site-logo{text-align:center}
+  .site-logo small{display:none}      /* the tagline lives in the footer */
+  .site-nav{width:100%;justify-content:center;gap:.2rem .45rem}
+  .site-nav a{font-size:.66rem;letter-spacing:.04em;padding:.25rem .3rem}
   .cc-links{
     display:grid;grid-template-columns:1fr 1fr;gap:.85rem 1rem;
     max-width:540px;margin-left:auto;margin-right:auto;
   }
   .cc-links a{justify-content:center;text-align:center;white-space:nowrap}
 }
-
-@media(max-width:420px){
-  .site-nav{gap:.3rem .4rem}
-  .site-nav a{font-size:.63rem;letter-spacing:.02em;padding:.3rem .18rem}
-  .site-logo small{font-size:.58rem;letter-spacing:.16em}
+@media(max-width:400px){
+  .site-nav a{font-size:.6rem;letter-spacing:0;padding:.25rem .2rem}
   .cc-links a{font-size:.64rem;white-space:normal}
+}
 }

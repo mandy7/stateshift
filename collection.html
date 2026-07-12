@@ -3,287 +3,233 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Four cups, four versions of you. StateShift</title>
-<meta name="description" content="Sehar, Rukh, Kisse, Lamhe. Not light, medium and dark. Morning, focus, connection and comfort. The moment comes first; the coffee follows it.">
+<title>The four coffees. StateShift.</title>
+<meta name="description" content="Sehar, Rukh, Kisse, Lamhe. Tasting notes for four coffees, each made for one part of the day. Six cups, Rs 300, shipping included.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-/* PAGE-SPECIFIC ONLY — nav, eyebrow, .disclose, .cc-links all in site.css */
+.col-hero{padding:2.4rem 1.3rem 1.8rem;text-align:center;max-width:600px;margin:0 auto}
+@media(min-width:761px){.col-hero{padding:3.8rem 2rem 2.2rem}}
+.col-hero h1{font-size:clamp(1.9rem,6.4vw,3rem);line-height:1.15;margin-bottom:.9rem}
+.col-hero h1 em{color:var(--gold)}
+.col-hero .plain{font-size:1.02rem;line-height:1.75;color:var(--ink-soft);margin-bottom:1.2rem}
+.price-line{
+  font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;
+}
 
-.col-hero{padding:2.8rem 1.3rem 2.2rem;text-align:center;max-width:620px;margin:0 auto}
-@media(min-width:761px){.col-hero{padding:4.2rem 2rem 3rem}}
-.col-hero .display{margin-bottom:1.3rem}
-.col-hero p{font-size:1.02rem;line-height:1.85;color:var(--ink-soft);margin-bottom:.9rem}
-.col-hero p:last-child{margin-bottom:0}
-.col-hero .beat{color:var(--ink);font-style:italic}
-
-/* ONE column, everywhere. A product page read on a phone and a
-   product page read on a laptop want the same thing: the poster,
-   then the reason, then the depth on request.                  */
-.sku{padding:2.8rem 0}
-@media(min-width:761px){.sku{padding:4rem 0}}
+.sku{padding:2.6rem 0}
+@media(min-width:761px){.sku{padding:3.6rem 0}}
 .sku-inner{max-width:600px;margin:0 auto;padding:0 1.3rem}
-@media(min-width:761px){.sku-inner{padding:0 2rem}}
-
-.sku-head{display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;margin-bottom:.25rem}
-.sku-name{font-size:clamp(2rem,7vw,3rem);letter-spacing:.02em;line-height:1}
-.sku-meaning{font-family:'Caveat',cursive;font-size:1.25rem;color:var(--gold)}
-.sku-tagline{
-  font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--gold);line-height:1.7;margin-bottom:1.4rem;
+.sku-head{display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;margin-bottom:.8rem}
+.sku-head h2{font-size:clamp(1.9rem,6.6vw,2.7rem);letter-spacing:.03em;line-height:1}
+.sku-head .mean{font-family:'Caveat',cursive;font-size:1.2rem;color:var(--gold)}
+.sku-head .shift{
+  font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--forest);border:1px solid var(--line);
+  padding:.3rem .6rem;
 }
 
-.sku-art{width:100%;display:block;box-shadow:0 10px 34px rgba(20,10,4,.28)}
-
-.sku-shift{
-  font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--forest);
-  border:1px solid var(--line);display:inline-block;
-  padding:.4rem .85rem;margin:1.6rem 0 1.2rem;
+/* Taste notes are the first thing you see now, not the last thing you unfold. */
+.taste{font-size:1.1rem;line-height:1.6;color:var(--ink);margin-bottom:1.2rem}
+.tnotes{margin-bottom:1.6rem}
+.tn{
+  display:grid;grid-template-columns:1fr;gap:.15rem;
+  padding:.7rem 0;border-bottom:1px dashed var(--line);
 }
-.sku > .sku-inner > p{font-size:1.03rem;line-height:1.9;color:var(--ink-soft);margin-bottom:1.4rem}
-
-/* the depth, on request */
-.notice-row{
-  display:grid;grid-template-columns:1fr;gap:.2rem;
-  padding:.85rem 0;border-bottom:1px dashed var(--line);
-}
-@media(min-width:601px){.notice-row{grid-template-columns:150px 1fr;gap:1rem}}
-.notice-row:last-child{border-bottom:none;padding-bottom:0}
-.notice-row b{
-  font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.64rem;
+@media(min-width:601px){.tn{grid-template-columns:130px 1fr;gap:1rem}}
+.tn:first-child{border-top:1px dashed var(--line)}
+.tn b{
+  font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.62rem;
   letter-spacing:.14em;text-transform:uppercase;color:var(--gold);padding-top:.25rem;
 }
-.notice-row span{font-size:.98rem;line-height:1.75;color:var(--ink-soft)}
-.moment{font-family:'Caveat',cursive;font-size:1.3rem;color:var(--gold);margin:1.4rem 0 0;line-height:1.5}
+.tn span{font-size:1rem;line-height:1.7;color:var(--ink-soft)}
 
-.sku-status{margin-top:1.6rem;display:flex;gap:.6rem;flex-wrap:wrap}
+.art{width:100%;display:block;box-shadow:0 10px 30px rgba(20,10,4,.26);margin-bottom:1.4rem}
 
-.mehfil{
-  background:var(--paper-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  text-align:center;padding:2.8rem 1.3rem;
-}
-.mehfil h3{font-size:1.6rem;margin-bottom:.7rem}
-.mehfil p{max-width:520px;margin:0 auto;color:var(--ink-soft);font-size:.98rem;line-height:1.85}
+.col-close{background:var(--espresso);color:var(--dark-text);text-align:center;padding:3.4rem 1.3rem}
+.col-close h2{color:var(--dark-text);font-size:clamp(1.7rem,4.5vw,2.4rem);margin-bottom:.8rem}
+.col-close p{color:var(--dark-muted);margin-bottom:1.8rem;line-height:1.8}
+.col-close .after{margin-top:1.6rem;font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:var(--dark-muted);line-height:2.1}
 </style>
 </head>
-<body>
+<body class="has-buybar">
 
 <header class="site-header">
   <a href="index.html" class="site-logo">State<span>Shift</span><small>A study of moments</small></a>
   <nav class="site-nav">
-    <a href="index.html">Home</a>
+    <a href="collection.html" class="active">Coffee</a>
+    <a href="index.html#how">How it works</a>
     <a href="story.html">Story</a>
-    <a href="ritual.html">The Pause</a>
-    <a href="collection.html" class="active">Collection</a>
     <a href="states.html">Lab</a>
-    <a href="sampler.html" class="cta">Try the Sampler</a>
   </nav>
 </header>
 
-<!-- No "The Collection" eyebrow. They clicked Collection to get here. -->
 <section class="col-hero">
-  <h1 class="display">Four cups.<br><em>Four versions of you</em>.</h1>
-  <p>Every other coffee is sorted by how it was roasted. Light, medium, dark. Ours are sorted by <em class="beat">when you need them</em>.</p>
-  <p>And I didn't pick four moments because four is a tidy number. These are the four gaps in my own day that kept catching me out.</p>
+  <h1>Four coffees.<br>One for each <em>part of your day</em>.</h1>
+  <p class="plain">Ground single-estate coffee in a filter bag, plus a cup mix. Hot water, three minutes, no machine.</p>
+  <div class="price-line">Six cups &middot; &#8377;300 &middot; shipping included</div>
+  <a class="btn gold" href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20the%20%E2%82%B9300%20sampler%20(six%20cups).%20My%20name%20is%20___%20and%20I%27m%20in%20___.">Order the sampler</a>
 </section>
 
-<!-- SEHAR -->
 <section class="sku" id="sehar">
   <div class="sku-inner">
     <div class="sku-head">
-      <h2 class="sku-name">SEHAR</h2>
-      <span class="sku-meaning">sehar &middot; dawn</span>
+      <h2>SEHAR</h2>
+      <span class="mean">dawn</span>
+      <span class="shift">Foggy &rarr; Clear</span>
     </div>
-    <div class="sku-tagline">For mornings that set the tone</div>
 
-    <img class="sku-art" src="assets/posters/sehar-card.jpg" alt="Sehar, bergamot and orange peel, for mornings that set the tone" loading="lazy">
+    <p class="taste">Bergamot, orange peel, milk chocolate, lemon candy.</p>
 
-    <span class="sku-shift">Foggy → Clear, intentional</span>
-    <p>The day hasn't decided what it will be yet. Neither have you. Sehar is for that window, before the noise, before the phone, while everything is still possible.</p>
+    <div class="tnotes">
+      <div class="tn"><b>On the nose</b><span>Bergamot. Crisp citrus that cuts through morning fog.</span></div>
+      <div class="tn"><b>In the cup</b><span>Orange peel. Sweet, sunlit citrus that lingers through the finish.</span></div>
+      <div class="tn"><b>The finish</b><span>Milk chocolate and lemon candy. Gentle sweetness against a lively acidity.</span></div>
+      <div class="tn"><b>Body</b><span>Light. Nothing heavy on an empty stomach.</span></div>
+    </div>
+
+    <img class="art" src="assets/posters/sehar-card.jpg" alt="SEHAR label" loading="lazy">
 
     <details class="disclose">
-      <summary>Inside the cup</summary>
+      <summary>The moment it was made for</summary>
       <div class="body">
-        <div class="notice-row"><b>Belongs to</b><span>The first ten minutes after waking, before the phone wins</span></div>
-        <div class="notice-row"><b>On the nose</b><span>Bergamot. Crisp citrus that cuts through morning fog</span></div>
-        <div class="notice-row"><b>In the cup</b><span>Orange peel. Sweet, sunlit citrus that lingers softly through the finish</span></div>
-        <div class="notice-row"><b>The finish</b><span>Milk chocolate and lemon candy. Gentle sweetness against a lively acidity</span></div>
-        <div class="moment">a bright start to your day. one intentional sip at a time.</div>
-        <div class="margin-note" style="margin-top:1rem;font-size:1.05rem">the citrus is ours. oranges, a peeler, an oven, one very fragrant weekend</div>
+        <p>The day has not decided what it will be yet. Neither have you. Sehar is for that window, before the noise and before the phone.</p>
+        <p class="margin-note" style="margin-top:.9rem;font-size:1.05rem">the citrus is ours. oranges, a peeler, an oven, one very fragrant weekend</p>
       </div>
     </details>
-
-    <div class="sku-status">
-      <span class="chip locked">Recipe locked</span>
-      <span class="chip testing">Shelf-stability testing</span>
-    </div>
   </div>
 </section>
-
-<!-- RUKH -->
 <section class="sku" id="rukh" style="background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="sku-inner">
     <div class="sku-head">
-      <h2 class="sku-name">RUKH</h2>
-      <span class="sku-meaning">rukh &middot; direction</span>
+      <h2>RUKH</h2>
+      <span class="mean">direction</span>
+      <span class="shift">Scattered &rarr; Grounded</span>
     </div>
-    <div class="sku-tagline">For when the day needs direction again</div>
 
-    <img class="sku-art" src="assets/posters/rukh-card.jpg" alt="Rukh, cardamom, dark chocolate and toasted almonds" loading="lazy">
+    <p class="taste">Cardamom, dark chocolate, toasted almond, ripe berries.</p>
 
-    <span class="sku-shift">Scattered → Grounded, organised</span>
-    <p>Somewhere before noon the day scatters. Ten tabs open, three thoughts unfinished. Rukh is the still point you move from: a few minutes to collect yourself before the next stretch.</p>
+    <div class="tnotes">
+      <div class="tn"><b>On the nose</b><span>Cardamom. It arrives before the coffee does.</span></div>
+      <div class="tn"><b>In the cup</b><span>Dark chocolate and toasted almonds, in layers.</span></div>
+      <div class="tn"><b>The finish</b><span>Ripe berries, rounded by palm jaggery. Smooth, not sweet.</span></div>
+      <div class="tn"><b>Body</b><span>Medium. Survives milk without disappearing into it.</span></div>
+    </div>
+
+    <img class="art" src="assets/posters/rukh-card.jpg" alt="RUKH label" loading="lazy">
 
     <details class="disclose">
-      <summary>Inside the cup</summary>
+      <summary>The moment it was made for</summary>
       <div class="body">
-        <div class="notice-row"><b>Belongs to</b><span>The slump before noon, when the day needs re-choosing</span></div>
-        <div class="notice-row"><b>On the nose</b><span>Cardamom. The aromatic trigger that starts the shift before the sip</span></div>
-        <div class="notice-row"><b>In the cup</b><span>Layers of dark chocolate and toasted almonds</span></div>
-        <div class="notice-row"><b>The finish</b><span>Ripe berries, rounded by sweetness. Smooth, with just enough to soften the edges</span></div>
-        <div class="moment">the mid-morning reset. composure, poured slowly.</div>
-        <div class="margin-note" style="margin-top:1rem;font-size:1.05rem">"light, nice, the cardamom complementing. lock it." the first tester, on the cup that ended the search</div>
+        <p>Somewhere before noon the day scatters. Ten tabs open, three thoughts unfinished. Rukh is the still point you move from.</p>
+        <p class="margin-note" style="margin-top:.9rem;font-size:1.05rem">"light, nice, the cardamom complementing. lock it." the cup that ended the search</p>
       </div>
     </details>
-
-    <div class="sku-status">
-      <span class="chip locked">Recipe locked</span>
-      <span class="chip testing">Shelf-stability testing</span>
-    </div>
   </div>
 </section>
-
-<!-- KISSE -->
 <section class="sku" id="kisse">
   <div class="sku-inner">
     <div class="sku-head">
-      <h2 class="sku-name">KISSE</h2>
-      <span class="sku-meaning">kisse &middot; stories</span>
+      <h2>KISSE</h2>
+      <span class="mean">stories</span>
+      <span class="shift">Restless &rarr; Unhurried</span>
     </div>
-    <div class="sku-tagline">A coffee that keeps revealing new stories</div>
 
-    <img class="sku-art" src="assets/posters/kisse-card.jpg" alt="Kisse, dark chocolate, roasted nuts and warm spice" loading="lazy">
+    <p class="taste">Dark chocolate, roasted nuts, warm spice. Someone once said whiskey.</p>
 
-    <span class="sku-shift">Day's momentum → Present, unhurried</span>
-    <p>Some conversations only begin after the day has ended. Kisse is for those. The ones that stretch past midnight and outlast whatever is on the table between you.</p>
+    <div class="tnotes">
+      <div class="tn"><b>On the nose</b><span>Something close to a fine spirit. Testers keep trying to name it and cannot.</span></div>
+      <div class="tn"><b>In the cup</b><span>Dark chocolate leading, roasted nuts and deep single-estate coffee behind it.</span></div>
+      <div class="tn"><b>The finish</b><span>A warm spice that settles in the throat and stays.</span></div>
+      <div class="tn"><b>Body</b><span>Full. Made to be shared and made to last a conversation.</span></div>
+    </div>
+
+    <img class="art" src="assets/posters/kisse-card.jpg" alt="KISSE label" loading="lazy">
 
     <details class="disclose">
-      <summary>Inside the cup</summary>
+      <summary>The moment it was made for</summary>
       <div class="body">
-        <div class="notice-row"><b>Belongs to</b><span>Tables after ten, and friends who stay past politeness</span></div>
-        <div class="notice-row"><b>On the nose</b><span>Something almost like a fine spirit. Testers keep trying to name it and can't</span></div>
-        <div class="notice-row"><b>In the cup</b><span>Dark chocolate leading, roasted nuts and deep single-estate coffee behind it</span></div>
-        <div class="notice-row"><b>The finish</b><span>A warm spice that settles in the throat and stays. Our quiet signature</span></div>
-        <div class="moment">a rich, layered cup made for good company.</div>
-        <div class="margin-note" style="margin-top:1rem;font-size:1.05rem">"whiskey and dark chocolate." the first words ever said about Kisse</div>
+        <p>Some conversations only begin after the day has ended. Kisse is for those, the ones that stretch past midnight.</p>
+        <p class="margin-note" style="margin-top:.9rem;font-size:1.05rem">"whiskey and dark chocolate." the first words ever said about Kisse</p>
       </div>
     </details>
-
-    <div class="sku-status">
-      <span class="chip locked">Recipe locked</span>
-      <span class="chip testing">Shelf-stability testing</span>
-    </div>
   </div>
 </section>
-
-<!-- LAMHE -->
 <section class="sku" id="lamhe" style="background:var(--cream);border-top:1px solid var(--line)">
   <div class="sku-inner">
     <div class="sku-head">
-      <h2 class="sku-name">LAMHE</h2>
-      <span class="sku-meaning">lamhe &middot; moments</span>
+      <h2>LAMHE</h2>
+      <span class="mean">moments</span>
+      <span class="shift">Depleted &rarr; Restored</span>
     </div>
-    <div class="sku-tagline">Comfort without becoming indulgence</div>
 
-    <!-- ⚠ REGENERATE THIS CARD. The current lamhe-card.jpg advertises
-         vanilla, malt and toasted walnuts. Vanilla is permanently
-         excluded from this recipe and the nut is hazelnut, not walnut. -->
-    <img class="sku-art" src="assets/posters/lamhe-card.jpg" alt="Lamhe, soft cocoa and gentle coffee" loading="lazy">
+    <p class="taste">Cocoa, soft cinnamon, gentle coffee. Nothing competing for attention.</p>
 
-    <span class="sku-shift">Depleted → Gently restored</span>
-    <p>There is an hour that belongs to no one else. A blanket, a book, rain if you are lucky. Lamhe is made to sit inside it with you, asking nothing.</p>
+    <div class="tnotes">
+      <div class="tn"><b>On the nose</b><span>Cocoa and a soft cinnamon warmth.</span></div>
+      <div class="tn"><b>In the cup</b><span>Coffee-led comfort. The cacao rounds it, never turns it into hot chocolate.</span></div>
+      <div class="tn"><b>The finish</b><span>Restrained. Sweet enough to soften, not enough to cloy.</span></div>
+      <div class="tn"><b>Body</b><span>Velvety. Roasted hazelnut is the last question we are still asking.</span></div>
+    </div>
+
+    <!-- REGENERATE: this card still advertises vanilla, malt and toasted
+         walnuts. Vanilla is excluded and the nut is hazelnut. -->
+    <img class="art" src="assets/posters/lamhe-card.jpg" alt="LAMHE label" loading="lazy">
 
     <details class="disclose">
-      <summary>Inside the cup</summary>
+      <summary>The moment it was made for</summary>
       <div class="body">
-        <div class="notice-row"><b>Belongs to</b><span>The hour with the rain, the blanket, and no one to be</span></div>
-        <div class="notice-row"><b>On the nose</b><span>Cocoa and a soft cinnamon warmth</span></div>
-        <div class="notice-row"><b>In the cup</b><span>Coffee-led comfort. The cacao rounds it, never turns it into hot chocolate</span></div>
-        <div class="notice-row"><b>Still open</b><span>Roasted hazelnut, being tested as the finishing layer of depth</span></div>
-        <div class="moment">a comforting cup to slow down with. one unhurried sip at a time.</div>
-        <div class="margin-note" style="margin-top:1rem;font-size:1.05rem">still on the bench. hazelnut is the last question</div>
+        <p>There is an hour that belongs to no one else. A blanket, a book, rain if you are lucky. Lamhe sits inside it with you.</p>
+        <p class="margin-note" style="margin-top:.9rem;font-size:1.05rem">still on the bench. hazelnut is the last question</p>
       </div>
     </details>
-
-    <div class="sku-status">
-      <span class="chip dev">In final development</span>
-    </div>
   </div>
 </section>
 
-<!-- MEHFIL -->
-<section class="mehfil">
-  <span class="eyebrow">A fifth chapter, resting</span>
-  <h3>Mehfil <span class="sku-meaning" style="font-size:1.05rem">&middot; the gathering</span></h3>
-  <p>A cold, bright, social brew for hosting and shared tables. It's waiting patiently until the first four have earned their place. <span class="margin-note">good things shouldn't be rushed</span></p>
-</section>
-
-<!-- CTA -->
-<section class="dark pad-block center">
-  <div class="wrap-narrow">
-    <span class="eyebrow">Taste them yourself</span>
-    <h2 style="font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:1.2rem">The Sampler brings the first three home</h2>
-    <a class="btn gold" href="sampler.html">Request the Sampler</a>
+<section class="col-close">
+  <h2>Six cups. &#8377;300.</h2>
+  <p>Two each of Sehar, Rukh and Kisse. Lamhe joins them shortly.</p>
+  <a class="btn on-dark" href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20the%20%E2%82%B9300%20sampler%20(six%20cups).%20My%20name%20is%20___%20and%20I%27m%20in%20___.">Order the sampler</a>
+  <div class="after">
+    I reply the same day, usually.<br>Payment by UPI.<br>Boxes go out the following week.
   </div>
-</section>
-
-<!-- CONTACT CLOSE -->
-<section class="contact-close">
-  <span class="eyebrow">Before you go</span>
-  <h2>Want to talk?<br><em>Want to taste?</em></h2>
-  <p class="cc-line">There's a person at the other end of every message, usually mid-experiment.</p>
-  <div class="cc-links">
-    <!-- REPLACE: WhatsApp number -->
-    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20to%20join%20the%20Tasting%20Circle.">Join the Tasting Circle</a>
-    <a href="faq.html">Questions → FAQ</a>
-    <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
-    <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a>
-  </div>
-  <a class="btn gold" href="sampler.html">Try the Sampler</a>
 </section>
 
 <footer class="site-footer">
   <div class="footer-grid">
     <div>
-      <div class="footer-word">"Moments pass. Shifts stay."</div>
-      <p style="font-size:.85rem;line-height:1.8">StateShift. A study of everyday transitions, brewed in North India in batches small enough to sign.</p>
+      <p style="font-size:.9rem;line-height:1.8;max-width:340px">StateShift. A study of moments. Coffee weighed, sealed and signed by hand in North India, in batches small enough to sign.</p>
     </div>
     <div>
-      <h4>Pages</h4>
+      <h4>Coffee</h4>
       <ul class="footer-links">
-        <li><a href="story.html">Story</a></li>
-        <li><a href="ritual.html">The pause</a></li>
-        <li><a href="collection.html">Collection</a></li>
-        <li><a href="sampler.html">Sampler</a></li>
+        <li><a href="collection.html">The four coffees</a></li>
+        <li><a href="index.html#how">How it works</a></li>
+        <li><a href="sampler.html">The sampler</a></li>
       </ul>
     </div>
     <div>
-      <h4>Field Notes</h4>
+      <h4>Behind it</h4>
       <ul class="footer-links">
-        <li><a href="journal.html">Journal</a></li>
+        <li><a href="story.html">The story</a></li>
         <li><a href="states.html">The Lab</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="mailto:hello@stateshift.in">hello@stateshift.in</a></li>
+        <li><a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-base">
-    <span>stateshift.in · North India</span>
-    <span class="hand">one cup. one pause. one you.</span>
+    <span>stateshift.in &middot; North India</span>
+    <span>&#169; 2026</span>
   </div>
 </footer>
+
+<div class="buybar">
+  <div class="bb-price">&#8377;300<small>six cups &middot; shipping included</small></div>
+  <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20the%20%E2%82%B9300%20sampler%20(six%20cups).%20My%20name%20is%20___%20and%20I%27m%20in%20___.">Order</a>
+</div>
 
 </body>
 </html>
