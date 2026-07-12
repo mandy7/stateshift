@@ -337,6 +337,30 @@ figure.frame figcaption{
 .cc-links a:hover{color:var(--gold);border-color:var(--gold)}
 .cc-links svg{width:.95em;height:.95em;flex:0 0 auto;opacity:.75}
 
+
+/* ---------- disclosure / collapsible ------------------------
+   Shared by collection.html and sampler.html. Lets a page put
+   its full depth on screen without a wall of scroll.         */
+.disclose{border-top:1px solid var(--line)}
+.disclose:last-of-type{border-bottom:1px solid var(--line)}
+.disclose summary{
+  cursor:pointer;list-style:none;position:relative;
+  padding:1.1rem 2.2rem 1.1rem 0;
+  font-family:'IBM Plex Mono',monospace;font-size:.72rem;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--gold);
+  transition:color .2s;
+}
+.disclose summary:hover{color:var(--ink)}
+.disclose summary::-webkit-details-marker{display:none}
+.disclose summary::after{
+  content:'+';position:absolute;right:.2rem;top:50%;transform:translateY(-50%);
+  font-family:'IBM Plex Mono',monospace;font-size:1rem;color:var(--gold);
+}
+.disclose[open] summary::after{content:'\2212'}
+.disclose .body{padding:0 0 1.4rem}
+.dark .disclose{border-color:var(--line-dark)}
+.dark .disclose summary{color:var(--amber)}
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
