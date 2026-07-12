@@ -3,46 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StateShift — Every day changes us</title>
-<meta name="description" content="StateShift studies the moments of your day — and makes a companion for each. Four blends for four transitions: morning, focus, connection, comfort.">
+<title>StateShift — The day will shift you. Or you'll shift it.</title>
+<meta name="description" content="Four crossings a day — morning, focus, connection, comfort. Most of us sleep through every one. StateShift makes each one deliberate. Coffee is only the tool.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
 /* ============================================================
-   MOBILE-FIRST OVERRIDES  (this block loads after site.css,
-   so equal-specificity rules here win)
+   MOBILE-FIRST OVERRIDES — loads after site.css so it wins
    ============================================================ */
 
-/* --- 0 · TYPOGRAPHIC SCALE REPAIR ---------------------------
-   The mono labels were 8–9px while body text was 17px. Nothing
-   lived in between. Everything below closes that gap.        */
-.site-nav a{font-size:.82rem;letter-spacing:.1em}
+/* --- 0 · TYPE SCALE --------------------------------------- */
 .eyebrow{font-size:.72rem;letter-spacing:.2em}
 .moment-when{font-size:.72rem;letter-spacing:.18em}
-.oh-who{font-size:.64rem;letter-spacing:.15em}
-.pc-when{font-size:.62rem;letter-spacing:.16em}
+.oh-who{font-size:.66rem;letter-spacing:.15em}
+.pc-when{font-size:.64rem;letter-spacing:.16em}
+h1,h2{text-wrap:balance}
 
-/* --- 1 · HERO — no longer swallows the first screen -------- */
+/* --- 1 · HEADER + NAV -------------------------------------
+   Nav shrinks so all five links hold ONE row; the ::after
+   pseudo-element is a zero-height flex line-break that pushes
+   "Try the Sampler" onto row two by itself.                 */
+.site-logo small{font-size:.68rem;letter-spacing:.18em}
+
+@media(max-width:760px){
+  .site-nav{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.5rem .8rem}
+  .site-nav a{font-size:.7rem;letter-spacing:.05em;white-space:nowrap}
+  .site-nav::after{content:'';flex-basis:100%;height:0;order:1}
+  .site-nav .cta{order:2;margin-top:.35rem;font-size:.72rem;letter-spacing:.08em}
+}
+@media(max-width:400px){
+  .site-nav{gap:.45rem .6rem}
+  .site-nav a{font-size:.64rem;letter-spacing:.02em}
+}
+
+/* --- 2 · HERO --------------------------------------------- */
 .hero{padding:2.4rem 1.3rem 3rem;text-align:center}
-.hero .display{font-size:clamp(2.3rem,8.6vw,6.2rem);margin-bottom:1.3rem;line-height:1.06}
-.hero-lines{margin:0 auto 1.2rem}
+.hero .display{font-size:clamp(2.15rem,7.8vw,5.4rem);margin-bottom:1.4rem;line-height:1.12}
+.hero-lines{margin:0 auto 1.2rem;max-width:520px}
 .hero-lines p{
-  font-family:'Playfair Display',serif;font-style:italic;
-  font-size:clamp(1.08rem,2.8vw,1.7rem);line-height:1.55;color:var(--ink-soft);
+  font-family:'Lora',serif;
+  font-size:clamp(1.02rem,2.4vw,1.25rem);line-height:1.7;color:var(--ink-soft);
+  margin-bottom:.5rem;
 }
-.hero-close{font-size:.95rem;font-style:italic;color:var(--muted);margin-bottom:2rem}
-.hero-ctas{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+.hero-lines p:last-child{margin-bottom:0}
+.hero-close{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(1.05rem,2.6vw,1.35rem);color:var(--gold);
+  margin-bottom:2rem;
+}
+.hero-ctas{display:flex;gap:.7rem;justify-content:center;flex-wrap:nowrap}
+.hero-ctas .btn{white-space:nowrap;padding-left:1.1rem;padding-right:1.1rem;font-size:.74rem}
 @media(min-width:761px){
-  .hero{padding:4.2rem 2rem 5rem}
-  .hero .display{margin-bottom:2.2rem}
-  .hero-lines{margin:0 auto 1.6rem}
+  .hero{padding:4.4rem 2rem 5rem}
+  .hero .display{margin-bottom:1.8rem}
   .hero-close{margin-bottom:2.6rem}
+  .hero-ctas{gap:1rem}
+  .hero-ctas .btn{font-size:inherit;padding-left:1.6rem;padding-right:1.6rem}
 }
 
-/* --- 2 · BRIDGE — the connective tissue between sections ----
-   A hairline literally drops out of the previous section and
-   fades into gold, then one italic line hands you over.      */
+/* --- 3 · BRIDGE — connective tissue between sections ------- */
 .bridge{
   max-width:520px;margin:0 auto 2rem;text-align:center;padding:0 1.3rem;
   font-family:'Lora',serif;font-style:italic;
@@ -53,7 +73,7 @@
   background:linear-gradient(var(--line),var(--gold));
 }
 
-/* --- 3 · FOUR MOMENTS -------------------------------------- */
+/* --- 4 · FOUR MOMENTS — word first, then the when ---------- */
 .moments{border-top:1px solid var(--line)}
 .moment-row{
   display:grid;grid-template-columns:1fr 1.4fr;gap:0;align-items:stretch;
@@ -63,23 +83,22 @@
 .moment-row:nth-child(even) .moment-text{order:2}
 .moment-row:nth-child(even) .moment-img{order:1}
 .moment-text{padding:4.2rem 3.2rem;display:flex;flex-direction:column;justify-content:center}
-.moment-word{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.4rem);margin-bottom:.6rem;line-height:1.1}
+.moment-word{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.4rem);line-height:1.08;margin:0 0 .4rem}
+.moment-when{font-family:'IBM Plex Mono',monospace;text-transform:uppercase;color:var(--gold);display:block;margin:0 0 1.1rem}
 .moment-line{font-size:1.02rem;font-style:italic;color:var(--ink-soft);line-height:1.8;max-width:380px}
-.moment-when{font-family:'IBM Plex Mono',monospace;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
 .moment-img{min-height:240px;background-size:cover;background-position:center;filter:sepia(.08) saturate(1)}
 @media(max-width:760px){
   .moment-row,.moment-row:nth-child(even){grid-template-columns:1fr}
   .moment-row:nth-child(even) .moment-text{order:1}
   .moment-row:nth-child(even) .moment-img{order:2}
   .moment-text{padding:2.4rem 1.3rem 1.8rem}
-  /* fixed 4:3 band so every photo crops predictably on phones */
   .moment-img{min-height:0;aspect-ratio:4/3;background-position:center 40%}
 }
 
-/* --- 4 · THE COLLECTION — swipe carousel on mobile --------- */
+/* --- 5 · THE COLLECTION — swipe carousel on mobile --------- */
 .postcards{padding:3.4rem 0 3.6rem;background:var(--cream);border-bottom:1px solid var(--line)}
 .pc-intro{max-width:560px;margin:0 auto 2rem;text-align:center;padding:0 1.3rem}
-.pc-intro h2{font-size:clamp(1.7rem,4vw,2.5rem);margin-bottom:.9rem;line-height:1.2}
+.pc-intro h2{font-size:clamp(1.65rem,4vw,2.5rem);margin-bottom:.9rem;line-height:1.2}
 .pc-row{
   max-width:1100px;margin:0 auto;padding:0 2rem;
   display:flex;justify-content:center;align-items:flex-start;flex-wrap:wrap;gap:.4rem;
@@ -120,15 +139,12 @@
      affordance a thumb needs to know it can swipe.           */
   .pc,.pc:nth-child(n){transform:none;width:auto;flex:0 0 78%;scroll-snap-align:start}
   .pc:hover{transform:none}
-
   .pc-swipe{
     display:block;text-align:center;margin-top:.2rem;
-    font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.2em;
+    font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.2em;
     text-transform:uppercase;color:var(--muted);
   }
-  .pc-dots{
-    display:flex;justify-content:center;gap:.5rem;margin-top:1rem;
-  }
+  .pc-dots{display:flex;justify-content:center;gap:.5rem;margin-top:1rem}
   .pc-dots button{
     width:7px;height:7px;padding:0;border-radius:50%;border:none;cursor:pointer;
     background:var(--line);transition:background .25s,transform .25s;
@@ -138,7 +154,7 @@
 .pc-more{text-align:center;margin-top:1.8rem}
 @media(min-width:601px){.pc-more{margin-top:2.8rem}}
 
-/* --- 5 · OVERHEARD — tightened, still all four ------------- */
+/* --- 6 · OVERHEARD ---------------------------------------- */
 .overheard{padding:3.4rem 1.3rem 3.6rem}
 .oh-strip{
   max-width:1160px;margin:2rem auto 0;
@@ -152,7 +168,7 @@
 @media(min-width:561px){.oh-hand{padding:1.6rem .6rem}.oh-hand .q{font-size:2rem;line-height:1.35}}
 .oh-clip{
   background:repeating-linear-gradient(var(--cream),var(--cream) 27px,rgba(176,125,30,.18) 28px);
-  border:1px solid var(--line);padding:1.2rem 1.2rem;transform:rotate(.8deg);
+  border:1px solid var(--line);padding:1.2rem;transform:rotate(.8deg);
   box-shadow:0 4px 14px rgba(38,25,14,.12);
 }
 .oh-clip .q{font-family:'IBM Plex Mono',monospace;font-size:.85rem;line-height:28px;color:var(--ink-soft)}
@@ -160,32 +176,37 @@
   background:#fff;border:1px solid var(--line);padding:1.3rem 1.3rem 1.1rem;
   box-shadow:0 6px 18px rgba(38,25,14,.16);transform:rotate(-1deg);position:relative;
 }
-.oh-post::after{
-  content:'⌾';position:absolute;top:.7rem;right:.9rem;
-  font-size:1.3rem;color:rgba(176,125,30,.4);
-}
+.oh-post::after{content:'⌾';position:absolute;top:.7rem;right:.9rem;font-size:1.3rem;color:rgba(176,125,30,.4)}
 .oh-post .q{font-family:'Playfair Display',serif;font-style:italic;font-size:1.15rem;line-height:1.5}
 .oh-script{border-left:2px solid var(--gold);padding:.4rem 0 .4rem 1.2rem}
 .oh-script .turn{font-family:'IBM Plex Mono',monospace;font-size:.78rem;line-height:1.85;color:var(--ink-soft);margin-bottom:.4rem}
 .oh-script .turn b{font-weight:400;color:var(--gold)}
-.oh-who{
-  font-family:'IBM Plex Mono',monospace;
-  text-transform:uppercase;color:var(--muted);display:block;margin-top:.8rem;
-}
+.oh-who{font-family:'IBM Plex Mono',monospace;text-transform:uppercase;color:var(--muted);display:block;margin-top:.8rem}
 
-/* --- 6 · HOW THEY'RE MADE ---------------------------------- */
+/* --- 7 · HOW THEY'RE MADE --------------------------------- */
 .made{background:var(--paper-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .made .ed-grid{padding:3.4rem 1.3rem}
 @media(min-width:761px){.made .ed-grid{padding:4.5rem 2rem}}
-.made-note{margin-top:1.8rem}
 .made .frame img{width:100%;display:block}
 
-/* --- 7 · JOURNAL TEASER ------------------------------------ */
+/* --- 8 · JOURNAL TEASER ----------------------------------- */
 .jt{max-width:720px;margin:0 auto;padding:3.4rem 1.3rem;text-align:center}
 @media(min-width:761px){.jt{padding:4.5rem 2rem}}
 .jt .q{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.15rem,3vw,1.7rem);line-height:1.65;margin:1.2rem 0 1.6rem}
 .jt .margin-note{display:block;margin:1rem 0 0 !important}
 @media(min-width:561px){.jt .margin-note{display:inline;margin:0 0 0 1.2rem !important}}
+
+/* --- 9 · CONTACT CLOSE — 2×2 grid, no more haphazard wrap -- */
+.cc-links{
+  display:grid;grid-template-columns:1fr 1fr;gap:.85rem 1rem;
+  max-width:540px;margin-left:auto;margin-right:auto;
+}
+.cc-links a{
+  display:flex;align-items:center;justify-content:center;gap:.4rem;
+  text-align:center;white-space:nowrap;
+}
+.cc-links svg{width:.95em;height:.95em;flex:0 0 auto;opacity:.75}
+@media(max-width:380px){.cc-links a{font-size:.85rem;white-space:normal}}
 </style>
 </head>
 <body>
@@ -202,18 +223,30 @@
   </nav>
 </header>
 
-<!-- 1 · HERO -->
+<!-- 1 · HERO
+     ------------------------------------------------------------------
+     ALTERNATE A — sharper, defines the category, most confrontational:
+       <h1 class="display">Most people drink coffee.<br><em>Very few use it</em>.</h1>
+       <p>There is a difference between a habit and an instrument.</p>
+       <p>One gets you through the day. The other gets you across it.</p>
+       <p class="hero-close">Four crossings. Four companions.</p>
+
+     ALTERNATE B — strongest commercial hook:
+       <h1 class="display">You are not the same person<br><em>at 6am and at 9pm</em>.</h1>
+       <p>Different mind. Different need. Different hour.</p>
+       <p>So why does everyone reach for the same cup?</p>
+       <p class="hero-close">We made four. One for each version of you.</p>
+     ------------------------------------------------------------------ -->
 <section class="hero">
-  <h1 class="display">Every day<br><em>changes us</em>.</h1>
+  <h1 class="display">The day will shift you.<br><em>Or you'll shift it</em>.</h1>
   <div class="hero-lines">
-    <p>Sleep becomes morning.</p>
-    <p>Morning becomes work.</p>
-    <p>Work quietly becomes tomorrow.</p>
+    <p>Sleep into morning. Morning into work. Work into whatever's left.</p>
+    <p>Four crossings a day — and most of us sleep through every one.</p>
   </div>
-  <p class="hero-close">This is a company about the in-between.</p>
+  <p class="hero-close">Coffee is only the tool. The shift is the point.</p>
   <div class="hero-ctas">
-    <a class="btn gold" href="collection.html">Explore the collection</a>
-    <a class="btn" href="journal.html">Read the journal</a>
+    <a class="btn gold" href="collection.html">Explore collection</a>
+    <a class="btn" href="journal.html">Read journal</a>
   </div>
 </section>
 
@@ -221,44 +254,44 @@
 <section class="moments" id="moments">
   <div class="moment-row">
     <div class="moment-text">
-      <span class="moment-when">Before the world gets loud</span>
       <h2 class="moment-word">Morning</h2>
+      <span class="moment-when">Before the world gets loud</span>
       <p class="moment-line">The day hasn't decided what it will be yet. For a few minutes, neither have you. That's not fog — that's a beginning, waiting to be chosen.</p>
     </div>
-    <div class="moment-img" style="background-image:url('assets/moments/moment-sehar.jpg?v=2')" role="img" aria-label="A cup on a desk beside a window at dawn"></div>
+    <div class="moment-img" style="background-image:url('assets/moments/moment-sehar.jpg?v=3')" role="img" aria-label="A cup on a desk beside a window at dawn"></div>
   </div>
   <div class="moment-row">
     <div class="moment-text">
-      <span class="moment-when">When the day needs direction</span>
       <h2 class="moment-word">Focus</h2>
+      <span class="moment-when">When the day needs direction</span>
       <p class="moment-line">Ten open tabs, three half-thoughts, one restless mind. What you need isn't more speed. It's a still point to move from.</p>
     </div>
-    <div class="moment-img" style="background-image:url('assets/moments/moment-rukh.jpg?v=2')" role="img" aria-label="A desk with a notebook and a cup in mid-morning light"></div>
+    <div class="moment-img" style="background-image:url('assets/moments/moment-rukh.jpg?v=3')" role="img" aria-label="A desk with a notebook and a cup in mid-morning light"></div>
   </div>
   <div class="moment-row">
     <div class="moment-text">
-      <span class="moment-when">Evenings, shared</span>
       <h2 class="moment-word">Connection</h2>
+      <span class="moment-when">Evenings, shared</span>
       <p class="moment-line">Some conversations only start after the day has ended. The best ones outlast whatever's on the table between you.</p>
     </div>
-    <div class="moment-img" style="background-image:url('assets/moments/moment-kisse.jpg?v=2')" role="img" aria-label="Two cups on a dark table in the evening"></div>
+    <div class="moment-img" style="background-image:url('assets/moments/moment-kisse.jpg?v=3')" role="img" aria-label="Two cups on a dark table in the evening"></div>
   </div>
   <div class="moment-row" style="border-bottom:none">
     <div class="moment-text">
-      <span class="moment-when">The hour that belongs to no one else</span>
       <h2 class="moment-word">Comfort</h2>
+      <span class="moment-when">The hour that belongs to no one else</span>
       <p class="moment-line">A blanket, a book, rain if you're lucky. The quiet art of being gently returned to yourself.</p>
     </div>
-    <div class="moment-img" style="background-image:url('assets/moments/moment-lamhe.jpg?v=2')" role="img" aria-label="An armchair with a blanket in warm evening light"></div>
+    <div class="moment-img" style="background-image:url('assets/moments/moment-lamhe.jpg?v=3')" role="img" aria-label="An armchair with a blanket in warm evening light"></div>
   </div>
 </section>
 
-<!-- 3 · THE COLLECTION — carousel on mobile -->
+<!-- 3 · THE COLLECTION -->
 <section class="postcards">
-  <p class="bridge">Four moments. We spent a year making a companion for each one.</p>
+  <p class="bridge">Four crossings. We spent months making a companion for each.</p>
   <div class="pc-intro">
     <span class="eyebrow">The Collection</span>
-    <h2>We made a companion for each</h2>
+    <h2>A companion for each moment</h2>
   </div>
 
   <div class="pc-row" id="pcRow">
@@ -359,17 +392,26 @@
   <span class="margin-note">failures included, honestly</span>
 </section>
 
-<!-- CONTACT CLOSE -->
+<!-- 7 · CONTACT CLOSE -->
 <section class="contact-close">
   <span class="eyebrow">Before you go</span>
   <h2>Want to talk?<br><em>Want to taste?</em></h2>
   <p class="cc-line">There's a person at the other end of every message — usually mid-experiment.</p>
   <div class="cc-links">
+    <!-- ROW 1 -->
     <!-- REPLACE: WhatsApp number -->
     <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%20—%20I%27d%20like%20to%20join%20the%20Tasting%20Circle.">Join the Tasting Circle</a>
-    <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
-    <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a>
     <a href="faq.html">Questions → FAQ</a>
+    <!-- ROW 2 -->
+    <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
+    <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+        <rect x="2.5" y="2.5" width="19" height="19" rx="5"/>
+        <circle cx="12" cy="12" r="4.2"/>
+        <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/>
+      </svg>
+      @stateshiftcoffee
+    </a>
   </div>
   <a class="btn gold" href="sampler.html">Try the Sampler</a>
 </section>
@@ -406,8 +448,8 @@
 </footer>
 
 <script>
-/* Carousel dots — mobile only. Pure progressive enhancement:
-   if JS fails, the swipe carousel still works, you just lose dots. */
+/* Carousel dots — mobile only. Progressive enhancement: if JS
+   fails the swipe still works, you just lose the dots.        */
 (function(){
   var row  = document.getElementById('pcRow');
   var dots = document.getElementById('pcDots');
@@ -441,8 +483,7 @@
 
   var t;
   row.addEventListener('scroll', function(){
-    clearTimeout(t);
-    t = setTimeout(sync, 60);
+    clearTimeout(t); t = setTimeout(sync, 60);
   }, { passive:true });
 
   sync();
