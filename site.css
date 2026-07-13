@@ -103,31 +103,6 @@ img{max-width:100%;display:block}
 .site-nav a.sell{color:var(--forest)}
 .site-nav a.sell:hover,.site-nav a.sell.active{color:var(--gold)}
 
-/* ---------- sticky buy bar (mobile) ----------
-   Sells continuously without stealing a single pixel of the fold. */
-.buybar{
-  position:fixed;left:0;right:0;bottom:0;z-index:200;
-  display:none;align-items:center;justify-content:space-between;gap:1rem;
-  padding:.7rem 1.1rem;
-  background:var(--espresso);border-top:1px solid var(--line-dark);
-}
-.buybar .bb-price{
-  font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--dark-text);line-height:1.1;
-}
-.buybar .bb-price small{
-  display:block;font-family:'IBM Plex Mono',monospace;font-size:.56rem;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--dark-muted);margin-top:.15rem;
-}
-.buybar a{
-  flex:0 0 auto;background:var(--gold);color:var(--cream);text-decoration:none;
-  font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.14em;
-  text-transform:uppercase;padding:.85rem 1.4rem;
-}
-@media(max-width:760px){
-  .buybar{display:flex}
-  body.has-buybar{padding-bottom:4.6rem}
-}
-
 /* ---------- shared layout ---------- */
 .wrap{max-width:1060px;margin:0 auto;padding:0 2rem}
 .wrap-narrow{max-width:720px;margin:0 auto;padding:0 2rem}
@@ -454,4 +429,27 @@ figure.frame figcaption{
   .site-nav a{font-size:.6rem;letter-spacing:0;padding:.25rem .2rem}
   .cc-links a{font-size:.64rem;white-space:normal}
 }
+}
+
+
+/* ---------- two doors ----------
+   Razorpay and WhatsApp are two ways in, not a first choice and
+   a fallback. Equal weight, side by side.                      */
+.doors{display:grid;grid-template-columns:1fr;gap:.8rem;margin-top:1.8rem}
+@media(min-width:601px){.doors{grid-template-columns:1fr 1fr;gap:1rem}}
+.door{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;text-decoration:none;padding:1.3rem 1.1rem;
+  border:1px solid var(--ink);color:var(--ink);transition:all .25s;
+}
+.door.pay{background:var(--gold);border-color:var(--gold);color:var(--cream)}
+.door.pay:hover{background:var(--ink);border-color:var(--ink);color:var(--amber)}
+.door:hover{background:var(--ink);color:var(--amber)}
+.door b{
+  font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.72rem;
+  letter-spacing:.14em;text-transform:uppercase;
+}
+.door small{
+  display:block;margin-top:.5rem;font-family:'Lora',serif;font-size:.85rem;
+  line-height:1.5;font-style:italic;opacity:.8;text-transform:none;letter-spacing:0;
 }

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The four coffees, and how they work. StateShift.</title>
+<title>Every coffee changes your day. Most of us never choose how. StateShift.</title>
 <meta name="description" content="Sehar, Rukh, Kisse, Lamhe. Tasting notes for four coffees, one for each part of the day, plus the two-sachet method. Six cups, Rs 300.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -13,7 +13,13 @@
 @media(min-width:761px){.c-hero{padding:3.8rem 2rem 2.2rem}}
 .c-hero h1{font-size:clamp(1.9rem,6.4vw,3rem);line-height:1.15;margin-bottom:.9rem}
 .c-hero h1 em{color:var(--gold)}
-.c-hero .plain{font-size:1.02rem;line-height:1.75;color:var(--ink-soft);margin-bottom:1.2rem}
+.c-hero .plain{font-size:1.02rem;line-height:1.8;color:var(--ink-soft);margin-bottom:1rem}
+.c-hero .sorted{
+  font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;line-height:1.6;
+  color:var(--ink);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:1rem 0;margin:1.4rem 0 1.3rem;
+}
+.c-hero .sorted em{color:var(--gold)}
 .price-line{
   font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.16em;
   text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;
@@ -69,7 +75,7 @@
 .c-close .after{margin-top:1.4rem;font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.1em;color:var(--dark-muted);line-height:2.1}
 </style>
 </head>
-<body class="has-buybar">
+<body>
 
 <header class="site-header">
   <a href="index.html" class="site-logo">State<span>Shift</span><small>A study of moments</small></a>
@@ -83,10 +89,12 @@
 </header>
 
 <section class="c-hero">
-  <h1>Four coffees.<br>One for each <em>part of your day</em>.</h1>
-  <p class="plain">Ground single-estate coffee in a filter bag, plus a cup mix. Hot water, three minutes, no machine.</p>
+  <h1>Every coffee changes your day.<br><em>Most of us never choose how</em>.</h1>
+  <p class="plain">These four were not designed around flavour. They were designed around a state of mind. Morning clarity. Midday composure. Evening reflection. And the hour that belongs to nobody else.</p>
+  <p class="plain">Coffee happens to be the vehicle.</p>
+  <p class="sorted">Every other coffee is sorted by how it was roasted. Light, medium, dark. Ours are sorted by <em>when you need them</em>.</p>
   <div class="price-line">Six cups &middot; &#8377;300 &middot; shipping included</div>
-  <a class="btn gold" href="sampler.html">Order the sampler</a>
+  <a class="btn gold" href="sampler.html">Start with six cups</a>
 </section>
 
 <section class="sku" id="sehar">
@@ -238,17 +246,16 @@
 
 <section class="c-close">
   <h2>Six cups. &#8377;300.</h2>
-  <p>Two each of Sehar, Rukh and Kisse. Lamhe joins them shortly.</p>
-  <a class="btn on-dark" href="sampler.html">Order the sampler</a>
-  <div class="after">I reply the same day, usually.<br>Payment by UPI.<br>Boxes go out the following week.</div>
+  <p>Two each of Sehar, Rukh and Kisse. Lamhe is still on the bench.</p>
+  <a class="btn on-dark" href="sampler.html">Start with six cups</a>
 </section>
 
 <section class="contact-close">
-  <span class="eyebrow">Before you go</span>
-  <h2>There is a person at the other end.</h2>
-  <p class="cc-line">Usually mid-experiment, usually happy to be interrupted.</p>
+  <span class="eyebrow">The Tasting Circle</span>
+  <h2>A small list, and no marketing on it.</h2>
+  <p class="cc-line">I send what I am testing, what failed this week, and what changed because of it. That is all it is.</p>
   <div class="cc-links">
-    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20to%20join%20the%20Tasting%20Circle.">Join the Tasting Circle</a>
+    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20to%20join%20the%20Tasting%20Circle.">Join on WhatsApp</a>
     <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
     <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a>
   </div>
@@ -281,11 +288,6 @@
     <span>&#169; 2026</span>
   </div>
 </footer>
-
-<div class="buybar">
-  <div class="bb-price">&#8377;300<small>six cups &middot; shipping included</small></div>
-  <a href="sampler.html">Order</a>
-</div>
 
 </body>
 </html>

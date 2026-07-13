@@ -3,38 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The sampler. Six cups, Rs 300. StateShift.</title>
-<meta name="description" content="Six cups. Two each of Sehar, Rukh and Kisse. Filled by hand the week you order. Rs 300, shipping included.">
+<title>Start with six cups. StateShift.</title>
+<meta name="description" content="Two each of Sehar, Rukh and Kisse. Small enough to finish in a week. Long enough to notice what changes. Rs 300, shipping included.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-.sp-hero{padding:2.6rem 1.3rem 1.4rem;text-align:center;max-width:600px;margin:0 auto}
-@media(min-width:761px){.sp-hero{padding:4rem 2rem 1.8rem}}
-.sp-hero h1{font-size:clamp(1.95rem,6.6vw,3.1rem);line-height:1.14;margin-bottom:.9rem}
+.sp-hero{padding:2.6rem 1.3rem 1.8rem;text-align:center;max-width:600px;margin:0 auto}
+@media(min-width:761px){.sp-hero{padding:4rem 2rem 2.2rem}}
+.sp-hero h1{font-size:clamp(1.95rem,6.6vw,3.1rem);line-height:1.14;margin-bottom:1rem}
 .sp-hero h1 em{color:var(--gold)}
-.sp-hero p{font-size:1.04rem;line-height:1.8;color:var(--ink-soft)}
+.sp-hero p{font-size:1.04rem;line-height:1.85;color:var(--ink-soft)}
 
-.ft-line{
-  max-width:900px;margin:0 auto 2rem;text-align:center;
-  border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);
-  padding:.85rem 1rem;
-  font-family:'IBM Plex Mono',monospace;font-size:clamp(.64rem,2.4vw,.9rem);
-  letter-spacing:.2em;text-transform:uppercase;color:var(--gold);
-}
-@media(min-width:761px){.ft-line{letter-spacing:.3em;margin-bottom:2.6rem}}
-
-/* the box, itemised. A price with nothing under it is a number.
-   A price with a list under it is a decision.                  */
-.box{max-width:600px;margin:0 auto;padding:0 1.3rem}
+/* the box, itemised. A price with a list under it is a decision.
+   A price on its own is just a number. */
+.box{max-width:600px;margin:2.4rem auto 0;padding:0 1.3rem}
 .box ul{list-style:none;margin:0}
 .box li{
   display:flex;justify-content:space-between;gap:1rem;align-items:baseline;
-  padding:.85rem 0;border-bottom:1px solid var(--line);font-size:1.02rem;color:var(--ink-soft);
+  padding:.85rem 0;border-bottom:1px solid var(--line);
 }
 .box li:first-child{border-top:1px solid var(--line)}
 .box li b{font-family:'Playfair Display',serif;font-weight:400;color:var(--ink);letter-spacing:.04em;font-size:1.15rem}
-.box li i{font-style:normal;color:var(--muted);font-size:.9rem;display:block;margin-top:.15rem}
+.box li i{font-style:normal;color:var(--muted);font-size:.9rem;display:block;margin-top:.15rem;line-height:1.5}
 .box li span{font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap;padding-top:.3rem}
 .total{
   display:flex;justify-content:space-between;align-items:baseline;
@@ -42,28 +33,22 @@
 }
 .total small{font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 
-.order{text-align:center;margin-top:1.8rem}
-.order .btn{display:block;margin-bottom:.7rem}
-.or{
-  font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--muted);margin:.9rem 0;
+/* the working edition, and the photo that proves it */
+.edition{background:var(--espresso);color:var(--dark-text);padding:3rem 1.3rem;margin-top:3rem}
+.edition-in{max-width:620px;margin:0 auto}
+.edition .eyebrow{color:var(--amber)}
+.edition h2{color:var(--dark-text);font-size:clamp(1.6rem,4.6vw,2.3rem);line-height:1.3;margin-bottom:1.1rem}
+.edition p{color:#cbb897;font-size:1.03rem;line-height:1.9;margin:0}
+.edition figure{margin:2rem 0 0}
+.edition figure img{width:100%;display:block}
+.edition figcaption{
+  font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--dark-muted);padding-top:.8rem;text-align:center;
 }
-.after{
-  margin-top:1.4rem;font-family:'IBM Plex Mono',monospace;font-size:.66rem;
-  letter-spacing:.1em;color:var(--muted);line-height:2.1;
-}
-.why{background:var(--espresso);color:var(--dark-text);padding:3rem 1.3rem;margin-top:3rem}
-.why-in{max-width:600px;margin:0 auto}
-.why .eyebrow{color:var(--amber)}
-.why h2{color:var(--dark-text);font-size:clamp(1.5rem,4.2vw,2.1rem);line-height:1.3;margin-bottom:1.1rem}
-.why p{color:#cbb897;font-size:1.02rem;line-height:1.9;margin-bottom:1rem}
-.why p:last-child{margin-bottom:0}
-.why em{color:var(--amber);font-style:italic}
-.shipfig{max-width:720px;margin:3rem auto 0;padding:0 1.3rem}
-.faqs{max-width:600px;margin:2.6rem auto 0;padding:0 1.3rem 3.4rem}
+.faqs{max-width:600px;margin:2.8rem auto 0;padding:0 1.3rem 3.4rem}
 </style>
 </head>
-<body class="has-buybar">
+<body>
 
 <header class="site-header">
   <a href="index.html" class="site-logo">State<span>Shift</span><small>A study of moments</small></a>
@@ -76,12 +61,11 @@
   </nav>
 </header>
 
+<!-- FOLD 1 · why you would want this, not what is in it -->
 <section class="sp-hero">
-  <h1>Six cups.<br>Three <em>shifts</em>.</h1>
-  <p>Nobody outside my kitchen has drunk these yet. You would be among the first, and I will want to know what you thought.</p>
+  <h1>Start with six cups.</h1>
+  <p>Two each of Sehar, Rukh and Kisse. Small enough to finish in a week. Long enough to find out whether any of this <em>survives the first sip</em>.</p>
 </section>
-
-<div class="ft-line">Founding &middot; Taster &middot; Edition</div>
 
 <div class="box">
   <ul>
@@ -93,66 +77,57 @@
   </ul>
   <div class="total"><span>&#8377;300</span><small>shipping included</small></div>
 
-  <div class="order">
+  <!-- Two doors. Not a choice and a fallback. -->
+  <div class="doors">
     <!-- ==========================================================
-         PRIMARY BUTTON. Razorpay Dashboard &gt; Payment Links &gt; Create.
-         Ten minutes, no code, no plugin, works on a static site.
-         Paste the link here and this stops being a request and
-         starts being a purchase. Until then it points nowhere.
+         Razorpay Dashboard > Payment Links > Create. Ten minutes,
+         no code, works on a static site. Paste the URL here.
          ========================================================== -->
-    <a class="btn gold" href="https://rzp.io/l/REPLACE-ME">Buy now &middot; &#8377;300</a>
-    <div class="or">or</div>
-    <a class="btn" href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20the%20%E2%82%B9300%20sampler%20(six%20cups).%20My%20name%20is%20___%20and%20I%27m%20in%20___.">Message me instead</a>
-    <div class="after">
-      Pay by UPI, card or netbanking.<br>
-      Boxes are filled by hand and go out the following week.<br>
-      Anywhere in India, inside a week.
-    </div>
+    <a class="door pay" href="https://rzp.io/l/REPLACE-ME">
+      <b>Buy with Razorpay</b>
+      <small>Card, UPI or netbanking. Boxes go out the following week.</small>
+    </a>
+    <a class="door" href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20the%20%E2%82%B9300%20sampler%20(six%20cups).%20My%20name%20is%20___%20and%20I%27m%20in%20___.">
+      <b>Order on WhatsApp</b>
+      <small>You'll be talking to me, usually while another batch is brewing.</small>
+    </a>
   </div>
 </div>
 
-<section class="why">
-  <div class="why-in">
-    <span class="eyebrow">Why order now and not later</span>
-    <h2>One day this will be a thing on a shelf. Right now it is a bench you can pull a chair up to.</h2>
-    <p>These cups are weighed on a kitchen scale, by one person, on the morning they go out. The batch is small enough to sign, and it gets signed.</p>
-    <p>Some of these blends will change after you drink them, partly because of what you tell me. Lamhe is still on the bench. Sehar is still hunting a bergamot I cannot buy in this country. Whatever you say goes into the same notebook as every breakthrough on the <a href="states.html" style="color:var(--amber)">Lab</a> page.</p>
-    <p><em>If you want the finished article, wait for the shelf. If you want your fingerprints on it, this is the only window that exists.</em></p>
+<!-- FOLD 2 · why this edition exists. The photo is the evidence. -->
+<section class="edition">
+  <div class="edition-in">
+    <span class="eyebrow">Why this edition exists</span>
+    <h2>This is not our permanent collection. It is our working one.</h2>
+    <p>Lamhe is still on the bench. Sehar is still hunting a bergamot I cannot buy in this country. Every note that comes back changes the next batch, which means you are tasting this coffee before we have finished making it.</p>
+    <figure>
+      <img src="assets/editorial/packing-box.jpg" alt="Hands packing a StateShift box" loading="lazy">
+      <figcaption>weighed, sealed and signed in the week it ships</figcaption>
+    </figure>
   </div>
 </section>
-
-<div class="shipfig">
-  <figure class="frame">
-    <img src="assets/editorial/packing-box.jpg" alt="Hands packing a StateShift box" loading="lazy">
-    <figcaption>weighed, sealed and signed in the week it ships</figcaption>
-  </figure>
-</div>
 
 <div class="faqs">
   <details class="disclose">
     <summary>What if I don't like it?</summary>
-    <div class="body"><p>Tell me and I will refund you. No form, no argument. I would rather know. Almost everything on the Lab page came from someone saying a cup was plain, or once, memorably, half-cooked.</p></div>
+    <div class="body"><p>If you genuinely don't enjoy it, email me and I will refund you. No forms, no arguments, no return shipping. I would rather know. Almost everything on the Lab page came from someone telling me a cup was plain, or once, memorably, half-cooked.</p></div>
   </details>
   <details class="disclose">
-    <summary>Is it tea or coffee?</summary>
-    <div class="body"><p>Coffee. It hangs on your cup like a tea bag because it is a pour-over filter, but inside is freshly ground single-estate coffee. Sehar borrows a little Earl Grey for its citrus, and that is the only tea in the box.</p></div>
+    <summary>How do I brew it?</summary>
+    <div class="body"><p>Cup mix into an empty cup, filter bag hooked on the rim, 150ml of hot water poured slowly, three minutes, lift the bag out, stir. A cup and hot water is the entire equipment list. The illustrated card comes in the box, and the <a href="collection.html#how">full method is here</a>.</p></div>
   </details>
   <details class="disclose">
-    <summary>Do I need a machine, a grinder, anything?</summary>
-    <div class="body"><p>A cup and hot water. That is the entire equipment list. Everything that needs grinding has already been ground, that morning, by hand.</p></div>
-  </details>
-  <details class="disclose">
-    <summary>How long does the coffee keep?</summary>
-    <div class="body"><p>Drink it within a month. The sachets are sealed, but aromatics fade faster than coffee does, and the aroma is most of the point. Do not save these for a special occasion. The occasion is Tuesday.</p></div>
+    <summary>How long does it keep?</summary>
+    <div class="body"><p>Drink it inside a month. The sachets are sealed, but aromatics fade faster than coffee does and the aroma is most of the point. Do not save these for a special occasion. The occasion is Tuesday.</p></div>
   </details>
 </div>
 
 <section class="contact-close">
-  <span class="eyebrow">Before you go</span>
-  <h2>There is a person at the other end.</h2>
-  <p class="cc-line">Usually mid-experiment, usually happy to be interrupted.</p>
+  <span class="eyebrow">The Tasting Circle</span>
+  <h2>A small list, and no marketing on it.</h2>
+  <p class="cc-line">I send what I am testing, what failed this week, and what changed because of it. That is all it is.</p>
   <div class="cc-links">
-    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20to%20join%20the%20Tasting%20Circle.">Join the Tasting Circle</a>
+    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20to%20join%20the%20Tasting%20Circle.">Join on WhatsApp</a>
     <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
     <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a>
   </div>
@@ -185,11 +160,6 @@
     <span>&#169; 2026</span>
   </div>
 </footer>
-
-<div class="buybar">
-  <div class="bb-price">&#8377;300<small>six cups &middot; shipping included</small></div>
-  <a href="sampler.html">Order</a>
-</div>
 
 </body>
 </html>
