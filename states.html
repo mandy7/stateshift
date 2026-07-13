@@ -4,151 +4,145 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nothing here was guessed. The Lab. StateShift.</title>
-<meta name="description" content="Fifty-one sittings, logged with the verdict intact. The four findings that changed the coffee, plus the full archive.">
+<meta name="description" content="Fifty-one sittings, logged with the verdict intact. The six findings that changed the coffee, plus the full archive.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site.css?v=4">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-.l-hero{padding:2.6rem 1.3rem 1.8rem;text-align:center;max-width:620px;margin:0 auto}
-@media(min-width:761px){.l-hero{padding:4rem 2rem 2.4rem}}
-.l-hero h1{font-size:clamp(1.9rem,6.4vw,3rem);line-height:1.15;margin-bottom:.9rem}
+.l-hero{padding:2.8rem 1.3rem 2rem;text-align:center;max-width:640px;margin:0 auto}
+@media(min-width:761px){.l-hero{padding:4.2rem 2rem 2.4rem}}
+.l-hero h1{font-size:clamp(1.95rem,6.2vw,3rem);line-height:1.16;margin-bottom:1.1rem}
 .l-hero h1 em{color:var(--gold)}
-.l-hero .lead{font-size:1.03rem;line-height:1.75;color:var(--ink-soft)}
-.updated{
-  margin-top:1.2rem;font-family:'IBM Plex Mono',monospace;font-size:.64rem;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
-}
+.l-hero .lead{font-size:1.05rem;line-height:1.85}
 
-/* ---- the four findings. A database is not evidence. This is. ---- */
-.finds{max-width:660px;margin:0 auto;padding:1rem 1.3rem 3rem}
-.find{border-left:2px solid var(--gold);padding:0 0 0 1.3rem;margin-bottom:2.2rem}
+.finds{max-width:680px;margin:0 auto;padding:1rem 1.3rem 3rem}
+.find{border-left:2px solid var(--gold);padding-left:1.4rem;margin-bottom:2.4rem}
 .find .k{
-  font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.18em;
+  font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.16em;
   text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.5rem;
 }
-.find h2{font-family:'Playfair Display',serif;font-size:clamp(1.25rem,3.6vw,1.55rem);line-height:1.35;margin-bottom:.55rem}
-.find p{font-size:1rem;line-height:1.85;color:var(--ink-soft);margin:0}
+.find h2{font-size:clamp(1.3rem,3.8vw,1.6rem);line-height:1.35;margin-bottom:.6rem}
+.find p{font-size:1.02rem;line-height:1.85;color:var(--ink-soft);margin:0}
 .find .ref{
-  display:block;margin-top:.5rem;font-family:'IBM Plex Mono',monospace;
-  font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+  display:block;margin-top:.6rem;font-family:'IBM Plex Mono',monospace;
+  font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
 }
 
 .l-body{padding:0 0 4rem}
 .s-inner{max-width:1060px;margin:0 auto;padding:0 1.3rem}
 @media(min-width:761px){.s-inner{padding:0 2rem}}
-.master-tabs{display:flex;gap:.5rem;justify-content:center;margin:0 0 2rem;flex-wrap:wrap}
+.master-tabs{display:flex;gap:.5rem;justify-content:center;margin:0 0 1.6rem;flex-wrap:wrap}
 .mtab{
-  background:transparent;border:1px solid var(--line-strong);color:var(--muted);
+  background:transparent;border:1px solid var(--amber);color:var(--amber);
   padding:.7rem 1.3rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;
-  font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;transition:all .2s;
+  font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;transition:all .2s;
 }
-.mtab:hover{color:var(--gold);border-color:var(--gold)}
-.mtab.active{background:var(--gold);color:var(--cream);border-color:var(--gold)}
+.mtab.active{background:var(--amber);color:var(--espresso)}
 .master-pane{display:none}
 .master-pane.active{display:block}
-.tabs{display:flex;gap:.5rem;margin-bottom:1.6rem;flex-wrap:wrap}
+.tabs{display:flex;gap:.5rem;margin-bottom:1.4rem;flex-wrap:wrap}
 .tab-btn{
-  background:transparent;border:1px solid var(--line);color:var(--muted);
+  background:transparent;border:1px solid var(--line-dark);color:var(--dark-muted);
   padding:.5rem 1rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;
-  font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;transition:all .2s;
+  font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;transition:all .2s;
 }
-.tab-btn:hover{color:var(--gold);border-color:var(--gold)}
-.tab-btn.active{background:var(--gold);color:var(--cream);border-color:var(--gold)}
-.lab-entry{border:1px solid var(--line);background:var(--cream);margin-bottom:1rem}
-.le-head{padding:1.1rem 1.2rem;cursor:pointer;user-select:none;display:flex;justify-content:space-between;gap:1rem;align-items:baseline}
-.le-head:hover .le-title{color:var(--gold)}
-.le-meta{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
-.le-title{font-family:'Playfair Display',serif;font-size:1.1rem;line-height:1.45;transition:color .2s;color:var(--ink)}
-.le-tag{font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.12em;color:var(--gold);border:1px solid var(--line);padding:.2rem .5rem;white-space:nowrap}
-.le-body{display:none;border-top:1px solid var(--line);padding:1.3rem;background:var(--paper)}
+.tab-btn.active{background:var(--amber);color:var(--espresso);border-color:var(--amber)}
+.lab-entry{border:1px solid var(--line-dark);background:var(--roast);margin-bottom:.9rem}
+.le-head{padding:1rem 1.1rem;cursor:pointer;user-select:none;display:flex;justify-content:space-between;gap:1rem;align-items:baseline}
+.le-meta{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dark-muted);white-space:nowrap}
+.le-title{font-family:'Playfair Display',serif;font-size:1.12rem;line-height:1.45;color:var(--dark-text)}
+.le-head:hover .le-title{color:var(--amber)}
+.le-tag{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:var(--amber);border:1px solid var(--line-dark);padding:.2rem .5rem;white-space:nowrap}
+.le-body{display:none;border-top:1px solid var(--line-dark);padding:1.2rem;background:var(--espresso)}
 .le-body.open{display:block}
-.le-body .prose{white-space:pre-line;color:var(--ink-soft);font-size:.95rem;line-height:1.85;margin-bottom:1.2rem}
-.le-label{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+.le-body .prose{white-space:pre-line;color:#cdb894;font-size:.98rem;line-height:1.85;margin-bottom:1.1rem}
+.le-label{font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.6rem}
 .obs-list{list-style:none;margin-bottom:1rem}
-.obs-list li{position:relative;padding-left:1.1rem;margin-bottom:.45rem;color:var(--ink-soft);font-size:.93rem;line-height:1.7}
-.obs-list li::before{content:'\2022';position:absolute;left:0;color:rgba(176,125,30,.55)}
-.field-note{border-left:2px solid rgba(176,125,30,.5);padding-left:1rem;margin-top:1rem}
-.field-note-text{color:var(--gold);font-style:italic;font-size:.95rem;line-height:1.75}
-.count-line{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem}
+.obs-list li{position:relative;padding-left:1.1rem;margin-bottom:.45rem;color:#cdb894;font-size:.96rem;line-height:1.7}
+.obs-list li::before{content:'\2022';position:absolute;left:0;color:var(--amber)}
+.field-note{border-left:2px solid var(--amber);padding-left:1rem;margin-top:1rem}
+.field-note-text{color:var(--amber);font-style:italic;font-size:.98rem;line-height:1.75}
+.count-line{font-family:'IBM Plex Mono',monospace;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dark-muted);margin-bottom:1.1rem}
 .summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.4rem}
-.metric-card{background:var(--cream);border:1px solid var(--line);padding:1.3rem}
-.metric-label{color:var(--gold);font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.8rem}
-.metric-value{font-family:'Playfair Display',serif;font-size:2.3rem;color:var(--ink)}
-.metric-caption{margin-top:.4rem;color:var(--muted);font-size:.82rem;line-height:1.6}
+.metric-card{background:var(--roast);border:1px solid var(--line-dark);padding:1.3rem}
+.metric-label{color:var(--amber);font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.7rem}
+.metric-value{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--dark-text)}
+.metric-caption{margin-top:.4rem;color:var(--dark-muted);font-size:.86rem;line-height:1.6}
 .chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.chart-card{background:var(--cream);border:1px solid var(--line);padding:1.3rem}
+.chart-card{background:var(--roast);border:1px solid var(--line-dark);padding:1.3rem}
 .chart-card.full{grid-column:1/-1}
-.chart-title{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:.9rem;color:var(--ink)}
+.chart-title{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:.9rem;color:var(--dark-text)}
 canvas{width:100%!important;height:280px!important}
-.footer-note{margin-top:2.2rem;color:var(--muted);line-height:1.8;font-size:.86rem;border-top:1px solid var(--line);padding-top:1.3rem}
+.footer-note{margin-top:2rem;color:var(--dark-muted);line-height:1.8;font-size:.9rem;border-top:1px solid var(--line-dark);padding-top:1.2rem}
 .tab-content{display:none}
 .tab-content.active{display:block}
 @media(max-width:900px){.summary-grid,.chart-grid{grid-template-columns:1fr}.chart-card.full{grid-column:auto}}
 .l-cta{background:var(--espresso);color:var(--dark-text);text-align:center;padding:3.2rem 1.3rem}
-.l-cta h2{color:var(--dark-text);font-size:clamp(1.6rem,4.2vw,2.2rem);margin-bottom:1.2rem}
+.l-cta h2{color:var(--dark-text);font-size:clamp(1.7rem,4.4vw,2.3rem);margin-bottom:1.3rem}
 </style>
 </head>
 <body>
 
 <header class="site-header">
-  <a href="index.html" class="site-logo">State<span>Shift</span><small>A study of moments</small></a>
+  <a href="index.html" class="site-logo">State<span>Shift</span><small>Pause &middot; Notice &middot; Shift</small></a>
   <nav class="site-nav">
     <a href="index.html">Home</a>
     <a href="collection.html">Coffee</a>
     <a href="story.html">Story</a>
     <a href="states.html" class="active">Lab</a>
-    <a href="sampler.html" class="sell">Sampler</a>
+    <a href="sampler.html" class="sell">Try It</a>
   </nav>
 </header>
 
 <section class="l-hero">
-  <span class="eyebrow">The Lab</span>
   <h1>Nothing here was guessed.<br><em>All of it was brewed</em>.</h1>
-  <p class="lead">Fifty-one sittings, logged with the verdict intact. Most of them taught us what not to make. Four of them changed the coffee, and those four are below.</p>
-  <!-- EDIT THIS EVERY TIME YOU LOG A SESSION. A stale date on this page
-       is worse than no page: it reads as a project that was abandoned. -->
-  <div class="updated">Last sitting logged &middot; UPDATE THIS DATE</div>
+  <p class="lead">Fifty-one sittings, logged with the verdict intact. Most taught us what not to make. Six of them changed the coffee, and those six are below.</p>
 </section>
 
-<!-- ============ THE FOUR FINDINGS ============ -->
 <div class="finds">
-
   <div class="find">
     <span class="k">The breakthrough</span>
     <h2>She named the cardamom from across the kitchen.</h2>
     <p>Nobody asked her to. She was doing something else. For months the aroma had been vanishing into the milk, and then one morning it did not, and she said the word out loud from six feet away. That cup is Rukh, and nothing about it has changed since.</p>
     <span class="ref">Rukh &middot; sitting 25</span>
   </div>
-
   <div class="find">
-    <span class="k">The biggest failure</span>
+    <span class="k">The thing nobody expects</span>
+    <h2>The bitterness was never the coffee.</h2>
+    <p>We chased it through grind size, dose, water temperature and steep time for weeks. It was the cardamom. Ground at home it oxidises within days and turns bitter, and it takes the whole cup down with it. Sealed commercial powder, fresh batch, fixed in one sitting. Aromatics are more fragile than the beans they sit next to.</p>
+    <span class="ref">Rukh &middot; Kisse</span>
+  </div>
+  <div class="find">
+    <span class="k">The rule that came out of a mistake</span>
+    <h2>120ml, or it is a different drink.</h2>
+    <p>Ten millilitres either side and Rukh stops being Rukh. Too little and the cardamom shouts; too much and the coffee thins out and the whole thing goes flat. We only found the edge by crossing it, twice, on consecutive mornings.</p>
+    <span class="ref">Rukh &middot; sittings 31 and 32</span>
+  </div>
+  <div class="find">
+    <span class="k">The one that took eleven tries</span>
     <h2>The coffee disappeared into the milk.</h2>
     <p>Cup after cup of Baarbara Estate came out tasting like cardamom milk with a rumour of coffee in it. Beautiful beans, wrong job. It took eleven sittings to accept that the bean was the problem and not the dose.</p>
     <span class="ref">Rukh &middot; sittings 3 to 14</span>
   </div>
-
   <div class="find">
-    <span class="k">The thing nobody expects</span>
-    <h2>The bitterness was never the coffee.</h2>
-    <p>We chased it through grind size, dose, water temperature and steep time for weeks. It was the cardamom. Ground at home, it oxidises within days and turns bitter, and it takes the whole cup down with it. Sealed commercial powder, fresh batch, fixed in one sitting. Aromatics are more fragile than the beans they sit next to.</p>
-    <span class="ref">Rukh &middot; Kisse</span>
+    <span class="k">The accident worth keeping</span>
+    <h2>Mace, at a dose you could mistake for nothing.</h2>
+    <p>A tenth of a gram of mace does something to Kisse that nobody has been able to name. Testers reach for whiskey, for smoke, for a spice they cannot place. Double it and the effect vanishes entirely, which is the strangest part.</p>
+    <span class="ref">Kisse</span>
   </div>
-
   <div class="find">
     <span class="k">What is open right now</span>
-    <h2>Hazelnut, and a bergamot we cannot buy.</h2>
-    <p>Lamhe needs a signature aroma the way Rukh has cardamom, and roasted hazelnut is the current candidate. Sehar needs real bergamot: Earl Grey works as a proxy up to a point, and past about a tenth of a gram it stops being citrus and starts being black tea. Both are unfinished, and both are on this page before they are solved.</p>
+    <h2>Hazelnut, and a citrus we are still chasing.</h2>
+    <p>Lamhe needs a signature aroma the way Rukh has cardamom, and roasted hazelnut is the current candidate. Sehar is still being tuned: Earl Grey works as a citrus lift up to a point, and past about a tenth of a gram it stops being citrus and starts being black tea. Both are unfinished, and both are on this page before they are solved.</p>
     <span class="ref">Lamhe &middot; Sehar</span>
   </div>
-
 </div>
 
-<!-- ============ THE ARCHIVE, ON REQUEST ============ -->
 <div class="l-body">
   <div class="s-inner">
     <details class="disclose">
-      <summary>Browse all sittings and the measurements</summary>
+      <summary>Browse all fifty-one sittings, and the numbers</summary>
       <div class="body">
 
         <div class="master-tabs">
@@ -188,7 +182,7 @@ canvas{width:100%!important;height:280px!important}
             </div>
           </div>
           <div class="footer-note">
-            1 = low, 3 = baseline, 5 = unusually elevated. Sittings that did not record a metric are left out of that metric rather than counted as zero. Self-reported by the taster. Directional evidence, not proof.
+            1 = low, 3 = baseline, 5 = unusually elevated. Sittings that did not record a metric are left out of it rather than counted as zero. Self-reported by the taster. Directional evidence, not proof.
           </div>
         </div>
 
@@ -204,11 +198,11 @@ canvas{width:100%!important;height:280px!important}
 
 <section class="contact-close">
   <span class="eyebrow">The Tasting Circle</span>
-  <h2>A small list, and no marketing on it.</h2>
-  <p class="cc-line">I send what I am testing, what failed this week, and what changed because of it. That is all it is.</p>
+  <h2>Every failure, before it becomes a coffee.</h2>
+  <p class="cc-line">One note a fortnight. What is on the bench, what went wrong, and what changed because of it. You can leave whenever you like.</p>
   <div class="cc-links">
-    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20to%20join%20the%20Tasting%20Circle.">Join on WhatsApp</a>
-    <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
+    <a href="mailto:hello@stateshift.in?subject=Tasting%20Circle">hello@stateshift.in</a>
+    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20to%20join%20the%20Tasting%20Circle.">Or WhatsApp</a>
     <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a>
   </div>
 </section>
@@ -216,14 +210,15 @@ canvas{width:100%!important;height:280px!important}
 <footer class="site-footer">
   <div class="footer-grid">
     <div>
-      <p style="font-size:.9rem;line-height:1.8;max-width:340px">StateShift. A study of moments. Coffee weighed, sealed and signed by hand in North India, in batches small enough to sign.</p>
+      <p style="font-size:.95rem;line-height:1.8;max-width:340px">StateShift. Coffee weighed, sealed and signed by hand in North India, in batches small enough to sign.</p>
     </div>
     <div>
       <h4>Coffee</h4>
       <ul class="footer-links">
         <li><a href="collection.html">The four coffees</a></li>
         <li><a href="collection.html#how">How it works</a></li>
-        <li><a href="sampler.html">The sampler</a></li>
+        <li><a href="sampler.html">Founder Edition</a></li>
+        <li><a href="sampler.html#faq">Questions</a></li>
       </ul>
     </div>
     <div>
@@ -232,6 +227,7 @@ canvas{width:100%!important;height:280px!important}
         <li><a href="story.html">The story</a></li>
         <li><a href="states.html">The Lab</a></li>
         <li><a href="mailto:hello@stateshift.in">hello@stateshift.in</a></li>
+        <li><a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a></li>
       </ul>
     </div>
   </div>
@@ -325,10 +321,10 @@ function metricSeries(rows, key){
 }
 const OPTS = {
   responsive:true, maintainAspectRatio:false,
-  plugins:{legend:{labels:{color:'#4a3a28', font:{family:"'IBM Plex Mono', monospace", size:10}}}},
+  plugins:{legend:{labels:{color:'#cdb894', font:{family:"'IBM Plex Mono', monospace", size:10}}}},
   scales:{
-    x:{ticks:{color:'#7d7057', font:{size:10}}, grid:{color:'rgba(38,25,14,.06)'}},
-    y:{min:1, max:5, ticks:{stepSize:1, color:'#7d7057'}, grid:{color:'rgba(38,25,14,.06)'}}
+    x:{ticks:{color:'#b39a75', font:{size:10}}, grid:{color:'rgba(212,168,83,.10)'}},
+    y:{min:1, max:5, ticks:{stepSize:1, color:'#b39a75'}, grid:{color:'rgba(212,168,83,.10)'}}
   }
 };
 function mkChart(id, series, color){
@@ -337,7 +333,7 @@ function mkChart(id, series, color){
     data:{
       labels:series.pts.map(p => p.label),
       datasets:[
-        {label:'before', data:series.pts.map(p => p.before), borderColor:'rgba(38,25,14,.28)', borderDash:[5,5], borderWidth:2, tension:.35, pointRadius:2},
+        {label:'before', data:series.pts.map(p => p.before), borderColor:'rgba(212,168,83,.45)', borderDash:[5,5], borderWidth:2, tension:.35, pointRadius:2},
         {label:'after',  data:series.pts.map(p => p.after),  borderColor:color, borderWidth:3, tension:.35, pointRadius:4}
       ]
     },
@@ -382,8 +378,6 @@ document.querySelectorAll('.m-active').forEach(btn => {
   });
 });
 </script>
-</body>
-</html>
 
 </body>
 </html>

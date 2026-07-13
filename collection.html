@@ -3,98 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Every coffee changes your day. Most of us never choose how. StateShift.</title>
-<meta name="description" content="Sehar, Rukh, Kisse, Lamhe. Tasting notes for four coffees, one for each part of the day, plus the two-sachet method. Six cups, Rs 300.">
+<title>The four coffees. StateShift.</title>
+<meta name="description" content="Sehar, Rukh, Kisse and Lamhe. Four coffees, each made for one part of the day, and the two-sachet method behind them.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site.css?v=4">
 <style>
-.c-hero{padding:2.4rem 1.3rem 1.8rem;text-align:center;max-width:600px;margin:0 auto}
-@media(min-width:761px){.c-hero{padding:3.8rem 2rem 2.2rem}}
-.c-hero h1{font-size:clamp(1.9rem,6.4vw,3rem);line-height:1.15;margin-bottom:.9rem}
+.c-hero{padding:2.8rem 1.3rem 2rem;text-align:center;max-width:620px;margin:0 auto}
+@media(min-width:761px){.c-hero{padding:4.2rem 2rem 2.4rem}}
+.c-hero h1{font-size:clamp(1.8rem,5.8vw,2.9rem);line-height:1.18;margin-bottom:1.1rem}
 .c-hero h1 em{color:var(--gold)}
-.c-hero .plain{font-size:1.02rem;line-height:1.8;color:var(--ink-soft);margin-bottom:1rem}
+.c-hero p{font-size:1.04rem;line-height:1.85;color:var(--ink-soft);margin-bottom:1rem}
 .c-hero .sorted{
-  font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;line-height:1.6;
+  font-family:'Playfair Display',serif;font-size:1.12rem;font-style:italic;line-height:1.6;
   color:var(--ink);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  padding:1rem 0;margin:1.4rem 0 1.3rem;
+  padding:1rem 0;margin:1.5rem 0;
 }
 .c-hero .sorted em{color:var(--gold)}
-.price-line{
-  font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;
-}
+.c-hero .price{margin-bottom:1.5rem}
 
-.sku{padding:2.6rem 0}
-@media(min-width:761px){.sku{padding:3.4rem 0}}
+.sku{padding:2.8rem 0}
+@media(min-width:761px){.sku{padding:3.6rem 0}}
 .sku-in{max-width:600px;margin:0 auto;padding:0 1.3rem}
-.sku-head{display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;margin-bottom:.8rem}
-.sku-head h2{font-size:clamp(1.9rem,6.6vw,2.7rem);letter-spacing:.03em;line-height:1}
-.sku-head .mean{font-family:'Caveat',cursive;font-size:1.2rem;color:var(--gold)}
-.sku-head .shift{
-  font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--forest);border:1px solid var(--line);padding:.3rem .6rem;
+.sku-head{display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap;margin-bottom:.9rem}
+.sku-head h2{font-size:clamp(2rem,6.8vw,2.8rem);letter-spacing:.03em;line-height:1}
+.sku-head .mean{font-family:'Caveat',cursive;font-size:1.3rem;color:var(--gold)}
+/* the state shift, on espresso so it reads as the thing it is */
+.shift{
+  display:inline-block;background:var(--espresso);color:var(--amber);
+  font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.12em;
+  text-transform:uppercase;padding:.5rem .9rem;margin-bottom:1.2rem;
 }
-/* Taste notes open on the page. The feeling is what folds away now. */
-.taste{font-size:1.1rem;line-height:1.6;color:var(--ink);margin-bottom:1.2rem}
-.tnotes{margin-bottom:1.5rem}
-.tn{display:grid;grid-template-columns:1fr;gap:.15rem;padding:.7rem 0;border-bottom:1px dashed var(--line)}
-@media(min-width:601px){.tn{grid-template-columns:130px 1fr;gap:1rem}}
+.taste{font-size:1.14rem;line-height:1.6;color:var(--ink);margin-bottom:1.3rem}
+.tnotes{margin-bottom:1.6rem}
+.tn{display:grid;grid-template-columns:1fr;gap:.15rem;padding:.75rem 0;border-bottom:1px dashed var(--line)}
+@media(min-width:601px){.tn{grid-template-columns:140px 1fr;gap:1rem}}
 .tn:first-child{border-top:1px dashed var(--line)}
 .tn b{
-  font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.62rem;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--gold);padding-top:.25rem;
+  font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.76rem;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--gold);padding-top:.25rem;
 }
-.tn span{font-size:1rem;line-height:1.7;color:var(--ink-soft)}
-.art{width:100%;display:block;box-shadow:0 10px 30px rgba(20,10,4,.26);margin-bottom:1.3rem}
+.tn span{font-size:1.02rem;line-height:1.7;color:var(--ink-soft)}
+.art{width:100%;display:block;box-shadow:0 10px 30px rgba(20,10,4,.26);margin-bottom:1.4rem}
 
-/* HOW IT WORKS, folded in from the old Pause page */
-.how{background:var(--paper-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:3rem 0}
+.how{background:var(--paper-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:3.2rem 0}
 .how-in{max-width:640px;margin:0 auto;padding:0 1.3rem}
-.how h2{font-size:clamp(1.6rem,4.4vw,2.2rem);margin-bottom:1rem}
-.how > .how-in > p{font-size:1.03rem;line-height:1.85;color:var(--ink-soft);margin-bottom:1.6rem}
+.how h2{font-size:clamp(1.65rem,4.6vw,2.2rem);margin-bottom:1.1rem;line-height:1.25}
+.how > .how-in > p{font-size:1.04rem;line-height:1.85;color:var(--ink-soft);margin-bottom:1.6rem}
 .two{display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:1.6rem}
 @media(min-width:601px){.two{grid-template-columns:1fr 1fr;gap:1.2rem}}
-.sachet{border:1px solid var(--line);background:var(--cream);padding:1.3rem}
+.sachet{border:1px solid var(--line);background:var(--cream);padding:1.4rem}
 .sachet .tag{
-  font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.18em;
+  font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.16em;
   text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.5rem;
 }
-.sachet h3{font-size:1.15rem;margin-bottom:.4rem}
-.sachet p{font-size:.96rem;line-height:1.7;color:var(--ink-soft);margin:0}
+.sachet h3{font-size:1.2rem;margin-bottom:.45rem}
+.sachet p{font-size:1rem;line-height:1.7;color:var(--ink-soft);margin:0}
 .recipe{
-  font-family:'IBM Plex Mono',monospace;font-size:.82rem;letter-spacing:.06em;color:var(--ink);
-  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  padding:1rem 0;text-align:center;line-height:2;margin-bottom:1.6rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.9rem;letter-spacing:.05em;
+  background:var(--espresso);color:var(--dark-text);
+  padding:1.2rem;text-align:center;line-height:2.1;margin-bottom:1.8rem;
 }
 .card-fig{max-width:400px;margin:0 auto}
 
-.c-close{background:var(--espresso);color:var(--dark-text);text-align:center;padding:3.2rem 1.3rem}
-.c-close h2{color:var(--dark-text);font-size:clamp(1.7rem,4.5vw,2.4rem);margin-bottom:.7rem}
-.c-close p{color:var(--dark-muted);margin-bottom:1.6rem;line-height:1.8}
-.c-close .after{margin-top:1.4rem;font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.1em;color:var(--dark-muted);line-height:2.1}
+.c-close{background:var(--espresso);color:var(--dark-text);text-align:center;padding:3.4rem 1.3rem}
+.c-close h2{color:var(--dark-text);font-size:clamp(1.7rem,4.6vw,2.4rem);margin-bottom:.8rem;line-height:1.25}
+.c-close p{color:#cdb894;margin-bottom:1.8rem;line-height:1.8}
 </style>
 </head>
 <body>
 
 <header class="site-header">
-  <a href="index.html" class="site-logo">State<span>Shift</span><small>A study of moments</small></a>
+  <a href="index.html" class="site-logo">State<span>Shift</span><small>Pause &middot; Notice &middot; Shift</small></a>
   <nav class="site-nav">
     <a href="index.html">Home</a>
     <a href="collection.html" class="active">Coffee</a>
     <a href="story.html">Story</a>
     <a href="states.html">Lab</a>
-    <a href="sampler.html" class="sell">Sampler</a>
+    <a href="sampler.html" class="sell">Try It</a>
   </nav>
 </header>
 
 <section class="c-hero">
   <h1>Every coffee changes your day.<br><em>Most of us never choose how</em>.</h1>
-  <p class="plain">These four were not designed around flavour. They were designed around a state of mind. Morning clarity. Midday composure. Evening reflection. And the hour that belongs to nobody else.</p>
-  <p class="plain">Coffee happens to be the vehicle.</p>
+  <p>Sehar, Rukh, Kisse and Lamhe were not built around flavour. Each one was built for a particular hour, and for the way that hour tends to slip past unnoticed.</p>
   <p class="sorted">Every other coffee is sorted by how it was roasted. Light, medium, dark. Ours are sorted by <em>when you need them</em>.</p>
-  <div class="price-line">Six cups &middot; &#8377;300 &middot; shipping included</div>
-  <a class="btn gold" href="sampler.html">Start with six cups</a>
+  <div class="price"><b>&#8377;300</b><span>Founder Edition &middot; delivered</span></div><br>
+  <a class="btn gold" href="sampler.html">Try the Founder Edition</a>
 </section>
 
 <section class="sku" id="sehar">
@@ -102,22 +97,22 @@
     <div class="sku-head">
       <h2>SEHAR</h2>
       <span class="mean">dawn</span>
-      <span class="shift">Foggy &rarr; Clear</span>
     </div>
+    <span class="shift">Foggy &rarr; Clear</span>
     <p class="taste">Bergamot, orange peel, milk chocolate, lemon candy.</p>
     <div class="tnotes">
       <div class="tn"><b>On the nose</b><span>Bergamot. Crisp citrus that cuts through morning fog.</span></div>
       <div class="tn"><b>In the cup</b><span>Orange peel. Sweet, sunlit citrus that lingers through the finish.</span></div>
-      <div class="tn"><b>The finish</b><span>Milk chocolate and lemon candy. Gentle sweetness against a lively acidity.</span></div>
+      <div class="tn"><b>The finish</b><span>Milk chocolate and lemon candy, against a lively acidity.</span></div>
       <div class="tn"><b>Body</b><span>Light. Nothing heavy on an empty stomach.</span></div>
     </div>
 
-    <img class="art" src="assets/posters/sehar-card.jpg" alt="SEHAR label" loading="lazy">
+    <img class="art" src="assets/posters/sehar-card.jpg" alt="SEHAR" loading="lazy">
     <details class="disclose">
       <summary>The moment it was made for</summary>
       <div class="body">
         <p>The day has not decided what it will be yet. Neither have you. Sehar is for that window, before the noise and before the phone.</p>
-        <p class="margin-note" style="margin-top:.9rem;font-size:1.05rem">the citrus is ours. oranges, a peeler, an oven, one very fragrant weekend</p>
+        <p class="margin-note" style="margin-top:1rem;font-size:1.15rem">the citrus is ours. oranges, a peeler, an oven, one very fragrant weekend</p>
       </div>
     </details>
   </div>
@@ -127,8 +122,8 @@
     <div class="sku-head">
       <h2>RUKH</h2>
       <span class="mean">direction</span>
-      <span class="shift">Scattered &rarr; Grounded</span>
     </div>
+    <span class="shift">Scattered &rarr; Grounded</span>
     <p class="taste">Cardamom, dark chocolate, toasted almond, ripe berries.</p>
     <div class="tnotes">
       <div class="tn"><b>On the nose</b><span>Cardamom. It arrives before the coffee does.</span></div>
@@ -137,12 +132,12 @@
       <div class="tn"><b>Body</b><span>Medium. Survives milk without disappearing into it.</span></div>
     </div>
 
-    <img class="art" src="assets/posters/rukh-card.jpg" alt="RUKH label" loading="lazy">
+    <img class="art" src="assets/posters/rukh-card.jpg" alt="RUKH" loading="lazy">
     <details class="disclose">
       <summary>The moment it was made for</summary>
       <div class="body">
         <p>Somewhere before noon the day scatters. Eleven tabs, three unfinished thoughts. Rukh is the still point you move from.</p>
-        <p class="margin-note" style="margin-top:.9rem;font-size:1.05rem">"light, nice, the cardamom complementing. lock it." the cup that ended the search</p>
+        <p class="margin-note" style="margin-top:1rem;font-size:1.15rem">"light, nice, the cardamom complementing. lock it." the cup that ended the search</p>
       </div>
     </details>
   </div>
@@ -152,8 +147,8 @@
     <div class="sku-head">
       <h2>KISSE</h2>
       <span class="mean">stories</span>
-      <span class="shift">Restless &rarr; Unhurried</span>
     </div>
+    <span class="shift">Restless &rarr; Unhurried</span>
     <p class="taste">Dark chocolate, roasted nuts, warm spice. Someone once said whiskey.</p>
     <div class="tnotes">
       <div class="tn"><b>On the nose</b><span>Something close to a fine spirit. Testers keep trying to name it and cannot.</span></div>
@@ -162,12 +157,12 @@
       <div class="tn"><b>Body</b><span>Full. Made to be shared, made to last a conversation.</span></div>
     </div>
 
-    <img class="art" src="assets/posters/kisse-card.jpg" alt="KISSE label" loading="lazy">
+    <img class="art" src="assets/posters/kisse-card.jpg" alt="KISSE" loading="lazy">
     <details class="disclose">
       <summary>The moment it was made for</summary>
       <div class="body">
         <p>Some conversations only begin after the day has ended. Kisse is for those, the ones that stretch past midnight.</p>
-        <p class="margin-note" style="margin-top:.9rem;font-size:1.05rem">"whiskey and dark chocolate." the first words ever said about Kisse</p>
+        <p class="margin-note" style="margin-top:1rem;font-size:1.15rem">"whiskey and dark chocolate." the first words ever said about Kisse</p>
       </div>
     </details>
   </div>
@@ -177,8 +172,8 @@
     <div class="sku-head">
       <h2>LAMHE</h2>
       <span class="mean">moments</span>
-      <span class="shift">Depleted &rarr; Restored</span>
     </div>
+    <span class="shift">Depleted &rarr; Restored</span>
     <p class="taste">Cocoa, soft cinnamon, gentle coffee. Nothing competing for attention.</p>
     <div class="tnotes">
       <div class="tn"><b>On the nose</b><span>Cocoa and a soft cinnamon warmth.</span></div>
@@ -187,25 +182,24 @@
       <div class="tn"><b>Body</b><span>Velvety. Roasted hazelnut is the last question we are still asking.</span></div>
     </div>
 
-    <!-- REGENERATE: this card still advertises vanilla, malt and toasted walnuts.
-         Vanilla is excluded from the recipe and the nut is hazelnut. -->
-    <img class="art" src="assets/posters/lamhe-card.jpg" alt="LAMHE label" loading="lazy">
+    <!-- REGENERATE: this card still shows vanilla, malt and walnuts.
+         Vanilla is excluded and the nut is hazelnut. -->
+    <img class="art" src="assets/posters/lamhe-card.jpg" alt="LAMHE" loading="lazy">
     <details class="disclose">
       <summary>The moment it was made for</summary>
       <div class="body">
         <p>There is an hour that belongs to no one else. A blanket, a book, rain if you are lucky. Lamhe sits inside it with you.</p>
-        <p class="margin-note" style="margin-top:.9rem;font-size:1.05rem">still on the bench. hazelnut is the last question</p>
+        <p class="margin-note" style="margin-top:1rem;font-size:1.15rem">still on the bench. hazelnut is the last question</p>
       </div>
     </details>
   </div>
 </section>
 
-<!-- ============ HOW IT WORKS (was The Pause) ============ -->
 <section class="how" id="how">
   <div class="how-in">
     <span class="eyebrow">How it works</span>
     <h2>Two sachets. One cup. Nothing to wash up.</h2>
-    <p>Coffee grounds want to be steeped and lifted out. Creamer and jaggery want to dissolve. Put them in the same bag and you get a gritty cup, so we keep them apart until the water brings them together. It looks like extra packaging. It is the reason the cup is clean.</p>
+    <p>Coffee grounds want to be steeped and lifted out. Creamer and jaggery want to dissolve. Put them in the same bag and you get a gritty cup, so we keep them apart until the water brings them together.</p>
 
     <div class="two">
       <div class="sachet">
@@ -226,37 +220,41 @@
       lift it out &middot; stir &middot; drink
     </div>
 
-    <figure class="print tilt-0 card-fig">
-      <img src="assets/posters/how-to-brew.jpg" alt="The StateShift brew card: empty the cup mix, hang the drip bag, pour slowly, steep, remove, stir" loading="lazy">
+    <figure class="print card-fig">
+      <img src="assets/posters/how-to-brew.jpg" alt="The StateShift brew card" loading="lazy">
       <figcaption>the card that comes in the box</figcaption>
     </figure>
 
-    <div style="margin-top:2rem">
-      <details class="disclose">
-        <summary>Is it tea or coffee?</summary>
-        <div class="body"><p>Coffee. It hangs on your cup like a tea bag because it is a pour-over filter, but inside is freshly ground single-estate coffee. Sehar borrows a little Earl Grey for its citrus, and that is the only tea on the shelf.</p></div>
-      </details>
+    <div style="margin-top:2.2rem">
       <details class="disclose">
         <summary>Why three minutes?</summary>
-        <div class="body"><p>Because that is how long the aroma takes to arrive, and because it is long enough to be a pause and short enough that you will actually take it. There is nothing to grind, nothing to weigh and nothing to wash up. The cup gives your hands something to hold while you arrive.</p></div>
+        <div class="body"><p>Because that is how long the aroma takes to arrive. Pull the bag out at ninety seconds and you get coffee. Leave it the full three and you get the thing we built. It is also long enough to be a pause and short enough that you will actually take it.</p></div>
+      </details>
+      <details class="disclose">
+        <summary>Do I need a machine, a grinder, anything?</summary>
+        <div class="body"><p>A cup and hot water. That is the entire equipment list. Everything that needed grinding was ground by hand, that morning, before it was sealed.</p></div>
+      </details>
+      <details class="disclose">
+        <summary>Can I make it with milk?</summary>
+        <div class="body"><p>Water first, always. Milk mutes the aroma, and the aroma is most of the point. If you want it softer, add a splash of hot milk after the filter bag comes out.</p></div>
       </details>
     </div>
   </div>
 </section>
 
 <section class="c-close">
-  <h2>Six cups. &#8377;300.</h2>
-  <p>Two each of Sehar, Rukh and Kisse. Lamhe is still on the bench.</p>
-  <a class="btn on-dark" href="sampler.html">Start with six cups</a>
+  <h2>Three coffees. Six brews.<br>One box.</h2>
+  <p>Sehar, Rukh and Kisse. Lamhe is still on the bench.</p>
+  <a class="btn on-dark" href="sampler.html">Try the Founder Edition</a>
 </section>
 
 <section class="contact-close">
   <span class="eyebrow">The Tasting Circle</span>
-  <h2>A small list, and no marketing on it.</h2>
-  <p class="cc-line">I send what I am testing, what failed this week, and what changed because of it. That is all it is.</p>
+  <h2>Every failure, before it becomes a coffee.</h2>
+  <p class="cc-line">One note a fortnight. What is on the bench, what went wrong, and what changed because of it. You can leave whenever you like.</p>
   <div class="cc-links">
-    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20to%20join%20the%20Tasting%20Circle.">Join on WhatsApp</a>
-    <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
+    <a href="mailto:hello@stateshift.in?subject=Tasting%20Circle">hello@stateshift.in</a>
+    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20to%20join%20the%20Tasting%20Circle.">Or WhatsApp</a>
     <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a>
   </div>
 </section>
@@ -264,14 +262,15 @@
 <footer class="site-footer">
   <div class="footer-grid">
     <div>
-      <p style="font-size:.9rem;line-height:1.8;max-width:340px">StateShift. A study of moments. Coffee weighed, sealed and signed by hand in North India, in batches small enough to sign.</p>
+      <p style="font-size:.95rem;line-height:1.8;max-width:340px">StateShift. Coffee weighed, sealed and signed by hand in North India, in batches small enough to sign.</p>
     </div>
     <div>
       <h4>Coffee</h4>
       <ul class="footer-links">
         <li><a href="collection.html">The four coffees</a></li>
         <li><a href="collection.html#how">How it works</a></li>
-        <li><a href="sampler.html">The sampler</a></li>
+        <li><a href="sampler.html">Founder Edition</a></li>
+        <li><a href="sampler.html#faq">Questions</a></li>
       </ul>
     </div>
     <div>
@@ -280,6 +279,7 @@
         <li><a href="story.html">The story</a></li>
         <li><a href="states.html">The Lab</a></li>
         <li><a href="mailto:hello@stateshift.in">hello@stateshift.in</a></li>
+        <li><a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a></li>
       </ul>
     </div>
   </div>

@@ -1,455 +1,306 @@
 /* ============================================================
-   StateShift — site.css — v3 (mobile-first pass)
-   Paper journal + dark espresso accents
+   StateShift — site.css — v4 (clean rewrite)
+   Fixes: stray brace at old L432 that killed the cascade.
    Type: Playfair Display (display) · Lora (body)
          IBM Plex Mono (labels) · Caveat (margin notes)
-
-   v3 CHANGES
-   · Type scale repaired — mono labels were 8–9px against 17px
-     body text. Nothing lived in between. All raised.
-   · Nav: five links hold one row, CTA drops to row two, on
-     every page. Header un-sticks on mobile so it stops eating
-     the fold.
-   · .bridge added — connective tissue between sections.
-   · .cc-links becomes a 2×2 grid on mobile.
-   · Mobile padding reduced throughout.
    ============================================================ */
 
 *{margin:0;padding:0;box-sizing:border-box}
 
 :root{
-  /* paper */
   --paper:#f2ecdd;
   --paper-deep:#eae2cf;
   --cream:#faf6ec;
-  /* ink */
   --ink:#26190e;
   --ink-soft:#4a3a28;
-  --muted:#7d7057;
-  /* espresso (dark sections) */
+  --muted:#6f6350;
   --espresso:#1a0f08;
   --roast:#2b1a0e;
   --dark-text:#f0e7d6;
-  --dark-muted:#a08a6b;
-  /* accents */
-  --gold:#b07d1e;
+  --dark-muted:#b39a75;
+  --gold:#a5741a;
   --amber:#d4a853;
   --forest:#33472f;
-  /* lines */
   --line:rgba(38,25,14,.18);
   --line-strong:rgba(38,25,14,.45);
-  --line-dark:rgba(212,168,83,.18);
+  --line-dark:rgba(212,168,83,.22);
 }
 
 html{font-size:16px;scroll-behavior:smooth}
 body{
   font-family:'Lora',Georgia,serif;
-  background:var(--paper);
-  color:var(--ink);
-  line-height:1.85;
-  min-height:100vh;
+  background:var(--paper);color:var(--ink);
+  line-height:1.85;min-height:100vh;
 }
-
-/* paper grain */
 body::after{
   content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
   mix-blend-mode:multiply;opacity:.55;
 }
-
 h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:400;line-height:1.15;color:var(--ink)}
 h1,h2{text-wrap:balance}
 em{font-style:italic}
 a{color:inherit}
 img{max-width:100%;display:block}
-
 .mono{font-family:'IBM Plex Mono',monospace}
 .hand{font-family:'Caveat',cursive}
-
+.center{text-align:center}
 ::selection{background:rgba(212,168,83,.4)}
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-track{background:var(--paper-deep)}
-::-webkit-scrollbar-thumb{background:rgba(176,125,30,.45)}
 
-/* ---------- header ----------
-   Four short items, one row, no CTA button, no tagline on mobile,
-   not sticky. The old header ate roughly a quarter of the phone
-   viewport on every scroll. Selling now happens in the buy bar. */
+/* ---------- HEADER ----------
+   Everything here was too small against 17px body copy. Logo,
+   tagline and nav all raised. The Try It chip is filled so the
+   eye finds the one thing that sells.                         */
 .site-header{
-  background:var(--paper);
-  border-bottom:1px solid var(--line);
-  padding:.8rem 2rem;
+  background:var(--paper);border-bottom:1px solid var(--line);
+  padding:1rem 2rem;
   display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
 }
 .site-logo{
-  font-family:'Playfair Display',serif;font-size:1.25rem;
-  color:var(--ink);text-decoration:none;letter-spacing:-.01em;line-height:1.1;
+  font-family:'Playfair Display',serif;font-size:1.6rem;
+  color:var(--ink);text-decoration:none;line-height:1.1;
 }
 .site-logo span{color:var(--gold);font-style:italic}
 .site-logo small{
-  display:block;font-family:'IBM Plex Mono',monospace;font-size:.6rem;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:.15rem;
+  display:block;font-family:'IBM Plex Mono',monospace;font-size:.72rem;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:.35rem;
 }
-.site-nav{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap}
+.site-nav{display:flex;gap:.3rem;align-items:center;flex-wrap:wrap}
 .site-nav a{
-  font-family:'IBM Plex Mono',monospace;font-size:.72rem;
-  letter-spacing:.1em;text-transform:uppercase;
-  color:var(--muted);text-decoration:none;
-  padding:.4rem .7rem;border-bottom:1px solid transparent;
+  font-family:'IBM Plex Mono',monospace;font-size:.88rem;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink-soft);text-decoration:none;
+  padding:.45rem .7rem;border-bottom:2px solid transparent;
   transition:color .2s,border-color .2s;white-space:nowrap;
 }
 .site-nav a:hover{color:var(--gold)}
 .site-nav a.active{color:var(--gold);border-bottom-color:var(--gold)}
-.site-nav a.sell{color:var(--forest)}
-.site-nav a.sell:hover,.site-nav a.sell.active{color:var(--gold)}
+.site-nav a.sell{
+  background:var(--roast);color:var(--amber);
+  border:1px solid var(--roast);border-bottom:1px solid var(--roast);
+  padding:.5rem 1.1rem;margin-left:.4rem;letter-spacing:.14em;
+}
+.site-nav a.sell:hover{background:var(--espresso);color:var(--amber)}
+.site-nav a.sell.active{background:var(--gold);color:var(--cream);border-color:var(--gold)}
 
-/* ---------- shared layout ---------- */
-.wrap{max-width:1060px;margin:0 auto;padding:0 2rem}
-.wrap-narrow{max-width:720px;margin:0 auto;padding:0 2rem}
-section{position:relative}
-
+/* ---------- TYPE ----------
+   .eyebrow was 11px against 17px body. Section labels should
+   never be the smallest thing in their own section.          */
 .eyebrow{
-  font-family:'IBM Plex Mono',monospace;font-size:.7rem;
-  letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
-  display:block;margin-bottom:1.1rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.88rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gold);
+  display:block;margin-bottom:1rem;
 }
-.display{font-size:clamp(2.05rem,6.4vw,4.2rem);letter-spacing:-.02em;line-height:1.14;margin-bottom:1.4rem}
-.display em{color:var(--gold)}
 .lead{font-size:clamp(1.02rem,2.4vw,1.15rem);color:var(--ink-soft);line-height:1.85}
-
-/* ---------- bridge · connective tissue between sections ------
-   A hairline drops out of the section above and fades into
-   gold, then one italic line hands you over.                  */
-.bridge{
-  max-width:520px;margin:0 auto 2rem;text-align:center;padding:0 1.3rem;
-  font-family:'Lora',serif;font-style:italic;
-  font-size:1rem;line-height:1.75;color:var(--muted);
-}
-.bridge::before{
-  content:'';display:block;width:1px;height:2.6rem;margin:0 auto 1.5rem;
-  background:linear-gradient(var(--line),var(--gold));
-}
-
-/* letterpress double rule */
-.rule-double{
-  height:5px;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line);
-  margin:2.6rem 0;
-}
-.rule-thin{height:1px;background:var(--line);border:none;margin:2rem 0}
-
-/* handwritten margin note */
 .margin-note{
   font-family:'Caveat',cursive;font-size:1.25rem;color:var(--gold);
-  transform:rotate(-1.4deg);display:inline-block;
+  transform:rotate(-1.2deg);display:inline-block;
+}
+.wrap-narrow{max-width:720px;margin:0 auto;padding:0 2rem}
+.pad-block{padding:5rem 0}
+
+/* ---------- PRICE BAND ----------
+   A price should look like an object, not a caption.          */
+.price{
+  display:inline-flex;align-items:baseline;gap:.7rem;
+  background:var(--espresso);color:var(--dark-text);
+  padding:.75rem 1.4rem;
+}
+.price b{font-family:'Playfair Display',serif;font-weight:400;font-size:1.7rem;line-height:1}
+.price span{
+  font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dark-muted);
+}
+.price-wide{
+  display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  background:var(--espresso);color:var(--dark-text);
+  padding:1.1rem 1.4rem;margin-top:1.6rem;
+}
+.price-wide b{font-family:'Playfair Display',serif;font-weight:400;font-size:2.1rem;line-height:1}
+.price-wide span{
+  font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dark-muted);
 }
 
-/* circular seal */
-.seal{
-  width:92px;height:92px;border:1px solid var(--gold);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;text-align:center;
-  font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--gold);line-height:1.5;
-  transform:rotate(-8deg);padding:.6rem;
-}
-
-/* ---------- photo prints (taped-in journal photos) ---------- */
-.print{
-  background:#fff;padding:10px 10px 14px;
-  box-shadow:0 3px 14px rgba(38,25,14,.22);
-  transform:rotate(-1.2deg);
-  position:relative;
-}
-.print.tilt-r{transform:rotate(1.4deg)}
-.print.tilt-0{transform:none}
-.print img{filter:saturate(.92) contrast(1.02)}
-.print figcaption{
-  font-family:'Caveat',cursive;font-size:1.05rem;color:#5a4a35;
-  padding-top:.55rem;text-align:center;
-}
-.print::before{ /* tape */
-  content:'';position:absolute;top:-11px;left:50%;transform:translateX(-50%) rotate(-2deg);
-  width:88px;height:24px;background:rgba(222,206,166,.85);
-  box-shadow:0 1px 3px rgba(38,25,14,.18);
-}
-
-/* ---------- full-bleed image -------------------------------
-   Use <img>, never background-cover, for any image with text
-   baked into it — a mobile crop will slice the headline off. */
-.bleed{margin:0;padding:0}
-.bleed img{width:100%;display:block}
-.bleed figcaption{
-  font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--muted);
-  text-align:center;padding:.9rem 1.3rem 0;
-}
-
-/* ---------- buttons ---------- */
+/* ---------- BUTTONS ---------- */
 .btn{
   display:inline-block;font-family:'IBM Plex Mono',monospace;
-  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
-  text-decoration:none;padding:.95rem 2.1rem;
+  font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;
+  text-decoration:none;padding:1rem 1.9rem;
   border:1px solid var(--ink);color:var(--ink);
   transition:all .25s;background:transparent;
 }
 .btn:hover{background:var(--ink);color:var(--amber)}
-.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--cream)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#fff}
 .btn.gold:hover{background:var(--ink);border-color:var(--ink);color:var(--amber)}
 .btn.on-dark{border-color:var(--amber);color:var(--amber)}
 .btn.on-dark:hover{background:var(--amber);color:var(--espresso)}
 
-/* ---------- dark sections ---------- */
+/* ---------- TWO DOORS ----------
+   Two ways in, equal weight. Not a link and a fallback.       */
+.doors{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1.6rem}
+@media(max-width:480px){.doors{grid-template-columns:1fr}}
+.doors .btn{text-align:center;padding:1.15rem 1rem}
+
+/* ---------- DARK SECTIONS ---------- */
 .dark{background:var(--espresso);color:var(--dark-text)}
 .dark h1,.dark h2,.dark h3,.dark h4{color:var(--dark-text)}
 .dark .eyebrow{color:var(--amber)}
-.dark .lead{color:#cbb897}
-.dark .rule-double{border-color:var(--line-dark)}
+.dark .lead,.dark p{color:#cdb894}
 .dark .margin-note{color:var(--amber)}
-.dark .bridge{color:var(--dark-muted)}
-.dark .bridge::before{background:linear-gradient(var(--line-dark),var(--amber))}
 
-/* ---------- status chips ---------- */
-.chip{
-  display:inline-block;font-family:'IBM Plex Mono',monospace;
-  font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
-  padding:.3rem .75rem;border:1px solid var(--line-strong);color:var(--ink-soft);
-}
-.chip.locked{border-color:var(--forest);color:var(--forest)}
-.chip.testing{border-color:var(--gold);color:var(--gold)}
-.chip.dev{border-color:var(--muted);color:var(--muted)}
-.dark .chip{border-color:var(--line-dark);color:var(--dark-muted)}
-.dark .chip.locked{border-color:#7a9a6e;color:#9ab88c}
-.dark .chip.testing{border-color:var(--amber);color:var(--amber)}
-
-/* ---------- footer ---------- */
-.site-footer{
-  background:var(--espresso);color:var(--dark-muted);
-  padding:3.2rem 2rem 2.2rem;margin-top:0;
-}
-.footer-grid{
-  max-width:1060px;margin:0 auto;
-  display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem;
-}
-.site-footer h4{
-  font-family:'IBM Plex Mono',monospace;font-size:.66rem;font-weight:400;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem;
-}
-.site-footer a{color:var(--dark-muted);text-decoration:none;transition:color .2s}
-.site-footer a:hover{color:var(--amber)}
-.footer-links{list-style:none}
-.footer-links li{margin-bottom:.5rem;font-size:.9rem}
-.footer-word{
-  font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--dark-text);
-  font-style:italic;line-height:1.5;margin-bottom:1rem;
-}
-.footer-base{
-  max-width:1060px;margin:2.5rem auto 0;padding-top:1.4rem;
-  border-top:1px solid var(--line-dark);
-  display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;
-  font-family:'IBM Plex Mono',monospace;font-size:.62rem;
-  letter-spacing:.12em;text-transform:uppercase;
-}
-.footer-base .hand{font-family:'Caveat',cursive;font-size:1rem;letter-spacing:0;text-transform:none;color:rgba(212,168,83,.5)}
-
-/* ---------- helpers ---------- */
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem}
-.center{text-align:center}
-.pad-block{padding:5rem 0}
-.pad-block-sm{padding:3.2rem 0}
-
-/* ---------- notebook excerpt ---------- */
-.notebook{
-  background:var(--cream);border:1px solid var(--line);border-left:3px solid var(--gold);
-  padding:1.5rem 1.8rem;margin:2.4rem 0;
-  box-shadow:0 2px 10px rgba(38,25,14,.08);
-}
-.notebook .nb-label{
-  font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.6rem;
-}
-.notebook .nb-line{
-  font-family:'Caveat',cursive;font-size:1.45rem;line-height:1.5;color:var(--ink-soft);
-}
-.dark .notebook{background:var(--roast);border-color:var(--line-dark);border-left-color:var(--amber)}
-.dark .notebook .nb-line{color:#d7b982}
-.dark .notebook .nb-label{color:var(--dark-muted)}
-
-/* ---------- pull quote ---------- */
-.pullquote{
-  font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3.4vw,2.1rem);
-  font-style:italic;text-align:center;line-height:1.55;
-  max-width:640px;margin:4.5rem auto;padding:0 1.4rem;color:var(--ink);
-}
-.pullquote small{
-  display:block;font-family:'IBM Plex Mono',monospace;font-size:.64rem;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--gold);
-  margin-top:1.1rem;font-style:normal;
-}
-.dark .pullquote{color:var(--dark-text)}
-
-/* ---------- editorial image utilities ---------- */
-.img-band{
-  width:100%;height:clamp(260px,46vw,520px);
-  background-size:cover;background-position:center;
-  filter:sepia(.08) saturate(.96);
-}
-figure.frame{margin:0}
-figure.frame img{
-  width:100%;height:auto;display:block;
-  box-shadow:0 10px 30px rgba(38,25,14,.18);
-}
-figure.frame figcaption{
-  font-family:'IBM Plex Mono',monospace;font-size:.64rem;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
-  padding-top:.7rem;
-}
-.ed-grid{ /* generic editorial split: text + image, alternate with .flip */
-  max-width:1060px;margin:0 auto;padding:4rem 2rem;
-  display:grid;grid-template-columns:1fr 1.1fr;gap:3.4rem;align-items:center;
-}
-.ed-grid.flip>*:first-child{order:2}
-
-/* ---------- contact close (shared, before footer) ---------- */
-.contact-close{
-  border-top:1px solid var(--line);
-  background:var(--cream);
-  padding:3rem 2rem;text-align:center;
-}
-.contact-close h2{
-  font-size:clamp(1.4rem,3.6vw,1.9rem);line-height:1.3;margin-bottom:.6rem;
-}
-.contact-close h2 em{color:var(--gold)}
-.contact-close .cc-line{
-  font-style:italic;color:var(--ink-soft);max-width:460px;margin:0 auto 1.5rem;font-size:.98rem;
-}
-.cc-links{
-  display:flex;gap:1.8rem;justify-content:center;flex-wrap:wrap;margin-bottom:0;
-}
-.cc-links a{
-  font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--ink-soft);text-decoration:none;
-  border-bottom:1px solid var(--line-strong);padding-bottom:.3rem;
-  transition:color .2s,border-color .2s;
-  display:inline-flex;align-items:center;gap:.4rem;
-}
-.cc-links a:hover{color:var(--gold);border-color:var(--gold)}
-
-
-/* ---------- disclosure / collapsible ------------------------
-   Dark card, light text. On a page of cream and paper an
-   espresso block reads as a thing you are meant to press.    */
+/* ---------- DISCLOSURE ----------
+   Espresso card, light text. Must read as a thing you press.  */
 .disclose{
   border:1px solid var(--line-dark);
   background:var(--espresso);
   margin-bottom:.7rem;
 }
-.disclose summary{
+.disclose > summary{
   cursor:pointer;list-style:none;position:relative;
-  padding:1.15rem 3rem 1.15rem 1.2rem;
-  font-family:'Playfair Display',serif;font-size:1.12rem;
+  padding:1.2rem 3rem 1.2rem 1.3rem;
+  font-family:'Playfair Display',serif;font-size:1.2rem;
   color:var(--dark-text);transition:color .2s;
 }
-.disclose summary:hover{color:var(--amber)}
-.disclose summary::-webkit-details-marker{display:none}
-.disclose summary::after{
-  content:'+';position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);
-  font-family:'IBM Plex Mono',monospace;font-size:1.2rem;color:var(--amber);
+.disclose > summary::-webkit-details-marker{display:none}
+.disclose > summary::marker{content:''}
+.disclose > summary:hover{color:var(--amber)}
+.disclose > summary::after{
+  content:'+';position:absolute;right:1.3rem;top:50%;transform:translateY(-50%);
+  font-family:'IBM Plex Mono',monospace;font-size:1.3rem;color:var(--amber);
 }
-.disclose[open] summary::after{content:'\2212'}
-.disclose[open] summary{border-bottom:1px solid var(--line-dark)}
-.disclose .body{padding:1.2rem 1.2rem 1.4rem;color:#cbb897}
-.disclose .body p{color:#cbb897;margin:0}
+.disclose[open] > summary::after{content:'\2212'}
+.disclose[open] > summary{border-bottom:1px solid var(--line-dark)}
+.disclose .body{padding:1.2rem 1.3rem 1.5rem}
+.disclose .body p{color:#cdb894;font-size:1rem;line-height:1.85;margin:0}
 .disclose .body p + p{margin-top:.9rem}
-.disclose .body .margin-note{color:var(--amber)}
 .disclose .body a{color:var(--amber)}
+.disclose .body .margin-note{color:var(--amber)}
 
-/* ---------- swipe rail ----------
-   One carousel, used twice on the home page. The next card always
-   peeks, and that peek is the only affordance a thumb needs.   */
+/* ---------- SWIPE RAIL ----------
+   Horizontal on every screen. The next card peeks, which is
+   the only affordance a thumb needs.                          */
 .rail{
-  display:flex;gap:1rem;
-  overflow-x:auto;overflow-y:visible;
+  display:flex;flex-direction:row;flex-wrap:nowrap;
+  gap:1rem;
+  overflow-x:auto;overflow-y:hidden;
   scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
   padding:.4rem 1.3rem 1.2rem;scroll-padding-left:1.3rem;
-  max-width:1120px;margin:0 auto;
+  max-width:1140px;margin:0 auto;
 }
 .rail::-webkit-scrollbar{display:none}
-.rail > *{flex:0 0 76%;scroll-snap-align:start;max-width:320px}
+.rail > *{flex:0 0 76%;max-width:320px;scroll-snap-align:start}
 @media(min-width:861px){
   .rail{padding:.4rem 2rem 1.4rem;scroll-padding-left:2rem}
   .rail > *{flex:0 0 calc(25% - .75rem);max-width:none}
 }
 .rail-dots{display:flex;justify-content:center;gap:.5rem;margin-top:.2rem}
 .rail-dots button{
-  width:7px;height:7px;padding:0;border-radius:50%;border:none;cursor:pointer;
+  width:8px;height:8px;padding:0;border-radius:50%;border:none;cursor:pointer;
   background:var(--line);transition:background .25s,transform .25s;
 }
-.rail-dots button[aria-current="true"]{background:var(--gold);transform:scale(1.35)}
+.rail-dots button[aria-current="true"]{background:var(--gold);transform:scale(1.4)}
 .rail-hint{
-  display:block;text-align:center;margin-top:.6rem;
-  font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.2em;
+  display:block;text-align:center;margin-top:.7rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.18em;
   text-transform:uppercase;color:var(--muted);
 }
 @media(min-width:861px){.rail-dots,.rail-hint{display:none}}
 
+/* ---------- PHOTO PRINT ---------- */
+.print{
+  background:#fff;padding:10px 10px 14px;
+  box-shadow:0 3px 14px rgba(38,25,14,.22);
+  position:relative;
+}
+.print img{filter:saturate(.92) contrast(1.02)}
+.print figcaption{
+  font-family:'Caveat',cursive;font-size:1.15rem;color:#5a4a35;
+  padding-top:.6rem;text-align:center;
+}
+figure.frame{margin:0}
+figure.frame img{width:100%;height:auto;display:block;box-shadow:0 10px 30px rgba(38,25,14,.18)}
+figure.frame figcaption{
+  font-family:'IBM Plex Mono',monospace;font-size:.76rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding-top:.8rem;
+}
+
+/* ---------- NOTEBOOK ---------- */
+.notebook{
+  background:var(--cream);border:1px solid var(--line);border-left:3px solid var(--gold);
+  padding:1.4rem 1.5rem;margin:1.8rem 0;
+}
+.notebook .nb-label{
+  font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.6rem;
+}
+.notebook .nb-line{font-family:'Caveat',cursive;font-size:1.5rem;line-height:1.5;color:var(--ink-soft)}
+
+/* ---------- CONTACT CLOSE ---------- */
+.contact-close{
+  border-top:1px solid var(--line);background:var(--cream);
+  padding:3.2rem 1.3rem;text-align:center;
+}
+.contact-close h2{font-size:clamp(1.5rem,4vw,2.1rem);line-height:1.3;margin-bottom:.7rem}
+.contact-close h2 em{color:var(--gold)}
+.contact-close .cc-line{
+  font-style:italic;color:var(--ink-soft);max-width:480px;margin:0 auto 1.6rem;font-size:1rem;
+}
+.cc-links{display:flex;gap:1.6rem;justify-content:center;flex-wrap:wrap}
+.cc-links a{
+  font-family:'IBM Plex Mono',monospace;font-size:.82rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-soft);text-decoration:none;
+  border-bottom:1px solid var(--line-strong);padding-bottom:.3rem;
+  transition:color .2s,border-color .2s;
+}
+.cc-links a:hover{color:var(--gold);border-color:var(--gold)}
+
+/* ---------- FOOTER ---------- */
+.site-footer{background:var(--espresso);color:var(--dark-muted);padding:3rem 2rem 2rem}
+.footer-grid{
+  max-width:1060px;margin:0 auto;
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem;
+}
+.site-footer h4{
+  font-family:'IBM Plex Mono',monospace;font-size:.8rem;font-weight:400;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem;
+}
+.site-footer a{color:var(--dark-muted);text-decoration:none;transition:color .2s}
+.site-footer a:hover{color:var(--amber)}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:.5rem;font-size:.95rem}
+.footer-base{
+  max-width:1060px;margin:2.2rem auto 0;padding-top:1.3rem;
+  border-top:1px solid var(--line-dark);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.74rem;
+  letter-spacing:.1em;text-transform:uppercase;
+}
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
-
 @media(max-width:860px){
-  .grid-2{grid-template-columns:1fr;gap:2.2rem}
-  .grid-3{grid-template-columns:1fr}
+  .wrap-narrow{padding:0 1.3rem}
+  .pad-block{padding:3.2rem 0}
   .footer-grid{grid-template-columns:1fr 1fr;gap:1.6rem 1.2rem}
-  .footer-grid>*:first-child{grid-column:1/-1}
-  .wrap,.wrap-narrow{padding:0 1.3rem}
-  .pad-block{padding:3.4rem 0}
-  .pullquote{margin:3.2rem auto}
-  .notebook{padding:1.2rem 1.2rem;margin:1.8rem 0}
-  .ed-grid{grid-template-columns:1fr;gap:2rem;padding:2.8rem 1.3rem}
-  .ed-grid.flip>*:first-child{order:0}
-  .contact-close{padding:3.4rem 1.3rem}
-  .site-footer{padding:2.6rem 1.3rem 2rem}
+  .footer-grid > *:first-child{grid-column:1 / -1}
+  .site-footer{padding:2.4rem 1.3rem 1.8rem}
 }
-
-/* --- NAV on mobile: one row, four items, nothing else -------- */
 @media(max-width:760px){
-  .site-header{flex-direction:column;align-items:center;gap:.55rem;padding:.75rem 1rem}
-  .site-logo{text-align:center}
-  .site-logo small{display:none}      /* the tagline lives in the footer */
-  .site-nav{width:100%;justify-content:center;gap:.2rem .45rem}
-  .site-nav a{font-size:.66rem;letter-spacing:.04em;padding:.25rem .3rem}
-  .cc-links{
-    display:grid;grid-template-columns:1fr 1fr;gap:.85rem 1rem;
-    max-width:540px;margin-left:auto;margin-right:auto;
-  }
-  .cc-links a{justify-content:center;text-align:center;white-space:nowrap}
+  .site-header{flex-direction:column;align-items:center;gap:.8rem;padding:.9rem 1rem}
+  .site-logo{text-align:center;font-size:1.5rem}
+  .site-logo small{font-size:.66rem;letter-spacing:.18em}
+  .site-nav{width:100%;justify-content:center;gap:.15rem .3rem}
+  .site-nav a{font-size:.76rem;letter-spacing:.04em;padding:.4rem .45rem}
+  .site-nav a.sell{padding:.45rem .8rem;margin-left:.25rem;letter-spacing:.08em}
+  .eyebrow{font-size:.82rem;letter-spacing:.18em}
+  .cc-links{gap:1.2rem}
 }
 @media(max-width:400px){
-  .site-nav a{font-size:.6rem;letter-spacing:0;padding:.25rem .2rem}
-  .cc-links a{font-size:.64rem;white-space:normal}
-}
-}
-
-
-/* ---------- two doors ----------
-   Razorpay and WhatsApp are two ways in, not a first choice and
-   a fallback. Equal weight, side by side.                      */
-.doors{display:grid;grid-template-columns:1fr;gap:.8rem;margin-top:1.8rem}
-@media(min-width:601px){.doors{grid-template-columns:1fr 1fr;gap:1rem}}
-.door{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;text-decoration:none;padding:1.3rem 1.1rem;
-  border:1px solid var(--ink);color:var(--ink);transition:all .25s;
-}
-.door.pay{background:var(--gold);border-color:var(--gold);color:var(--cream)}
-.door.pay:hover{background:var(--ink);border-color:var(--ink);color:var(--amber)}
-.door:hover{background:var(--ink);color:var(--amber)}
-.door b{
-  font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.72rem;
-  letter-spacing:.14em;text-transform:uppercase;
-}
-.door small{
-  display:block;margin-top:.5rem;font-family:'Lora',serif;font-size:.85rem;
-  line-height:1.5;font-style:italic;opacity:.8;text-transform:none;letter-spacing:0;
+  .site-nav a{font-size:.7rem;padding:.35rem .3rem}
+  .site-nav a.sell{padding:.4rem .65rem}
+  .cc-links a{font-size:.74rem}
 }
