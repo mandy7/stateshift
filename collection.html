@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Four coffees. Four ways to interrupt autopilot. StateShift.</title>
-<meta name="description" content="Not stronger, not darker, not more caffeine. Four coffees sorted by when you need them, and the two-sachet method behind them.">
+<meta name="description" content="Every coffee you have ever bought was sorted by the bean. These four start from the other end: the hour you are in, and what it is doing to you.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
@@ -18,7 +18,7 @@
   --gold:#a5741a; --amber:#d4a853; --forest:#33472f;
   --line:rgba(38,25,14,.18); --line-strong:rgba(38,25,14,.45); --line-dark:rgba(212,168,83,.22);
 }
-html{font-size:16px;scroll-behavior:smooth}
+html{font-size:16px;scroll-behavior:smooth;scroll-padding-top:120px}
 body{font-family:'Lora',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.85;min-height:100vh}
 h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:400;line-height:1.15;color:var(--ink)}
 h1,h2{text-wrap:balance}
@@ -27,72 +27,86 @@ a{color:inherit}
 img{max-width:100%;display:block}
 .center{text-align:center}
 
-/* HEADER */
-.site-header{background:var(--paper);border-bottom:1px solid var(--line);padding:1rem 2rem;
-  display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-.site-logo{font-family:'Playfair Display',serif;font-size:1.75rem;color:var(--ink);text-decoration:none;line-height:1.1}
+/* ---------- HEADER · sticky, and it shrinks once you scroll ---------- */
+.site-header{
+  position:sticky;top:0;z-index:200;
+  background:rgba(242,236,221,.97);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);padding:.9rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  transition:padding .25s;
+}
+.site-logo{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--ink);text-decoration:none;line-height:1.1}
 .site-logo span{color:var(--gold);font-style:italic}
-.site-logo small{display:block;font-family:'IBM Plex Mono',monospace;font-size:.82rem;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:.4rem}
-.site-nav{display:flex;gap:.35rem;align-items:center;flex-wrap:wrap}
-.site-nav a{font-family:'IBM Plex Mono',monospace;font-size:.92rem;letter-spacing:.08em;
+.site-logo small{
+  display:block;font-family:'IBM Plex Mono',monospace;font-size:.62rem;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--muted);
+  margin-top:.3rem;transition:all .2s;
+}
+.site-nav{display:flex;gap:.9rem;align-items:center;flex-wrap:wrap}
+.site-nav a{font-family:'IBM Plex Mono',monospace;font-size:.9rem;letter-spacing:.1em;
   text-transform:uppercase;color:var(--ink-soft);text-decoration:none;
-  padding:.5rem .75rem;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
+  padding:.4rem .1rem;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
 .site-nav a:hover{color:var(--gold)}
 .site-nav a.active{color:var(--gold);border-bottom-color:var(--gold)}
-.site-nav a.sell{background:var(--espresso);color:var(--amber);
-  border:1px solid var(--espresso);border-bottom:1px solid var(--espresso);
-  padding:.55rem 1.2rem;margin-left:.5rem;letter-spacing:.14em}
-.site-nav a.sell:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
-.site-nav a.sell.active{background:var(--gold);color:#fff;border-color:var(--gold)}
+.site-nav a.sell{background:var(--gold);color:#fff;border:1px solid var(--gold);
+  border-bottom:1px solid var(--gold);padding:.5rem 1.1rem;letter-spacing:.12em}
+.site-nav a.sell:hover{background:var(--espresso);border-color:var(--espresso);color:var(--amber)}
+.site-nav a.sell.active{background:var(--espresso);border-color:var(--espresso);color:var(--amber)}
+/* compact once scrolled: tagline folds away, bar halves in height */
+.site-header.scrolled{padding:.5rem 2rem}
+.site-header.scrolled .site-logo{font-size:1.35rem}
+.site-header.scrolled .site-logo small{opacity:0;max-height:0;margin:0;overflow:hidden}
 
-/* TYPE */
-.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.92rem;letter-spacing:.18em;
+/* ---------- TYPE ---------- */
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.86rem;letter-spacing:.18em;
   text-transform:uppercase;color:var(--gold);display:block;margin-bottom:1rem}
-.lead{font-size:clamp(1.04rem,2.4vw,1.16rem);color:var(--ink-soft);line-height:1.85}
+.lead{font-size:clamp(1.04rem,2.4vw,1.14rem);color:var(--ink-soft);line-height:1.85}
 .margin-note{font-family:'Caveat',cursive;font-size:1.3rem;color:var(--gold);display:inline-block}
+/* a quiet inline link, italic + gold. Used instead of shouty buttons. */
+.qlink{font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);
+  text-decoration:none;border-bottom:1px solid rgba(165,116,26,.4);transition:all .2s}
+.qlink:hover{color:var(--ink);border-color:var(--ink)}
 
-/* BUTTONS */
-.btn{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.84rem;
-  letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:1.05rem 2rem;
+/* ---------- BUTTONS ---------- */
+.btn{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.82rem;
+  letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:1rem 1.9rem;
   border:1px solid var(--ink);color:var(--ink);transition:all .25s;background:transparent}
 .btn:hover{background:var(--ink);color:var(--amber)}
 .btn.gold{background:var(--gold);border-color:var(--gold);color:#fff}
 .btn.gold:hover{background:var(--espresso);border-color:var(--espresso);color:var(--amber)}
-.btn.dark{background:var(--espresso);border-color:var(--espresso);color:var(--amber)}
-.btn.dark:hover{background:var(--gold);border-color:var(--gold);color:#fff}
 .btn.on-dark{border-color:var(--amber);color:var(--amber)}
 .btn.on-dark:hover{background:var(--amber);color:var(--espresso)}
 .doors{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1.6rem}
 @media(max-width:480px){.doors{grid-template-columns:1fr}}
-.doors .btn{text-align:center;padding:1.2rem 1rem}
+.doors .btn{text-align:center;padding:1.15rem 1rem}
 
-/* PRICE BAND */
+/* ---------- PRICE BAND ---------- */
 .price-wide{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
-  background:var(--espresso);color:var(--dark-text);padding:1.2rem 1.4rem;margin-top:1.6rem}
-.price-wide b{font-family:'Playfair Display',serif;font-weight:400;font-size:2.2rem;line-height:1}
-.price-wide span{font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.14em;
+  background:var(--espresso);color:var(--dark-text);padding:1.1rem 1.3rem;margin-top:1.6rem}
+.price-wide b{font-family:'Playfair Display',serif;font-weight:400;font-size:2rem;line-height:1}
+.price-wide span{font-family:'IBM Plex Mono',monospace;font-size:.76rem;letter-spacing:.14em;
   text-transform:uppercase;color:var(--amber)}
 
-/* DISCLOSURE — espresso card, light text */
-.disclose{border:1px solid var(--line-dark);background:var(--espresso);margin-bottom:.7rem}
+/* ---------- DISCLOSURE · quiet. Was shouting; now it whispers. ---------- */
+.disclose{border:1px solid var(--line);background:var(--cream);margin-bottom:.55rem}
 .disclose > summary{cursor:pointer;list-style:none;position:relative;
-  padding:1.25rem 3rem 1.25rem 1.3rem;font-family:'Playfair Display',serif;font-size:1.22rem;
-  color:var(--dark-text);transition:color .2s}
+  padding:.9rem 2.6rem .9rem 1.1rem;
+  font-family:'Playfair Display',serif;font-size:1.05rem;line-height:1.45;
+  color:var(--ink);transition:color .2s}
 .disclose > summary::-webkit-details-marker{display:none}
 .disclose > summary::marker{content:''}
-.disclose > summary:hover{color:var(--amber)}
-.disclose > summary::after{content:'+';position:absolute;right:1.3rem;top:50%;transform:translateY(-50%);
-  font-family:'IBM Plex Mono',monospace;font-size:1.4rem;color:var(--amber)}
+.disclose > summary:hover{color:var(--gold)}
+.disclose > summary::after{content:'+';position:absolute;right:1.1rem;top:50%;transform:translateY(-50%);
+  font-family:'IBM Plex Mono',monospace;font-size:1.1rem;color:var(--gold)}
 .disclose[open] > summary::after{content:'\2212'}
-.disclose[open] > summary{border-bottom:1px solid var(--line-dark)}
-.disclose .body{padding:1.2rem 1.3rem 1.5rem}
-.disclose .body p{color:#cdb894;font-size:1.02rem;line-height:1.85;margin:0}
-.disclose .body p + p{margin-top:.9rem}
-.disclose .body a{color:var(--amber)}
-.disclose .body .margin-note{color:var(--amber)}
+.disclose[open] > summary{border-bottom:1px solid var(--line);color:var(--gold)}
+.disclose .body{padding:1rem 1.1rem 1.2rem;background:var(--paper)}
+.disclose .body p{color:var(--ink-soft);font-size:1rem;line-height:1.85;margin:0}
+.disclose .body p + p{margin-top:.8rem}
+.disclose .body a{color:var(--gold)}
+.disclose .body .margin-note{color:var(--gold)}
 
-/* SWIPE RAIL */
+/* ---------- SWIPE RAIL ---------- */
 .rail{display:flex;flex-direction:row;flex-wrap:nowrap;gap:1rem;
   overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch;scrollbar-width:none;
@@ -103,81 +117,84 @@ img{max-width:100%;display:block}
   .rail{padding:.4rem 2rem 1.4rem;scroll-padding-left:2rem}
   .rail > *{flex:0 0 calc(25% - .75rem);max-width:none}
 }
-.rail-dots{display:flex;justify-content:center;gap:.5rem;margin-top:.2rem}
+.rail-dots{display:flex;justify-content:center;gap:.5rem;margin-top:.4rem}
 .rail-dots button{width:8px;height:8px;padding:0;border-radius:50%;border:none;cursor:pointer;
   background:var(--line);transition:all .25s}
 .rail-dots button[aria-current="true"]{background:var(--gold);transform:scale(1.4)}
-.rail-hint{display:block;text-align:center;margin-top:.7rem;font-family:'IBM Plex Mono',monospace;
-  font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
-@media(min-width:861px){.rail-dots,.rail-hint{display:none}}
+@media(min-width:861px){.rail-dots{display:none}}
 
-/* PRINT / FIGURES */
+/* ---------- FIGURES ---------- */
 .print{background:#fff;padding:10px 10px 14px;box-shadow:0 3px 14px rgba(38,25,14,.22)}
 .print figcaption{font-family:'Caveat',cursive;font-size:1.2rem;color:#5a4a35;padding-top:.6rem;text-align:center}
 figure.frame{margin:0}
 figure.frame img{width:100%;display:block;box-shadow:0 10px 30px rgba(38,25,14,.18)}
-figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.14em;
+figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.14em;
   text-transform:uppercase;color:var(--muted);padding-top:.8rem}
 
-/* NOTEBOOK */
+/* ---------- NOTEBOOK ---------- */
 .notebook{background:var(--cream);border:1px solid var(--line);border-left:3px solid var(--gold);
   padding:1.4rem 1.5rem;margin:1.8rem 0}
-.notebook .nb-label{font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.16em;
+.notebook .nb-label{font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.16em;
   text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.6rem}
 .notebook .nb-line{font-family:'Caveat',cursive;font-size:1.55rem;line-height:1.5;color:var(--ink-soft)}
 
-/* CONTACT CLOSE */
-.contact-close{border-top:1px solid var(--line);background:var(--cream);padding:3.4rem 1.3rem;text-align:center}
-.contact-close .eyebrow{font-size:1rem}
-.contact-close h2{font-size:clamp(1.7rem,4.6vw,2.3rem);line-height:1.3;margin-bottom:.8rem}
-.contact-close .cc-line{font-style:italic;color:var(--ink-soft);max-width:500px;margin:0 auto 1.8rem;font-size:1.04rem}
+/* ---------- CONTACT CLOSE ---------- */
+.contact-close{border-top:1px solid var(--line);background:var(--cream);padding:3.2rem 1.3rem;text-align:center}
+.contact-close .eyebrow{font-size:.94rem}
+.contact-close h2{font-size:clamp(1.65rem,4.4vw,2.2rem);line-height:1.3;margin-bottom:.8rem}
+.contact-close .cc-line{font-style:italic;color:var(--ink-soft);max-width:500px;margin:0 auto 1.8rem;font-size:1.02rem}
 .cc-links{display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap;margin-top:1.3rem}
-.cc-links a{font-family:'IBM Plex Mono',monospace;font-size:.84rem;letter-spacing:.1em;
+.cc-links a{font-family:'IBM Plex Mono',monospace;font-size:.82rem;letter-spacing:.1em;
   text-transform:uppercase;color:var(--ink-soft);text-decoration:none;
   border-bottom:1px solid var(--line-strong);padding-bottom:.3rem;transition:all .2s}
 .cc-links a:hover{color:var(--gold);border-color:var(--gold)}
 
-/* FOOTER */
+/* ---------- FOOTER ---------- */
 .site-footer{background:var(--espresso);color:var(--dark-muted);padding:3rem 2rem 2rem}
 .footer-grid{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem}
-.site-footer h4{font-family:'IBM Plex Mono',monospace;font-size:.84rem;font-weight:400;
+.site-footer h4{font-family:'IBM Plex Mono',monospace;font-size:.82rem;font-weight:400;
   letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem}
 .site-footer a{color:var(--dark-muted);text-decoration:none;transition:color .2s}
 .site-footer a:hover{color:var(--amber)}
 .footer-links{list-style:none}
-.footer-links li{margin-bottom:.5rem;font-size:.98rem}
+.footer-links li{margin-bottom:.5rem;font-size:.96rem}
 .footer-base{max-width:1060px;margin:2.2rem auto 0;padding-top:1.3rem;border-top:1px solid var(--line-dark);
   display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;
-  font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
+  font-family:'IBM Plex Mono',monospace;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase}
 
-/* RESPONSIVE */
+/* ---------- RESPONSIVE ---------- */
 @media(max-width:860px){
   .footer-grid{grid-template-columns:1fr 1fr;gap:1.6rem 1.2rem}
   .footer-grid > *:first-child{grid-column:1 / -1}
   .site-footer{padding:2.4rem 1.3rem 1.8rem}
 }
 @media(max-width:760px){
-  .site-header{flex-direction:column;align-items:center;gap:.9rem;padding:1rem}
-  .site-logo{text-align:center;font-size:1.7rem}
-  .site-logo small{font-size:.76rem;letter-spacing:.18em}
-  .site-nav{width:100%;justify-content:center;gap:.2rem .35rem}
-  .site-nav a{font-size:.8rem;letter-spacing:.04em;padding:.45rem .5rem}
-  .site-nav a.sell{padding:.5rem .9rem;margin-left:.3rem;letter-spacing:.08em}
-  .eyebrow{font-size:.86rem}
+  html{scroll-padding-top:100px}
+  .site-header{flex-direction:column;align-items:center;gap:.6rem;padding:.7rem 1rem}
+  .site-logo{text-align:center;font-size:1.45rem}
+  .site-logo small{font-size:.56rem;letter-spacing:.26em;margin-top:.22rem}
+  .site-nav{width:100%;justify-content:space-between;gap:.2rem}
+  .site-nav a{font-size:.78rem;letter-spacing:.04em;padding:.35rem .1rem}
+  .site-nav a.sell{padding:.45rem .8rem;letter-spacing:.06em}
+  .site-header.scrolled{padding:.45rem 1rem;gap:.35rem}
+  .site-header.scrolled .site-logo{font-size:1.2rem}
+  .eyebrow{font-size:.82rem}
 }
 @media(max-width:400px){
-  .site-nav a{font-size:.74rem;padding:.4rem .34rem}
-  .site-nav a.sell{padding:.45rem .7rem}
+  .site-nav a{font-size:.7rem;padding:.35rem 0}
+  .site-nav a.sell{padding:.42rem .6rem}
 }
 
 /* ===== page-specific ===== */
 
-.c-hero{padding:2.8rem 1.3rem 2.2rem;text-align:center;max-width:620px;margin:0 auto}
-@media(min-width:761px){.c-hero{padding:4.2rem 2rem 2.6rem}}
-.c-hero h1{font-size:clamp(1.9rem,6vw,3rem);line-height:1.18;margin-bottom:1.2rem}
+.c-hero{padding:2.8rem 1.3rem 2.2rem;text-align:center;max-width:640px;margin:0 auto}
+@media(min-width:761px){.c-hero{padding:4rem 2rem 2.6rem}}
+/* smaller min so "interrupt autopilot" holds one line on a phone */
+.c-hero h1{font-size:clamp(1.62rem,5.4vw,2.8rem);line-height:1.22;margin-bottom:1.2rem}
 .c-hero h1 em{color:var(--gold)}
-.c-hero p{font-size:1.06rem;line-height:1.9;color:var(--ink-soft);margin-bottom:1.8rem}
-.c-hero p em{color:var(--gold);font-style:italic}
+.c-hero p{font-size:1.06rem;line-height:1.9;color:var(--ink-soft);margin-bottom:1rem}
+.c-hero p:last-of-type{margin-bottom:1.8rem}
+.c-hero p em{color:var(--ink);font-style:italic}
 
 .sku{padding:2.8rem 0}
 @media(min-width:761px){.sku{padding:3.6rem 0}}
@@ -186,14 +203,14 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.8rem;le
 .sku-head h2{font-size:clamp(1.9rem,6.4vw,2.6rem);letter-spacing:.03em;line-height:1}
 .sku-head .mean{font-family:'Caveat',cursive;font-size:1.3rem;color:var(--gold)}
 .shift{display:inline-block;background:var(--espresso);color:var(--amber);
-  font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.12em;
-  text-transform:uppercase;padding:.45rem .85rem;margin-left:auto}
+  font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.1em;
+  text-transform:uppercase;padding:.4rem .75rem;margin-left:auto}
 .art{width:100%;display:block;box-shadow:0 10px 30px rgba(20,10,4,.26);margin-bottom:1.6rem}
 .tnotes{margin-bottom:1.6rem}
 .tn{display:grid;grid-template-columns:1fr;gap:.15rem;padding:.75rem 0;border-bottom:1px dashed var(--line)}
 @media(min-width:601px){.tn{grid-template-columns:140px 1fr;gap:1rem}}
 .tn:first-child{border-top:1px dashed var(--line)}
-.tn b{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.8rem;
+.tn b{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.78rem;
   letter-spacing:.12em;text-transform:uppercase;color:var(--gold);padding-top:.25rem}
 .tn span{font-size:1.04rem;line-height:1.7;color:var(--ink-soft)}
 
@@ -204,12 +221,12 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.8rem;le
 .two{display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:1.6rem}
 @media(min-width:601px){.two{grid-template-columns:1fr 1fr;gap:1.2rem}}
 .sachet{border:1px solid var(--line);background:var(--cream);padding:1.4rem}
-.sachet .tag{font-family:'IBM Plex Mono',monospace;font-size:.82rem;letter-spacing:.16em;
+.sachet .tag{font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.16em;
   text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.5rem}
-.sachet h3{font-size:1.22rem;margin-bottom:.45rem}
+.sachet h3{font-size:1.2rem;margin-bottom:.45rem}
 .sachet p{font-size:1.02rem;line-height:1.7;color:var(--ink-soft);margin:0}
-.recipe{font-family:'IBM Plex Mono',monospace;font-size:.94rem;letter-spacing:.05em;
-  background:var(--espresso);color:var(--dark-text);padding:1.3rem;text-align:center;
+.recipe{font-family:'IBM Plex Mono',monospace;font-size:.92rem;letter-spacing:.05em;
+  background:var(--espresso);color:var(--dark-text);padding:1.2rem;text-align:center;
   line-height:2.1;margin-bottom:1.8rem}
 .card-fig{max-width:400px;margin:0 auto}
 .c-close{background:var(--espresso);color:var(--dark-text);text-align:center;padding:3.4rem 1.3rem}
@@ -233,7 +250,8 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.8rem;le
 
 <section class="c-hero">
   <h1>Four coffees.<br>Four ways to <em>interrupt autopilot</em>.</h1>
-  <p>Not stronger. Not darker. Not more caffeine. Every other coffee is sorted by how it was roasted, and ours are sorted by <em>when you need them</em>. Each one is built for a particular hour, and for the way that hour tends to slip past unnoticed.</p>
+  <p>Every coffee you have ever bought was sorted by the bean. Origin, altitude, roast. Useful facts about a plant, and no information at all about your day.</p>
+  <p>These four start from the other end. Each one is named for the hour it belongs to, and <em>honest about which</em>.</p>
   <a class="btn gold" href="sampler.html">Try the Founder Edition</a>
 </section>
 
@@ -255,7 +273,7 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.8rem;le
       <summary>The moment it was made for</summary>
       <div class="body">
         <p>The day has not decided what it will be yet. Neither have you. Sehar is for that window, before the noise and before the phone.</p>
-        <p class="margin-note" style="margin-top:1rem;font-size:1.2rem">the citrus is ours. oranges, a peeler, an oven, one very fragrant weekend</p>
+        <p class="margin-note" style="margin-top:1rem;font-size:1.18rem">the citrus is ours. oranges, a peeler, an oven, one very fragrant weekend</p>
       </div>
     </details>
   </div>
@@ -278,7 +296,7 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.8rem;le
       <summary>The moment it was made for</summary>
       <div class="body">
         <p>Somewhere before noon the day scatters. Eleven tabs, three unfinished thoughts. Rukh is the still point you move from.</p>
-        <p class="margin-note" style="margin-top:1rem;font-size:1.2rem">"light, nice, the cardamom complementing. lock it." the cup that ended the search</p>
+        <p class="margin-note" style="margin-top:1rem;font-size:1.18rem">"light, nice, the cardamom complementing. lock it." the cup that ended the search</p>
       </div>
     </details>
   </div>
@@ -301,7 +319,7 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.8rem;le
       <summary>The moment it was made for</summary>
       <div class="body">
         <p>Some conversations only begin after the day has ended. Kisse is for those, the ones that stretch past midnight.</p>
-        <p class="margin-note" style="margin-top:1rem;font-size:1.2rem">"whiskey and dark chocolate." the first words ever said about Kisse</p>
+        <p class="margin-note" style="margin-top:1rem;font-size:1.18rem">"whiskey and dark chocolate." the first words ever said about Kisse</p>
       </div>
     </details>
   </div>
@@ -325,7 +343,7 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.8rem;le
       <summary>The moment it was made for</summary>
       <div class="body">
         <p>There is an hour that belongs to no one else. A blanket, a book, rain if you are lucky. Lamhe sits inside it with you.</p>
-        <p class="margin-note" style="margin-top:1rem;font-size:1.2rem">still on the bench. hazelnut is the last question</p>
+        <p class="margin-note" style="margin-top:1rem;font-size:1.18rem">still on the bench. hazelnut is the last question</p>
       </div>
     </details>
   </div>
@@ -424,6 +442,17 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.8rem;le
     <span>&#169; 2026</span>
   </div>
 </footer>
+
+<script>
+/* The bar shrinks to a slim strip once you start reading. */
+(function(){
+  var h = document.querySelector('.site-header');
+  if(!h) return;
+  function s(){ h.classList.toggle('scrolled', window.scrollY > 40); }
+  window.addEventListener('scroll', s, {passive:true});
+  s();
+})();
+</script>
 
 </body>
 </html>
