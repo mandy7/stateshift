@@ -4,82 +4,250 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nothing here was guessed. The Lab. StateShift.</title>
-<meta name="description" content="Fifty-one sittings, logged with the verdict intact. The six findings that changed the coffee, plus the full archive.">
+<meta name="description" content="Fifty-one sittings, logged with the verdict intact. Six findings that changed the coffee, the measured before-and-after, and the full archive.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css?v=4">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-.l-hero{padding:2.8rem 1.3rem 2rem;text-align:center;max-width:640px;margin:0 auto}
+/* ===== StateShift stylesheet, inlined. No external CSS file. ===== */
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --paper:#f2ecdd; --paper-deep:#eae2cf; --cream:#faf6ec;
+  --ink:#26190e; --ink-soft:#4a3a28; --muted:#6f6350;
+  --espresso:#1a0f08; --roast:#2b1a0e; --dark-text:#f0e7d6; --dark-muted:#b39a75;
+  --gold:#a5741a; --amber:#d4a853; --forest:#33472f;
+  --line:rgba(38,25,14,.18); --line-strong:rgba(38,25,14,.45); --line-dark:rgba(212,168,83,.22);
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:'Lora',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.85;min-height:100vh}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:400;line-height:1.15;color:var(--ink)}
+h1,h2{text-wrap:balance}
+em{font-style:italic}
+a{color:inherit}
+img{max-width:100%;display:block}
+.center{text-align:center}
+
+/* HEADER */
+.site-header{background:var(--paper);border-bottom:1px solid var(--line);padding:1rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.site-logo{font-family:'Playfair Display',serif;font-size:1.75rem;color:var(--ink);text-decoration:none;line-height:1.1}
+.site-logo span{color:var(--gold);font-style:italic}
+.site-logo small{display:block;font-family:'IBM Plex Mono',monospace;font-size:.82rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:.4rem}
+.site-nav{display:flex;gap:.35rem;align-items:center;flex-wrap:wrap}
+.site-nav a{font-family:'IBM Plex Mono',monospace;font-size:.92rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-soft);text-decoration:none;
+  padding:.5rem .75rem;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
+.site-nav a:hover{color:var(--gold)}
+.site-nav a.active{color:var(--gold);border-bottom-color:var(--gold)}
+.site-nav a.sell{background:var(--espresso);color:var(--amber);
+  border:1px solid var(--espresso);border-bottom:1px solid var(--espresso);
+  padding:.55rem 1.2rem;margin-left:.5rem;letter-spacing:.14em}
+.site-nav a.sell:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+.site-nav a.sell.active{background:var(--gold);color:#fff;border-color:var(--gold)}
+
+/* TYPE */
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.92rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:1rem}
+.lead{font-size:clamp(1.04rem,2.4vw,1.16rem);color:var(--ink-soft);line-height:1.85}
+.margin-note{font-family:'Caveat',cursive;font-size:1.3rem;color:var(--gold);display:inline-block}
+
+/* BUTTONS */
+.btn{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.84rem;
+  letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:1.05rem 2rem;
+  border:1px solid var(--ink);color:var(--ink);transition:all .25s;background:transparent}
+.btn:hover{background:var(--ink);color:var(--amber)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#fff}
+.btn.gold:hover{background:var(--espresso);border-color:var(--espresso);color:var(--amber)}
+.btn.dark{background:var(--espresso);border-color:var(--espresso);color:var(--amber)}
+.btn.dark:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+.btn.on-dark{border-color:var(--amber);color:var(--amber)}
+.btn.on-dark:hover{background:var(--amber);color:var(--espresso)}
+.doors{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1.6rem}
+@media(max-width:480px){.doors{grid-template-columns:1fr}}
+.doors .btn{text-align:center;padding:1.2rem 1rem}
+
+/* PRICE BAND */
+.price-wide{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  background:var(--espresso);color:var(--dark-text);padding:1.2rem 1.4rem;margin-top:1.6rem}
+.price-wide b{font-family:'Playfair Display',serif;font-weight:400;font-size:2.2rem;line-height:1}
+.price-wide span{font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--amber)}
+
+/* DISCLOSURE — espresso card, light text */
+.disclose{border:1px solid var(--line-dark);background:var(--espresso);margin-bottom:.7rem}
+.disclose > summary{cursor:pointer;list-style:none;position:relative;
+  padding:1.25rem 3rem 1.25rem 1.3rem;font-family:'Playfair Display',serif;font-size:1.22rem;
+  color:var(--dark-text);transition:color .2s}
+.disclose > summary::-webkit-details-marker{display:none}
+.disclose > summary::marker{content:''}
+.disclose > summary:hover{color:var(--amber)}
+.disclose > summary::after{content:'+';position:absolute;right:1.3rem;top:50%;transform:translateY(-50%);
+  font-family:'IBM Plex Mono',monospace;font-size:1.4rem;color:var(--amber)}
+.disclose[open] > summary::after{content:'\2212'}
+.disclose[open] > summary{border-bottom:1px solid var(--line-dark)}
+.disclose .body{padding:1.2rem 1.3rem 1.5rem}
+.disclose .body p{color:#cdb894;font-size:1.02rem;line-height:1.85;margin:0}
+.disclose .body p + p{margin-top:.9rem}
+.disclose .body a{color:var(--amber)}
+.disclose .body .margin-note{color:var(--amber)}
+
+/* SWIPE RAIL */
+.rail{display:flex;flex-direction:row;flex-wrap:nowrap;gap:1rem;
+  overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  padding:.4rem 1.3rem 1.2rem;scroll-padding-left:1.3rem;max-width:1140px;margin:0 auto}
+.rail::-webkit-scrollbar{display:none}
+.rail > *{flex:0 0 76%;max-width:320px;scroll-snap-align:start}
+@media(min-width:861px){
+  .rail{padding:.4rem 2rem 1.4rem;scroll-padding-left:2rem}
+  .rail > *{flex:0 0 calc(25% - .75rem);max-width:none}
+}
+.rail-dots{display:flex;justify-content:center;gap:.5rem;margin-top:.2rem}
+.rail-dots button{width:8px;height:8px;padding:0;border-radius:50%;border:none;cursor:pointer;
+  background:var(--line);transition:all .25s}
+.rail-dots button[aria-current="true"]{background:var(--gold);transform:scale(1.4)}
+.rail-hint{display:block;text-align:center;margin-top:.7rem;font-family:'IBM Plex Mono',monospace;
+  font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+@media(min-width:861px){.rail-dots,.rail-hint{display:none}}
+
+/* PRINT / FIGURES */
+.print{background:#fff;padding:10px 10px 14px;box-shadow:0 3px 14px rgba(38,25,14,.22)}
+.print figcaption{font-family:'Caveat',cursive;font-size:1.2rem;color:#5a4a35;padding-top:.6rem;text-align:center}
+figure.frame{margin:0}
+figure.frame img{width:100%;display:block;box-shadow:0 10px 30px rgba(38,25,14,.18)}
+figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);padding-top:.8rem}
+
+/* NOTEBOOK */
+.notebook{background:var(--cream);border:1px solid var(--line);border-left:3px solid var(--gold);
+  padding:1.4rem 1.5rem;margin:1.8rem 0}
+.notebook .nb-label{font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.6rem}
+.notebook .nb-line{font-family:'Caveat',cursive;font-size:1.55rem;line-height:1.5;color:var(--ink-soft)}
+
+/* CONTACT CLOSE */
+.contact-close{border-top:1px solid var(--line);background:var(--cream);padding:3.4rem 1.3rem;text-align:center}
+.contact-close .eyebrow{font-size:1rem}
+.contact-close h2{font-size:clamp(1.7rem,4.6vw,2.3rem);line-height:1.3;margin-bottom:.8rem}
+.contact-close .cc-line{font-style:italic;color:var(--ink-soft);max-width:500px;margin:0 auto 1.8rem;font-size:1.04rem}
+.cc-links{display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap;margin-top:1.3rem}
+.cc-links a{font-family:'IBM Plex Mono',monospace;font-size:.84rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-soft);text-decoration:none;
+  border-bottom:1px solid var(--line-strong);padding-bottom:.3rem;transition:all .2s}
+.cc-links a:hover{color:var(--gold);border-color:var(--gold)}
+
+/* FOOTER */
+.site-footer{background:var(--espresso);color:var(--dark-muted);padding:3rem 2rem 2rem}
+.footer-grid{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem}
+.site-footer h4{font-family:'IBM Plex Mono',monospace;font-size:.84rem;font-weight:400;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem}
+.site-footer a{color:var(--dark-muted);text-decoration:none;transition:color .2s}
+.site-footer a:hover{color:var(--amber)}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:.5rem;font-size:.98rem}
+.footer-base{max-width:1060px;margin:2.2rem auto 0;padding-top:1.3rem;border-top:1px solid var(--line-dark);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  .footer-grid{grid-template-columns:1fr 1fr;gap:1.6rem 1.2rem}
+  .footer-grid > *:first-child{grid-column:1 / -1}
+  .site-footer{padding:2.4rem 1.3rem 1.8rem}
+}
+@media(max-width:760px){
+  .site-header{flex-direction:column;align-items:center;gap:.9rem;padding:1rem}
+  .site-logo{text-align:center;font-size:1.7rem}
+  .site-logo small{font-size:.76rem;letter-spacing:.18em}
+  .site-nav{width:100%;justify-content:center;gap:.2rem .35rem}
+  .site-nav a{font-size:.8rem;letter-spacing:.04em;padding:.45rem .5rem}
+  .site-nav a.sell{padding:.5rem .9rem;margin-left:.3rem;letter-spacing:.08em}
+  .eyebrow{font-size:.86rem}
+}
+@media(max-width:400px){
+  .site-nav a{font-size:.74rem;padding:.4rem .34rem}
+  .site-nav a.sell{padding:.45rem .7rem}
+}
+
+/* ===== page-specific ===== */
+
+.l-hero{padding:2.8rem 1.3rem 2rem;text-align:center;max-width:700px;margin:0 auto}
 @media(min-width:761px){.l-hero{padding:4.2rem 2rem 2.4rem}}
-.l-hero h1{font-size:clamp(1.95rem,6.2vw,3rem);line-height:1.16;margin-bottom:1.1rem}
+.l-hero h1{font-size:clamp(1.6rem,5.2vw,2.8rem);line-height:1.2;margin-bottom:1.2rem}
 .l-hero h1 em{color:var(--gold)}
-.l-hero .lead{font-size:1.05rem;line-height:1.85}
+.l-hero .lead{font-size:1.06rem;line-height:1.9}
+/* two doors into the page: story people go left, data people go right */
+.l-routes{display:grid;grid-template-columns:1fr;gap:.8rem;max-width:560px;margin:1.8rem auto 0}
+@media(min-width:601px){.l-routes{grid-template-columns:1fr 1fr}}
+.route{display:block;text-decoration:none;background:var(--espresso);color:var(--dark-text);
+  padding:1.2rem 1.2rem;text-align:left;transition:background .25s}
+.route:hover{background:var(--roast)}
+.route b{display:block;font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.78rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.35rem}
+.route span{font-family:'Playfair Display',serif;font-size:1.1rem;line-height:1.4;color:var(--dark-text)}
 
-.finds{max-width:680px;margin:0 auto;padding:1rem 1.3rem 3rem}
+.finds{max-width:680px;margin:0 auto;padding:1.4rem 1.3rem 3rem}
 .find{border-left:2px solid var(--gold);padding-left:1.4rem;margin-bottom:2.4rem}
-.find .k{
-  font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.5rem;
-}
-.find h2{font-size:clamp(1.3rem,3.8vw,1.6rem);line-height:1.35;margin-bottom:.6rem}
-.find p{font-size:1.02rem;line-height:1.85;color:var(--ink-soft);margin:0}
-.find .ref{
-  display:block;margin-top:.6rem;font-family:'IBM Plex Mono',monospace;
-  font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
-}
+.find .k{font-family:'IBM Plex Mono',monospace;font-size:.82rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.5rem}
+.find h2{font-size:clamp(1.35rem,4vw,1.65rem);line-height:1.35;margin-bottom:.6rem}
+.find p{font-size:1.04rem;line-height:1.85;color:var(--ink-soft);margin:0}
+.find .ref{display:block;margin-top:.6rem;font-family:'IBM Plex Mono',monospace;
+  font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 
-.l-body{padding:0 0 4rem}
-.s-inner{max-width:1060px;margin:0 auto;padding:0 1.3rem}
-@media(min-width:761px){.s-inner{padding:0 2rem}}
-.master-tabs{display:flex;gap:.5rem;justify-content:center;margin:0 0 1.6rem;flex-wrap:wrap}
-.mtab{
-  background:transparent;border:1px solid var(--amber);color:var(--amber);
-  padding:.7rem 1.3rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;
-  font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;transition:all .2s;
-}
-.mtab.active{background:var(--amber);color:var(--espresso)}
-.master-pane{display:none}
-.master-pane.active{display:block}
+/* NUMBERS — a full section now, not buried in an accordion */
+.numbers{background:var(--espresso);color:var(--dark-text);padding:3.2rem 0}
+.n-in{max-width:1060px;margin:0 auto;padding:0 1.3rem}
+@media(min-width:761px){.n-in{padding:0 2rem}}
+.numbers .eyebrow{color:var(--amber)}
+.numbers h2{color:var(--dark-text);font-size:clamp(1.7rem,4.8vw,2.3rem);margin-bottom:.8rem;line-height:1.25}
+.numbers .n-lead{color:#cdb894;font-size:1.04rem;line-height:1.85;margin-bottom:1.8rem;max-width:620px}
 .tabs{display:flex;gap:.5rem;margin-bottom:1.4rem;flex-wrap:wrap}
-.tab-btn{
-  background:transparent;border:1px solid var(--line-dark);color:var(--dark-muted);
-  padding:.5rem 1rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;
-  font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;transition:all .2s;
-}
+.tab-btn{background:transparent;border:1px solid var(--line-dark);color:var(--dark-muted);
+  padding:.55rem 1.1rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;
+  font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;transition:all .2s}
 .tab-btn.active{background:var(--amber);color:var(--espresso);border-color:var(--amber)}
-.lab-entry{border:1px solid var(--line-dark);background:var(--roast);margin-bottom:.9rem}
-.le-head{padding:1rem 1.1rem;cursor:pointer;user-select:none;display:flex;justify-content:space-between;gap:1rem;align-items:baseline}
-.le-meta{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dark-muted);white-space:nowrap}
-.le-title{font-family:'Playfair Display',serif;font-size:1.12rem;line-height:1.45;color:var(--dark-text)}
-.le-head:hover .le-title{color:var(--amber)}
-.le-tag{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:var(--amber);border:1px solid var(--line-dark);padding:.2rem .5rem;white-space:nowrap}
-.le-body{display:none;border-top:1px solid var(--line-dark);padding:1.2rem;background:var(--espresso)}
-.le-body.open{display:block}
-.le-body .prose{white-space:pre-line;color:#cdb894;font-size:.98rem;line-height:1.85;margin-bottom:1.1rem}
-.le-label{font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.6rem}
-.obs-list{list-style:none;margin-bottom:1rem}
-.obs-list li{position:relative;padding-left:1.1rem;margin-bottom:.45rem;color:#cdb894;font-size:.96rem;line-height:1.7}
-.obs-list li::before{content:'\2022';position:absolute;left:0;color:var(--amber)}
-.field-note{border-left:2px solid var(--amber);padding-left:1rem;margin-top:1rem}
-.field-note-text{color:var(--amber);font-style:italic;font-size:.98rem;line-height:1.75}
-.count-line{font-family:'IBM Plex Mono',monospace;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dark-muted);margin-bottom:1.1rem}
 .summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.4rem}
 .metric-card{background:var(--roast);border:1px solid var(--line-dark);padding:1.3rem}
-.metric-label{color:var(--amber);font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.7rem}
+.metric-label{color:var(--amber);font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.7rem}
 .metric-value{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--dark-text)}
-.metric-caption{margin-top:.4rem;color:var(--dark-muted);font-size:.86rem;line-height:1.6}
+.metric-caption{margin-top:.4rem;color:var(--dark-muted);font-size:.88rem;line-height:1.6}
 .chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .chart-card{background:var(--roast);border:1px solid var(--line-dark);padding:1.3rem}
 .chart-card.full{grid-column:1/-1}
-.chart-title{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:.9rem;color:var(--dark-text)}
+.chart-title{font-family:'Playfair Display',serif;font-size:1.15rem;margin-bottom:.9rem;color:var(--dark-text)}
 canvas{width:100%!important;height:280px!important}
-.footer-note{margin-top:2rem;color:var(--dark-muted);line-height:1.8;font-size:.9rem;border-top:1px solid var(--line-dark);padding-top:1.2rem}
+.footer-note{margin-top:2rem;color:var(--dark-muted);line-height:1.8;font-size:.92rem;border-top:1px solid var(--line-dark);padding-top:1.2rem}
 .tab-content{display:none}
 .tab-content.active{display:block}
 @media(max-width:900px){.summary-grid,.chart-grid{grid-template-columns:1fr}.chart-card.full{grid-column:auto}}
-.l-cta{background:var(--espresso);color:var(--dark-text);text-align:center;padding:3.2rem 1.3rem}
-.l-cta h2{color:var(--dark-text);font-size:clamp(1.7rem,4.4vw,2.3rem);margin-bottom:1.3rem}
+
+.l-body{padding:3rem 0}
+.s-inner{max-width:1060px;margin:0 auto;padding:0 1.3rem}
+@media(min-width:761px){.s-inner{padding:0 2rem}}
+.master-tabs{display:none}
+.master-pane{display:block}
+.lab-entry{border:1px solid var(--line-dark);background:var(--roast);margin-bottom:.9rem}
+.le-head{padding:1rem 1.1rem;cursor:pointer;user-select:none;display:flex;justify-content:space-between;gap:1rem;align-items:baseline}
+.le-meta{font-family:'IBM Plex Mono',monospace;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dark-muted);white-space:nowrap}
+.le-title{font-family:'Playfair Display',serif;font-size:1.15rem;line-height:1.45;color:var(--dark-text)}
+.le-head:hover .le-title{color:var(--amber)}
+.le-tag{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;color:var(--amber);border:1px solid var(--line-dark);padding:.2rem .5rem;white-space:nowrap}
+.le-body{display:none;border-top:1px solid var(--line-dark);padding:1.2rem;background:var(--espresso)}
+.le-body.open{display:block}
+.le-body .prose{white-space:pre-line;color:#cdb894;font-size:1rem;line-height:1.85;margin-bottom:1.1rem}
+.le-label{font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.6rem}
+.obs-list{list-style:none;margin-bottom:1rem}
+.obs-list li{position:relative;padding-left:1.1rem;margin-bottom:.45rem;color:#cdb894;font-size:.98rem;line-height:1.7}
+.obs-list li::before{content:'\2022';position:absolute;left:0;color:var(--amber)}
+.field-note{border-left:2px solid var(--amber);padding-left:1rem;margin-top:1rem}
+.field-note-text{color:var(--amber);font-style:italic;font-size:1rem;line-height:1.75}
+.count-line{font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dark-muted);margin-bottom:1.1rem}
+.l-cta{background:var(--paper-deep);text-align:center;padding:3.2rem 1.3rem;border-top:1px solid var(--line)}
+.l-cta h2{font-size:clamp(1.7rem,4.6vw,2.3rem);margin-bottom:1.3rem}
+
 </style>
 </head>
 <body>
@@ -97,20 +265,31 @@ canvas{width:100%!important;height:280px!important}
 
 <section class="l-hero">
   <h1>Nothing here was guessed.<br><em>All of it was brewed</em>.</h1>
-  <p class="lead">Fifty-one sittings, logged with the verdict intact. Most taught us what not to make. Six of them changed the coffee, and those six are below.</p>
+  <p class="lead">Fifty-one sittings, logged with the verdict intact. Most of them taught us what not to make. Six of them changed the coffee, and those six are below.</p>
+
+  <div class="l-routes">
+    <a class="route" href="journal.html">
+      <b>If you prefer stories</b>
+      <span>Read the journal &rarr;</span>
+    </a>
+    <a class="route" href="#numbers">
+      <b>If you prefer numbers</b>
+      <span>See the shift, measured &rarr;</span>
+    </a>
+  </div>
 </section>
 
 <div class="finds">
   <div class="find">
     <span class="k">The breakthrough</span>
     <h2>She named the cardamom from across the kitchen.</h2>
-    <p>Nobody asked her to. She was doing something else. For months the aroma had been vanishing into the milk, and then one morning it did not, and she said the word out loud from six feet away. That cup is Rukh, and nothing about it has changed since.</p>
+    <p>Nobody asked her what was in it. She tasted the cup, and from six feet away she said the word out loud. For months the aroma had been vanishing into the milk. That morning it did not. That cup is Rukh, and nothing about it has changed since.</p>
     <span class="ref">Rukh &middot; sitting 25</span>
   </div>
   <div class="find">
     <span class="k">The thing nobody expects</span>
     <h2>The bitterness was never the coffee.</h2>
-    <p>We chased it through grind size, dose, water temperature and steep time for weeks. It was the cardamom. Ground at home it oxidises within days and turns bitter, and it takes the whole cup down with it. Sealed commercial powder, fresh batch, fixed in one sitting. Aromatics are more fragile than the beans they sit next to.</p>
+    <p>We chased it through grind size, dose, water temperature and steep time for weeks. It was the cardamom. Ground at home it oxidises within days and turns bitter, and it takes the whole cup down with it. Sealed commercial powder, fresh batch, fixed in one sitting.</p>
     <span class="ref">Rukh &middot; Kisse</span>
   </div>
   <div class="find">
@@ -134,23 +313,51 @@ canvas{width:100%!important;height:280px!important}
   <div class="find">
     <span class="k">What is open right now</span>
     <h2>Hazelnut, and a citrus we are still chasing.</h2>
-    <p>Lamhe needs a signature aroma the way Rukh has cardamom, and roasted hazelnut is the current candidate. Sehar is still being tuned: Earl Grey works as a citrus lift up to a point, and past about a tenth of a gram it stops being citrus and starts being black tea. Both are unfinished, and both are on this page before they are solved.</p>
+    <p>Lamhe needs a signature aroma the way Rukh has cardamom, and roasted hazelnut is the current candidate. Sehar is still being tuned. Both are unfinished, and both are on this page before they are solved.</p>
     <span class="ref">Lamhe &middot; Sehar</span>
   </div>
 </div>
 
+<!-- THE NUMBERS · a section in its own right, not buried in an accordion -->
+<section class="numbers" id="numbers">
+  <div class="n-in">
+    <span class="eyebrow">The numbers</span>
+    <h2>Every sitting begins and ends with the same question.</h2>
+    <p class="n-lead">How do you feel, one to five? Before the cup, and again after it. These are the answers, plotted. Direction matters more than magnitude.</p>
+
+    <div class="tabs">
+      <button class="tab-btn m-active active" data-tab="rukhTab">Rukh</button>
+      <button class="tab-btn m-active" data-tab="kisseTab">Kisse</button>
+    </div>
+    <div id="rukhTab" class="tab-content active">
+      <div class="summary-grid" id="rukhSummary"></div>
+      <div class="chart-grid">
+        <div class="chart-card"><div class="chart-title">Focus, before and after</div><canvas id="focusChart"></canvas></div>
+        <div class="chart-card"><div class="chart-title">Energy, before and after</div><canvas id="energyChart"></canvas></div>
+        <div class="chart-card full"><div class="chart-title">Mood, before and after</div><canvas id="moodChart"></canvas></div>
+      </div>
+    </div>
+    <div id="kisseTab" class="tab-content">
+      <div class="summary-grid" id="kisseSummary"></div>
+      <div class="chart-grid">
+        <div class="chart-card"><div class="chart-title">Warmth, before and after</div><canvas id="warmthChart"></canvas></div>
+        <div class="chart-card"><div class="chart-title">Mystery, the note no one can name</div><canvas id="mysteryChart"></canvas></div>
+        <div class="chart-card full"><div class="chart-title">Linger, what stays when the cup is done</div><canvas id="lingerChart"></canvas></div>
+      </div>
+    </div>
+    <div class="footer-note">
+      1 = low, 3 = baseline, 5 = unusually elevated. Sittings that did not record a metric are left out of it rather than counted as zero. Self-reported by the taster. Directional evidence, not proof.
+    </div>
+  </div>
+</section>
+
+<!-- THE ARCHIVE -->
 <div class="l-body">
   <div class="s-inner">
     <details class="disclose">
-      <summary>Browse all fifty-one sittings, and the numbers</summary>
+      <summary>Browse all fifty-one sittings</summary>
       <div class="body">
-
-        <div class="master-tabs">
-          <button class="mtab active" data-pane="recordsPane">Field records</button>
-          <button class="mtab" data-pane="measurePane">The numbers</button>
-        </div>
-
-        <div id="recordsPane" class="master-pane active">
+        <div id="recordsPane" class="master-pane">
           <div class="tabs" id="recordTabs">
             <button class="tab-btn active" data-sku="ALL">All sittings</button>
             <button class="tab-btn" data-sku="RUKH">Rukh</button>
@@ -159,33 +366,6 @@ canvas{width:100%!important;height:280px!important}
           <div class="count-line" id="countLine"></div>
           <div id="entries"></div>
         </div>
-
-        <div id="measurePane" class="master-pane">
-          <div class="tabs">
-            <button class="tab-btn m-active active" data-tab="rukhTab">Rukh</button>
-            <button class="tab-btn m-active" data-tab="kisseTab">Kisse</button>
-          </div>
-          <div id="rukhTab" class="tab-content active">
-            <div class="summary-grid" id="rukhSummary"></div>
-            <div class="chart-grid">
-              <div class="chart-card"><div class="chart-title">Focus, before and after</div><canvas id="focusChart"></canvas></div>
-              <div class="chart-card"><div class="chart-title">Energy, before and after</div><canvas id="energyChart"></canvas></div>
-              <div class="chart-card full"><div class="chart-title">Mood, before and after</div><canvas id="moodChart"></canvas></div>
-            </div>
-          </div>
-          <div id="kisseTab" class="tab-content">
-            <div class="summary-grid" id="kisseSummary"></div>
-            <div class="chart-grid">
-              <div class="chart-card"><div class="chart-title">Warmth, before and after</div><canvas id="warmthChart"></canvas></div>
-              <div class="chart-card"><div class="chart-title">Mystery, the note no one can name</div><canvas id="mysteryChart"></canvas></div>
-              <div class="chart-card full"><div class="chart-title">Linger, what stays when the cup is done</div><canvas id="lingerChart"></canvas></div>
-            </div>
-          </div>
-          <div class="footer-note">
-            1 = low, 3 = baseline, 5 = unusually elevated. Sittings that did not record a metric are left out of it rather than counted as zero. Self-reported by the taster. Directional evidence, not proof.
-          </div>
-        </div>
-
       </div>
     </details>
   </div>
@@ -193,16 +373,16 @@ canvas{width:100%!important;height:280px!important}
 
 <section class="l-cta">
   <h2>The cups that survived all this.</h2>
-  <a class="btn on-dark" href="collection.html">See the four coffees</a>
+  <a class="btn gold" href="collection.html">See the four coffees</a>
 </section>
 
 <section class="contact-close">
   <span class="eyebrow">The Tasting Circle</span>
   <h2>Every failure, before it becomes a coffee.</h2>
-  <p class="cc-line">One note a fortnight. What is on the bench, what went wrong, and what changed because of it. You can leave whenever you like.</p>
+  <p class="cc-line">One note a fortnight. What is on the bench, what went wrong, and what changed because of it. Leave whenever you like.</p>
+  <a class="btn dark" href="mailto:hello@stateshift.in?subject=Tasting%20Circle&body=Add%20me%20to%20the%20list.">Join with your email</a>
   <div class="cc-links">
-    <a href="mailto:hello@stateshift.in?subject=Tasting%20Circle">hello@stateshift.in</a>
-    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20to%20join%20the%20Tasting%20Circle.">Or WhatsApp</a>
+    <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
     <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a>
   </div>
 </section>
@@ -210,7 +390,7 @@ canvas{width:100%!important;height:280px!important}
 <footer class="site-footer">
   <div class="footer-grid">
     <div>
-      <p style="font-size:.95rem;line-height:1.8;max-width:340px">StateShift. Coffee weighed, sealed and signed by hand in North India, in batches small enough to sign.</p>
+      <p style="font-size:.98rem;line-height:1.8;max-width:340px">StateShift. Coffee weighed, sealed and signed by hand in North India, in batches small enough to sign.</p>
     </div>
     <div>
       <h4>Coffee</h4>
@@ -226,8 +406,8 @@ canvas{width:100%!important;height:280px!important}
       <ul class="footer-links">
         <li><a href="story.html">The story</a></li>
         <li><a href="states.html">The Lab</a></li>
+        <li><a href="journal.html">The journal</a></li>
         <li><a href="mailto:hello@stateshift.in">hello@stateshift.in</a></li>
-        <li><a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a></li>
       </ul>
     </div>
   </div>
@@ -378,6 +558,7 @@ document.querySelectorAll('.m-active').forEach(btn => {
   });
 });
 </script>
+
 
 </body>
 </html>

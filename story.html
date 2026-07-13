@@ -4,39 +4,201 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The story. StateShift.</title>
-<meta name="description" content="It began during paternity leave. Not because I wanted better coffee, but because I finally had enough quiet to see how much of my life I was getting through without noticing.">
+<meta name="description" content="It began during paternity leave. Not because I wanted better coffee, but because I finally had enough quiet to see how much of my life I was getting through on autopilot.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css?v=4">
 <style>
-.tale{max-width:640px;margin:0 auto;padding:2.4rem 1.3rem 0}
-@media(min-width:761px){.tale{padding:3.6rem 2rem 0}}
-.mv{padding:0 0 2.4rem}
-.mv + .mv{border-top:1px solid var(--line);padding-top:2.4rem}
-.mv h2{font-size:clamp(1.6rem,4.6vw,2.1rem);line-height:1.25;margin-bottom:1.2rem}
-.mv p{margin-bottom:1.1rem;font-size:1.08rem;line-height:1.9;color:var(--ink-soft)}
+/* ===== StateShift stylesheet, inlined. No external CSS file. ===== */
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --paper:#f2ecdd; --paper-deep:#eae2cf; --cream:#faf6ec;
+  --ink:#26190e; --ink-soft:#4a3a28; --muted:#6f6350;
+  --espresso:#1a0f08; --roast:#2b1a0e; --dark-text:#f0e7d6; --dark-muted:#b39a75;
+  --gold:#a5741a; --amber:#d4a853; --forest:#33472f;
+  --line:rgba(38,25,14,.18); --line-strong:rgba(38,25,14,.45); --line-dark:rgba(212,168,83,.22);
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:'Lora',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.85;min-height:100vh}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:400;line-height:1.15;color:var(--ink)}
+h1,h2{text-wrap:balance}
+em{font-style:italic}
+a{color:inherit}
+img{max-width:100%;display:block}
+.center{text-align:center}
+
+/* HEADER */
+.site-header{background:var(--paper);border-bottom:1px solid var(--line);padding:1rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.site-logo{font-family:'Playfair Display',serif;font-size:1.75rem;color:var(--ink);text-decoration:none;line-height:1.1}
+.site-logo span{color:var(--gold);font-style:italic}
+.site-logo small{display:block;font-family:'IBM Plex Mono',monospace;font-size:.82rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:.4rem}
+.site-nav{display:flex;gap:.35rem;align-items:center;flex-wrap:wrap}
+.site-nav a{font-family:'IBM Plex Mono',monospace;font-size:.92rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-soft);text-decoration:none;
+  padding:.5rem .75rem;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
+.site-nav a:hover{color:var(--gold)}
+.site-nav a.active{color:var(--gold);border-bottom-color:var(--gold)}
+.site-nav a.sell{background:var(--espresso);color:var(--amber);
+  border:1px solid var(--espresso);border-bottom:1px solid var(--espresso);
+  padding:.55rem 1.2rem;margin-left:.5rem;letter-spacing:.14em}
+.site-nav a.sell:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+.site-nav a.sell.active{background:var(--gold);color:#fff;border-color:var(--gold)}
+
+/* TYPE */
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.92rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:1rem}
+.lead{font-size:clamp(1.04rem,2.4vw,1.16rem);color:var(--ink-soft);line-height:1.85}
+.margin-note{font-family:'Caveat',cursive;font-size:1.3rem;color:var(--gold);display:inline-block}
+
+/* BUTTONS */
+.btn{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.84rem;
+  letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:1.05rem 2rem;
+  border:1px solid var(--ink);color:var(--ink);transition:all .25s;background:transparent}
+.btn:hover{background:var(--ink);color:var(--amber)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#fff}
+.btn.gold:hover{background:var(--espresso);border-color:var(--espresso);color:var(--amber)}
+.btn.dark{background:var(--espresso);border-color:var(--espresso);color:var(--amber)}
+.btn.dark:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+.btn.on-dark{border-color:var(--amber);color:var(--amber)}
+.btn.on-dark:hover{background:var(--amber);color:var(--espresso)}
+.doors{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1.6rem}
+@media(max-width:480px){.doors{grid-template-columns:1fr}}
+.doors .btn{text-align:center;padding:1.2rem 1rem}
+
+/* PRICE BAND */
+.price-wide{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  background:var(--espresso);color:var(--dark-text);padding:1.2rem 1.4rem;margin-top:1.6rem}
+.price-wide b{font-family:'Playfair Display',serif;font-weight:400;font-size:2.2rem;line-height:1}
+.price-wide span{font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--amber)}
+
+/* DISCLOSURE — espresso card, light text */
+.disclose{border:1px solid var(--line-dark);background:var(--espresso);margin-bottom:.7rem}
+.disclose > summary{cursor:pointer;list-style:none;position:relative;
+  padding:1.25rem 3rem 1.25rem 1.3rem;font-family:'Playfair Display',serif;font-size:1.22rem;
+  color:var(--dark-text);transition:color .2s}
+.disclose > summary::-webkit-details-marker{display:none}
+.disclose > summary::marker{content:''}
+.disclose > summary:hover{color:var(--amber)}
+.disclose > summary::after{content:'+';position:absolute;right:1.3rem;top:50%;transform:translateY(-50%);
+  font-family:'IBM Plex Mono',monospace;font-size:1.4rem;color:var(--amber)}
+.disclose[open] > summary::after{content:'\2212'}
+.disclose[open] > summary{border-bottom:1px solid var(--line-dark)}
+.disclose .body{padding:1.2rem 1.3rem 1.5rem}
+.disclose .body p{color:#cdb894;font-size:1.02rem;line-height:1.85;margin:0}
+.disclose .body p + p{margin-top:.9rem}
+.disclose .body a{color:var(--amber)}
+.disclose .body .margin-note{color:var(--amber)}
+
+/* SWIPE RAIL */
+.rail{display:flex;flex-direction:row;flex-wrap:nowrap;gap:1rem;
+  overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  padding:.4rem 1.3rem 1.2rem;scroll-padding-left:1.3rem;max-width:1140px;margin:0 auto}
+.rail::-webkit-scrollbar{display:none}
+.rail > *{flex:0 0 76%;max-width:320px;scroll-snap-align:start}
+@media(min-width:861px){
+  .rail{padding:.4rem 2rem 1.4rem;scroll-padding-left:2rem}
+  .rail > *{flex:0 0 calc(25% - .75rem);max-width:none}
+}
+.rail-dots{display:flex;justify-content:center;gap:.5rem;margin-top:.2rem}
+.rail-dots button{width:8px;height:8px;padding:0;border-radius:50%;border:none;cursor:pointer;
+  background:var(--line);transition:all .25s}
+.rail-dots button[aria-current="true"]{background:var(--gold);transform:scale(1.4)}
+.rail-hint{display:block;text-align:center;margin-top:.7rem;font-family:'IBM Plex Mono',monospace;
+  font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+@media(min-width:861px){.rail-dots,.rail-hint{display:none}}
+
+/* PRINT / FIGURES */
+.print{background:#fff;padding:10px 10px 14px;box-shadow:0 3px 14px rgba(38,25,14,.22)}
+.print figcaption{font-family:'Caveat',cursive;font-size:1.2rem;color:#5a4a35;padding-top:.6rem;text-align:center}
+figure.frame{margin:0}
+figure.frame img{width:100%;display:block;box-shadow:0 10px 30px rgba(38,25,14,.18)}
+figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);padding-top:.8rem}
+
+/* NOTEBOOK */
+.notebook{background:var(--cream);border:1px solid var(--line);border-left:3px solid var(--gold);
+  padding:1.4rem 1.5rem;margin:1.8rem 0}
+.notebook .nb-label{font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.6rem}
+.notebook .nb-line{font-family:'Caveat',cursive;font-size:1.55rem;line-height:1.5;color:var(--ink-soft)}
+
+/* CONTACT CLOSE */
+.contact-close{border-top:1px solid var(--line);background:var(--cream);padding:3.4rem 1.3rem;text-align:center}
+.contact-close .eyebrow{font-size:1rem}
+.contact-close h2{font-size:clamp(1.7rem,4.6vw,2.3rem);line-height:1.3;margin-bottom:.8rem}
+.contact-close .cc-line{font-style:italic;color:var(--ink-soft);max-width:500px;margin:0 auto 1.8rem;font-size:1.04rem}
+.cc-links{display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap;margin-top:1.3rem}
+.cc-links a{font-family:'IBM Plex Mono',monospace;font-size:.84rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-soft);text-decoration:none;
+  border-bottom:1px solid var(--line-strong);padding-bottom:.3rem;transition:all .2s}
+.cc-links a:hover{color:var(--gold);border-color:var(--gold)}
+
+/* FOOTER */
+.site-footer{background:var(--espresso);color:var(--dark-muted);padding:3rem 2rem 2rem}
+.footer-grid{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem}
+.site-footer h4{font-family:'IBM Plex Mono',monospace;font-size:.84rem;font-weight:400;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem}
+.site-footer a{color:var(--dark-muted);text-decoration:none;transition:color .2s}
+.site-footer a:hover{color:var(--amber)}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:.5rem;font-size:.98rem}
+.footer-base{max-width:1060px;margin:2.2rem auto 0;padding-top:1.3rem;border-top:1px solid var(--line-dark);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  .footer-grid{grid-template-columns:1fr 1fr;gap:1.6rem 1.2rem}
+  .footer-grid > *:first-child{grid-column:1 / -1}
+  .site-footer{padding:2.4rem 1.3rem 1.8rem}
+}
+@media(max-width:760px){
+  .site-header{flex-direction:column;align-items:center;gap:.9rem;padding:1rem}
+  .site-logo{text-align:center;font-size:1.7rem}
+  .site-logo small{font-size:.76rem;letter-spacing:.18em}
+  .site-nav{width:100%;justify-content:center;gap:.2rem .35rem}
+  .site-nav a{font-size:.8rem;letter-spacing:.04em;padding:.45rem .5rem}
+  .site-nav a.sell{padding:.5rem .9rem;margin-left:.3rem;letter-spacing:.08em}
+  .eyebrow{font-size:.86rem}
+}
+@media(max-width:400px){
+  .site-nav a{font-size:.74rem;padding:.4rem .34rem}
+  .site-nav a.sell{padding:.45rem .7rem}
+}
+
+/* ===== page-specific ===== */
+
+.tale{max-width:640px;margin:0 auto;padding:2.6rem 1.3rem 0}
+@media(min-width:761px){.tale{padding:3.8rem 2rem 0}}
+.mv{padding:0 0 2.6rem}
+.mv + .mv{border-top:1px solid var(--line);padding-top:2.6rem}
+.mv h2{font-size:clamp(1.7rem,4.8vw,2.2rem);line-height:1.25;margin-bottom:1.3rem}
+.mv p{margin-bottom:1.1rem;font-size:1.1rem;line-height:1.9;color:var(--ink-soft)}
 .mv p:last-child{margin-bottom:0}
 .mv em.beat{color:var(--ink);font-style:italic}
-.pull{
-  font-family:'Playfair Display',serif;font-size:clamp(1.25rem,3.6vw,1.5rem);
+.pull{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3.8vw,1.55rem);
   font-style:italic;line-height:1.6;border-left:2px solid var(--gold);
-  padding-left:1.3rem;margin:1.8rem 0 0;color:var(--ink);
-}
+  padding-left:1.3rem;margin:1.8rem 0 0;color:var(--ink)}
 .bleed{margin:2rem 0}
 .bleed img{width:100%;display:block}
 .snap{margin:1.8rem 0 .4rem}
 .snap img{width:100%;display:block;box-shadow:0 10px 30px rgba(38,25,14,.18)}
-.snap figcaption{font-family:'Caveat',cursive;font-size:1.2rem;color:var(--muted);padding-top:.7rem}
+.snap figcaption{font-family:'Caveat',cursive;font-size:1.25rem;color:var(--muted);padding-top:.7rem}
 .rules{background:var(--paper-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:1rem}
-.rules-in{max-width:640px;margin:0 auto;padding:3rem 1.3rem}
-.rules-in h2{font-size:clamp(1.65rem,4.6vw,2.2rem);margin:0 0 1.6rem;line-height:1.25}
+.rules-in{max-width:640px;margin:0 auto;padding:3.2rem 1.3rem}
+.rules-in h2{font-size:clamp(1.7rem,4.8vw,2.2rem);margin:0 0 1.6rem;line-height:1.25}
 .rule{padding:1.4rem 0;border-bottom:1px solid var(--line)}
 .rule:last-of-type{border-bottom:none;padding-bottom:0}
-.rule h3{font-size:1.25rem;margin-bottom:.45rem;line-height:1.3}
-.rule p{margin:0;font-size:1.02rem;line-height:1.8;color:var(--ink-soft)}
-.sign{display:block;margin-top:2.2rem;font-family:'Caveat',cursive;font-size:1.35rem;color:var(--muted);line-height:1.6}
+.rule h3{font-size:1.28rem;margin-bottom:.45rem;line-height:1.3}
+.rule p{margin:0;font-size:1.04rem;line-height:1.8;color:var(--ink-soft)}
+.sign{display:block;margin-top:2.2rem;font-family:'Caveat',cursive;font-size:1.4rem;color:var(--muted);line-height:1.6}
 .s-cta{background:var(--espresso);color:var(--dark-text);text-align:center;padding:3.2rem 1.3rem}
-.s-cta h2{color:var(--dark-text);font-size:clamp(1.7rem,4.4vw,2.3rem);margin-bottom:1.3rem}
+.s-cta h2{color:var(--dark-text);font-size:clamp(1.7rem,4.6vw,2.3rem);margin-bottom:1.3rem}
+
 </style>
 </head>
 <body>
@@ -54,38 +216,33 @@
 
 <div class="tale">
 
-  <!-- No hero. The story is the hero. -->
   <section class="mv">
-    <h2>The month I stopped noticing</h2>
-    <p>This began during paternity leave. Not because I wanted better coffee, but because I finally had enough quiet to see how much of my life I had been getting through without noticing any of it. Whole weeks were going past and leaving no memory behind. Not bad weeks. Just weeks I could not account for.</p>
-    <p>Groundhog Day, except Bill Murray at least knew he was stuck.</p>
+    <h2>The month I finally looked up</h2>
+    <p>This began during paternity leave. Not because I wanted better coffee, but because I finally had enough quiet to see how much of my life I had been getting through without ever really being in it. Whole weeks were going past and leaving no memory behind. Not bad weeks. Just weeks I could not account for.</p>
+    <p>Like the film Groundhog Day, except Bill Murray at least knew he was stuck.</p>
 
     <figure class="bleed">
       <img src="assets/editorial/autopilot-desk.jpg" alt="A man face-down at a desk beneath sticky notes reading Wake, Commute, Work, Meetings, Reply, Eat, Scroll, Sleep, Repeat" loading="lazy">
     </figure>
 
-    <p>Then my daughter arrived and the day suddenly had seams in it. One hour I was a father, holding an infant who has no opinion about my inbox. The next I was at a laptop trying to think in straight lines. Then a son, then a husband, then briefly just a person who wanted twenty minutes that belonged to nobody.</p>
-    <p>Nobody gives you a moment between them. You are expected to simply switch, so you don't. You carry the last hour into the next one and end up half-present in both.</p>
-    <p class="pull">What I needed wasn't more energy. It was a door between the rooms.</p>
+    <p>Then my daughter was born, and the days started showing me their seams. One hour I was a father, holding an infant who has no opinion whatsoever about my inbox. The next I was at a laptop trying to think in straight lines. Then a son. Then a husband. Then, briefly, just a person who wanted twenty minutes that belonged to nobody.</p>
+    <p>Nobody gives you a moment between those. You are expected to simply switch, so you don't. You carry the last hour into the next one and end up half-present in both.</p>
+    <p class="pull">I didn't need more energy. I needed somewhere to put the last hour down before picking up the next one.</p>
   </section>
 
   <section class="mv">
     <h2>It started with rain</h2>
     <p>That April it rained properly for the first time in months. I stepped outside and the smell of wet earth put me, without asking, in a courtyard I had not stood in for twenty-five years. Nothing moves you between states faster than smell. Not caffeine, not a to-do list. Aroma arrives before thought does.</p>
-    <p>So I stopped reading about coffee and started reading about perfume, to find out whether a cup could be composed the same way: a beginning, a middle and an after.</p>
-    <p>But an aroma you can't drink is just a candle. The coffee had to be good, and good coffee in India usually means a caf&eacute;, a queue and four hundred rupees, or a shelf of equipment you will use twice. So the format became part of the design. Two sachets, hot water, three minutes.</p>
+    <p>So I stopped reading about coffee and started reading about perfume, to find out whether a cup could be built the same way: a beginning, a middle and an after.</p>
+    <p>But you cannot drink a smell. The coffee still had to be good, and good coffee in India usually means a caf&eacute;, a queue and four hundred rupees, or a shelf of equipment you will use twice. So the format became part of the design. Two sachets, hot water, three minutes.</p>
   </section>
 
   <section class="mv">
     <h2>A kitchen counter and a great deal of bad coffee</h2>
     <p>All of it happens at a kitchen counter in North India: a hand grinder, a 0.1-gram scale, and a notebook that no longer closes properly.</p>
 
-    <!-- ==========================================================
-         SHOOT THIS. Your phone, your counter, the grinder and the
-         scale with a reading on it. Save as assets/photos/counter.jpg
-         The only proof a person actually did this by hand.
-         Falls back to hidden if the file is missing.
-         ========================================================== -->
+    <!-- SHOOT THIS. Phone, counter, grinder + scale. assets/photos/counter.jpg
+         Hides itself if the file is missing. -->
     <figure class="snap">
       <img src="assets/photos/counter.jpg"
            onerror="this.closest('figure').style.display='none'"
@@ -98,7 +255,7 @@
       <span class="nb-label">The notebook &middot; May 25</span>
       <span class="nb-line">"aroma survived the milk. she found the cardamom without being asked. breakthrough."</span>
     </div>
-    <p>Then one May morning she named the cardamom from across the kitchen, unprompted. That was the first cup that worked. Everything since, failures especially, is in the <a href="states.html" style="color:var(--gold)">Lab</a>.</p>
+    <p>Then one May morning she tasted the cup, and from the other side of the kitchen she said the word <em class="beat">cardamom</em> out loud. Nobody had asked her what was in it. That was the first cup that worked, and everything since, failures especially, is in the <a href="states.html" style="color:var(--gold)">Lab</a>.</p>
   </section>
 
 </div>
@@ -107,7 +264,6 @@
   <div class="rules-in">
     <span class="eyebrow">What we believe</span>
     <h2>Four rules we don't break.</h2>
-
     <div class="rule">
       <h3>Coffee is the medium, not the product</h3>
       <p>We are not selling you a better bean. We are selling you back three minutes you already own.</p>
@@ -124,7 +280,6 @@
       <h3>Nothing gets rescued with sugar</h3>
       <p>If a cup only works because it is sweet, the cup does not work. Palm jaggery rounds an edge. It never covers one.</p>
     </div>
-
     <span class="sign">I would rather make something a few hundred people love<br>than something ten thousand people quite like.<br>Mandhir</span>
   </div>
 </section>
@@ -137,10 +292,10 @@
 <section class="contact-close">
   <span class="eyebrow">The Tasting Circle</span>
   <h2>Every failure, before it becomes a coffee.</h2>
-  <p class="cc-line">One note a fortnight. What is on the bench, what went wrong, and what changed because of it. You can leave whenever you like.</p>
+  <p class="cc-line">One note a fortnight. What is on the bench, what went wrong, and what changed because of it. Leave whenever you like.</p>
+  <a class="btn dark" href="mailto:hello@stateshift.in?subject=Tasting%20Circle&body=Add%20me%20to%20the%20list.">Join with your email</a>
   <div class="cc-links">
-    <a href="mailto:hello@stateshift.in?subject=Tasting%20Circle">hello@stateshift.in</a>
-    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20to%20join%20the%20Tasting%20Circle.">Or WhatsApp</a>
+    <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
     <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a>
   </div>
 </section>
@@ -148,7 +303,7 @@
 <footer class="site-footer">
   <div class="footer-grid">
     <div>
-      <p style="font-size:.95rem;line-height:1.8;max-width:340px">StateShift. Coffee weighed, sealed and signed by hand in North India, in batches small enough to sign.</p>
+      <p style="font-size:.98rem;line-height:1.8;max-width:340px">StateShift. Coffee weighed, sealed and signed by hand in North India, in batches small enough to sign.</p>
     </div>
     <div>
       <h4>Coffee</h4>
@@ -164,8 +319,8 @@
       <ul class="footer-links">
         <li><a href="story.html">The story</a></li>
         <li><a href="states.html">The Lab</a></li>
+        <li><a href="journal.html">The journal</a></li>
         <li><a href="mailto:hello@stateshift.in">hello@stateshift.in</a></li>
-        <li><a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a></li>
       </ul>
     </div>
   </div>

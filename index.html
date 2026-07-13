@@ -7,80 +7,226 @@
 <meta name="description" content="We started making coffee because we needed an excuse to stop and notice one. Four coffees, three minutes each. The Founder Edition, Rs 300 delivered.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css?v=4">
 <style>
-/* FOLD 1 */
-.hero{padding:2.8rem 1.3rem 2.2rem;text-align:center;max-width:640px;margin:0 auto}
-@media(min-width:761px){.hero{padding:4.4rem 2rem 2.8rem}}
+/* ===== StateShift stylesheet, inlined. No external CSS file. ===== */
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --paper:#f2ecdd; --paper-deep:#eae2cf; --cream:#faf6ec;
+  --ink:#26190e; --ink-soft:#4a3a28; --muted:#6f6350;
+  --espresso:#1a0f08; --roast:#2b1a0e; --dark-text:#f0e7d6; --dark-muted:#b39a75;
+  --gold:#a5741a; --amber:#d4a853; --forest:#33472f;
+  --line:rgba(38,25,14,.18); --line-strong:rgba(38,25,14,.45); --line-dark:rgba(212,168,83,.22);
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:'Lora',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.85;min-height:100vh}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:400;line-height:1.15;color:var(--ink)}
+h1,h2{text-wrap:balance}
+em{font-style:italic}
+a{color:inherit}
+img{max-width:100%;display:block}
+.center{text-align:center}
+
+/* HEADER */
+.site-header{background:var(--paper);border-bottom:1px solid var(--line);padding:1rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.site-logo{font-family:'Playfair Display',serif;font-size:1.75rem;color:var(--ink);text-decoration:none;line-height:1.1}
+.site-logo span{color:var(--gold);font-style:italic}
+.site-logo small{display:block;font-family:'IBM Plex Mono',monospace;font-size:.82rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:.4rem}
+.site-nav{display:flex;gap:.35rem;align-items:center;flex-wrap:wrap}
+.site-nav a{font-family:'IBM Plex Mono',monospace;font-size:.92rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-soft);text-decoration:none;
+  padding:.5rem .75rem;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
+.site-nav a:hover{color:var(--gold)}
+.site-nav a.active{color:var(--gold);border-bottom-color:var(--gold)}
+.site-nav a.sell{background:var(--espresso);color:var(--amber);
+  border:1px solid var(--espresso);border-bottom:1px solid var(--espresso);
+  padding:.55rem 1.2rem;margin-left:.5rem;letter-spacing:.14em}
+.site-nav a.sell:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+.site-nav a.sell.active{background:var(--gold);color:#fff;border-color:var(--gold)}
+
+/* TYPE */
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.92rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:1rem}
+.lead{font-size:clamp(1.04rem,2.4vw,1.16rem);color:var(--ink-soft);line-height:1.85}
+.margin-note{font-family:'Caveat',cursive;font-size:1.3rem;color:var(--gold);display:inline-block}
+
+/* BUTTONS */
+.btn{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.84rem;
+  letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:1.05rem 2rem;
+  border:1px solid var(--ink);color:var(--ink);transition:all .25s;background:transparent}
+.btn:hover{background:var(--ink);color:var(--amber)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#fff}
+.btn.gold:hover{background:var(--espresso);border-color:var(--espresso);color:var(--amber)}
+.btn.dark{background:var(--espresso);border-color:var(--espresso);color:var(--amber)}
+.btn.dark:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+.btn.on-dark{border-color:var(--amber);color:var(--amber)}
+.btn.on-dark:hover{background:var(--amber);color:var(--espresso)}
+.doors{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1.6rem}
+@media(max-width:480px){.doors{grid-template-columns:1fr}}
+.doors .btn{text-align:center;padding:1.2rem 1rem}
+
+/* PRICE BAND */
+.price-wide{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  background:var(--espresso);color:var(--dark-text);padding:1.2rem 1.4rem;margin-top:1.6rem}
+.price-wide b{font-family:'Playfair Display',serif;font-weight:400;font-size:2.2rem;line-height:1}
+.price-wide span{font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--amber)}
+
+/* DISCLOSURE — espresso card, light text */
+.disclose{border:1px solid var(--line-dark);background:var(--espresso);margin-bottom:.7rem}
+.disclose > summary{cursor:pointer;list-style:none;position:relative;
+  padding:1.25rem 3rem 1.25rem 1.3rem;font-family:'Playfair Display',serif;font-size:1.22rem;
+  color:var(--dark-text);transition:color .2s}
+.disclose > summary::-webkit-details-marker{display:none}
+.disclose > summary::marker{content:''}
+.disclose > summary:hover{color:var(--amber)}
+.disclose > summary::after{content:'+';position:absolute;right:1.3rem;top:50%;transform:translateY(-50%);
+  font-family:'IBM Plex Mono',monospace;font-size:1.4rem;color:var(--amber)}
+.disclose[open] > summary::after{content:'\2212'}
+.disclose[open] > summary{border-bottom:1px solid var(--line-dark)}
+.disclose .body{padding:1.2rem 1.3rem 1.5rem}
+.disclose .body p{color:#cdb894;font-size:1.02rem;line-height:1.85;margin:0}
+.disclose .body p + p{margin-top:.9rem}
+.disclose .body a{color:var(--amber)}
+.disclose .body .margin-note{color:var(--amber)}
+
+/* SWIPE RAIL */
+.rail{display:flex;flex-direction:row;flex-wrap:nowrap;gap:1rem;
+  overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  padding:.4rem 1.3rem 1.2rem;scroll-padding-left:1.3rem;max-width:1140px;margin:0 auto}
+.rail::-webkit-scrollbar{display:none}
+.rail > *{flex:0 0 76%;max-width:320px;scroll-snap-align:start}
+@media(min-width:861px){
+  .rail{padding:.4rem 2rem 1.4rem;scroll-padding-left:2rem}
+  .rail > *{flex:0 0 calc(25% - .75rem);max-width:none}
+}
+.rail-dots{display:flex;justify-content:center;gap:.5rem;margin-top:.2rem}
+.rail-dots button{width:8px;height:8px;padding:0;border-radius:50%;border:none;cursor:pointer;
+  background:var(--line);transition:all .25s}
+.rail-dots button[aria-current="true"]{background:var(--gold);transform:scale(1.4)}
+.rail-hint{display:block;text-align:center;margin-top:.7rem;font-family:'IBM Plex Mono',monospace;
+  font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+@media(min-width:861px){.rail-dots,.rail-hint{display:none}}
+
+/* PRINT / FIGURES */
+.print{background:#fff;padding:10px 10px 14px;box-shadow:0 3px 14px rgba(38,25,14,.22)}
+.print figcaption{font-family:'Caveat',cursive;font-size:1.2rem;color:#5a4a35;padding-top:.6rem;text-align:center}
+figure.frame{margin:0}
+figure.frame img{width:100%;display:block;box-shadow:0 10px 30px rgba(38,25,14,.18)}
+figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);padding-top:.8rem}
+
+/* NOTEBOOK */
+.notebook{background:var(--cream);border:1px solid var(--line);border-left:3px solid var(--gold);
+  padding:1.4rem 1.5rem;margin:1.8rem 0}
+.notebook .nb-label{font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.6rem}
+.notebook .nb-line{font-family:'Caveat',cursive;font-size:1.55rem;line-height:1.5;color:var(--ink-soft)}
+
+/* CONTACT CLOSE */
+.contact-close{border-top:1px solid var(--line);background:var(--cream);padding:3.4rem 1.3rem;text-align:center}
+.contact-close .eyebrow{font-size:1rem}
+.contact-close h2{font-size:clamp(1.7rem,4.6vw,2.3rem);line-height:1.3;margin-bottom:.8rem}
+.contact-close .cc-line{font-style:italic;color:var(--ink-soft);max-width:500px;margin:0 auto 1.8rem;font-size:1.04rem}
+.cc-links{display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap;margin-top:1.3rem}
+.cc-links a{font-family:'IBM Plex Mono',monospace;font-size:.84rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-soft);text-decoration:none;
+  border-bottom:1px solid var(--line-strong);padding-bottom:.3rem;transition:all .2s}
+.cc-links a:hover{color:var(--gold);border-color:var(--gold)}
+
+/* FOOTER */
+.site-footer{background:var(--espresso);color:var(--dark-muted);padding:3rem 2rem 2rem}
+.footer-grid{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem}
+.site-footer h4{font-family:'IBM Plex Mono',monospace;font-size:.84rem;font-weight:400;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem}
+.site-footer a{color:var(--dark-muted);text-decoration:none;transition:color .2s}
+.site-footer a:hover{color:var(--amber)}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:.5rem;font-size:.98rem}
+.footer-base{max-width:1060px;margin:2.2rem auto 0;padding-top:1.3rem;border-top:1px solid var(--line-dark);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  .footer-grid{grid-template-columns:1fr 1fr;gap:1.6rem 1.2rem}
+  .footer-grid > *:first-child{grid-column:1 / -1}
+  .site-footer{padding:2.4rem 1.3rem 1.8rem}
+}
+@media(max-width:760px){
+  .site-header{flex-direction:column;align-items:center;gap:.9rem;padding:1rem}
+  .site-logo{text-align:center;font-size:1.7rem}
+  .site-logo small{font-size:.76rem;letter-spacing:.18em}
+  .site-nav{width:100%;justify-content:center;gap:.2rem .35rem}
+  .site-nav a{font-size:.8rem;letter-spacing:.04em;padding:.45rem .5rem}
+  .site-nav a.sell{padding:.5rem .9rem;margin-left:.3rem;letter-spacing:.08em}
+  .eyebrow{font-size:.86rem}
+}
+@media(max-width:400px){
+  .site-nav a{font-size:.74rem;padding:.4rem .34rem}
+  .site-nav a.sell{padding:.45rem .7rem}
+}
+
+/* ===== page-specific ===== */
+
+.hero{padding:2.8rem 1.3rem 2.4rem;text-align:center;max-width:640px;margin:0 auto}
+@media(min-width:761px){.hero{padding:4.4rem 2rem 3rem}}
 .hero h1{font-size:clamp(1.95rem,6.6vw,3.3rem);line-height:1.15;margin-bottom:1.2rem}
 .hero h1 em{color:var(--gold)}
-.hero p{font-size:1.06rem;line-height:1.85;color:var(--ink-soft);margin-bottom:1rem}
-.hero p:last-of-type{margin-bottom:1.8rem}
-.hero-ctas{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+.hero p{font-size:1.08rem;line-height:1.85;color:var(--ink-soft);margin-bottom:1rem}
+.hero p:last-of-type{margin-bottom:2rem}
+.hero-ctas{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
 
-/* FOLD 2 */
-.autop{background:var(--espresso);color:var(--dark-text);padding:3.2rem 0 2.6rem}
-.autop-in{max-width:680px;margin:0 auto;padding:0 1.3rem 1.8rem;text-align:center}
-.autop .eyebrow{color:var(--amber)}
-.autop h2{color:var(--dark-text);font-size:clamp(1.6rem,4.6vw,2.3rem);line-height:1.3;margin-bottom:.9rem}
-.autop .sub{color:#cdb894;font-size:1.04rem;line-height:1.85}
+.autop{background:var(--espresso);color:var(--dark-text);padding:2.8rem 0 2.4rem}
+.autop-in{max-width:680px;margin:0 auto;padding:0 1.3rem 1.6rem;text-align:center}
+.autop h2{color:var(--dark-text);font-size:clamp(1.65rem,4.8vw,2.3rem);line-height:1.3;margin-bottom:.9rem}
+.autop .sub{color:#cdb894;font-size:1.06rem;line-height:1.85}
 .mcard{background:var(--roast);border:1px solid var(--line-dark);overflow:hidden}
 .mimg{height:140px;background-size:cover;background-position:center 40%;filter:grayscale(.3) brightness(.62)}
 .mtext{padding:1.2rem 1.2rem 1.4rem}
-.mtext h3{
-  font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--amber);margin-bottom:.7rem;
-}
-.mtext p{font-family:'Playfair Display',serif;font-style:italic;font-size:1.06rem;line-height:1.6;color:var(--dark-text)}
+.mtext h3{font-family:'IBM Plex Mono',monospace;font-size:.84rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--amber);margin-bottom:.7rem}
+.mtext p{font-family:'Playfair Display',serif;font-style:italic;font-size:1.08rem;line-height:1.6;color:var(--dark-text)}
 .autop .rail-dots button{background:rgba(212,168,83,.25)}
 .autop .rail-dots button[aria-current="true"]{background:var(--amber)}
 .autop .rail-hint{color:var(--dark-muted)}
 
-/* FOLD 3 */
-.four{padding:3.2rem 0 2.8rem;background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.four-in{max-width:680px;margin:0 auto;padding:0 1.3rem 1.6rem;text-align:center}
-.four-in h2{font-size:clamp(1.65rem,4.6vw,2.3rem);margin-bottom:.9rem;line-height:1.25}
-.sorted{font-size:1.04rem;line-height:1.85;color:var(--ink-soft)}
+.four{padding:2.8rem 0 2.6rem;background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.four-in{max-width:680px;margin:0 auto;padding:0 1.3rem 1.4rem;text-align:center}
+.four-in h2{font-size:clamp(1.7rem,4.8vw,2.3rem);margin-bottom:.9rem;line-height:1.25}
+.sorted{font-size:1.06rem;line-height:1.85;color:var(--ink-soft)}
 .sorted em{color:var(--gold);font-style:italic}
-.ccard{
-  text-decoration:none;color:var(--ink);background:#fff;
-  padding:8px 8px 10px;box-shadow:0 6px 22px rgba(38,25,14,.2);
-  display:block;transition:transform .25s,box-shadow .25s;
-}
+.ccard{text-decoration:none;color:var(--ink);background:#fff;padding:8px 8px 10px;
+  box-shadow:0 6px 22px rgba(38,25,14,.2);display:block;transition:all .25s}
 @media(min-width:861px){.ccard:hover{transform:translateY(-6px);box-shadow:0 16px 34px rgba(38,25,14,.28)}}
 .ccard img{width:100%;display:block}
 .clabel{padding:.8rem .3rem .2rem;text-align:center}
 .cname{font-family:'Playfair Display',serif;font-size:1.2rem;letter-spacing:.05em;display:block}
-.cword{font-family:'Caveat',cursive;font-size:1.1rem;color:var(--gold);display:block;margin-bottom:.4rem}
-.ctaste{font-size:.92rem;color:var(--ink-soft);line-height:1.5;display:block;margin-bottom:.45rem}
-.cwhen{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:block}
-.four-note{
-  text-align:center;margin-top:1rem;padding:0 1.3rem;
-  font-family:'IBM Plex Mono',monospace;font-size:.76rem;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--muted);
-}
-.four-more{text-align:center;margin-top:1.4rem;padding:0 1.3rem}
+.cword{font-family:'Caveat',cursive;font-size:1.1rem;color:var(--gold);display:block;margin-bottom:.35rem}
+.ctaste{font-size:.94rem;color:var(--ink-soft);line-height:1.5;display:block;margin-bottom:.4rem}
+.cwhen{font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:block}
+.four-cta{text-align:center;margin-top:1.6rem;padding:0 1.3rem}
 
-/* FOLD 4 */
 .proof{padding:3.2rem 1.3rem}
 .proof-in{max-width:780px;margin:0 auto}
+.proof h2{text-align:center;font-size:clamp(1.7rem,4.8vw,2.3rem);margin-bottom:2rem;line-height:1.25}
 .said{display:grid;grid-template-columns:1fr;gap:1.6rem;margin-bottom:2.2rem}
 @media(min-width:701px){.said{grid-template-columns:repeat(3,1fr);gap:1.4rem}}
-.said blockquote{
-  font-family:'Playfair Display',serif;font-style:italic;font-size:1.18rem;
-  line-height:1.5;color:var(--ink);margin:0 0 .55rem;
-}
-.said cite{
-  font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--muted);font-style:normal;
-}
+.said blockquote{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;
+  line-height:1.5;color:var(--ink);margin:0 0 .55rem}
+.said cite{font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);font-style:normal}
 .tally{text-align:center;border-top:1px solid var(--line);padding-top:2rem}
 .tally .n{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4.4vw,2.1rem);color:var(--gold);line-height:1.3;margin-bottom:.6rem}
-.tally p{font-size:1.02rem;color:var(--ink-soft);margin-bottom:1.4rem}
+.tally p{font-size:1.04rem;color:var(--ink-soft);margin-bottom:1.4rem}
 
 .close{background:var(--espresso);color:var(--dark-text);text-align:center;padding:3.4rem 1.3rem}
 .close h2{color:var(--dark-text);font-size:clamp(1.7rem,4.6vw,2.4rem);margin-bottom:.8rem;line-height:1.25}
 .close p{color:#cdb894;margin-bottom:1.8rem;line-height:1.8;max-width:460px;margin-left:auto;margin-right:auto}
+
 </style>
 </head>
 <body>
@@ -96,23 +242,19 @@
   </nav>
 </header>
 
-<!-- FOLD 1 -->
 <section class="hero">
   <h1>Most days disappear<br>before we <em>notice they happened</em>.</h1>
   <p>Not the bad ones. The ordinary ones. Last Tuesday, for instance. You were there for all of it and you cannot account for any of it.</p>
   <p>We started making coffee because we needed an excuse to stop and notice one.</p>
-  <div class="price"><b>&#8377;300</b><span>Founder Edition &middot; delivered</span></div>
   <div class="hero-ctas">
     <a class="btn gold" href="sampler.html">Try the Founder Edition</a>
     <a class="btn" href="collection.html">Browse the coffees</a>
   </div>
 </section>
 
-<!-- FOLD 2 -->
 <section class="autop">
   <div class="autop-in">
-    <span class="eyebrow">Autopilot</span>
-    <h2>Four moments went past you today.<br>You were somewhere else.</h2>
+    <h2>Four moments went past you.<br>You were somewhere else.</h2>
     <p class="sub">They are small, and they never make it into a calendar. That is exactly how they disappear.</p>
   </div>
   <div class="rail" data-rail="mom">
@@ -137,53 +279,41 @@
   <span class="rail-hint">swipe &rarr;</span>
 </section>
 
-<!-- FOLD 3 -->
 <section class="four">
   <div class="four-in">
-    <span class="eyebrow">The coffee</span>
     <h2>Four reasons to stop.</h2>
     <p class="sorted">Every other coffee is sorted by how it was roasted. Light, medium, dark. Ours are sorted by <em>when you need them</em>.</p>
   </div>
   <div class="rail" data-rail="cof">
     <a class="ccard" href="collection.html#sehar">
       <img src="assets/posters/sehar-card.jpg" alt="SEHAR" loading="lazy">
-      <div class="clabel">
-        <span class="cname">SEHAR</span><span class="cword">dawn</span>
-        <span class="ctaste">Bergamot, orange peel, milk chocolate.</span><span class="cwhen">Morning</span>
-      </div>
+      <div class="clabel"><span class="cname">SEHAR</span><span class="cword">dawn</span>
+      <span class="ctaste">Bergamot, orange peel, milk chocolate.</span><span class="cwhen">Morning</span></div>
     </a>
     <a class="ccard" href="collection.html#rukh">
       <img src="assets/posters/rukh-card.jpg" alt="RUKH" loading="lazy">
-      <div class="clabel">
-        <span class="cname">RUKH</span><span class="cword">direction</span>
-        <span class="ctaste">Cardamom, dark chocolate, toasted almond.</span><span class="cwhen">Midday</span>
-      </div>
+      <div class="clabel"><span class="cname">RUKH</span><span class="cword">direction</span>
+      <span class="ctaste">Cardamom, dark chocolate, toasted almond.</span><span class="cwhen">Midday</span></div>
     </a>
     <a class="ccard" href="collection.html#kisse">
       <img src="assets/posters/kisse-card.jpg" alt="KISSE" loading="lazy">
-      <div class="clabel">
-        <span class="cname">KISSE</span><span class="cword">stories</span>
-        <span class="ctaste">Dark chocolate, roasted nuts, warm spice.</span><span class="cwhen">Evening</span>
-      </div>
+      <div class="clabel"><span class="cname">KISSE</span><span class="cword">stories</span>
+      <span class="ctaste">Dark chocolate, roasted nuts, warm spice.</span><span class="cwhen">Evening</span></div>
     </a>
     <a class="ccard" href="collection.html#lamhe">
       <img src="assets/posters/lamhe-card.jpg" alt="LAMHE" loading="lazy">
-      <div class="clabel">
-        <span class="cname">LAMHE</span><span class="cword">moments</span>
-        <span class="ctaste">Cocoa, soft cinnamon, gentle coffee.</span><span class="cwhen">Late</span>
-      </div>
+      <div class="clabel"><span class="cname">LAMHE</span><span class="cword">moments</span>
+      <span class="ctaste">Cocoa, soft cinnamon, gentle coffee.</span><span class="cwhen">Late</span></div>
     </a>
   </div>
   <div class="rail-dots" data-dots="cof"></div>
   <span class="rail-hint">swipe &rarr;</span>
-  <p class="four-note">The Founder Edition carries Sehar, Rukh and Kisse. Lamhe joins them shortly.</p>
-  <div class="four-more"><a class="btn" href="collection.html">Tasting notes and how it works</a></div>
+  <div class="four-cta"><a class="btn dark" href="sampler.html">Try the Founder Edition</a></div>
 </section>
 
-<!-- FOLD 4 -->
 <section class="proof">
   <div class="proof-in">
-    <div class="center" style="margin-bottom:2rem"><span class="eyebrow">What people said</span></div>
+    <h2>What people said.</h2>
     <div class="said">
       <div><blockquote>"Whiskey and dark chocolate."</blockquote><cite>first sip of Kisse, a rainy May evening</cite></div>
       <div><blockquote>"There's something in the throat. I can't name it."</blockquote><cite>an evening guest, still wondering</cite></div>
@@ -206,10 +336,10 @@
 <section class="contact-close">
   <span class="eyebrow">The Tasting Circle</span>
   <h2>Every failure, before it becomes a coffee.</h2>
-  <p class="cc-line">One note a fortnight. What is on the bench, what went wrong, and what changed because of it. You can leave whenever you like.</p>
+  <p class="cc-line">One note a fortnight. What is on the bench, what went wrong, and what changed because of it. Leave whenever you like.</p>
+  <a class="btn dark" href="mailto:hello@stateshift.in?subject=Tasting%20Circle&body=Add%20me%20to%20the%20list.">Join with your email</a>
   <div class="cc-links">
-    <a href="mailto:hello@stateshift.in?subject=Tasting%20Circle">hello@stateshift.in</a>
-    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20to%20join%20the%20Tasting%20Circle.">Or WhatsApp</a>
+    <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
     <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a>
   </div>
 </section>
@@ -217,7 +347,7 @@
 <footer class="site-footer">
   <div class="footer-grid">
     <div>
-      <p style="font-size:.95rem;line-height:1.8;max-width:340px">StateShift. Coffee weighed, sealed and signed by hand in North India, in batches small enough to sign.</p>
+      <p style="font-size:.98rem;line-height:1.8;max-width:340px">StateShift. Coffee weighed, sealed and signed by hand in North India, in batches small enough to sign.</p>
     </div>
     <div>
       <h4>Coffee</h4>
@@ -233,8 +363,8 @@
       <ul class="footer-links">
         <li><a href="story.html">The story</a></li>
         <li><a href="states.html">The Lab</a></li>
+        <li><a href="journal.html">The journal</a></li>
         <li><a href="mailto:hello@stateshift.in">hello@stateshift.in</a></li>
-        <li><a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a></li>
       </ul>
     </div>
   </div>
@@ -251,21 +381,20 @@ document.querySelectorAll('[data-rail]').forEach(function(rail){
   var items = rail.children;
   Array.prototype.forEach.call(items, function(it, i){
     var b = document.createElement('button');
-    b.type = 'button';
-    b.setAttribute('aria-label', 'Card ' + (i + 1));
+    b.type = 'button'; b.setAttribute('aria-label','Card ' + (i+1));
     b.addEventListener('click', function(){
-      rail.scrollTo({left: it.offsetLeft - rail.offsetLeft, behavior: 'smooth'});
+      rail.scrollTo({left: it.offsetLeft - rail.offsetLeft, behavior:'smooth'});
     });
     dots.appendChild(b);
   });
   var btns = dots.querySelectorAll('button');
   function sync(){
-    var mid = rail.scrollLeft + rail.clientWidth / 2, active = 0, best = Infinity;
+    var mid = rail.scrollLeft + rail.clientWidth/2, active = 0, best = Infinity;
     Array.prototype.forEach.call(items, function(it, i){
-      var c = it.offsetLeft - rail.offsetLeft + it.offsetWidth / 2, d = Math.abs(c - mid);
+      var c = it.offsetLeft - rail.offsetLeft + it.offsetWidth/2, d = Math.abs(c - mid);
       if(d < best){ best = d; active = i; }
     });
-    btns.forEach(function(b, i){ b.setAttribute('aria-current', i === active ? 'true' : 'false'); });
+    btns.forEach(function(b, i){ b.setAttribute('aria-current', i===active ? 'true':'false'); });
   }
   var t;
   rail.addEventListener('scroll', function(){ clearTimeout(t); t = setTimeout(sync, 60); }, {passive:true});
