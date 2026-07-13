@@ -19,56 +19,50 @@
   --gold:#a5741a; --amber:#d4a853; --forest:#33472f;
   --line:rgba(38,25,14,.18); --line-strong:rgba(38,25,14,.45); --line-dark:rgba(212,168,83,.22);
 }
-html{font-size:16px;scroll-behavior:smooth;scroll-padding-top:120px}
-body{font-family:'Lora',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.85;min-height:100vh}
-h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:400;line-height:1.15;color:var(--ink)}
+html{font-size:16px;scroll-behavior:smooth;scroll-padding-top:110px}
+body{font-family:'Lora',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.75;min-height:100vh}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:400;line-height:1.2;color:var(--ink)}
 h1,h2{text-wrap:balance}
 em{font-style:italic}
 a{color:inherit}
 img{max-width:100%;display:block}
 .center{text-align:center}
 
-/* ---------- HEADER · sticky, and it shrinks once you scroll ---------- */
+/* ---------- HEADER · sticky, shrinks on scroll ---------- */
 .site-header{
   position:sticky;top:0;z-index:200;
   background:rgba(242,236,221,.97);backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--line);padding:.9rem 2rem;
+  border-bottom:1px solid var(--line);padding:.8rem 2rem;
   display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
   transition:padding .25s;
 }
-.site-logo{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--ink);text-decoration:none;line-height:1.1}
+.site-logo{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--ink);text-decoration:none;line-height:1.1}
 .site-logo span{color:var(--gold);font-style:italic}
-.site-logo small{
-  display:block;font-family:'IBM Plex Mono',monospace;font-size:.62rem;
-  letter-spacing:.3em;text-transform:uppercase;color:var(--muted);
-  margin-top:.3rem;transition:all .2s;
-}
+.site-logo small{display:block;font-family:'IBM Plex Mono',monospace;font-size:.56rem;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-top:.3rem;transition:all .2s}
 .site-nav{display:flex;gap:.9rem;align-items:center;flex-wrap:wrap}
-.site-nav a{font-family:'IBM Plex Mono',monospace;font-size:.9rem;letter-spacing:.1em;
+.site-nav a{font-family:'IBM Plex Mono',monospace;font-size:.82rem;letter-spacing:.09em;
   text-transform:uppercase;color:var(--ink-soft);text-decoration:none;
-  padding:.4rem .1rem;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
+  padding:.35rem .1rem;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
 .site-nav a:hover{color:var(--gold)}
 .site-nav a.active{color:var(--gold);border-bottom-color:var(--gold)}
 .site-nav a.sell{background:var(--gold);color:#fff;border:1px solid var(--gold);
-  border-bottom:1px solid var(--gold);padding:.5rem 1.1rem;letter-spacing:.12em}
-.site-nav a.sell:hover{background:var(--espresso);border-color:var(--espresso);color:var(--amber)}
-.site-nav a.sell.active{background:var(--espresso);border-color:var(--espresso);color:var(--amber)}
-/* compact once scrolled: tagline folds away, bar halves in height */
-.site-header.scrolled{padding:.5rem 2rem}
-.site-header.scrolled .site-logo{font-size:1.35rem}
+  border-bottom:1px solid var(--gold);padding:.45rem 1rem;letter-spacing:.11em}
+.site-nav a.sell:hover,.site-nav a.sell.active{background:var(--espresso);border-color:var(--espresso);color:var(--amber)}
+.site-header.scrolled{padding:.45rem 2rem}
+.site-header.scrolled .site-logo{font-size:1.15rem}
 .site-header.scrolled .site-logo small{opacity:0;max-height:0;margin:0;overflow:hidden}
 
 /* ---------- TYPE ---------- */
-.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.86rem;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:1rem}
-.lead{font-size:clamp(1.04rem,2.4vw,1.14rem);color:var(--ink-soft);line-height:1.85}
-.margin-note{font-family:'Caveat',cursive;font-size:1.3rem;color:var(--gold);display:inline-block}
-/* a quiet inline link, italic + gold. Used instead of shouty buttons. */
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.9rem}
+.lead{font-size:clamp(.96rem,2.2vw,1.04rem);color:var(--ink-soft);line-height:1.8}
+.margin-note{font-family:'Caveat',cursive;font-size:1.18rem;color:var(--gold);display:inline-block}
 .qlink{font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);
   text-decoration:none;border-bottom:1px solid rgba(165,116,26,.4);transition:all .2s}
 .qlink:hover{color:var(--ink);border-color:var(--ink)}
 
-/* ---------- BUTTONS ---------- */
+/* ---------- BUTTONS · unchanged, they were working ---------- */
 .btn{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.82rem;
   letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:1rem 1.9rem;
   border:1px solid var(--ink);color:var(--ink);transition:all .25s;background:transparent}
@@ -83,26 +77,26 @@ img{max-width:100%;display:block}
 
 /* ---------- PRICE BAND ---------- */
 .price-wide{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
-  background:var(--espresso);color:var(--dark-text);padding:1.1rem 1.3rem;margin-top:1.6rem}
-.price-wide b{font-family:'Playfair Display',serif;font-weight:400;font-size:2rem;line-height:1}
-.price-wide span{font-family:'IBM Plex Mono',monospace;font-size:.76rem;letter-spacing:.14em;
+  background:var(--espresso);color:var(--dark-text);padding:1rem 1.3rem;margin-top:1.4rem}
+.price-wide b{font-family:'Playfair Display',serif;font-weight:400;font-size:1.7rem;line-height:1}
+.price-wide span{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;
   text-transform:uppercase;color:var(--amber)}
 
-/* ---------- DISCLOSURE · quiet. Was shouting; now it whispers. ---------- */
-.disclose{border:1px solid var(--line);background:var(--cream);margin-bottom:.55rem}
+/* ---------- DISCLOSURE ---------- */
+.disclose{border:1px solid var(--line);background:var(--cream);margin-bottom:.5rem}
 .disclose > summary{cursor:pointer;list-style:none;position:relative;
-  padding:.9rem 2.6rem .9rem 1.1rem;
-  font-family:'Playfair Display',serif;font-size:1.05rem;line-height:1.45;
+  padding:.85rem 2.5rem .85rem 1rem;
+  font-family:'Playfair Display',serif;font-size:.98rem;line-height:1.45;
   color:var(--ink);transition:color .2s}
 .disclose > summary::-webkit-details-marker{display:none}
 .disclose > summary::marker{content:''}
 .disclose > summary:hover{color:var(--gold)}
-.disclose > summary::after{content:'+';position:absolute;right:1.1rem;top:50%;transform:translateY(-50%);
-  font-family:'IBM Plex Mono',monospace;font-size:1.1rem;color:var(--gold)}
+.disclose > summary::after{content:'+';position:absolute;right:1rem;top:50%;transform:translateY(-50%);
+  font-family:'IBM Plex Mono',monospace;font-size:1.05rem;color:var(--gold)}
 .disclose[open] > summary::after{content:'\2212'}
 .disclose[open] > summary{border-bottom:1px solid var(--line);color:var(--gold)}
-.disclose .body{padding:1rem 1.1rem 1.2rem;background:var(--paper)}
-.disclose .body p{color:var(--ink-soft);font-size:1rem;line-height:1.85;margin:0}
+.disclose .body{padding:.9rem 1rem 1.1rem;background:var(--paper)}
+.disclose .body p{color:var(--ink-soft);font-size:.94rem;line-height:1.8;margin:0}
 .disclose .body p + p{margin-top:.8rem}
 .disclose .body a{color:var(--gold)}
 .disclose .body .margin-note{color:var(--gold)}
@@ -126,135 +120,131 @@ img{max-width:100%;display:block}
 
 /* ---------- FIGURES ---------- */
 .print{background:#fff;padding:10px 10px 14px;box-shadow:0 3px 14px rgba(38,25,14,.22)}
-.print figcaption{font-family:'Caveat',cursive;font-size:1.2rem;color:#5a4a35;padding-top:.6rem;text-align:center}
+.print figcaption{font-family:'Caveat',cursive;font-size:1.12rem;color:#5a4a35;padding-top:.6rem;text-align:center}
 figure.frame{margin:0}
 figure.frame img{width:100%;display:block;box-shadow:0 10px 30px rgba(38,25,14,.18)}
-figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.14em;
+figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;
   text-transform:uppercase;color:var(--muted);padding-top:.8rem}
 
 /* ---------- NOTEBOOK ---------- */
 .notebook{background:var(--cream);border:1px solid var(--line);border-left:3px solid var(--gold);
-  padding:1.4rem 1.5rem;margin:1.8rem 0}
-.notebook .nb-label{font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.6rem}
-.notebook .nb-line{font-family:'Caveat',cursive;font-size:1.55rem;line-height:1.5;color:var(--ink-soft)}
+  padding:1.2rem 1.3rem;margin:1.6rem 0}
+.notebook .nb-label{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.5rem}
+.notebook .nb-line{font-family:'Caveat',cursive;font-size:1.35rem;line-height:1.5;color:var(--ink-soft)}
 
-/* ---------- CONTACT CLOSE ---------- */
-.contact-close{border-top:1px solid var(--line);background:var(--cream);padding:3.2rem 1.3rem;text-align:center}
-.contact-close .eyebrow{font-size:.94rem}
-.contact-close h2{font-size:clamp(1.65rem,4.4vw,2.2rem);line-height:1.3;margin-bottom:.8rem}
-.contact-close .cc-line{font-style:italic;color:var(--ink-soft);max-width:500px;margin:0 auto 1.8rem;font-size:1.02rem}
-.cc-links{display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap;margin-top:1.3rem}
-.cc-links a{font-family:'IBM Plex Mono',monospace;font-size:.82rem;letter-spacing:.1em;
+/* ---------- TASTING CIRCLE · two lines, no more ---------- */
+.contact-close{border-top:1px solid var(--line);background:var(--cream);padding:2.4rem 1.3rem;text-align:center}
+.contact-close .eyebrow{font-size:.76rem;margin-bottom:.7rem}
+.contact-close h2{font-size:clamp(1.3rem,3.4vw,1.65rem);line-height:1.35;margin-bottom:.6rem}
+.contact-close .cc-line{color:var(--ink-soft);max-width:480px;margin:0 auto 1.4rem;font-size:.95rem;line-height:1.7}
+.cc-links{display:flex;gap:1.3rem;justify-content:center;flex-wrap:wrap;margin-top:1.2rem}
+.cc-links a{font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.1em;
   text-transform:uppercase;color:var(--ink-soft);text-decoration:none;
-  border-bottom:1px solid var(--line-strong);padding-bottom:.3rem;transition:all .2s}
+  border-bottom:1px solid var(--line-strong);padding-bottom:.25rem;transition:all .2s}
 .cc-links a:hover{color:var(--gold);border-color:var(--gold)}
 
 /* ---------- FOOTER ---------- */
-.site-footer{background:var(--espresso);color:var(--dark-muted);padding:3rem 2rem 2rem}
-.footer-grid{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem}
-.site-footer h4{font-family:'IBM Plex Mono',monospace;font-size:.82rem;font-weight:400;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem}
+.site-footer{background:var(--espresso);color:var(--dark-muted);padding:2.6rem 2rem 1.8rem}
+.footer-grid{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.2rem}
+.site-footer h4{font-family:'IBM Plex Mono',monospace;font-size:.74rem;font-weight:400;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:.9rem}
 .site-footer a{color:var(--dark-muted);text-decoration:none;transition:color .2s}
 .site-footer a:hover{color:var(--amber)}
 .footer-links{list-style:none}
-.footer-links li{margin-bottom:.5rem;font-size:.96rem}
-.footer-base{max-width:1060px;margin:2.2rem auto 0;padding-top:1.3rem;border-top:1px solid var(--line-dark);
+.footer-links li{margin-bottom:.4rem;font-size:.88rem}
+.footer-base{max-width:1060px;margin:2rem auto 0;padding-top:1.2rem;border-top:1px solid var(--line-dark);
   display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;
-  font-family:'IBM Plex Mono',monospace;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase}
+  font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
 
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:860px){
-  .footer-grid{grid-template-columns:1fr 1fr;gap:1.6rem 1.2rem}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:1.4rem 1.2rem}
   .footer-grid > *:first-child{grid-column:1 / -1}
-  .site-footer{padding:2.4rem 1.3rem 1.8rem}
+  .site-footer{padding:2.2rem 1.3rem 1.6rem}
 }
 @media(max-width:760px){
-  html{scroll-padding-top:100px}
-  .site-header{flex-direction:column;align-items:center;gap:.6rem;padding:.7rem 1rem}
-  .site-logo{text-align:center;font-size:1.45rem}
-  .site-logo small{font-size:.56rem;letter-spacing:.26em;margin-top:.22rem}
+  html{scroll-padding-top:95px}
+  .site-header{flex-direction:column;align-items:center;gap:.5rem;padding:.65rem 1rem}
+  .site-logo{text-align:center;font-size:1.22rem}
+  .site-logo small{font-size:.5rem;letter-spacing:.24em;margin-top:.18rem}
   .site-nav{width:100%;justify-content:space-between;gap:.2rem}
-  .site-nav a{font-size:.78rem;letter-spacing:.04em;padding:.35rem .1rem}
-  .site-nav a.sell{padding:.45rem .8rem;letter-spacing:.06em}
-  .site-header.scrolled{padding:.45rem 1rem;gap:.35rem}
-  .site-header.scrolled .site-logo{font-size:1.2rem}
-  .eyebrow{font-size:.82rem}
+  .site-nav a{font-size:.72rem;letter-spacing:.03em;padding:.3rem .1rem}
+  .site-nav a.sell{padding:.4rem .75rem;letter-spacing:.06em}
+  .site-header.scrolled{padding:.4rem 1rem;gap:.3rem}
+  .site-header.scrolled .site-logo{font-size:1rem}
+  .eyebrow{font-size:.7rem}
 }
 @media(max-width:400px){
-  .site-nav a{font-size:.7rem;padding:.35rem 0}
-  .site-nav a.sell{padding:.42rem .6rem}
+  .site-nav a{font-size:.66rem;padding:.3rem 0}
+  .site-nav a.sell{padding:.38rem .58rem}
 }
 
 /* ===== page-specific ===== */
 
-.l-hero{padding:2.8rem 1.3rem 2rem;text-align:center;max-width:700px;margin:0 auto}
-@media(min-width:761px){.l-hero{padding:4rem 2rem 2.4rem}}
-.l-hero h1{font-size:clamp(1.6rem,5.2vw,2.8rem);line-height:1.2;margin-bottom:1.2rem}
+.l-hero{padding:2.4rem 1.3rem 1.8rem;text-align:center;max-width:660px;margin:0 auto}
+@media(min-width:761px){.l-hero{padding:3.4rem 2rem 2.2rem}}
+.l-hero h1{font-size:clamp(1.4rem,4.6vw,2.3rem);line-height:1.25;margin-bottom:1rem}
 .l-hero h1 em{color:var(--gold)}
-.l-hero .lead{font-size:1.06rem;line-height:1.9}
-/* the two routes are now sentences, not slabs */
-.l-hero .routes{margin-top:1.2rem;font-size:1.04rem;line-height:1.95;color:var(--ink-soft)}
-
-.finds{max-width:680px;margin:0 auto;padding:1.4rem 1.3rem 3rem}
-.find{border-left:2px solid var(--gold);padding-left:1.4rem;margin-bottom:2.4rem}
-.find .k{font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.5rem}
-.find h2{font-size:clamp(1.35rem,4vw,1.65rem);line-height:1.35;margin-bottom:.6rem}
-.find p{font-size:1.04rem;line-height:1.85;color:var(--ink-soft);margin:0}
-.find .ref{display:block;margin-top:.6rem;font-family:'IBM Plex Mono',monospace;
-  font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-
-.numbers{background:var(--espresso);color:var(--dark-text);padding:3.2rem 0}
+.l-hero .lead{font-size:.99rem;line-height:1.85}
+.l-hero .routes{margin-top:1rem;font-size:.96rem;line-height:1.9;color:var(--ink-soft)}
+.finds{max-width:640px;margin:0 auto;padding:1.2rem 1.3rem 2.6rem}
+.find{border-left:2px solid var(--gold);padding-left:1.3rem;margin-bottom:2.1rem}
+.find .k{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.45rem}
+.find h2{font-size:clamp(1.18rem,3.5vw,1.42rem);line-height:1.4;margin-bottom:.55rem}
+.find p{font-size:.96rem;line-height:1.8;color:var(--ink-soft);margin:0}
+.find .ref{display:block;margin-top:.55rem;font-family:'IBM Plex Mono',monospace;
+  font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.numbers{background:var(--espresso);color:var(--dark-text);padding:2.8rem 0}
 .n-in{max-width:1060px;margin:0 auto;padding:0 1.3rem}
 @media(min-width:761px){.n-in{padding:0 2rem}}
 .numbers .eyebrow{color:var(--amber)}
-.numbers h2{color:var(--dark-text);font-size:clamp(1.7rem,4.8vw,2.3rem);margin-bottom:.8rem;line-height:1.25}
-.numbers .n-lead{color:#cdb894;font-size:1.04rem;line-height:1.85;margin-bottom:1.8rem;max-width:620px}
-.tabs{display:flex;gap:.5rem;margin-bottom:1.4rem;flex-wrap:wrap}
+.numbers h2{color:var(--dark-text);font-size:clamp(1.4rem,4.2vw,1.95rem);margin-bottom:.7rem;line-height:1.3}
+.numbers .n-lead{color:#cdb894;font-size:.96rem;line-height:1.8;margin-bottom:1.6rem;max-width:600px}
+.tabs{display:flex;gap:.5rem;margin-bottom:1.2rem;flex-wrap:wrap}
 .tab-btn{background:transparent;border:1px solid var(--line-dark);color:var(--dark-muted);
-  padding:.55rem 1.1rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;
-  font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;transition:all .2s}
+  padding:.5rem 1rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;
+  font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;transition:all .2s}
 .tab-btn.active{background:var(--amber);color:var(--espresso);border-color:var(--amber)}
-.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.4rem}
-.metric-card{background:var(--roast);border:1px solid var(--line-dark);padding:1.3rem}
-.metric-label{color:var(--amber);font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.7rem}
-.metric-value{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--dark-text)}
-.metric-caption{margin-top:.4rem;color:var(--dark-muted);font-size:.88rem;line-height:1.6}
-.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.chart-card{background:var(--roast);border:1px solid var(--line-dark);padding:1.3rem}
-.chart-card.full{grid-column:1/-1}
-.chart-title{font-family:'Playfair Display',serif;font-size:1.15rem;margin-bottom:.9rem;color:var(--dark-text)}
-canvas{width:100%!important;height:280px!important}
-.footer-note{margin-top:2rem;color:var(--dark-muted);line-height:1.8;font-size:.9rem;border-top:1px solid var(--line-dark);padding-top:1.2rem}
-.tab-content{display:none}
-.tab-content.active{display:block}
 .tabs.light .tab-btn{border-color:var(--line-strong);color:var(--muted)}
 .tabs.light .tab-btn.active{background:var(--gold);color:#fff;border-color:var(--gold)}
+.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin-bottom:1.2rem}
+.metric-card{background:var(--roast);border:1px solid var(--line-dark);padding:1.1rem}
+.metric-label{color:var(--amber);font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.6rem}
+.metric-value{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--dark-text)}
+.metric-caption{margin-top:.35rem;color:var(--dark-muted);font-size:.82rem;line-height:1.6}
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.chart-card{background:var(--roast);border:1px solid var(--line-dark);padding:1.1rem}
+.chart-card.full{grid-column:1/-1}
+.chart-title{font-family:'Playfair Display',serif;font-size:1.02rem;margin-bottom:.8rem;color:var(--dark-text)}
+canvas{width:100%!important;height:260px!important}
+.footer-note{margin-top:1.8rem;color:var(--dark-muted);line-height:1.75;font-size:.85rem;border-top:1px solid var(--line-dark);padding-top:1.1rem}
+.tab-content{display:none}
+.tab-content.active{display:block}
 @media(max-width:900px){.summary-grid,.chart-grid{grid-template-columns:1fr}.chart-card.full{grid-column:auto}}
-
-.l-body{padding:3rem 0}
+.l-body{padding:2.6rem 0}
 .s-inner{max-width:1060px;margin:0 auto;padding:0 1.3rem}
 @media(min-width:761px){.s-inner{padding:0 2rem}}
 .master-pane{display:block}
-.lab-entry{border:1px solid var(--line);background:var(--cream);margin-bottom:.8rem}
-.le-head{padding:1rem 1.1rem;cursor:pointer;user-select:none;display:flex;justify-content:space-between;gap:1rem;align-items:baseline}
-.le-meta{font-family:'IBM Plex Mono',monospace;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
-.le-title{font-family:'Playfair Display',serif;font-size:1.08rem;line-height:1.45;color:var(--ink)}
+.lab-entry{border:1px solid var(--line);background:var(--cream);margin-bottom:.7rem}
+.le-head{padding:.9rem 1rem;cursor:pointer;user-select:none;display:flex;justify-content:space-between;gap:1rem;align-items:baseline}
+.le-meta{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.le-title{font-family:'Playfair Display',serif;font-size:.99rem;line-height:1.45;color:var(--ink)}
 .le-head:hover .le-title{color:var(--gold)}
-.le-tag{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;color:var(--gold);border:1px solid var(--line);padding:.2rem .5rem;white-space:nowrap}
-.le-body{display:none;border-top:1px solid var(--line);padding:1.2rem;background:var(--paper)}
+.le-tag{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:var(--gold);border:1px solid var(--line);padding:.18rem .45rem;white-space:nowrap}
+.le-body{display:none;border-top:1px solid var(--line);padding:1.1rem;background:var(--paper)}
 .le-body.open{display:block}
-.le-body .prose{white-space:pre-line;color:var(--ink-soft);font-size:1rem;line-height:1.85;margin-bottom:1.1rem}
-.le-label{font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
-.obs-list{list-style:none;margin-bottom:1rem}
-.obs-list li{position:relative;padding-left:1.1rem;margin-bottom:.45rem;color:var(--ink-soft);font-size:.98rem;line-height:1.7}
+.le-body .prose{white-space:pre-line;color:var(--ink-soft);font-size:.94rem;line-height:1.8;margin-bottom:1rem}
+.le-label{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.55rem}
+.obs-list{list-style:none;margin-bottom:.9rem}
+.obs-list li{position:relative;padding-left:1.05rem;margin-bottom:.4rem;color:var(--ink-soft);font-size:.92rem;line-height:1.7}
 .obs-list li::before{content:'\2022';position:absolute;left:0;color:var(--gold)}
-.field-note{border-left:2px solid var(--gold);padding-left:1rem;margin-top:1rem}
-.field-note-text{color:var(--gold);font-style:italic;font-size:1rem;line-height:1.75}
-.count-line{font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1.1rem}
-.l-cta{background:var(--paper-deep);text-align:center;padding:3.2rem 1.3rem;border-top:1px solid var(--line)}
-.l-cta h2{font-size:clamp(1.7rem,4.6vw,2.3rem);margin-bottom:1.3rem}
+.field-note{border-left:2px solid var(--gold);padding-left:.9rem;margin-top:.9rem}
+.field-note-text{color:var(--gold);font-style:italic;font-size:.94rem;line-height:1.75}
+.count-line{font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.l-cta{background:var(--paper-deep);text-align:center;padding:2.8rem 1.3rem;border-top:1px solid var(--line)}
+.l-cta h2{font-size:clamp(1.4rem,4vw,1.95rem);margin-bottom:1.2rem}
 
 </style>
 </head>
@@ -279,40 +269,22 @@ canvas{width:100%!important;height:280px!important}
 
 <div class="finds">
   <div class="find">
-    <span class="k">The breakthrough</span>
-    <h2>She named the cardamom from across the kitchen.</h2>
-    <p>Nobody asked her what was in it. She tasted the cup, and from six feet away she said the word out loud. For months the aroma had been vanishing into the milk. That morning it did not. That cup is Rukh, and nothing about it has changed since.</p>
-    <span class="ref">Rukh &middot; sitting 25</span>
+    <span class="k">The breakthrough</span><h2>She named the cardamom from across the kitchen.</h2><p>Nobody asked her what was in it. She tasted the cup, and from six feet away she said the word out loud. For months the aroma had been vanishing into the milk. That morning it did not. That cup is Rukh, and nothing about it has changed since.</p><span class="ref">Rukh &middot; sitting 25</span>
   </div>
   <div class="find">
-    <span class="k">The thing nobody expects</span>
-    <h2>The bitterness was never the coffee.</h2>
-    <p>We chased it through grind size, dose, water temperature and steep time for weeks. It was the cardamom. Ground at home it oxidises within days and turns bitter, and it takes the whole cup down with it. Sealed commercial powder, fresh batch, fixed in one sitting.</p>
-    <span class="ref">Rukh &middot; Kisse</span>
+    <span class="k">The thing nobody expects</span><h2>The bitterness was never the coffee.</h2><p>We chased it through grind size, dose, water temperature and steep time for weeks. It was the cardamom. Ground at home it oxidises within days and turns bitter, and it takes the whole cup down with it. Sealed commercial powder, fresh batch, fixed in one sitting.</p><span class="ref">Rukh &middot; Kisse</span>
   </div>
   <div class="find">
-    <span class="k">The rule that came out of a mistake</span>
-    <h2>120ml, or it is a different drink.</h2>
-    <p>Ten millilitres either side and Rukh stops being Rukh. Too little and the cardamom shouts; too much and the coffee thins out and the whole thing goes flat. We only found the edge by crossing it, twice, on consecutive mornings.</p>
-    <span class="ref">Rukh &middot; sittings 31 and 32</span>
+    <span class="k">The rule that came out of a mistake</span><h2>120ml, or it is a different drink.</h2><p>Ten millilitres either side and Rukh stops being Rukh. Too little and the cardamom shouts; too much and the coffee thins out and the whole thing goes flat. We only found the edge by crossing it, twice, on consecutive mornings.</p><span class="ref">Rukh &middot; sittings 31 and 32</span>
   </div>
   <div class="find">
-    <span class="k">The one that took eleven tries</span>
-    <h2>The coffee disappeared into the milk.</h2>
-    <p>Cup after cup of Baarbara Estate came out tasting like cardamom milk with a rumour of coffee in it. Beautiful beans, wrong job. It took eleven sittings to accept that the bean was the problem and not the dose.</p>
-    <span class="ref">Rukh &middot; sittings 3 to 14</span>
+    <span class="k">The one that took eleven tries</span><h2>The coffee disappeared into the milk.</h2><p>Cup after cup of Baarbara Estate came out tasting like cardamom milk with a rumour of coffee in it. Beautiful beans, wrong job. It took eleven sittings to accept that the bean was the problem and not the dose.</p><span class="ref">Rukh &middot; sittings 3 to 14</span>
   </div>
   <div class="find">
-    <span class="k">The accident worth keeping</span>
-    <h2>Mace, at a dose you could mistake for nothing.</h2>
-    <p>A tenth of a gram of mace does something to Kisse that nobody has been able to name. Testers reach for whiskey, for smoke, for a spice they cannot place. Double it and the effect vanishes entirely, which is the strangest part.</p>
-    <span class="ref">Kisse</span>
+    <span class="k">The accident worth keeping</span><h2>Mace, at a dose you could mistake for nothing.</h2><p>A tenth of a gram of mace does something to Kisse that nobody has been able to name. Testers reach for whiskey, for smoke, for a spice they cannot place. Double it and the effect vanishes entirely, which is the strangest part.</p><span class="ref">Kisse</span>
   </div>
   <div class="find">
-    <span class="k">What is open right now</span>
-    <h2>Hazelnut, and a citrus we are still chasing.</h2>
-    <p>Lamhe needs a signature aroma the way Rukh has cardamom, and roasted hazelnut is the current candidate. Sehar is still being tuned. Both are unfinished, and both are on this page before they are solved.</p>
-    <span class="ref">Lamhe &middot; Sehar</span>
+    <span class="k">What is open right now</span><h2>Hazelnut, and a citrus we are still chasing.</h2><p>Lamhe needs a signature aroma the way Rukh has cardamom, and roasted hazelnut is the current candidate. Sehar is still being tuned. Both are unfinished, and both are on this page before they are solved.</p><span class="ref">Lamhe &middot; Sehar</span>
   </div>
 </div>
 
@@ -341,9 +313,7 @@ canvas{width:100%!important;height:280px!important}
         <div class="chart-card full"><div class="chart-title">Linger, what stays when the cup is done</div><canvas id="lingerChart"></canvas></div>
       </div>
     </div>
-    <div class="footer-note">
-      1 = low, 3 = baseline, 5 = unusually elevated. Sittings that did not record a metric are left out of it rather than counted as zero. Self-reported by the taster. Directional evidence, not proof.
-    </div>
+    <div class="footer-note">1 = low, 3 = baseline, 5 = unusually elevated. Sittings that did not record a metric are left out of it rather than counted as zero. Self-reported by the taster. Directional evidence, not proof.</div>
   </div>
 </section>
 
@@ -373,9 +343,9 @@ canvas{width:100%!important;height:280px!important}
 
 <section class="contact-close">
   <span class="eyebrow">The Tasting Circle</span>
-  <h2>Every failure, before it becomes a coffee.</h2>
-  <p class="cc-line">One note a fortnight. What is on the bench, what went wrong, and what changed because of it. Leave whenever you like.</p>
-  <a class="btn dark" href="mailto:hello@stateshift.in?subject=Tasting%20Circle&body=Add%20me%20to%20the%20list.">Join with your email</a>
+  <h2>Join the inner circle.</h2>
+  <p class="cc-line">One note a fortnight. What is on the bench, what failed, and what is coming next.</p>
+  <a class="btn" href="mailto:hello@stateshift.in?subject=Tasting%20Circle&body=Add%20me%20to%20the%20list.">Join with your email</a>
   <div class="cc-links">
     <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
     <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a>
@@ -556,6 +526,17 @@ document.querySelectorAll('.m-active').forEach(btn => {
 
 
 
+
+<script>
+/* The bar shrinks to a slim strip once you start reading. */
+(function(){
+  var h = document.querySelector('.site-header');
+  if(!h) return;
+  function s(){ h.classList.toggle('scrolled', window.scrollY > 40); }
+  window.addEventListener('scroll', s, {passive:true});
+  s();
+})();
+</script>
 
 <script>
 /* The bar shrinks to a slim strip once you start reading. */

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Four coffees. Four ways to interrupt autopilot. StateShift.</title>
-<meta name="description" content="Every coffee you have ever bought was sorted by the bean. These four start from the other end: the hour you are in, and what it is doing to you.">
+<meta name="description" content="A coffee can tell you where it grew. It cannot tell you what to do with the next twenty minutes. These four begin with the hour, not the bean.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
@@ -18,56 +18,50 @@
   --gold:#a5741a; --amber:#d4a853; --forest:#33472f;
   --line:rgba(38,25,14,.18); --line-strong:rgba(38,25,14,.45); --line-dark:rgba(212,168,83,.22);
 }
-html{font-size:16px;scroll-behavior:smooth;scroll-padding-top:120px}
-body{font-family:'Lora',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.85;min-height:100vh}
-h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:400;line-height:1.15;color:var(--ink)}
+html{font-size:16px;scroll-behavior:smooth;scroll-padding-top:110px}
+body{font-family:'Lora',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.75;min-height:100vh}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:400;line-height:1.2;color:var(--ink)}
 h1,h2{text-wrap:balance}
 em{font-style:italic}
 a{color:inherit}
 img{max-width:100%;display:block}
 .center{text-align:center}
 
-/* ---------- HEADER · sticky, and it shrinks once you scroll ---------- */
+/* ---------- HEADER · sticky, shrinks on scroll ---------- */
 .site-header{
   position:sticky;top:0;z-index:200;
   background:rgba(242,236,221,.97);backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--line);padding:.9rem 2rem;
+  border-bottom:1px solid var(--line);padding:.8rem 2rem;
   display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
   transition:padding .25s;
 }
-.site-logo{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--ink);text-decoration:none;line-height:1.1}
+.site-logo{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--ink);text-decoration:none;line-height:1.1}
 .site-logo span{color:var(--gold);font-style:italic}
-.site-logo small{
-  display:block;font-family:'IBM Plex Mono',monospace;font-size:.62rem;
-  letter-spacing:.3em;text-transform:uppercase;color:var(--muted);
-  margin-top:.3rem;transition:all .2s;
-}
+.site-logo small{display:block;font-family:'IBM Plex Mono',monospace;font-size:.56rem;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-top:.3rem;transition:all .2s}
 .site-nav{display:flex;gap:.9rem;align-items:center;flex-wrap:wrap}
-.site-nav a{font-family:'IBM Plex Mono',monospace;font-size:.9rem;letter-spacing:.1em;
+.site-nav a{font-family:'IBM Plex Mono',monospace;font-size:.82rem;letter-spacing:.09em;
   text-transform:uppercase;color:var(--ink-soft);text-decoration:none;
-  padding:.4rem .1rem;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
+  padding:.35rem .1rem;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
 .site-nav a:hover{color:var(--gold)}
 .site-nav a.active{color:var(--gold);border-bottom-color:var(--gold)}
 .site-nav a.sell{background:var(--gold);color:#fff;border:1px solid var(--gold);
-  border-bottom:1px solid var(--gold);padding:.5rem 1.1rem;letter-spacing:.12em}
-.site-nav a.sell:hover{background:var(--espresso);border-color:var(--espresso);color:var(--amber)}
-.site-nav a.sell.active{background:var(--espresso);border-color:var(--espresso);color:var(--amber)}
-/* compact once scrolled: tagline folds away, bar halves in height */
-.site-header.scrolled{padding:.5rem 2rem}
-.site-header.scrolled .site-logo{font-size:1.35rem}
+  border-bottom:1px solid var(--gold);padding:.45rem 1rem;letter-spacing:.11em}
+.site-nav a.sell:hover,.site-nav a.sell.active{background:var(--espresso);border-color:var(--espresso);color:var(--amber)}
+.site-header.scrolled{padding:.45rem 2rem}
+.site-header.scrolled .site-logo{font-size:1.15rem}
 .site-header.scrolled .site-logo small{opacity:0;max-height:0;margin:0;overflow:hidden}
 
 /* ---------- TYPE ---------- */
-.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.86rem;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:1rem}
-.lead{font-size:clamp(1.04rem,2.4vw,1.14rem);color:var(--ink-soft);line-height:1.85}
-.margin-note{font-family:'Caveat',cursive;font-size:1.3rem;color:var(--gold);display:inline-block}
-/* a quiet inline link, italic + gold. Used instead of shouty buttons. */
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.9rem}
+.lead{font-size:clamp(.96rem,2.2vw,1.04rem);color:var(--ink-soft);line-height:1.8}
+.margin-note{font-family:'Caveat',cursive;font-size:1.18rem;color:var(--gold);display:inline-block}
 .qlink{font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);
   text-decoration:none;border-bottom:1px solid rgba(165,116,26,.4);transition:all .2s}
 .qlink:hover{color:var(--ink);border-color:var(--ink)}
 
-/* ---------- BUTTONS ---------- */
+/* ---------- BUTTONS · unchanged, they were working ---------- */
 .btn{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.82rem;
   letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:1rem 1.9rem;
   border:1px solid var(--ink);color:var(--ink);transition:all .25s;background:transparent}
@@ -82,26 +76,26 @@ img{max-width:100%;display:block}
 
 /* ---------- PRICE BAND ---------- */
 .price-wide{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
-  background:var(--espresso);color:var(--dark-text);padding:1.1rem 1.3rem;margin-top:1.6rem}
-.price-wide b{font-family:'Playfair Display',serif;font-weight:400;font-size:2rem;line-height:1}
-.price-wide span{font-family:'IBM Plex Mono',monospace;font-size:.76rem;letter-spacing:.14em;
+  background:var(--espresso);color:var(--dark-text);padding:1rem 1.3rem;margin-top:1.4rem}
+.price-wide b{font-family:'Playfair Display',serif;font-weight:400;font-size:1.7rem;line-height:1}
+.price-wide span{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;
   text-transform:uppercase;color:var(--amber)}
 
-/* ---------- DISCLOSURE · quiet. Was shouting; now it whispers. ---------- */
-.disclose{border:1px solid var(--line);background:var(--cream);margin-bottom:.55rem}
+/* ---------- DISCLOSURE ---------- */
+.disclose{border:1px solid var(--line);background:var(--cream);margin-bottom:.5rem}
 .disclose > summary{cursor:pointer;list-style:none;position:relative;
-  padding:.9rem 2.6rem .9rem 1.1rem;
-  font-family:'Playfair Display',serif;font-size:1.05rem;line-height:1.45;
+  padding:.85rem 2.5rem .85rem 1rem;
+  font-family:'Playfair Display',serif;font-size:.98rem;line-height:1.45;
   color:var(--ink);transition:color .2s}
 .disclose > summary::-webkit-details-marker{display:none}
 .disclose > summary::marker{content:''}
 .disclose > summary:hover{color:var(--gold)}
-.disclose > summary::after{content:'+';position:absolute;right:1.1rem;top:50%;transform:translateY(-50%);
-  font-family:'IBM Plex Mono',monospace;font-size:1.1rem;color:var(--gold)}
+.disclose > summary::after{content:'+';position:absolute;right:1rem;top:50%;transform:translateY(-50%);
+  font-family:'IBM Plex Mono',monospace;font-size:1.05rem;color:var(--gold)}
 .disclose[open] > summary::after{content:'\2212'}
 .disclose[open] > summary{border-bottom:1px solid var(--line);color:var(--gold)}
-.disclose .body{padding:1rem 1.1rem 1.2rem;background:var(--paper)}
-.disclose .body p{color:var(--ink-soft);font-size:1rem;line-height:1.85;margin:0}
+.disclose .body{padding:.9rem 1rem 1.1rem;background:var(--paper)}
+.disclose .body p{color:var(--ink-soft);font-size:.94rem;line-height:1.8;margin:0}
 .disclose .body p + p{margin-top:.8rem}
 .disclose .body a{color:var(--gold)}
 .disclose .body .margin-note{color:var(--gold)}
@@ -125,113 +119,112 @@ img{max-width:100%;display:block}
 
 /* ---------- FIGURES ---------- */
 .print{background:#fff;padding:10px 10px 14px;box-shadow:0 3px 14px rgba(38,25,14,.22)}
-.print figcaption{font-family:'Caveat',cursive;font-size:1.2rem;color:#5a4a35;padding-top:.6rem;text-align:center}
+.print figcaption{font-family:'Caveat',cursive;font-size:1.12rem;color:#5a4a35;padding-top:.6rem;text-align:center}
 figure.frame{margin:0}
 figure.frame img{width:100%;display:block;box-shadow:0 10px 30px rgba(38,25,14,.18)}
-figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.14em;
+figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;
   text-transform:uppercase;color:var(--muted);padding-top:.8rem}
 
 /* ---------- NOTEBOOK ---------- */
 .notebook{background:var(--cream);border:1px solid var(--line);border-left:3px solid var(--gold);
-  padding:1.4rem 1.5rem;margin:1.8rem 0}
-.notebook .nb-label{font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.6rem}
-.notebook .nb-line{font-family:'Caveat',cursive;font-size:1.55rem;line-height:1.5;color:var(--ink-soft)}
+  padding:1.2rem 1.3rem;margin:1.6rem 0}
+.notebook .nb-label{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.5rem}
+.notebook .nb-line{font-family:'Caveat',cursive;font-size:1.35rem;line-height:1.5;color:var(--ink-soft)}
 
-/* ---------- CONTACT CLOSE ---------- */
-.contact-close{border-top:1px solid var(--line);background:var(--cream);padding:3.2rem 1.3rem;text-align:center}
-.contact-close .eyebrow{font-size:.94rem}
-.contact-close h2{font-size:clamp(1.65rem,4.4vw,2.2rem);line-height:1.3;margin-bottom:.8rem}
-.contact-close .cc-line{font-style:italic;color:var(--ink-soft);max-width:500px;margin:0 auto 1.8rem;font-size:1.02rem}
-.cc-links{display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap;margin-top:1.3rem}
-.cc-links a{font-family:'IBM Plex Mono',monospace;font-size:.82rem;letter-spacing:.1em;
+/* ---------- TASTING CIRCLE · two lines, no more ---------- */
+.contact-close{border-top:1px solid var(--line);background:var(--cream);padding:2.4rem 1.3rem;text-align:center}
+.contact-close .eyebrow{font-size:.76rem;margin-bottom:.7rem}
+.contact-close h2{font-size:clamp(1.3rem,3.4vw,1.65rem);line-height:1.35;margin-bottom:.6rem}
+.contact-close .cc-line{color:var(--ink-soft);max-width:480px;margin:0 auto 1.4rem;font-size:.95rem;line-height:1.7}
+.cc-links{display:flex;gap:1.3rem;justify-content:center;flex-wrap:wrap;margin-top:1.2rem}
+.cc-links a{font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.1em;
   text-transform:uppercase;color:var(--ink-soft);text-decoration:none;
-  border-bottom:1px solid var(--line-strong);padding-bottom:.3rem;transition:all .2s}
+  border-bottom:1px solid var(--line-strong);padding-bottom:.25rem;transition:all .2s}
 .cc-links a:hover{color:var(--gold);border-color:var(--gold)}
 
 /* ---------- FOOTER ---------- */
-.site-footer{background:var(--espresso);color:var(--dark-muted);padding:3rem 2rem 2rem}
-.footer-grid{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem}
-.site-footer h4{font-family:'IBM Plex Mono',monospace;font-size:.82rem;font-weight:400;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem}
+.site-footer{background:var(--espresso);color:var(--dark-muted);padding:2.6rem 2rem 1.8rem}
+.footer-grid{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.2rem}
+.site-footer h4{font-family:'IBM Plex Mono',monospace;font-size:.74rem;font-weight:400;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:.9rem}
 .site-footer a{color:var(--dark-muted);text-decoration:none;transition:color .2s}
 .site-footer a:hover{color:var(--amber)}
 .footer-links{list-style:none}
-.footer-links li{margin-bottom:.5rem;font-size:.96rem}
-.footer-base{max-width:1060px;margin:2.2rem auto 0;padding-top:1.3rem;border-top:1px solid var(--line-dark);
+.footer-links li{margin-bottom:.4rem;font-size:.88rem}
+.footer-base{max-width:1060px;margin:2rem auto 0;padding-top:1.2rem;border-top:1px solid var(--line-dark);
   display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;
-  font-family:'IBM Plex Mono',monospace;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase}
+  font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
 
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:860px){
-  .footer-grid{grid-template-columns:1fr 1fr;gap:1.6rem 1.2rem}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:1.4rem 1.2rem}
   .footer-grid > *:first-child{grid-column:1 / -1}
-  .site-footer{padding:2.4rem 1.3rem 1.8rem}
+  .site-footer{padding:2.2rem 1.3rem 1.6rem}
 }
 @media(max-width:760px){
-  html{scroll-padding-top:100px}
-  .site-header{flex-direction:column;align-items:center;gap:.6rem;padding:.7rem 1rem}
-  .site-logo{text-align:center;font-size:1.45rem}
-  .site-logo small{font-size:.56rem;letter-spacing:.26em;margin-top:.22rem}
+  html{scroll-padding-top:95px}
+  .site-header{flex-direction:column;align-items:center;gap:.5rem;padding:.65rem 1rem}
+  .site-logo{text-align:center;font-size:1.22rem}
+  .site-logo small{font-size:.5rem;letter-spacing:.24em;margin-top:.18rem}
   .site-nav{width:100%;justify-content:space-between;gap:.2rem}
-  .site-nav a{font-size:.78rem;letter-spacing:.04em;padding:.35rem .1rem}
-  .site-nav a.sell{padding:.45rem .8rem;letter-spacing:.06em}
-  .site-header.scrolled{padding:.45rem 1rem;gap:.35rem}
-  .site-header.scrolled .site-logo{font-size:1.2rem}
-  .eyebrow{font-size:.82rem}
+  .site-nav a{font-size:.72rem;letter-spacing:.03em;padding:.3rem .1rem}
+  .site-nav a.sell{padding:.4rem .75rem;letter-spacing:.06em}
+  .site-header.scrolled{padding:.4rem 1rem;gap:.3rem}
+  .site-header.scrolled .site-logo{font-size:1rem}
+  .eyebrow{font-size:.7rem}
 }
 @media(max-width:400px){
-  .site-nav a{font-size:.7rem;padding:.35rem 0}
-  .site-nav a.sell{padding:.42rem .6rem}
+  .site-nav a{font-size:.66rem;padding:.3rem 0}
+  .site-nav a.sell{padding:.38rem .58rem}
 }
 
 /* ===== page-specific ===== */
 
-.c-hero{padding:2.8rem 1.3rem 2.2rem;text-align:center;max-width:640px;margin:0 auto}
-@media(min-width:761px){.c-hero{padding:4rem 2rem 2.6rem}}
-/* smaller min so "interrupt autopilot" holds one line on a phone */
-.c-hero h1{font-size:clamp(1.62rem,5.4vw,2.8rem);line-height:1.22;margin-bottom:1.2rem}
+.c-hero{padding:2.4rem 1.3rem 2rem;text-align:center;max-width:600px;margin:0 auto}
+@media(min-width:761px){.c-hero{padding:3.4rem 2rem 2.4rem}}
+.c-hero h1{font-size:clamp(1.45rem,4.9vw,2.4rem);line-height:1.25;margin-bottom:1.1rem}
 .c-hero h1 em{color:var(--gold)}
-.c-hero p{font-size:1.06rem;line-height:1.9;color:var(--ink-soft);margin-bottom:1rem}
-.c-hero p:last-of-type{margin-bottom:1.8rem}
+.c-hero p{font-size:.99rem;line-height:1.85;color:var(--ink-soft);margin-bottom:.9rem}
+.c-hero p:last-of-type{margin-bottom:1.7rem}
 .c-hero p em{color:var(--ink);font-style:italic}
 
-.sku{padding:2.8rem 0}
-@media(min-width:761px){.sku{padding:3.6rem 0}}
-.sku-in{max-width:600px;margin:0 auto;padding:0 1.3rem}
-.sku-head{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin-bottom:1.2rem}
-.sku-head h2{font-size:clamp(1.9rem,6.4vw,2.6rem);letter-spacing:.03em;line-height:1}
-.sku-head .mean{font-family:'Caveat',cursive;font-size:1.3rem;color:var(--gold)}
+.sku{padding:2.4rem 0}
+@media(min-width:761px){.sku{padding:3.2rem 0}}
+.sku-in{max-width:580px;margin:0 auto;padding:0 1.3rem}
+.sku-head{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin-bottom:1.1rem}
+.sku-head h2{font-size:clamp(1.6rem,5.6vw,2.2rem);letter-spacing:.03em;line-height:1}
+.sku-head .mean{font-family:'Caveat',cursive;font-size:1.2rem;color:var(--gold)}
 .shift{display:inline-block;background:var(--espresso);color:var(--amber);
-  font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.1em;
-  text-transform:uppercase;padding:.4rem .75rem;margin-left:auto}
-.art{width:100%;display:block;box-shadow:0 10px 30px rgba(20,10,4,.26);margin-bottom:1.6rem}
-.tnotes{margin-bottom:1.6rem}
-.tn{display:grid;grid-template-columns:1fr;gap:.15rem;padding:.75rem 0;border-bottom:1px dashed var(--line)}
-@media(min-width:601px){.tn{grid-template-columns:140px 1fr;gap:1rem}}
+  font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.1em;
+  text-transform:uppercase;padding:.35rem .7rem;margin-left:auto}
+.art{width:100%;display:block;box-shadow:0 10px 30px rgba(20,10,4,.26);margin-bottom:1.4rem}
+.tnotes{margin-bottom:1.4rem}
+.tn{display:grid;grid-template-columns:1fr;gap:.15rem;padding:.7rem 0;border-bottom:1px dashed var(--line)}
+@media(min-width:601px){.tn{grid-template-columns:135px 1fr;gap:1rem}}
 .tn:first-child{border-top:1px dashed var(--line)}
-.tn b{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.78rem;
+.tn b{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.72rem;
   letter-spacing:.12em;text-transform:uppercase;color:var(--gold);padding-top:.25rem}
-.tn span{font-size:1.04rem;line-height:1.7;color:var(--ink-soft)}
+.tn span{font-size:.96rem;line-height:1.7;color:var(--ink-soft)}
 
-.how{background:var(--paper-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:3.2rem 0}
-.how-in{max-width:640px;margin:0 auto;padding:0 1.3rem}
-.how h2{font-size:clamp(1.7rem,4.8vw,2.2rem);margin-bottom:1.1rem;line-height:1.25}
-.how > .how-in > p{font-size:1.06rem;line-height:1.85;color:var(--ink-soft);margin-bottom:1.6rem}
-.two{display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:1.6rem}
-@media(min-width:601px){.two{grid-template-columns:1fr 1fr;gap:1.2rem}}
-.sachet{border:1px solid var(--line);background:var(--cream);padding:1.4rem}
-.sachet .tag{font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.5rem}
-.sachet h3{font-size:1.2rem;margin-bottom:.45rem}
-.sachet p{font-size:1.02rem;line-height:1.7;color:var(--ink-soft);margin:0}
-.recipe{font-family:'IBM Plex Mono',monospace;font-size:.92rem;letter-spacing:.05em;
-  background:var(--espresso);color:var(--dark-text);padding:1.2rem;text-align:center;
-  line-height:2.1;margin-bottom:1.8rem}
-.card-fig{max-width:400px;margin:0 auto}
-.c-close{background:var(--espresso);color:var(--dark-text);text-align:center;padding:3.4rem 1.3rem}
-.c-close h2{color:var(--dark-text);font-size:clamp(1.7rem,4.6vw,2.4rem);margin-bottom:.8rem;line-height:1.25}
-.c-close p{color:#cdb894;margin-bottom:1.8rem;line-height:1.8}
+.how{background:var(--paper-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:2.8rem 0}
+.how-in{max-width:620px;margin:0 auto;padding:0 1.3rem}
+.how h2{font-size:clamp(1.4rem,4.2vw,1.95rem);margin-bottom:1rem;line-height:1.3}
+.how > .how-in > p{font-size:.99rem;line-height:1.8;color:var(--ink-soft);margin-bottom:1.4rem}
+.two{display:grid;grid-template-columns:1fr;gap:.9rem;margin-bottom:1.4rem}
+@media(min-width:601px){.two{grid-template-columns:1fr 1fr;gap:1.1rem}}
+.sachet{border:1px solid var(--line);background:var(--cream);padding:1.2rem}
+.sachet .tag{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.45rem}
+.sachet h3{font-size:1.08rem;margin-bottom:.4rem}
+.sachet p{font-size:.94rem;line-height:1.7;color:var(--ink-soft);margin:0}
+.recipe{font-family:'IBM Plex Mono',monospace;font-size:.85rem;letter-spacing:.05em;
+  background:var(--espresso);color:var(--dark-text);padding:1.1rem;text-align:center;
+  line-height:2;margin-bottom:1.6rem}
+.card-fig{max-width:380px;margin:0 auto}
+.c-close{background:var(--espresso);color:var(--dark-text);text-align:center;padding:2.8rem 1.3rem}
+.c-close h2{color:var(--dark-text);font-size:clamp(1.4rem,4vw,1.95rem);margin-bottom:.7rem;line-height:1.3}
+.c-close p{color:#cdb894;margin-bottom:1.6rem;line-height:1.75;font-size:.96rem}
 
 </style>
 </head>
@@ -250,17 +243,15 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.78rem;l
 
 <section class="c-hero">
   <h1>Four coffees.<br>Four ways to <em>interrupt autopilot</em>.</h1>
-  <p>Every coffee you have ever bought was sorted by the bean. Origin, altitude, roast. Useful facts about a plant, and no information at all about your day.</p>
-  <p>These four start from the other end. Each one is named for the hour it belongs to, and <em>honest about which</em>.</p>
+  <p>A good coffee will tell you where it grew, how high, and how long it was roasted. All of it true, and none of it about the twenty minutes you are actually in.</p>
+  <p>These four were built starting from the hour instead. Each one begins with a moment of the day, and with what that moment usually does to you.</p>
   <a class="btn gold" href="sampler.html">Try the Founder Edition</a>
 </section>
 
 <section class="sku" id="sehar">
   <div class="sku-in">
     <div class="sku-head">
-      <h2>SEHAR</h2>
-      <span class="mean">dawn</span>
-      <span class="shift">Foggy &rarr; Clear</span>
+      <h2>SEHAR</h2><span class="mean">dawn</span><span class="shift">Foggy &rarr; Clear</span>
     </div>
     <img class="art" src="assets/posters/sehar-card.jpg" alt="SEHAR" loading="lazy">
     <div class="tnotes">
@@ -273,7 +264,7 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.78rem;l
       <summary>The moment it was made for</summary>
       <div class="body">
         <p>The day has not decided what it will be yet. Neither have you. Sehar is for that window, before the noise and before the phone.</p>
-        <p class="margin-note" style="margin-top:1rem;font-size:1.18rem">the citrus is ours. oranges, a peeler, an oven, one very fragrant weekend</p>
+        <p class="margin-note" style="margin-top:.9rem">the citrus is ours. oranges, a peeler, an oven, one very fragrant weekend</p>
       </div>
     </details>
   </div>
@@ -281,9 +272,7 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.78rem;l
 <section class="sku" id="rukh" style="background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="sku-in">
     <div class="sku-head">
-      <h2>RUKH</h2>
-      <span class="mean">direction</span>
-      <span class="shift">Scattered &rarr; Grounded</span>
+      <h2>RUKH</h2><span class="mean">direction</span><span class="shift">Scattered &rarr; Grounded</span>
     </div>
     <img class="art" src="assets/posters/rukh-card.jpg" alt="RUKH" loading="lazy">
     <div class="tnotes">
@@ -296,7 +285,7 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.78rem;l
       <summary>The moment it was made for</summary>
       <div class="body">
         <p>Somewhere before noon the day scatters. Eleven tabs, three unfinished thoughts. Rukh is the still point you move from.</p>
-        <p class="margin-note" style="margin-top:1rem;font-size:1.18rem">"light, nice, the cardamom complementing. lock it." the cup that ended the search</p>
+        <p class="margin-note" style="margin-top:.9rem">"light, nice, the cardamom complementing. lock it." the cup that ended the search</p>
       </div>
     </details>
   </div>
@@ -304,9 +293,7 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.78rem;l
 <section class="sku" id="kisse">
   <div class="sku-in">
     <div class="sku-head">
-      <h2>KISSE</h2>
-      <span class="mean">stories</span>
-      <span class="shift">Restless &rarr; Unhurried</span>
+      <h2>KISSE</h2><span class="mean">stories</span><span class="shift">Restless &rarr; Unhurried</span>
     </div>
     <img class="art" src="assets/posters/kisse-card.jpg" alt="KISSE" loading="lazy">
     <div class="tnotes">
@@ -319,7 +306,7 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.78rem;l
       <summary>The moment it was made for</summary>
       <div class="body">
         <p>Some conversations only begin after the day has ended. Kisse is for those, the ones that stretch past midnight.</p>
-        <p class="margin-note" style="margin-top:1rem;font-size:1.18rem">"whiskey and dark chocolate." the first words ever said about Kisse</p>
+        <p class="margin-note" style="margin-top:.9rem">"whiskey and dark chocolate." the first words ever said about Kisse</p>
       </div>
     </details>
   </div>
@@ -327,9 +314,7 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.78rem;l
 <section class="sku" id="lamhe" style="background:var(--cream);border-top:1px solid var(--line)">
   <div class="sku-in">
     <div class="sku-head">
-      <h2>LAMHE</h2>
-      <span class="mean">moments</span>
-      <span class="shift">Depleted &rarr; Restored</span>
+      <h2>LAMHE</h2><span class="mean">moments</span><span class="shift">Depleted &rarr; Restored</span>
     </div>
     <!-- REGENERATE: card still shows vanilla, malt and walnuts. -->
     <img class="art" src="assets/posters/lamhe-card.jpg" alt="LAMHE" loading="lazy">
@@ -343,7 +328,7 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.78rem;l
       <summary>The moment it was made for</summary>
       <div class="body">
         <p>There is an hour that belongs to no one else. A blanket, a book, rain if you are lucky. Lamhe sits inside it with you.</p>
-        <p class="margin-note" style="margin-top:1rem;font-size:1.18rem">still on the bench. hazelnut is the last question</p>
+        <p class="margin-note" style="margin-top:.9rem">still on the bench. hazelnut is the last question</p>
       </div>
     </details>
   </div>
@@ -354,59 +339,39 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.78rem;l
     <span class="eyebrow">How it works</span>
     <h2>Two sachets. One cup. Nothing to wash up.</h2>
     <p>Coffee grounds want to be steeped and lifted out. Creamer and jaggery want to dissolve. Put them in the same bag and you get a gritty cup, so we keep them apart until the water brings them together.</p>
-
     <div class="two">
-      <div class="sachet">
-        <span class="tag">Sachet A</span>
-        <h3>The filter bag</h3>
-        <p>Freshly ground single-estate coffee and the aromatics. Hangs on the rim of your cup, steeps, comes out.</p>
-      </div>
-      <div class="sachet">
-        <span class="tag">Sachet B</span>
-        <h3>The cup mix</h3>
-        <p>Creamer, palm jaggery, cocoa where the blend calls for it. Goes into the empty cup first.</p>
-      </div>
+      <div class="sachet"><span class="tag">Sachet A</span><h3>The filter bag</h3>
+        <p>Freshly ground single-estate coffee and the aromatics. Hangs on the rim of your cup, steeps, comes out.</p></div>
+      <div class="sachet"><span class="tag">Sachet B</span><h3>The cup mix</h3>
+        <p>Creamer, palm jaggery, cocoa where the blend calls for it. Goes into the empty cup first.</p></div>
     </div>
-
-    <div class="recipe">
-      Cup mix in &middot; filter bag on<br>
-      150ml hot water &middot; three minutes<br>
-      lift it out &middot; stir &middot; drink
-    </div>
-
+    <div class="recipe">Cup mix in &middot; filter bag on<br>150ml hot water &middot; three minutes<br>lift it out &middot; stir &middot; drink</div>
     <figure class="print card-fig">
       <img src="assets/posters/how-to-brew.jpg" alt="The StateShift brew card" loading="lazy">
       <figcaption>the card that comes in the box</figcaption>
     </figure>
-
-    <div style="margin-top:2.4rem">
-      <details class="disclose">
-        <summary>Why three minutes?</summary>
-        <div class="body"><p>Because that is how long the aroma takes to arrive. Pull the bag out at ninety seconds and you get coffee. Leave it the full three and you get the thing we built.</p></div>
-      </details>
-      <details class="disclose">
-        <summary>Do I need a machine, a grinder, anything?</summary>
-        <div class="body"><p>A cup and hot water. That is the entire equipment list. Everything that needed grinding was ground by hand, that morning, before it was sealed.</p></div>
-      </details>
-      <details class="disclose">
-        <summary>Can I make it with milk?</summary>
-        <div class="body"><p>Water first, always. Milk mutes the aroma, and the aroma is most of the point. If you want it softer, add a splash of hot milk after the filter bag comes out.</p></div>
-      </details>
+    <div style="margin-top:2.2rem">
+      <details class="disclose"><summary>Why three minutes?</summary>
+        <div class="body"><p>Because that is how long the aroma takes to arrive. Pull the bag out at ninety seconds and you get coffee. Leave it the full three and you get the thing we built.</p></div></details>
+      <details class="disclose"><summary>Do I need a machine, a grinder, anything?</summary>
+        <div class="body"><p>A cup and hot water. That is the entire equipment list. Everything that needed grinding was ground by hand, that morning, before it was sealed.</p></div></details>
+      <details class="disclose"><summary>Can I make it with milk?</summary>
+        <div class="body"><p>Water first, always. Milk mutes the aroma, and the aroma is most of the point. If you want it softer, add a splash of hot milk after the filter bag comes out.</p></div></details>
     </div>
   </div>
 </section>
 
 <section class="c-close">
-  <h2>Three coffees. Six brews.<br>One box.</h2>
+  <h2>Three coffees. Six brews. One box.</h2>
   <p>Sehar, Rukh and Kisse, filled by hand in the week they go out.</p>
   <a class="btn on-dark" href="sampler.html">Try the Founder Edition</a>
 </section>
 
 <section class="contact-close">
   <span class="eyebrow">The Tasting Circle</span>
-  <h2>Every failure, before it becomes a coffee.</h2>
-  <p class="cc-line">One note a fortnight. What is on the bench, what went wrong, and what changed because of it. Leave whenever you like.</p>
-  <a class="btn dark" href="mailto:hello@stateshift.in?subject=Tasting%20Circle&body=Add%20me%20to%20the%20list.">Join with your email</a>
+  <h2>Join the inner circle.</h2>
+  <p class="cc-line">One note a fortnight. What is on the bench, what failed, and what is coming next.</p>
+  <a class="btn" href="mailto:hello@stateshift.in?subject=Tasting%20Circle&body=Add%20me%20to%20the%20list.">Join with your email</a>
   <div class="cc-links">
     <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
     <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a>

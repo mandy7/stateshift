@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Founder Edition. StateShift.</title>
-<meta name="description" content="The first hundred boxes. Weighed, sealed and signed by hand. Three coffees, six brews, Rs 300 delivered.">
+<meta name="description" content="The first hundred boxes. Weighed, sealed and signed by hand. Three coffees, six brews, Rs 299 delivered.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
@@ -18,56 +18,50 @@
   --gold:#a5741a; --amber:#d4a853; --forest:#33472f;
   --line:rgba(38,25,14,.18); --line-strong:rgba(38,25,14,.45); --line-dark:rgba(212,168,83,.22);
 }
-html{font-size:16px;scroll-behavior:smooth;scroll-padding-top:120px}
-body{font-family:'Lora',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.85;min-height:100vh}
-h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:400;line-height:1.15;color:var(--ink)}
+html{font-size:16px;scroll-behavior:smooth;scroll-padding-top:110px}
+body{font-family:'Lora',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.75;min-height:100vh}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:400;line-height:1.2;color:var(--ink)}
 h1,h2{text-wrap:balance}
 em{font-style:italic}
 a{color:inherit}
 img{max-width:100%;display:block}
 .center{text-align:center}
 
-/* ---------- HEADER · sticky, and it shrinks once you scroll ---------- */
+/* ---------- HEADER · sticky, shrinks on scroll ---------- */
 .site-header{
   position:sticky;top:0;z-index:200;
   background:rgba(242,236,221,.97);backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--line);padding:.9rem 2rem;
+  border-bottom:1px solid var(--line);padding:.8rem 2rem;
   display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
   transition:padding .25s;
 }
-.site-logo{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--ink);text-decoration:none;line-height:1.1}
+.site-logo{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--ink);text-decoration:none;line-height:1.1}
 .site-logo span{color:var(--gold);font-style:italic}
-.site-logo small{
-  display:block;font-family:'IBM Plex Mono',monospace;font-size:.62rem;
-  letter-spacing:.3em;text-transform:uppercase;color:var(--muted);
-  margin-top:.3rem;transition:all .2s;
-}
+.site-logo small{display:block;font-family:'IBM Plex Mono',monospace;font-size:.56rem;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-top:.3rem;transition:all .2s}
 .site-nav{display:flex;gap:.9rem;align-items:center;flex-wrap:wrap}
-.site-nav a{font-family:'IBM Plex Mono',monospace;font-size:.9rem;letter-spacing:.1em;
+.site-nav a{font-family:'IBM Plex Mono',monospace;font-size:.82rem;letter-spacing:.09em;
   text-transform:uppercase;color:var(--ink-soft);text-decoration:none;
-  padding:.4rem .1rem;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
+  padding:.35rem .1rem;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
 .site-nav a:hover{color:var(--gold)}
 .site-nav a.active{color:var(--gold);border-bottom-color:var(--gold)}
 .site-nav a.sell{background:var(--gold);color:#fff;border:1px solid var(--gold);
-  border-bottom:1px solid var(--gold);padding:.5rem 1.1rem;letter-spacing:.12em}
-.site-nav a.sell:hover{background:var(--espresso);border-color:var(--espresso);color:var(--amber)}
-.site-nav a.sell.active{background:var(--espresso);border-color:var(--espresso);color:var(--amber)}
-/* compact once scrolled: tagline folds away, bar halves in height */
-.site-header.scrolled{padding:.5rem 2rem}
-.site-header.scrolled .site-logo{font-size:1.35rem}
+  border-bottom:1px solid var(--gold);padding:.45rem 1rem;letter-spacing:.11em}
+.site-nav a.sell:hover,.site-nav a.sell.active{background:var(--espresso);border-color:var(--espresso);color:var(--amber)}
+.site-header.scrolled{padding:.45rem 2rem}
+.site-header.scrolled .site-logo{font-size:1.15rem}
 .site-header.scrolled .site-logo small{opacity:0;max-height:0;margin:0;overflow:hidden}
 
 /* ---------- TYPE ---------- */
-.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.86rem;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:1rem}
-.lead{font-size:clamp(1.04rem,2.4vw,1.14rem);color:var(--ink-soft);line-height:1.85}
-.margin-note{font-family:'Caveat',cursive;font-size:1.3rem;color:var(--gold);display:inline-block}
-/* a quiet inline link, italic + gold. Used instead of shouty buttons. */
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.9rem}
+.lead{font-size:clamp(.96rem,2.2vw,1.04rem);color:var(--ink-soft);line-height:1.8}
+.margin-note{font-family:'Caveat',cursive;font-size:1.18rem;color:var(--gold);display:inline-block}
 .qlink{font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);
   text-decoration:none;border-bottom:1px solid rgba(165,116,26,.4);transition:all .2s}
 .qlink:hover{color:var(--ink);border-color:var(--ink)}
 
-/* ---------- BUTTONS ---------- */
+/* ---------- BUTTONS · unchanged, they were working ---------- */
 .btn{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.82rem;
   letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:1rem 1.9rem;
   border:1px solid var(--ink);color:var(--ink);transition:all .25s;background:transparent}
@@ -82,26 +76,26 @@ img{max-width:100%;display:block}
 
 /* ---------- PRICE BAND ---------- */
 .price-wide{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
-  background:var(--espresso);color:var(--dark-text);padding:1.1rem 1.3rem;margin-top:1.6rem}
-.price-wide b{font-family:'Playfair Display',serif;font-weight:400;font-size:2rem;line-height:1}
-.price-wide span{font-family:'IBM Plex Mono',monospace;font-size:.76rem;letter-spacing:.14em;
+  background:var(--espresso);color:var(--dark-text);padding:1rem 1.3rem;margin-top:1.4rem}
+.price-wide b{font-family:'Playfair Display',serif;font-weight:400;font-size:1.7rem;line-height:1}
+.price-wide span{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;
   text-transform:uppercase;color:var(--amber)}
 
-/* ---------- DISCLOSURE · quiet. Was shouting; now it whispers. ---------- */
-.disclose{border:1px solid var(--line);background:var(--cream);margin-bottom:.55rem}
+/* ---------- DISCLOSURE ---------- */
+.disclose{border:1px solid var(--line);background:var(--cream);margin-bottom:.5rem}
 .disclose > summary{cursor:pointer;list-style:none;position:relative;
-  padding:.9rem 2.6rem .9rem 1.1rem;
-  font-family:'Playfair Display',serif;font-size:1.05rem;line-height:1.45;
+  padding:.85rem 2.5rem .85rem 1rem;
+  font-family:'Playfair Display',serif;font-size:.98rem;line-height:1.45;
   color:var(--ink);transition:color .2s}
 .disclose > summary::-webkit-details-marker{display:none}
 .disclose > summary::marker{content:''}
 .disclose > summary:hover{color:var(--gold)}
-.disclose > summary::after{content:'+';position:absolute;right:1.1rem;top:50%;transform:translateY(-50%);
-  font-family:'IBM Plex Mono',monospace;font-size:1.1rem;color:var(--gold)}
+.disclose > summary::after{content:'+';position:absolute;right:1rem;top:50%;transform:translateY(-50%);
+  font-family:'IBM Plex Mono',monospace;font-size:1.05rem;color:var(--gold)}
 .disclose[open] > summary::after{content:'\2212'}
 .disclose[open] > summary{border-bottom:1px solid var(--line);color:var(--gold)}
-.disclose .body{padding:1rem 1.1rem 1.2rem;background:var(--paper)}
-.disclose .body p{color:var(--ink-soft);font-size:1rem;line-height:1.85;margin:0}
+.disclose .body{padding:.9rem 1rem 1.1rem;background:var(--paper)}
+.disclose .body p{color:var(--ink-soft);font-size:.94rem;line-height:1.8;margin:0}
 .disclose .body p + p{margin-top:.8rem}
 .disclose .body a{color:var(--gold)}
 .disclose .body .margin-note{color:var(--gold)}
@@ -125,95 +119,87 @@ img{max-width:100%;display:block}
 
 /* ---------- FIGURES ---------- */
 .print{background:#fff;padding:10px 10px 14px;box-shadow:0 3px 14px rgba(38,25,14,.22)}
-.print figcaption{font-family:'Caveat',cursive;font-size:1.2rem;color:#5a4a35;padding-top:.6rem;text-align:center}
+.print figcaption{font-family:'Caveat',cursive;font-size:1.12rem;color:#5a4a35;padding-top:.6rem;text-align:center}
 figure.frame{margin:0}
 figure.frame img{width:100%;display:block;box-shadow:0 10px 30px rgba(38,25,14,.18)}
-figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.14em;
+figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;
   text-transform:uppercase;color:var(--muted);padding-top:.8rem}
 
 /* ---------- NOTEBOOK ---------- */
 .notebook{background:var(--cream);border:1px solid var(--line);border-left:3px solid var(--gold);
-  padding:1.4rem 1.5rem;margin:1.8rem 0}
-.notebook .nb-label{font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.6rem}
-.notebook .nb-line{font-family:'Caveat',cursive;font-size:1.55rem;line-height:1.5;color:var(--ink-soft)}
+  padding:1.2rem 1.3rem;margin:1.6rem 0}
+.notebook .nb-label{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.5rem}
+.notebook .nb-line{font-family:'Caveat',cursive;font-size:1.35rem;line-height:1.5;color:var(--ink-soft)}
 
-/* ---------- CONTACT CLOSE ---------- */
-.contact-close{border-top:1px solid var(--line);background:var(--cream);padding:3.2rem 1.3rem;text-align:center}
-.contact-close .eyebrow{font-size:.94rem}
-.contact-close h2{font-size:clamp(1.65rem,4.4vw,2.2rem);line-height:1.3;margin-bottom:.8rem}
-.contact-close .cc-line{font-style:italic;color:var(--ink-soft);max-width:500px;margin:0 auto 1.8rem;font-size:1.02rem}
-.cc-links{display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap;margin-top:1.3rem}
-.cc-links a{font-family:'IBM Plex Mono',monospace;font-size:.82rem;letter-spacing:.1em;
+/* ---------- TASTING CIRCLE · two lines, no more ---------- */
+.contact-close{border-top:1px solid var(--line);background:var(--cream);padding:2.4rem 1.3rem;text-align:center}
+.contact-close .eyebrow{font-size:.76rem;margin-bottom:.7rem}
+.contact-close h2{font-size:clamp(1.3rem,3.4vw,1.65rem);line-height:1.35;margin-bottom:.6rem}
+.contact-close .cc-line{color:var(--ink-soft);max-width:480px;margin:0 auto 1.4rem;font-size:.95rem;line-height:1.7}
+.cc-links{display:flex;gap:1.3rem;justify-content:center;flex-wrap:wrap;margin-top:1.2rem}
+.cc-links a{font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.1em;
   text-transform:uppercase;color:var(--ink-soft);text-decoration:none;
-  border-bottom:1px solid var(--line-strong);padding-bottom:.3rem;transition:all .2s}
+  border-bottom:1px solid var(--line-strong);padding-bottom:.25rem;transition:all .2s}
 .cc-links a:hover{color:var(--gold);border-color:var(--gold)}
 
 /* ---------- FOOTER ---------- */
-.site-footer{background:var(--espresso);color:var(--dark-muted);padding:3rem 2rem 2rem}
-.footer-grid{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem}
-.site-footer h4{font-family:'IBM Plex Mono',monospace;font-size:.82rem;font-weight:400;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem}
+.site-footer{background:var(--espresso);color:var(--dark-muted);padding:2.6rem 2rem 1.8rem}
+.footer-grid{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.2rem}
+.site-footer h4{font-family:'IBM Plex Mono',monospace;font-size:.74rem;font-weight:400;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:.9rem}
 .site-footer a{color:var(--dark-muted);text-decoration:none;transition:color .2s}
 .site-footer a:hover{color:var(--amber)}
 .footer-links{list-style:none}
-.footer-links li{margin-bottom:.5rem;font-size:.96rem}
-.footer-base{max-width:1060px;margin:2.2rem auto 0;padding-top:1.3rem;border-top:1px solid var(--line-dark);
+.footer-links li{margin-bottom:.4rem;font-size:.88rem}
+.footer-base{max-width:1060px;margin:2rem auto 0;padding-top:1.2rem;border-top:1px solid var(--line-dark);
   display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;
-  font-family:'IBM Plex Mono',monospace;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase}
+  font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
 
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:860px){
-  .footer-grid{grid-template-columns:1fr 1fr;gap:1.6rem 1.2rem}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:1.4rem 1.2rem}
   .footer-grid > *:first-child{grid-column:1 / -1}
-  .site-footer{padding:2.4rem 1.3rem 1.8rem}
+  .site-footer{padding:2.2rem 1.3rem 1.6rem}
 }
 @media(max-width:760px){
-  html{scroll-padding-top:100px}
-  .site-header{flex-direction:column;align-items:center;gap:.6rem;padding:.7rem 1rem}
-  .site-logo{text-align:center;font-size:1.45rem}
-  .site-logo small{font-size:.56rem;letter-spacing:.26em;margin-top:.22rem}
+  html{scroll-padding-top:95px}
+  .site-header{flex-direction:column;align-items:center;gap:.5rem;padding:.65rem 1rem}
+  .site-logo{text-align:center;font-size:1.22rem}
+  .site-logo small{font-size:.5rem;letter-spacing:.24em;margin-top:.18rem}
   .site-nav{width:100%;justify-content:space-between;gap:.2rem}
-  .site-nav a{font-size:.78rem;letter-spacing:.04em;padding:.35rem .1rem}
-  .site-nav a.sell{padding:.45rem .8rem;letter-spacing:.06em}
-  .site-header.scrolled{padding:.45rem 1rem;gap:.35rem}
-  .site-header.scrolled .site-logo{font-size:1.2rem}
-  .eyebrow{font-size:.82rem}
+  .site-nav a{font-size:.72rem;letter-spacing:.03em;padding:.3rem .1rem}
+  .site-nav a.sell{padding:.4rem .75rem;letter-spacing:.06em}
+  .site-header.scrolled{padding:.4rem 1rem;gap:.3rem}
+  .site-header.scrolled .site-logo{font-size:1rem}
+  .eyebrow{font-size:.7rem}
 }
 @media(max-width:400px){
-  .site-nav a{font-size:.7rem;padding:.35rem 0}
-  .site-nav a.sell{padding:.42rem .6rem}
+  .site-nav a{font-size:.66rem;padding:.3rem 0}
+  .site-nav a.sell{padding:.38rem .58rem}
 }
 
 /* ===== page-specific ===== */
 
-/* FOLD 1 · three sentences, then the photo. Both inside the fold. */
-.edition{background:var(--espresso);color:var(--dark-text);padding:2.4rem 1.3rem 2.8rem}
-@media(min-width:761px){.edition{padding:3.4rem 2rem}}
-.edition-in{max-width:660px;margin:0 auto}
+.edition{background:var(--espresso);color:var(--dark-text);padding:2.2rem 1.3rem 2.4rem}
+@media(min-width:761px){.edition{padding:3rem 2rem}}
+.edition-in{max-width:620px;margin:0 auto}
 .edition .eyebrow{color:var(--amber)}
-.edition h1{color:var(--dark-text);font-size:clamp(1.75rem,5.4vw,2.7rem);line-height:1.22;margin-bottom:1.1rem}
+.edition h1{color:var(--dark-text);font-size:clamp(1.5rem,4.7vw,2.25rem);line-height:1.25;margin-bottom:1rem}
 .edition h1 em{color:var(--amber)}
-.edition p{color:#cdb894;font-size:1.06rem;line-height:1.85;margin-bottom:.9rem}
+.edition p{color:#cdb894;font-size:.99rem;line-height:1.8;margin-bottom:.8rem}
 .edition p:last-of-type{margin-bottom:0}
-.edition figure{margin:1.6rem 0 0}
+.edition figure{margin:1.5rem 0 0}
 .edition figure img{width:100%;display:block}
-.edition figcaption{font-family:'IBM Plex Mono',monospace;font-size:.76rem;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--amber);padding-top:.8rem;text-align:center}
+.edition figcaption{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--amber);padding-top:.7rem;text-align:center}
 
-.box{max-width:620px;margin:0 auto;padding:2.8rem 1.3rem 0}
-.box h2{font-size:clamp(1.7rem,4.8vw,2.2rem);line-height:1.3;margin-bottom:.7rem}
-.box .sub{font-size:1.06rem;line-height:1.85;color:var(--ink-soft);margin-bottom:1.8rem}
-.box ul{list-style:none;margin:0}
-.box li{padding:.95rem 0;border-bottom:1px solid var(--line)}
-.box li:first-child{border-top:1px solid var(--line)}
-.box li b{font-family:'Playfair Display',serif;font-weight:400;color:var(--ink);
-  letter-spacing:.05em;font-size:1.26rem;display:block;margin-bottom:.2rem}
-.box li span{font-size:1.02rem;color:var(--ink-soft);line-height:1.6}
-
-.faqs{max-width:620px;margin:3rem auto 0;padding:0 1.3rem 3.6rem}
-/* the heading stays the loudest thing here; the questions sit under it */
-.faqs h2{font-size:clamp(1.75rem,5vw,2.3rem);margin-bottom:1.4rem;line-height:1.3}
+/* FOLD 2 · one image does the whole job the list used to */
+.inside{max-width:620px;margin:0 auto;padding:2.4rem 1.3rem 0}
+.inside img{width:100%;display:block;box-shadow:0 10px 30px rgba(38,25,14,.16)}
+.buy{max-width:620px;margin:0 auto;padding:0 1.3rem}
+.faqs{max-width:620px;margin:2.6rem auto 0;padding:0 1.3rem 3.2rem}
+.faqs h2{font-size:clamp(1.4rem,4.2vw,1.9rem);margin-bottom:1.2rem;line-height:1.3}
 
 </style>
 </head>
@@ -236,7 +222,6 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.78rem;l
     <h1>The first hundred boxes<br><em>will never be repeated</em>.</h1>
     <p>One person makes these. Each box is weighed on a kitchen scale, sealed, and signed by the hand that filled it.</p>
     <p>What comes back from these hundred decides what the next hundred taste like. Nobody who orders later gets to do that.</p>
-
     <figure>
       <img src="assets/editorial/packing-box.jpg" alt="Hands packing a StateShift box" loading="lazy">
       <figcaption>weighed, sealed and signed by hand</figcaption>
@@ -244,57 +229,46 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.78rem;l
   </div>
 </section>
 
-<div class="box">
-  <h2>What you'll get</h2>
-  <p class="sub">Two sachets each of Sehar, Rukh and Kisse. Six brews in all, small enough to finish inside a week.</p>
+<!-- ==========================================================
+     Save your new artwork as assets/editorial/whats-inside.jpg
+     ⚠ It currently reads "6 Pour Over Sachets" — should be 12
+       (two per cup), or say "6 cups, two sachets each".
+     ⚠ It carries the price. Site is now aligned to Rs 299.
+     ========================================================== -->
+<div class="inside">
+  <img src="assets/editorial/whats-inside.jpg"
+       onerror="this.style.display='none'"
+       alt="Six cups, three rituals. Two sachets each of Sehar, Rukh and Kisse, plus the ritual card and a founder's note. Rs 299, shipping included."
+       loading="lazy">
+</div>
 
-  <ul>
-    <li><b>SEHAR</b><span>Bergamot, orange peel, milk chocolate, lemon candy.</span></li>
-    <li><b>RUKH</b><span>Cardamom, dark chocolate, toasted almond, ripe berries.</span></li>
-    <li><b>KISSE</b><span>Dark chocolate, roasted nuts, warm spice.</span></li>
-    <li><b>The brew card</b><span>Illustrated, hand-drawn. Keep it, or put it on the fridge.</span></li>
-    <li><b>A tasting note</b><span>Blank, for your handwriting. Send it back and it goes into the Lab.</span></li>
-  </ul>
-
-  <div class="price-wide"><b>&#8377;300</b><span>Shipping included</span></div>
-
+<div class="buy">
   <div class="doors">
     <!-- Razorpay Dashboard > Payment Links > Create. Paste the URL here. -->
-    <a class="btn gold" href="https://rzp.io/l/REPLACE-ME">Buy online</a>
+    <a class="btn gold" href="https://rzp.io/l/REPLACE-ME">Buy online &middot; &#8377;299</a>
     <a class="btn" href="https://wa.me/91XXXXXXXXXX?text=Hi%20Mandhir%2C%20I%27d%20like%20the%20Founder%20Edition.%20My%20name%20is%20___%20and%20I%27m%20in%20___.">Order on WhatsApp</a>
   </div>
 </div>
 
 <div class="faqs" id="faq">
   <h2>Questions people actually ask.</h2>
-
-  <details class="disclose">
-    <summary>When will it arrive?</summary>
-    <div class="body"><p>Boxes are filled by hand on Fridays and go out the same day. Anywhere in India, expect it inside a week. You will get a message from me when it leaves, not a tracking bot.</p></div>
-  </details>
-  <details class="disclose">
-    <summary>How do I pay?</summary>
-    <div class="body"><p>Card, UPI or netbanking through the buy button, which runs on Razorpay. If you would rather not use a card, message me on WhatsApp and I will send you a UPI request.</p></div>
-  </details>
-  <details class="disclose">
-    <summary>What if I don't like it?</summary>
-    <div class="body"><p>Email me and I will refund you. No form, no argument, and nothing to post back. I would genuinely rather know. Almost everything on the Lab page came from someone telling me a cup was plain, or once, memorably, half-cooked.</p></div>
-  </details>
-  <details class="disclose">
-    <summary>Will it taste like the coffee I get in a caf&eacute;?</summary>
-    <div class="body"><p>It will taste like a good cup made carefully at home, which is a different thing and, on most mornings, a better one. The beans are single-estate and ground the morning they are sealed. What you will not get is an espresso: this is a pour-over, so it is cleaner and lighter in the mouth, and the aroma does more of the work.</p></div>
-  </details>
-  <details class="disclose">
-    <summary>How long does it keep?</summary>
-    <div class="body"><p>Drink it inside a month. The sachets are sealed, but aromatics fade faster than coffee does and the aroma is most of the point. Do not save these for a special occasion. The occasion is Tuesday.</p></div>
-  </details>
+  <details class="disclose"><summary>When will it arrive?</summary>
+    <div class="body"><p>Boxes are filled by hand on Fridays and go out the same day. Anywhere in India, expect it inside a week. You will get a message from me when it leaves, not a tracking bot.</p></div></details>
+  <details class="disclose"><summary>How do I pay?</summary>
+    <div class="body"><p>Card, UPI or netbanking through the buy button, which runs on Razorpay. If you would rather not use a card, message me on WhatsApp and I will send you a UPI request.</p></div></details>
+  <details class="disclose"><summary>What if I don't like it?</summary>
+    <div class="body"><p>Email me and I will refund you. No form, no argument, and nothing to post back. I would genuinely rather know. Almost everything on the Lab page came from someone telling me a cup was plain, or once, memorably, half-cooked.</p></div></details>
+  <details class="disclose"><summary>Will it taste like the coffee I get in a caf&eacute;?</summary>
+    <div class="body"><p>It will taste like a good cup made carefully at home, which is a different thing and, on most mornings, a better one. The beans are single-estate and ground the morning they are sealed. What you will not get is an espresso: this is a pour-over, so it is cleaner and lighter in the mouth, and the aroma does more of the work.</p></div></details>
+  <details class="disclose"><summary>How long does it keep?</summary>
+    <div class="body"><p>Drink it inside a month. The sachets are sealed, but aromatics fade faster than coffee does and the aroma is most of the point. Do not save these for a special occasion. The occasion is Tuesday.</p></div></details>
 </div>
 
 <section class="contact-close">
   <span class="eyebrow">The Tasting Circle</span>
-  <h2>Every failure, before it becomes a coffee.</h2>
-  <p class="cc-line">One note a fortnight. What is on the bench, what went wrong, and what changed because of it. Leave whenever you like.</p>
-  <a class="btn dark" href="mailto:hello@stateshift.in?subject=Tasting%20Circle&body=Add%20me%20to%20the%20list.">Join with your email</a>
+  <h2>Join the inner circle.</h2>
+  <p class="cc-line">One note a fortnight. What is on the bench, what failed, and what is coming next.</p>
+  <a class="btn" href="mailto:hello@stateshift.in?subject=Tasting%20Circle&body=Add%20me%20to%20the%20list.">Join with your email</a>
   <div class="cc-links">
     <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
     <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a>

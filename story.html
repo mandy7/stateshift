@@ -18,56 +18,50 @@
   --gold:#a5741a; --amber:#d4a853; --forest:#33472f;
   --line:rgba(38,25,14,.18); --line-strong:rgba(38,25,14,.45); --line-dark:rgba(212,168,83,.22);
 }
-html{font-size:16px;scroll-behavior:smooth;scroll-padding-top:120px}
-body{font-family:'Lora',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.85;min-height:100vh}
-h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:400;line-height:1.15;color:var(--ink)}
+html{font-size:16px;scroll-behavior:smooth;scroll-padding-top:110px}
+body{font-family:'Lora',Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.75;min-height:100vh}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:400;line-height:1.2;color:var(--ink)}
 h1,h2{text-wrap:balance}
 em{font-style:italic}
 a{color:inherit}
 img{max-width:100%;display:block}
 .center{text-align:center}
 
-/* ---------- HEADER · sticky, and it shrinks once you scroll ---------- */
+/* ---------- HEADER · sticky, shrinks on scroll ---------- */
 .site-header{
   position:sticky;top:0;z-index:200;
   background:rgba(242,236,221,.97);backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--line);padding:.9rem 2rem;
+  border-bottom:1px solid var(--line);padding:.8rem 2rem;
   display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
   transition:padding .25s;
 }
-.site-logo{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--ink);text-decoration:none;line-height:1.1}
+.site-logo{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--ink);text-decoration:none;line-height:1.1}
 .site-logo span{color:var(--gold);font-style:italic}
-.site-logo small{
-  display:block;font-family:'IBM Plex Mono',monospace;font-size:.62rem;
-  letter-spacing:.3em;text-transform:uppercase;color:var(--muted);
-  margin-top:.3rem;transition:all .2s;
-}
+.site-logo small{display:block;font-family:'IBM Plex Mono',monospace;font-size:.56rem;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-top:.3rem;transition:all .2s}
 .site-nav{display:flex;gap:.9rem;align-items:center;flex-wrap:wrap}
-.site-nav a{font-family:'IBM Plex Mono',monospace;font-size:.9rem;letter-spacing:.1em;
+.site-nav a{font-family:'IBM Plex Mono',monospace;font-size:.82rem;letter-spacing:.09em;
   text-transform:uppercase;color:var(--ink-soft);text-decoration:none;
-  padding:.4rem .1rem;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
+  padding:.35rem .1rem;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
 .site-nav a:hover{color:var(--gold)}
 .site-nav a.active{color:var(--gold);border-bottom-color:var(--gold)}
 .site-nav a.sell{background:var(--gold);color:#fff;border:1px solid var(--gold);
-  border-bottom:1px solid var(--gold);padding:.5rem 1.1rem;letter-spacing:.12em}
-.site-nav a.sell:hover{background:var(--espresso);border-color:var(--espresso);color:var(--amber)}
-.site-nav a.sell.active{background:var(--espresso);border-color:var(--espresso);color:var(--amber)}
-/* compact once scrolled: tagline folds away, bar halves in height */
-.site-header.scrolled{padding:.5rem 2rem}
-.site-header.scrolled .site-logo{font-size:1.35rem}
+  border-bottom:1px solid var(--gold);padding:.45rem 1rem;letter-spacing:.11em}
+.site-nav a.sell:hover,.site-nav a.sell.active{background:var(--espresso);border-color:var(--espresso);color:var(--amber)}
+.site-header.scrolled{padding:.45rem 2rem}
+.site-header.scrolled .site-logo{font-size:1.15rem}
 .site-header.scrolled .site-logo small{opacity:0;max-height:0;margin:0;overflow:hidden}
 
 /* ---------- TYPE ---------- */
-.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.86rem;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:1rem}
-.lead{font-size:clamp(1.04rem,2.4vw,1.14rem);color:var(--ink-soft);line-height:1.85}
-.margin-note{font-family:'Caveat',cursive;font-size:1.3rem;color:var(--gold);display:inline-block}
-/* a quiet inline link, italic + gold. Used instead of shouty buttons. */
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.9rem}
+.lead{font-size:clamp(.96rem,2.2vw,1.04rem);color:var(--ink-soft);line-height:1.8}
+.margin-note{font-family:'Caveat',cursive;font-size:1.18rem;color:var(--gold);display:inline-block}
 .qlink{font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);
   text-decoration:none;border-bottom:1px solid rgba(165,116,26,.4);transition:all .2s}
 .qlink:hover{color:var(--ink);border-color:var(--ink)}
 
-/* ---------- BUTTONS ---------- */
+/* ---------- BUTTONS · unchanged, they were working ---------- */
 .btn{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.82rem;
   letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:1rem 1.9rem;
   border:1px solid var(--ink);color:var(--ink);transition:all .25s;background:transparent}
@@ -82,26 +76,26 @@ img{max-width:100%;display:block}
 
 /* ---------- PRICE BAND ---------- */
 .price-wide{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
-  background:var(--espresso);color:var(--dark-text);padding:1.1rem 1.3rem;margin-top:1.6rem}
-.price-wide b{font-family:'Playfair Display',serif;font-weight:400;font-size:2rem;line-height:1}
-.price-wide span{font-family:'IBM Plex Mono',monospace;font-size:.76rem;letter-spacing:.14em;
+  background:var(--espresso);color:var(--dark-text);padding:1rem 1.3rem;margin-top:1.4rem}
+.price-wide b{font-family:'Playfair Display',serif;font-weight:400;font-size:1.7rem;line-height:1}
+.price-wide span{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;
   text-transform:uppercase;color:var(--amber)}
 
-/* ---------- DISCLOSURE · quiet. Was shouting; now it whispers. ---------- */
-.disclose{border:1px solid var(--line);background:var(--cream);margin-bottom:.55rem}
+/* ---------- DISCLOSURE ---------- */
+.disclose{border:1px solid var(--line);background:var(--cream);margin-bottom:.5rem}
 .disclose > summary{cursor:pointer;list-style:none;position:relative;
-  padding:.9rem 2.6rem .9rem 1.1rem;
-  font-family:'Playfair Display',serif;font-size:1.05rem;line-height:1.45;
+  padding:.85rem 2.5rem .85rem 1rem;
+  font-family:'Playfair Display',serif;font-size:.98rem;line-height:1.45;
   color:var(--ink);transition:color .2s}
 .disclose > summary::-webkit-details-marker{display:none}
 .disclose > summary::marker{content:''}
 .disclose > summary:hover{color:var(--gold)}
-.disclose > summary::after{content:'+';position:absolute;right:1.1rem;top:50%;transform:translateY(-50%);
-  font-family:'IBM Plex Mono',monospace;font-size:1.1rem;color:var(--gold)}
+.disclose > summary::after{content:'+';position:absolute;right:1rem;top:50%;transform:translateY(-50%);
+  font-family:'IBM Plex Mono',monospace;font-size:1.05rem;color:var(--gold)}
 .disclose[open] > summary::after{content:'\2212'}
 .disclose[open] > summary{border-bottom:1px solid var(--line);color:var(--gold)}
-.disclose .body{padding:1rem 1.1rem 1.2rem;background:var(--paper)}
-.disclose .body p{color:var(--ink-soft);font-size:1rem;line-height:1.85;margin:0}
+.disclose .body{padding:.9rem 1rem 1.1rem;background:var(--paper)}
+.disclose .body p{color:var(--ink-soft);font-size:.94rem;line-height:1.8;margin:0}
 .disclose .body p + p{margin-top:.8rem}
 .disclose .body a{color:var(--gold)}
 .disclose .body .margin-note{color:var(--gold)}
@@ -125,95 +119,92 @@ img{max-width:100%;display:block}
 
 /* ---------- FIGURES ---------- */
 .print{background:#fff;padding:10px 10px 14px;box-shadow:0 3px 14px rgba(38,25,14,.22)}
-.print figcaption{font-family:'Caveat',cursive;font-size:1.2rem;color:#5a4a35;padding-top:.6rem;text-align:center}
+.print figcaption{font-family:'Caveat',cursive;font-size:1.12rem;color:#5a4a35;padding-top:.6rem;text-align:center}
 figure.frame{margin:0}
 figure.frame img{width:100%;display:block;box-shadow:0 10px 30px rgba(38,25,14,.18)}
-figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.14em;
+figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;
   text-transform:uppercase;color:var(--muted);padding-top:.8rem}
 
 /* ---------- NOTEBOOK ---------- */
 .notebook{background:var(--cream);border:1px solid var(--line);border-left:3px solid var(--gold);
-  padding:1.4rem 1.5rem;margin:1.8rem 0}
-.notebook .nb-label{font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.6rem}
-.notebook .nb-line{font-family:'Caveat',cursive;font-size:1.55rem;line-height:1.5;color:var(--ink-soft)}
+  padding:1.2rem 1.3rem;margin:1.6rem 0}
+.notebook .nb-label{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.5rem}
+.notebook .nb-line{font-family:'Caveat',cursive;font-size:1.35rem;line-height:1.5;color:var(--ink-soft)}
 
-/* ---------- CONTACT CLOSE ---------- */
-.contact-close{border-top:1px solid var(--line);background:var(--cream);padding:3.2rem 1.3rem;text-align:center}
-.contact-close .eyebrow{font-size:.94rem}
-.contact-close h2{font-size:clamp(1.65rem,4.4vw,2.2rem);line-height:1.3;margin-bottom:.8rem}
-.contact-close .cc-line{font-style:italic;color:var(--ink-soft);max-width:500px;margin:0 auto 1.8rem;font-size:1.02rem}
-.cc-links{display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap;margin-top:1.3rem}
-.cc-links a{font-family:'IBM Plex Mono',monospace;font-size:.82rem;letter-spacing:.1em;
+/* ---------- TASTING CIRCLE · two lines, no more ---------- */
+.contact-close{border-top:1px solid var(--line);background:var(--cream);padding:2.4rem 1.3rem;text-align:center}
+.contact-close .eyebrow{font-size:.76rem;margin-bottom:.7rem}
+.contact-close h2{font-size:clamp(1.3rem,3.4vw,1.65rem);line-height:1.35;margin-bottom:.6rem}
+.contact-close .cc-line{color:var(--ink-soft);max-width:480px;margin:0 auto 1.4rem;font-size:.95rem;line-height:1.7}
+.cc-links{display:flex;gap:1.3rem;justify-content:center;flex-wrap:wrap;margin-top:1.2rem}
+.cc-links a{font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.1em;
   text-transform:uppercase;color:var(--ink-soft);text-decoration:none;
-  border-bottom:1px solid var(--line-strong);padding-bottom:.3rem;transition:all .2s}
+  border-bottom:1px solid var(--line-strong);padding-bottom:.25rem;transition:all .2s}
 .cc-links a:hover{color:var(--gold);border-color:var(--gold)}
 
 /* ---------- FOOTER ---------- */
-.site-footer{background:var(--espresso);color:var(--dark-muted);padding:3rem 2rem 2rem}
-.footer-grid{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem}
-.site-footer h4{font-family:'IBM Plex Mono',monospace;font-size:.82rem;font-weight:400;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem}
+.site-footer{background:var(--espresso);color:var(--dark-muted);padding:2.6rem 2rem 1.8rem}
+.footer-grid{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.2rem}
+.site-footer h4{font-family:'IBM Plex Mono',monospace;font-size:.74rem;font-weight:400;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:.9rem}
 .site-footer a{color:var(--dark-muted);text-decoration:none;transition:color .2s}
 .site-footer a:hover{color:var(--amber)}
 .footer-links{list-style:none}
-.footer-links li{margin-bottom:.5rem;font-size:.96rem}
-.footer-base{max-width:1060px;margin:2.2rem auto 0;padding-top:1.3rem;border-top:1px solid var(--line-dark);
+.footer-links li{margin-bottom:.4rem;font-size:.88rem}
+.footer-base{max-width:1060px;margin:2rem auto 0;padding-top:1.2rem;border-top:1px solid var(--line-dark);
   display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;
-  font-family:'IBM Plex Mono',monospace;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase}
+  font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
 
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:860px){
-  .footer-grid{grid-template-columns:1fr 1fr;gap:1.6rem 1.2rem}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:1.4rem 1.2rem}
   .footer-grid > *:first-child{grid-column:1 / -1}
-  .site-footer{padding:2.4rem 1.3rem 1.8rem}
+  .site-footer{padding:2.2rem 1.3rem 1.6rem}
 }
 @media(max-width:760px){
-  html{scroll-padding-top:100px}
-  .site-header{flex-direction:column;align-items:center;gap:.6rem;padding:.7rem 1rem}
-  .site-logo{text-align:center;font-size:1.45rem}
-  .site-logo small{font-size:.56rem;letter-spacing:.26em;margin-top:.22rem}
+  html{scroll-padding-top:95px}
+  .site-header{flex-direction:column;align-items:center;gap:.5rem;padding:.65rem 1rem}
+  .site-logo{text-align:center;font-size:1.22rem}
+  .site-logo small{font-size:.5rem;letter-spacing:.24em;margin-top:.18rem}
   .site-nav{width:100%;justify-content:space-between;gap:.2rem}
-  .site-nav a{font-size:.78rem;letter-spacing:.04em;padding:.35rem .1rem}
-  .site-nav a.sell{padding:.45rem .8rem;letter-spacing:.06em}
-  .site-header.scrolled{padding:.45rem 1rem;gap:.35rem}
-  .site-header.scrolled .site-logo{font-size:1.2rem}
-  .eyebrow{font-size:.82rem}
+  .site-nav a{font-size:.72rem;letter-spacing:.03em;padding:.3rem .1rem}
+  .site-nav a.sell{padding:.4rem .75rem;letter-spacing:.06em}
+  .site-header.scrolled{padding:.4rem 1rem;gap:.3rem}
+  .site-header.scrolled .site-logo{font-size:1rem}
+  .eyebrow{font-size:.7rem}
 }
 @media(max-width:400px){
-  .site-nav a{font-size:.7rem;padding:.35rem 0}
-  .site-nav a.sell{padding:.42rem .6rem}
+  .site-nav a{font-size:.66rem;padding:.3rem 0}
+  .site-nav a.sell{padding:.38rem .58rem}
 }
 
 /* ===== page-specific ===== */
 
-.tale{max-width:640px;margin:0 auto;padding:2.6rem 1.3rem 0}
-@media(min-width:761px){.tale{padding:3.6rem 2rem 0}}
-.mv{padding:0 0 2.6rem}
-.mv + .mv{border-top:1px solid var(--line);padding-top:2.6rem}
-.mv h2{font-size:clamp(1.7rem,4.8vw,2.2rem);line-height:1.25;margin-bottom:1.3rem}
-.mv p{margin-bottom:1.1rem;font-size:1.1rem;line-height:1.9;color:var(--ink-soft)}
+.tale{max-width:600px;margin:0 auto;padding:2.2rem 1.3rem 0}
+@media(min-width:761px){.tale{padding:3rem 2rem 0}}
+.mv{padding:0 0 2.2rem}
+.mv + .mv{border-top:1px solid var(--line);padding-top:2.2rem}
+.mv h2{font-size:clamp(1.42rem,4.2vw,1.85rem);line-height:1.3;margin-bottom:1.1rem}
+.mv p{margin-bottom:1rem;font-size:1rem;line-height:1.85;color:var(--ink-soft)}
 .mv p:last-child{margin-bottom:0}
 .mv em.beat{color:var(--ink);font-style:italic}
-.pull{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3.8vw,1.55rem);
+.pull{font-family:'Playfair Display',serif;font-size:clamp(1.1rem,3.2vw,1.3rem);
   font-style:italic;line-height:1.6;border-left:2px solid var(--gold);
-  padding-left:1.3rem;margin:1.8rem 0 0;color:var(--ink)}
-.bleed{margin:2rem 0}
-.bleed img{width:100%;display:block}
-/* three image slots. Each hides itself if the file is not there yet. */
-.snap{margin:1.8rem 0 .4rem}
+  padding-left:1.2rem;margin:1.6rem 0 0;color:var(--ink)}
+.snap{margin:1.6rem 0 .4rem}
 .snap img{width:100%;display:block;box-shadow:0 10px 30px rgba(38,25,14,.18)}
-.snap figcaption{font-family:'Caveat',cursive;font-size:1.25rem;color:var(--muted);padding-top:.7rem}
+.snap figcaption{font-family:'Caveat',cursive;font-size:1.12rem;color:var(--muted);padding-top:.6rem}
 .rules{background:var(--paper-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:1rem}
-.rules-in{max-width:640px;margin:0 auto;padding:3.2rem 1.3rem}
-.rules-in h2{font-size:clamp(1.7rem,4.8vw,2.2rem);margin:0 0 1.6rem;line-height:1.25}
-.rule{padding:1.4rem 0;border-bottom:1px solid var(--line)}
+.rules-in{max-width:600px;margin:0 auto;padding:2.6rem 1.3rem}
+.rules-in h2{font-size:clamp(1.42rem,4.2vw,1.85rem);margin:0 0 1.4rem;line-height:1.3}
+.rule{padding:1.2rem 0;border-bottom:1px solid var(--line)}
 .rule:last-of-type{border-bottom:none;padding-bottom:0}
-.rule h3{font-size:1.26rem;margin-bottom:.45rem;line-height:1.3}
-.rule p{margin:0;font-size:1.04rem;line-height:1.8;color:var(--ink-soft)}
-.sign{display:block;margin-top:2.2rem;font-family:'Caveat',cursive;font-size:1.4rem;color:var(--muted);line-height:1.6}
-.s-cta{background:var(--espresso);color:var(--dark-text);text-align:center;padding:3.2rem 1.3rem}
-.s-cta h2{color:var(--dark-text);font-size:clamp(1.7rem,4.6vw,2.3rem);margin-bottom:1.3rem}
+.rule h3{font-size:1.1rem;margin-bottom:.4rem;line-height:1.35}
+.rule p{margin:0;font-size:.96rem;line-height:1.75;color:var(--ink-soft)}
+.sign{display:block;margin-top:2rem;font-family:'Caveat',cursive;font-size:1.25rem;color:var(--muted);line-height:1.6}
+.s-cta{background:var(--espresso);color:var(--dark-text);text-align:center;padding:2.8rem 1.3rem}
+.s-cta h2{color:var(--dark-text);font-size:clamp(1.4rem,4vw,1.95rem);margin-bottom:1.2rem}
 
 </style>
 </head>
@@ -236,11 +227,6 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.78rem;l
     <h2>The month I finally looked up</h2>
     <p>This began during paternity leave. Not because I wanted better coffee, but because I finally had enough quiet to see how much of my life I had been getting through without ever really being in it. Whole weeks were going past and leaving no memory behind. Not bad weeks. Just weeks I could not account for.</p>
     <p>Like the film Groundhog Day, except Bill Murray at least knew he was stuck.</p>
-
-    <figure class="bleed">
-      <img src="assets/editorial/autopilot-desk.jpg" alt="A man face-down at a desk beneath sticky notes reading Wake, Commute, Work, Meetings, Reply, Eat, Scroll, Sleep, Repeat" loading="lazy">
-    </figure>
-
     <p>Then my daughter was born, and the days started showing me their seams. One hour I was a father, holding an infant who has no opinion whatsoever about my inbox. The next I was at a laptop trying to think in straight lines. Then a son. Then a husband. Then, briefly, just a person who wanted twenty minutes that belonged to nobody.</p>
     <p>Nobody gives you a moment between those. You are expected to simply switch, so you don't. You carry the last hour into the next one and end up half-present in both.</p>
     <p class="pull">I didn't need more energy. I needed somewhere to put the last hour down before picking up the next one.</p>
@@ -250,12 +236,9 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.78rem;l
     <h2>It started with rain</h2>
     <p>That April it rained properly for the first time in months. I stepped outside and the smell of wet earth put me, without asking, in a courtyard I had not stood in for twenty-five years. Nothing moves you between states faster than smell. Not caffeine, not a to-do list. Aroma arrives before thought does.</p>
 
-    <!-- IMAGE SLOT 2 · assets/photos/rain.jpg
-         Wet earth, a window, rain on glass, a cup. Your phone is fine.
-         Hides itself if the file is not there. -->
+    <!-- IMAGE SLOT · assets/photos/rain.jpg  (hides itself if absent) -->
     <figure class="snap">
-      <img src="assets/photos/rain.jpg"
-           onerror="this.closest('figure').style.display='none'"
+      <img src="assets/photos/rain.jpg" onerror="this.closest('figure').style.display='none'"
            alt="Rain against a window beside a cup" loading="lazy">
       <figcaption>the April it started</figcaption>
     </figure>
@@ -268,22 +251,16 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.78rem;l
     <h2>A kitchen counter and a great deal of bad coffee</h2>
     <p>All of it happens at a kitchen counter in North India: a hand grinder, a 0.1-gram scale, and a notebook that no longer closes properly.</p>
 
-    <!-- IMAGE SLOT 3 · assets/photos/counter.jpg
-         THE important one. Grinder + scale, your counter, your phone.
-         The only proof a person actually did this by hand. -->
+    <!-- IMAGE SLOT · assets/photos/counter.jpg  THE important one. -->
     <figure class="snap">
-      <img src="assets/photos/counter.jpg"
-           onerror="this.closest('figure').style.display='none'"
+      <img src="assets/photos/counter.jpg" onerror="this.closest('figure').style.display='none'"
            alt="A hand grinder and a 0.1-gram pocket scale on a wooden board" loading="lazy">
       <figcaption>the entire factory, as of this morning</figcaption>
     </figure>
 
-    <p>Mostly it has been failure. Cardamom that disappeared into milk. Cardamom that turned the cup into chai. Spice that tasted bright on Monday and bitter by Friday, because volatile oils do not care about your schedule. Sachets that leaked. Cups my wife described, with devastating economy, as <em class="beat">plain</em>. Once, memorably, as <em class="beat">half-cooked</em>.</p>
-    <div class="notebook">
-      <span class="nb-label">The notebook &middot; May 25</span>
-      <span class="nb-line">"aroma survived the milk. she found the cardamom without being asked. breakthrough."</span>
-    </div>
-    <p>Then one May morning she tasted the cup, and from the other side of the kitchen she said the word <em class="beat">cardamom</em> out loud. Nobody had asked her what was in it. That was the first cup that worked, and everything since, failures especially, is in the <a href="states.html" class="qlink">Lab</a>.</p>
+    <p>Mostly it has been failure. Cardamom that vanished into milk, then cardamom that turned the whole cup into chai. Sachets that leaked. Cups my wife described, with devastating economy, as <em class="beat">plain</em>. Once, memorably, as <em class="beat">half-cooked</em>.</p>
+    <p>Then one May morning she tasted the cup and, from the other side of the kitchen, said the word <em class="beat">cardamom</em> out loud. Nobody had asked her what was in it. That was the first cup that worked.</p>
+    <p>The failures are all in the <a href="states.html" class="qlink">Lab</a>, with the verdicts intact.</p>
   </section>
 
 </div>
@@ -311,9 +288,9 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.78rem;l
 
 <section class="contact-close">
   <span class="eyebrow">The Tasting Circle</span>
-  <h2>Every failure, before it becomes a coffee.</h2>
-  <p class="cc-line">One note a fortnight. What is on the bench, what went wrong, and what changed because of it. Leave whenever you like.</p>
-  <a class="btn dark" href="mailto:hello@stateshift.in?subject=Tasting%20Circle&body=Add%20me%20to%20the%20list.">Join with your email</a>
+  <h2>Join the inner circle.</h2>
+  <p class="cc-line">One note a fortnight. What is on the bench, what failed, and what is coming next.</p>
+  <a class="btn" href="mailto:hello@stateshift.in?subject=Tasting%20Circle&body=Add%20me%20to%20the%20list.">Join with your email</a>
   <div class="cc-links">
     <a href="mailto:hello@stateshift.in">hello@stateshift.in</a>
     <a href="https://instagram.com/stateshiftcoffee" target="_blank" rel="noopener">@stateshiftcoffee</a>
