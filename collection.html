@@ -19,6 +19,10 @@
   --line:rgba(38,25,14,.18); --line-strong:rgba(38,25,14,.45); --line-dark:rgba(212,168,83,.22);
 }
 html{font-size:16px;scroll-behavior:smooth;scroll-padding-top:110px}
+/* One site, two comfortable reading sizes. The mobile tuning is
+   preserved; desktop lifts as a whole rather than being starved. */
+@media(min-width:1024px){html{font-size:17px}}
+@media(min-width:1440px){html{font-size:18px}}
 body{font-family:'Lora',Georgia,serif;background:var(--paper);color:var(--ink);
   font-size:.93rem;line-height:1.72;min-height:100vh}
 p{text-wrap:pretty}            /* no more one-word last lines */
@@ -55,9 +59,9 @@ img{max-width:100%;display:block}
 .site-header.scrolled .site-logo small{opacity:0;max-height:0;margin:0;overflow:hidden}
 
 /* ---------- TYPE ---------- */
-.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.18em;
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:clamp(.7rem,.9vw,.8rem);letter-spacing:.18em;
   text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.85rem}
-.lead{font-size:clamp(.92rem,2vw,.99rem);color:var(--ink-soft);line-height:1.75}
+.lead{font-size:clamp(.92rem,1.5vw,1.15rem);color:var(--ink-soft);line-height:1.75}
 .margin-note{font-family:'Caveat',cursive;font-size:1.12rem;color:var(--gold);display:inline-block}
 .qlink{font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);
   text-decoration:none;border-bottom:1px solid rgba(165,116,26,.4);transition:all .2s}
@@ -152,6 +156,26 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.68rem;l
   font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase}
 
 /* ---------- RESPONSIVE ---------- */
+/* ---------- DESKTOP ---------- */
+@media(min-width:1024px){
+  .site-header{padding:1rem 2.6rem}
+  .site-logo{font-size:1.75rem}
+  .site-logo small{font-size:.7rem}
+  .site-nav{gap:1.4rem}
+  .site-nav a{font-size:.8rem}
+  .btn{font-size:.8rem;padding:1.05rem 2.1rem}
+  .disclose > summary{font-size:1.06rem;padding:1.05rem 3rem 1.05rem 1.3rem}
+  .disclose .body p{font-size:1rem}
+  .disclose .body{padding:1.1rem 1.3rem 1.3rem}
+  .contact-close{padding:3.4rem 2rem}
+  .contact-close h2{font-size:1.75rem}
+  .contact-close .cc-line{font-size:1.02rem;max-width:560px}
+  .site-footer{padding:3.2rem 2.6rem 2rem}
+  .footer-links li{font-size:.95rem}
+  .notebook{padding:1.4rem 1.6rem}
+  .notebook .nb-line{font-size:1.5rem}
+}
+
 @media(max-width:860px){
   .footer-grid{grid-template-columns:1fr 1fr;gap:1.3rem 1.2rem}
   .footer-grid > *:first-child{grid-column:1 / -1}
@@ -177,49 +201,65 @@ figure.frame figcaption{font-family:'IBM Plex Mono',monospace;font-size:.68rem;l
 /* ===== page-specific ===== */
 
 .c-hero{padding:2.2rem 1.3rem 1.8rem;text-align:center;max-width:560px;margin:0 auto}
+@media(min-width:900px){.c-hero{max-width:780px;padding:4.4rem 2rem 3rem}}
 @media(min-width:761px){.c-hero{padding:3.2rem 2rem 2.2rem}}
-.c-hero h1{font-size:clamp(1.35rem,4.5vw,2.2rem);line-height:1.3;margin-bottom:1rem}
+.c-hero h1{font-size:clamp(1.35rem,4.2vw,3.2rem);line-height:1.24;margin-bottom:1.1rem}
 .c-hero h1 em{color:var(--gold)}
-.c-hero p{font-size:.92rem;line-height:1.8;color:var(--ink-soft);margin-bottom:.8rem}
+.c-hero p{font-size:clamp(.92rem,1.4vw,1.18rem);line-height:1.8;color:var(--ink-soft);margin-bottom:.9rem}
 .c-hero p:last-of-type{margin-bottom:1.5rem}
 .c-hero p em{color:var(--ink);font-style:italic}
 
 .sku{padding:2.2rem 0}
 @media(min-width:761px){.sku{padding:3rem 0}}
 .sku-in{max-width:560px;margin:0 auto;padding:0 1.3rem}
+/* poster left, notes right. This is where the desktop whitespace was. */
+@media(min-width:900px){
+  .sku{padding:4rem 0}
+  .sku-in{max-width:1020px;padding:0 2rem;
+    display:grid;grid-template-columns:360px 1fr;
+    grid-template-areas:"head head" "art notes" "art more";
+    column-gap:3.2rem;align-items:start}
+  .sku-head{grid-area:head;margin-bottom:1.6rem}
+  .art{grid-area:art;margin-bottom:0;position:sticky;top:120px}
+  .tnotes{grid-area:notes;margin-bottom:1.4rem}
+  .sku-in > .disclose{grid-area:more;align-self:start}
+}
 .sku-head{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem}
-.sku-head h2{font-size:clamp(1.4rem,5vw,2rem);letter-spacing:.03em;line-height:1}
-.sku-head .mean{font-family:'Caveat',cursive;font-size:1.1rem;color:var(--gold)}
+.sku-head h2{font-size:clamp(1.4rem,4.6vw,3rem);letter-spacing:.03em;line-height:1}
+.sku-head .mean{font-family:'Caveat',cursive;font-size:clamp(1.1rem,1.6vw,1.5rem);color:var(--gold)}
 .shift{display:inline-block;background:var(--espresso);color:var(--amber);
-  font-family:'IBM Plex Mono',monospace;font-size:.63rem;letter-spacing:.1em;
+  font-family:'IBM Plex Mono',monospace;font-size:clamp(.63rem,.85vw,.78rem);letter-spacing:.1em;
   text-transform:uppercase;padding:.32rem .65rem;margin-left:auto}
 .art{width:100%;display:block;box-shadow:0 10px 30px rgba(20,10,4,.26);margin-bottom:1.2rem}
 .tnotes{margin-bottom:1.2rem}
 .tn{display:grid;grid-template-columns:1fr;gap:.12rem;padding:.62rem 0;border-bottom:1px dashed var(--line)}
 @media(min-width:601px){.tn{grid-template-columns:125px 1fr;gap:1rem}}
 .tn:first-child{border-top:1px dashed var(--line)}
-.tn b{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:.67rem;
+.tn b{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:clamp(.67rem,.9vw,.8rem);
   letter-spacing:.12em;text-transform:uppercase;color:var(--gold);padding-top:.22rem}
-.tn span{font-size:.89rem;line-height:1.65;color:var(--ink-soft)}
+.tn span{font-size:clamp(.89rem,1.2vw,1.06rem);line-height:1.7;color:var(--ink-soft)}
 
 .how{background:var(--paper-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:2.4rem 0}
 .how-in{max-width:580px;margin:0 auto;padding:0 1.3rem}
-.how h2{font-size:clamp(1.25rem,3.8vw,1.75rem);margin-bottom:.9rem;line-height:1.35}
-.how > .how-in > p{font-size:.92rem;line-height:1.75;color:var(--ink-soft);margin-bottom:1.2rem}
+@media(min-width:900px){.how{padding:4rem 0}.how-in{max-width:760px;padding:0 2rem}}
+.how h2{font-size:clamp(1.25rem,3.2vw,2.4rem);margin-bottom:1rem;line-height:1.3}
+.how > .how-in > p{font-size:clamp(.92rem,1.3vw,1.12rem);line-height:1.8;color:var(--ink-soft);margin-bottom:1.4rem}
 .two{display:grid;grid-template-columns:1fr;gap:.8rem;margin-bottom:1.2rem}
 @media(min-width:601px){.two{grid-template-columns:1fr 1fr;gap:1rem}}
 .sachet{border:1px solid var(--line);background:var(--cream);padding:1.05rem}
 .sachet .tag{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.16em;
   text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.4rem}
-.sachet h3{font-size:1rem;margin-bottom:.35rem}
-.sachet p{font-size:.87rem;line-height:1.65;color:var(--ink-soft);margin:0}
-.recipe{font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.05em;
+.sachet h3{font-size:clamp(1rem,1.4vw,1.25rem);margin-bottom:.4rem}
+.sachet p{font-size:clamp(.87rem,1.15vw,1.02rem);line-height:1.7;color:var(--ink-soft);margin:0}
+.recipe{font-family:'IBM Plex Mono',monospace;font-size:clamp(.78rem,1.05vw,.95rem);letter-spacing:.05em;
   background:var(--espresso);color:var(--dark-text);padding:1rem;text-align:center;
   line-height:1.95;margin-bottom:1.4rem}
 .card-fig{max-width:350px;margin:0 auto}
+@media(min-width:900px){.card-fig{max-width:430px}}
 .c-close{background:var(--espresso);color:var(--dark-text);text-align:center;padding:2.4rem 1.3rem}
-.c-close h2{color:var(--dark-text);font-size:clamp(1.25rem,3.6vw,1.75rem);margin-bottom:.6rem;line-height:1.35}
-.c-close p{color:#cdb894;margin-bottom:1.4rem;line-height:1.7;font-size:.88rem}
+@media(min-width:900px){.c-close{padding:4rem 2rem}}
+.c-close h2{color:var(--dark-text);font-size:clamp(1.25rem,3.2vw,2.4rem);margin-bottom:.75rem;line-height:1.3}
+.c-close p{color:#cdb894;margin-bottom:1.6rem;line-height:1.7;font-size:clamp(.88rem,1.2vw,1.08rem)}
 
 </style>
 </head>
